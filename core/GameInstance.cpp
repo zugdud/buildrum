@@ -9,3 +9,9 @@ GameInstance::~GameInstance()
 {
 
 }
+
+GameInstance::run()
+{
+    GameInstanceProperties gameInstanceProperties();
+
+}

@@ -2,7 +2,9 @@
 
 GameInstanceProperties::GameInstanceProperties()
 {
-
+    setViewports();
+    setWindowProfiles();
+    setCamera();
 }
 
 GameInstanceProperties::~GameInstanceProperties()
@@ -10,70 +12,67 @@ GameInstanceProperties::~GameInstanceProperties()
 
 }
 
-void GameInstanceProperties::setWindowProperties()
+void GameInstanceProperties::setViewports()
 {
+    mViewportProperties.clear();
+
+    RGBAColors red = { 255, 0, 0, 255 };
+    RGBAColors green = { 0, 255, 0, 255 };
+    RGBAColors blue = { 0, 0, 255, 255 };
+
     ViewportProperties actionMenu;
-
-    actionMenu.viewportId = "actionMenu";
-    actionMenu.xPositionOffset = 0;
-    actionMenu.yPositionOffset = 0;
-    actionMenu.windowWidthRatio = 0.8;
-    actionMenu.windowHeightRatio = 0.2;
-
+    ViewportProperties minimap;
     ViewportProperties gameView;
 
+    actionMenu.viewportId = "actionMenu";
+    actionMenu.xPositionOffsetRatio = 0.0;
+    actionMenu.yPositionOffsetRatio = 0.0;
+    actionMenu.windowWidthRatio = 0.8;
+    actionMenu.windowHeightRatio = 0.2;
+    actionMenu.bgColor = red;
+
+    minimap.viewportId = "minimap";
+    minimap.xPadRatio = 0.0;
+    minimap.yPadRatio = 0.8;
+    minimap.windowWidthRatio = 1.0;
+    minimap.windowHeightRatio = 1.0;
+    minimap.bgColor = green;
+
     gameView.viewportId = "gameView";
-    gameView.xPositionOffset = 0;
-    gameView.yPositionOffset = 0;
+    gameView.xPadRatio = 0.0;
+    gameView.yPadRatio = 0.2;
     gameView.windowWidthRatio = 1.0;
-    gameView.windowHeightRatio = 0.2;
+    gameView.windowHeightRatio = 1.0;
+    gameView.bgColor = blue;
 
-    ViewportProperties actionMenuViewport;
-
-    actionMenuViewport.viewportId = "actionMenu";
-    actionMenuViewport.xPositionOffset = 0;
-    actionMenuViewport.yPositionOffset = 0;
-    actionMenuViewport.windowWidthRatio = 0.8;
-    actionMenuViewport.windowHeightRatio = 0.2;
-
-
-    std::string viewportId;
-
-
-    int xPositionOffset;
-    int yPositionOffset;
-    double windowWidthRatio;
-    double windowHeightRatio;
+    mViewportProperties.push_back(actionMenu);
+    mViewportProperties.push_back(minimap);
+    mViewportProperties.push_back(gameView);
 }
 
-void GameInstanceProperties::setWindowProperties(ViewportProperties viewport)
+void GameInstanceProperties::setWindowProfiles()
 {
+    WindowProperties linux;
+    WindowProperties mac;
+    WindowProperties android;
 
+    linux.screenWidth = 1280;
+    linux.screenHeight = 960;
+
+    mac.screenWidth = 1280;
+    mac.screenHeight = 960;
+
+    android.screenWidth = 1280;
+    android.screenHeight = 720;
+
+    mWindowProperties["linux"] = linux;
+    mWindowProperties["mac"] = mac;
+    mWindowProperties["android"] = android;
 }
 
-struct WindowProperties
+void GameInstanceProperties::setCamera()
 {
-    int screenHeight;
-    int screenWidth;
-    int numViewports;
-    ViewportProperties Viewports[arraySize];
-    std::string windowId;
-};
-
-struct ViewportProperties
-{
-    std::string viewportId;
-    int xPositionOffset;
-    int yPositionOffset;
-    double windowWidthRatio;
-    double windowHeightRatio;
-};
-
-struct CameraProperties
-{
-    int levelWidth;
-    int levelHeight;
-    double defaultZoomLevel;
-    double maxZoomLevel;
-    double minZoomLevel;
-};
+    mCameraProperties.defaultZoomLevel = 1.0;
+    mCameraProperties.maxZoomLevel = 4.0;
+    mCameraProperties.minZoomLevel = 0.2;
+}

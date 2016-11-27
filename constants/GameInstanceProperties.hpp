@@ -7,7 +7,12 @@ GameInstanceProperties();
 
 private:
 
-WindowProperties mWindowProperties;
+void setViewports();
+void setWindowProfiles();
+void setCamera();
+
+std::vector<ViewportProperties> mViewportProperties;
+std::map<std::string, WindowProperties> mWindowProperties; // profileId->Window
 CameraProperties mCameraProperties;
 
 };

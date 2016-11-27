@@ -1,11 +1,5 @@
 const int arraySize = 256;
 
-struct GameInstanceProperties
-{
-    WindowProperties windowProperties;
-    CameraProperties cameraProperties;
-}
-
 // ------------------------------------------------------------------------------
 // Env
 // ------------------------------------------------------------------------------
@@ -27,24 +21,20 @@ struct WindowProperties
 {
     int screenHeight;
     int screenWidth;
-    int numViewports;
-    ViewportProperties Viewports[arraySize];
-    std::string windowId;
 };
 
 struct ViewportProperties
 {
     std::string viewportId;
-    int xPositionOffset;
-    int yPositionOffset;
+    double xPadRatio;
+    double yPadRatio;
     double windowWidthRatio;
     double windowHeightRatio;
+    RGBAColors bgColor;
 };
 
 struct CameraProperties
 {
-    int levelWidth;
-    int levelHeight;
     double defaultZoomLevel;
     double maxZoomLevel;
     double minZoomLevel;
