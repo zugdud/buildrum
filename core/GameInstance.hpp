@@ -1,4 +1,4 @@
-class GameInstance
+class GameInstance : public InputEventTypeObserver
 {
 public:
 
@@ -9,6 +9,11 @@ void run();
 
 private:
 
+void inputEventTypeCallback(SDL_EventType sdlEventType);
+
 GameInstanceProperties *mGameInstanceProperties;
 WindowManager *mWindowManager;
+
+bool mRunning;
+
 };

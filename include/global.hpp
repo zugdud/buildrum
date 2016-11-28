@@ -22,4 +22,7 @@
 #include "core/window/Window.hpp"
 #include "core/window/WindowManager.hpp"
 
+#include "input/InputEventTypeObserver.hpp"
+#include "input/InputEventTypeHandler.hpp"
+
 #include "core/GameInstance.hpp"

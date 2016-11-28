@@ -28,11 +28,12 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # define the C source files
 SRCS = main.cpp \
-config/constants/GameInstanceProperties.cpp \
+config/constants/gameinstance/GameInstanceProperties.cpp \
 core/window/Viewport.cpp \
 core/window/Window.cpp \
 core/window/WindowManager.cpp \
 core/GameInstance.cpp \
+input/InputEventTypeHandler.cpp \
 
 # define the C object files
 #

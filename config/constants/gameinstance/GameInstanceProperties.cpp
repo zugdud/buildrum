@@ -4,6 +4,7 @@ GameInstanceProperties::GameInstanceProperties()
 {
     setViewports();
     setWindowProfiles();
+    setInputTypeEvents();
 }
 
 GameInstanceProperties::~GameInstanceProperties()
@@ -54,51 +55,8 @@ void GameInstanceProperties::setWindowProfiles()
     mWindowProperties["android"] = androidProperties;
 }
 
-void GameInstanceProperties::setInputTypeEvents()
+void GameInstanceProperties::setRegisteredSDLTypeEvents()
 {
-    InputTypeEventProperties inputTypeEvent_exit = { "exit",  SDL_QUIT };
-    InputTypeEventProperties inputTypeEvent_windowChange = { "windowChange",  SDL_WindowEvent };
-
-    mInputTypeEventProperties.push_back(inputTypeEvent_exit);
-    mInputTypeEventProperties.push_back(inputTypeEvent_windowChange);
-}
-
-void GameInstanceProperties::initInputPointEvents()
-{
-    SDL_Rect nullTriggerEventRect = { -1, -1, -1, -1 };
-
-    mInputPointEventProperties[] =;
-}
-
-void GameInstanceProperties::updateInputPointEvents()
-{
-    //
-}
-
-struct InputTypeEventProperties
-{
-    std::string TypeEventName;
-    SDL_EventType sdlEventType;
-}
-
-struct InputKeyEventProperties
-{
-    std::string KeyEventName;
-    SDL_Keycode sdlKeyCode;
-}
-
-struct InputPointEventProperties
-{
-    std::string pointEventName;
-    std::string viewportId;
-    SDL_Rect triggerEventRect;
-}
-
-struct InputScrollEventProperties
-{
-    std::string scrollEventName;
-    std::string viewportId;
-    double scaleFactor;
-    double minScrollRate;
-    double maxScrollRate;
+    mRegisteredSDLTypeEvents.push_back(SDL_QUIT);
+    mRegisteredSDLTypeEvents.push_back(SDL_WindowEvent);
 }
