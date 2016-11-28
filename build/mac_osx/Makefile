@@ -19,7 +19,7 @@ INCLUDES =-I/usr/include/SDL2/ \
  -I /Library/Frameworks/SDL2_image.framework/Headers \
  -I /Library/Frameworks/SDL2_ttf.framework/Headers \
  -I /Library/Frameworks/SDL2_mixer.framework/Headers \
- -I /Users/jcreecy/headerLink \
+ -I /Users/jcreecy/code/buildrum \
  -F/Library/Frameworks
 
 # define library paths in addition to /usr/lib
@@ -33,7 +33,9 @@ LFLAGS =
 LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SDL2_ttf
 
 # define the C source files
-SRCS = main.cpp
+SRCS = main.cpp \
+constants/GameInstanceProperties.cpp \
+core/GameInstance.cpp
 
 # define the C object files
 #

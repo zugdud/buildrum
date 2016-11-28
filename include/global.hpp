@@ -14,4 +14,9 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
-#include "constants/GameInstance.hpp"
+#include "types/commonTypes.hpp"
+#include "types/properties.hpp"
+
+
+#include "constants/GameInstanceProperties.hpp"
+#include "core/GameInstance.hpp"

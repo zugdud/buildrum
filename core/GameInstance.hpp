@@ -5,6 +5,8 @@ public:
 GameInstance();
 ~GameInstance();
 
+void init();
+
 private:
 
 };

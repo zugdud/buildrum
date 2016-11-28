@@ -10,8 +10,7 @@ GameInstance::~GameInstance()
 
 }
 
-GameInstance::run()
+void GameInstance::init()
 {
-    GameInstanceProperties gameInstanceProperties();
 
 }

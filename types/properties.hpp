@@ -44,16 +44,31 @@ struct CameraProperties
 // UI Menus
 // ------------------------------------------------------------------------------
 
-struct UIMenuProperties
+struct UILabelProperties
 {
-    std::string mUIMenuId;
-    std::string mViewportId;
-    int mRows;
-    int mColumns;
-    int mNumPanes;
-    UIPaneProperties UIPanes[arraySize];
+    int orderId;
+    std::string labelId;
+    std::string labelText;
+    std::string fontId;
+};
+
+struct UIButtonStateProperties
+{
+    std::string buttonState;
+    int spriteId;
+    std::string soundEffectId;
+};
+
+struct UIButtonProperties
+{
+    int orderId;
+    std::string buttonId;
     int xPadding;
     int yPadding;
+    std::string actionId;
+    int numButtonStates;
+    UIButtonStateProperties buttonStates[arraySize];
+
 };
 
 struct UIPaneProperties
@@ -69,31 +84,16 @@ struct UIPaneProperties
     UILabelProperties labels[arraySize];
 };
 
-struct UIButtonProperties
+struct UIMenuProperties
 {
-    int orderId;
-    std::string buttonId;
+    std::string mUIMenuId;
+    std::string mViewportId;
+    int mRows;
+    int mColumns;
+    int mNumPanes;
+    UIPaneProperties UIPanes[arraySize];
     int xPadding;
     int yPadding;
-    std::string actionId;
-    int numButtonStates;
-    UIButtonStateProperties buttonStates[arraySize];
-
-};
-
-struct UIButtonStateProperties
-{
-    std::string buttonState;
-    int spriteId;
-    std::string soundEffectId;
-};
-
-struct UILabelProperties
-{
-    int orderId;
-    std::string labelId;
-    std::string labelText;
-    std::string fontId;
 };
 
 // ------------------------------------------------------------------------------
