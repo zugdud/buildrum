@@ -4,12 +4,17 @@ GameInstanceProperties::GameInstanceProperties()
 {
     setViewports();
     setWindowProfiles();
-    setInputTypeEvents();
+    setRegisteredSDLTypeEvents();
 }
 
 GameInstanceProperties::~GameInstanceProperties()
 {
 
+}
+
+const std::vector<SDL_EventType> & GameInstanceProperties::getRegisteredSDLTypeEvents()
+{
+    return mRegisteredSDLTypeEvents;
 }
 
 const std::vector<ViewportProperties> & GameInstanceProperties::getViewportProperties()
@@ -58,5 +63,5 @@ void GameInstanceProperties::setWindowProfiles()
 void GameInstanceProperties::setRegisteredSDLTypeEvents()
 {
     mRegisteredSDLTypeEvents.push_back(SDL_QUIT);
-    mRegisteredSDLTypeEvents.push_back(SDL_WindowEvent);
+    mRegisteredSDLTypeEvents.push_back(SDL_WINDOWEVENT);
 }

@@ -4,7 +4,15 @@ GameInstance::GameInstance()
 {
     mGameInstanceProperties = new GameInstanceProperties();
     mWindowManager = new WindowManager(*mGameInstanceProperties);
+    mInputEventTypeHandler = new InputEventTypeHandler();
+
     mRunning = false;
+
+    const std::vector<SDL_EventType> & registeredSDLTypeEvents = mGameInstanceProperties->getRegisteredSDLTypeEvents();
+    for (size_t i = 0; i < registeredSDLTypeEvents.size(); i++)
+    {
+        mInputEventTypeHandler->registerObserver(registeredSDLTypeEvents[i], this);
+    }
 }
 
 GameInstance::~GameInstance()
@@ -14,10 +22,17 @@ GameInstance::~GameInstance()
 
 void GameInstance::inputEventTypeCallback(SDL_EventType sdlEventType)
 {
-    switch (sdlEventType)
+    if (sdlEventType == SDL_QUIT)
     {
-        case SDL_QUIT: mRunning = false; break;
-        case SDL_WindowEvent:  SDL_Log("GameInstance::inputEventTypeCallback -- Window Changed! \n"); break;
+        mRunning = false;
+    }
+    else if (sdlEventType == SDL_WINDOWEVENT)
+    {
+        SDL_Log("GameInstance::inputEventTypeCallback -- Window Changed! \n");
+    }
+    else
+    {
+        // unhandled / unregistered
     }
 }
 
@@ -27,5 +42,6 @@ void GameInstance::run()
 
     while ( mRunning )
     {
+        mInputEventTypeHandler->pollEventQueue();
     }
 }

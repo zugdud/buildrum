@@ -1,4 +1,4 @@
-#include "config/include.h"
+#include "include/global.hpp"
 
 InputEventTypeHandler::InputEventTypeHandler()
 {
@@ -10,7 +10,7 @@ InputEventTypeHandler::~InputEventTypeHandler()
 
 }
 
-void InputEventTypeHandler::register (SDL_EventType sdlEventType, Observer * observer)
+void InputEventTypeHandler::registerObserver(SDL_EventType sdlEventType, InputEventTypeObserver *observer)
 {
     mObservers[sdlEventType] = observer;
 }
@@ -21,9 +21,10 @@ void InputEventTypeHandler::pollEventQueue()
 
     while ( SDL_PollEvent(&inputEvent) != 0 )
     {
-        if ( mObservers.count(inputEvent.type) == 1)
+        SDL_EventType inputEventType = static_cast<SDL_EventType>(inputEvent.type);
+        if ( mObservers.count(inputEventType) == 1)
         {
-            mObservers[inputEvent.type]->inputEventTypeCallback(inputEvent.type);
+            mObservers[inputEventType]->inputEventTypeCallback(inputEventType);
         }
     }
 }

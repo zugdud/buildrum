@@ -140,30 +140,30 @@ struct FontProperties
 // Input
 // ------------------------------------------------------------------------------
 
-struct InputTypeEventProperties
-{
-    std::string TypeEventName;
-    SDL_EventType sdlEventType;
-}
-
-struct InputKeyEventProperties
-{
-    std::string KeyEventName;
-    SDL_Keycode sdlKeyCode;
-}
-
-struct InputPointEventProperties
-{
-    std::string pointEventName;
-    std::string viewportId;
-    SDL_Rect triggerEventRect;
-}
-
-struct InputScrollEventProperties
-{
-    std::string scrollEventName;
-    std::string viewportId;
-    double scaleFactor;
-    double minScrollRate;
-    double maxScrollRate;
-}
+// struct InputTypeEventProperties
+// {
+//     std::string TypeEventName;
+//     SDL_EventType sdlEventType;
+// }
+//
+// struct InputKeyEventProperties
+// {
+//     std::string KeyEventName;
+//     SDL_Keycode sdlKeyCode;
+// }
+//
+// struct InputPointEventProperties
+// {
+//     std::string pointEventName;
+//     std::string viewportId;
+//     SDL_Rect triggerEventRect;
+// }
+//
+// struct InputScrollEventProperties
+// {
+//     std::string scrollEventName;
+//     std::string viewportId;
+//     double scaleFactor;
+//     double minScrollRate;
+//     double maxScrollRate;
+// }

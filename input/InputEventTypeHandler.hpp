@@ -2,8 +2,11 @@ class InputEventTypeHandler
 {
 
 public:
-InputEventHandler();
-~InputEventHandler();
+InputEventTypeHandler();
+~InputEventTypeHandler();
+
+void registerObserver(SDL_EventType sdlEventType, InputEventTypeObserver *observer);
+void pollEventQueue();
 
 private:
 

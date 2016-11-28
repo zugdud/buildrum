@@ -14,6 +14,8 @@ void inputEventTypeCallback(SDL_EventType sdlEventType);
 GameInstanceProperties *mGameInstanceProperties;
 WindowManager *mWindowManager;
 
+InputEventTypeHandler *mInputEventTypeHandler;
+
 bool mRunning;
 
 };
