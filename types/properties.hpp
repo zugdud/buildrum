@@ -19,6 +19,8 @@ struct EnvironmentMediaProperties
 
 struct WindowProperties
 {
+    std::string windowName;
+    RGBAColors bgColor;
     int screenHeight;
     int screenWidth;
 };

@@ -61,16 +61,24 @@ void GameInstanceProperties::setViewports()
 
 void GameInstanceProperties::setWindowProfiles()
 {
+    RGBAColors white = { 255, 255, 255, 255 };
+
     WindowProperties linux;
     WindowProperties mac;
     WindowProperties android;
 
+    linux.windowName = "Buildrum";
+    linux.bgColor = white;
     linux.screenWidth = 1280;
     linux.screenHeight = 960;
 
+    mac.windowName = "Buildrum";
+    mac.bgColor = white;
     mac.screenWidth = 1280;
     mac.screenHeight = 960;
 
+    android.windowName = "Buildrum";
+    android.bgColor = white;
     android.screenWidth = 1280;
     android.screenHeight = 720;
 
