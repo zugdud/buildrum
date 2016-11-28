@@ -7,9 +7,12 @@ Camera(const CameraProperties &CameraProperties, const WindowProperties &windowP
 
 private:
 
-setCamera(const WindowProperties &windowProperties);
-
 CameraProperties mCameraProperties;
+
 SDL_Rect mCamera;
+double mZoomFactor;
+
+int mWorldWidth;
+int mWorldHeight;
 
 };

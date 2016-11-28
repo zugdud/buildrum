@@ -5,7 +5,7 @@ public:
 GameInstanceProperties();
 ~GameInstanceProperties();
 
-const std::vector & getViewportProperties();
+const std::vector<ViewportProperties> & getViewportProperties();
 const WindowProperties & getWindowProperties();
 
 private:

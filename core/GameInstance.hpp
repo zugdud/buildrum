@@ -9,4 +9,6 @@ void init();
 
 private:
 
+GameInstanceProperties *mGameInstanceProperties;
+WindowManager *mWindowManager;
 };

@@ -7,7 +7,7 @@ Viewport(const ViewportProperties &viewportProperties, const WindowProperties &w
 
 private:
 
-setViewport(const WindowProperties &windowProperties);
+void setViewport(const WindowProperties &windowProperties);
 
 ViewportProperties mViewportProperties;
 SDL_Rect mViewport;

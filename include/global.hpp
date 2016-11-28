@@ -17,6 +17,9 @@
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
 
+#include "config/constants/GameInstanceProperties.hpp"
+#include "core/window/Viewport.hpp"
+#include "core/window/Window.hpp"
+#include "core/window/WindowManager.hpp"
 
-#include "constants/GameInstanceProperties.hpp"
 #include "core/GameInstance.hpp"

@@ -4,12 +4,20 @@ GameInstanceProperties::GameInstanceProperties()
 {
     setViewports();
     setWindowProfiles();
-    setCamera();
 }
 
 GameInstanceProperties::~GameInstanceProperties()
 {
 
+}
+
+const std::vector & getViewportProperties()
+{
+    return mViewportProperties;
+}
+const WindowProperties & getWindowProperties()
+{
+    return mWindowProperties["linux"];
 }
 
 void GameInstanceProperties::setViewports()
@@ -85,11 +93,4 @@ void GameInstanceProperties::setWindowProfiles()
     mWindowProperties["linux"] = linux;
     mWindowProperties["mac"] = mac;
     mWindowProperties["android"] = android;
-}
-
-void GameInstanceProperties::setCamera()
-{
-    mCameraProperties.defaultZoomLevel = 1.0;
-    mCameraProperties.maxZoomLevel = 4.0;
-    mCameraProperties.minZoomLevel = 0.2;
 }

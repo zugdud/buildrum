@@ -1,9 +1,9 @@
 #include "include/global.hpp"
 
-Camera::Camera(const CameraProperties &CameraProperties, const WindowProperties &windowProperties)
+Camera::Camera(const CameraProperties &CameraProperties, const WindowProperties &windowProperties);
 {
     mCameraProperties = CameraProperties;
-    setCamera(windowProperties);
+    initCamera(windowProperties);
 }
 
 Camera::~Camera()
@@ -11,38 +11,22 @@ Camera::~Camera()
 
 }
 
-void Camera::setCamera(const WindowProperties &windowProperties)
+void Camera::initCamera(const WindowProperties &windowProperties)
 {
-    mCamera.x = windowProperties.screenWidth * mCameraProperties.xPadRatio;
-    mCamera.y = windowProperties.screenHeight * mCameraProperties.yPadRatio;
-    mCamera.w = windowProperties.screenWidth * mCameraProperties.windowWidthRatio;
-    mCamera.h = windowProperties.screenHeight * mCameraProperties.windowHeightRatio;
+    mCamera.x = mCameraProperties.initPositionX;
+    mCamera.y = mCameraProperties.initPositionY;
+    mCamera.w = windowProperties.screenWidth;
+    mCamera.h = windowProperties.screenHeight;
+
+    mZoomFactor = mCameraProperties.defaultZoomFactor;
+    mWorldWidth = 0;
+    mWorldHeight = 0;
 }
 
-#include "config/include.h"
-
-Camera::Camera(int screenWidth, int screenHeight, int levelWidth, int levelHeight)
-{
-    // Initialize the camera position
-    mCamera.x = 0;     // pixel position of the camera
-    mCamera.y = 0;     // pixel position of the camera
-    mCamera.w = screenWidth; // camera geometry
-    mCamera.h = screenHeight; // camera geometry
-
-    mLevelWidth = levelWidth; // level geometry
-    mLevelHeight = levelHeight; // level geometry
-
-    mZoomFactor = 1.0; // initial zoom
-}
 
 Camera::~Camera()
 {
     dtor();
-}
-
-void Camera::dtor()
-{
-    // singleton
 }
 
 bool Camera::isWithinPaddedCameraArea(const int & x, const int & y, const int & pixelsPerSprite)

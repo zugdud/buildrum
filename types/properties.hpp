@@ -37,9 +37,11 @@ struct ViewportProperties
 
 struct CameraProperties
 {
-    double defaultZoomLevel;
-    double maxZoomLevel;
-    double minZoomLevel;
+    int initPositionX;
+    int initPositionY;
+    double defaultZoomFactor;
+    double maxZoomFactor;
+    double minZoomFactor;
 };
 
 // ------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ void Viewport::setViewport(const WindowProperties &windowProperties)
     mViewport.h = windowProperties.screenHeight * mViewportProperties.windowHeightRatio;
 
     SDL_Log("Viewport::setViewport -- viewportId: %s x: %d y: %d w: %d h: %d \n",
-            mViewportProperties.viewportId,
+            mViewportProperties.viewportId.c_str(),
             mViewport.x,
             mViewport.y,
             mViewport.w,

@@ -20,10 +20,9 @@ Window::~Window()
 bool Window::createWindow()
 {
     SDL_Log("Window::createWindow windowName: %s screenHeight: %d screenWidth: %d \n",
-            mWindowProperties.windowName,
+            mWindowProperties.windowName.c_str(),
             mWindowProperties.screenHeight,
-            mWindowProperties.screenWidth,
-            );
+            mWindowProperties.screenWidth);
 
     if ( init() )
     {

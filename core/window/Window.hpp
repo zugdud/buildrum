@@ -2,7 +2,7 @@ class Window
 {
 public:
 
-Window();
+Window(const WindowProperties &windowProperties);
 ~Window();
 
 SDL_Renderer * getWindowRenderer();
