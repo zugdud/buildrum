@@ -53,3 +53,52 @@ void GameInstanceProperties::setWindowProfiles()
     mWindowProperties["mac"] = macProperties;
     mWindowProperties["android"] = androidProperties;
 }
+
+void GameInstanceProperties::setInputTypeEvents()
+{
+    InputTypeEventProperties inputTypeEvent_exit = { "exit",  SDL_QUIT };
+    InputTypeEventProperties inputTypeEvent_windowChange = { "windowChange",  SDL_WindowEvent };
+
+    mInputTypeEventProperties.push_back(inputTypeEvent_exit);
+    mInputTypeEventProperties.push_back(inputTypeEvent_windowChange);
+}
+
+void GameInstanceProperties::initInputPointEvents()
+{
+    SDL_Rect nullTriggerEventRect = { -1, -1, -1, -1 };
+
+    mInputPointEventProperties[] =;
+}
+
+void GameInstanceProperties::updateInputPointEvents()
+{
+    //
+}
+
+struct InputTypeEventProperties
+{
+    std::string TypeEventName;
+    SDL_EventType sdlEventType;
+}
+
+struct InputKeyEventProperties
+{
+    std::string KeyEventName;
+    SDL_Keycode sdlKeyCode;
+}
+
+struct InputPointEventProperties
+{
+    std::string pointEventName;
+    std::string viewportId;
+    SDL_Rect triggerEventRect;
+}
+
+struct InputScrollEventProperties
+{
+    std::string scrollEventName;
+    std::string viewportId;
+    double scaleFactor;
+    double minScrollRate;
+    double maxScrollRate;
+}
