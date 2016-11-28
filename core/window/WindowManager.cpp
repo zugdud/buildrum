@@ -3,8 +3,8 @@
 WindowManager::WindowManager(const GameInstanceProperties &gameInstanceProperties)
 {
     mGameInstanceProperties = gameInstanceProperties;
-    createViewports();
     createWindow();
+    createViewports();
     SDL_Log("WindowManager::WindowManager -- Init Success. \n");
 }
 
@@ -13,9 +13,9 @@ WindowManager::~WindowManager()
 
 }
 
-WindowManager::createViewports()
+void WindowManager::createViewports()
 {
-    std::vector<ViewportProperties> & viewportProperties = mGameInstanceProperties.getViewportProperties();
+    const std::vector<ViewportProperties> & viewportProperties = mGameInstanceProperties.getViewportProperties();
 
     for (size_t i = 0; i < viewportProperties.size(); i++)
     {
@@ -23,7 +23,7 @@ WindowManager::createViewports()
     }
 }
 
-WindowManager::createWindow()
+void WindowManager::createWindow()
 {
     mWindow = new Window(mGameInstanceProperties.getWindowProperties());
 }

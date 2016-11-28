@@ -19,10 +19,10 @@ Window::~Window()
 
 bool Window::createWindow()
 {
-    SDL_Log("Window::createWindow windowName: %s screenHeight: %d screenWidth: %d \n",
+    SDL_Log("Window::createWindow windowName: %s screenWidth: %d screenHeight: %d \n",
             mWindowProperties.windowName.c_str(),
-            mWindowProperties.screenHeight,
-            mWindowProperties.screenWidth);
+            mWindowProperties.screenWidth,
+            mWindowProperties.screenHeight);
 
     if ( init() )
     {
@@ -43,10 +43,10 @@ SDL_Renderer * Window::getWindowRenderer()
 void Window::clearScreen()
 {
     SDL_SetRenderDrawColor(mSDLWindowRenderer,
-                           mSDLWindowProperties.bgColor.red,
-                           mSDLWindowProperties.bgColor.green,
-                           mSDLWindowProperties.bgColor.blue,
-                           mSDLWindowProperties.bgColor.alpha);
+                           mWindowProperties.bgColor.red,
+                           mWindowProperties.bgColor.green,
+                           mWindowProperties.bgColor.blue,
+                           mWindowProperties.bgColor.alpha);
     SDL_RenderClear(mSDLWindowRenderer);
 }
 
@@ -73,11 +73,11 @@ bool Window::init()
         }
 
         // Create window
-        mSDLWindow = SDL_CreateWindow(mSDLWindowProperties.windowName.c_str(),
+        mSDLWindow = SDL_CreateWindow(mWindowProperties.windowName.c_str(),
                                       SDL_WINDOWPOS_UNDEFINED,
                                       SDL_WINDOWPOS_UNDEFINED,
-                                      mSDLWindowProperties.screenWidth,
-                                      mSDLWindowProperties.screenHeight,
+                                      mWindowProperties.screenWidth,
+                                      mWindowProperties.screenHeight,
                                       SDL_WINDOW_SHOWN);
         if ( mSDLWindow == NULL )
         {
@@ -97,10 +97,10 @@ bool Window::init()
             {
                 // Initialize renderer color
                 SDL_SetRenderDrawColor(mSDLWindowRenderer,
-                                       mSDLWindowProperties.bgColor.red,
-                                       mSDLWindowProperties.bgColor.green,
-                                       mSDLWindowProperties.bgColor.blue,
-                                       mSDLWindowProperties.bgColor.alpha);
+                                       mWindowProperties.bgColor.red,
+                                       mWindowProperties.bgColor.green,
+                                       mWindowProperties.bgColor.blue,
+                                       mWindowProperties.bgColor.alpha);
             }
         }
     }

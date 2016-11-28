@@ -32,6 +32,7 @@ config/constants/GameInstanceProperties.cpp \
 core/window/Viewport.cpp \
 core/window/Window.cpp \
 core/window/WindowManager.cpp \
+core/GameInstance.cpp \
 
 # define the C object files
 #
