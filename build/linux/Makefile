@@ -29,7 +29,7 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 # define the C source files
 SRCS = main.cpp \
 config/ConfigManager.cpp \
-config/constants/gameinstance/GameInstanceProperties.cpp \
+config/constants/window/WindowPropertiesImpl.cpp \
 config/containers/MenuPropertiesContainer.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 core/window/Viewport.cpp \

@@ -8,7 +8,7 @@ public:
 static ConfigManager * getInstance();
 
 const MenuPropertiesContainer &getMenuPropertiesContainer(const std::string &uiMenuId);
-const GameInstanceProperties &getGameInstanceProperties();
+const WindowPropertiesImpl &getWindowPropertiesImpl();
 
 void reloadDynamicData();
 void loadConstants();
@@ -18,12 +18,12 @@ private:
 ConfigManager();
 ~ConfigManager();
 
-void loadGameInstanceConstants();
+void loadWindowProperties();
 void loadMenuConstants();
 
 void addMenu(IMenuProperties & menuPropertiesImpl);
 
-GameInstanceProperties mGameInstanceProperties;
+WindowPropertiesImpl mWindowPropertiesImpl;
 std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers;
 
 };

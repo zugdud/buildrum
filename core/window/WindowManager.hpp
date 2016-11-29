@@ -1,17 +1,25 @@
 class WindowManager
 {
+
+static WindowManager *mSingletonInstance;
+
 public:
 
-WindowManager(const GameInstanceProperties &gameInstanceProperties);
-~WindowManager();
+static WindowManager * getInstance();
+
+void configure(const WindowPropertiesImpl &mWindowPropertiesImpl);
+const Viewport & getViewport(const std::string & viewportId);
 
 private:
+
+WindowManager();
+~WindowManager();
 
 void createViewports();
 void createWindow();
 
-GameInstanceProperties mGameInstanceProperties;
-std::vector<Viewport *> mViewports;
-Window *mWindow;
+WindowPropertiesImpl mWindowPropertiesImpl;
+std::vector<Viewport> mViewports;
+Window mWindow;
 
 };

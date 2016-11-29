@@ -1,11 +1,10 @@
 #include "include/global.hpp"
 
-WindowManager::WindowManager(const GameInstanceProperties &gameInstanceProperties)
+WindowManager *WindowManager::mSingletonInstance = 0;
+
+WindowManager::WindowManager()
 {
-    mGameInstanceProperties = gameInstanceProperties;
-    createWindow();
-    createViewports();
-    SDL_Log("WindowManager::WindowManager -- Init Success. \n");
+
 }
 
 WindowManager::~WindowManager()
@@ -13,17 +12,49 @@ WindowManager::~WindowManager()
 
 }
 
+WindowManager * WindowManager::getInstance()
+{
+    if (!mSingletonInstance)
+    {
+        mSingletonInstance = new WindowManager;
+    }
+    return mSingletonInstance;
+}
+
+const Viewport & getViewport(const std::string & viewportId)
+{
+    for (size_t i = 0; i < mViewports.size(); i++)
+    {
+        if (mViewports[i].isViewport(viewportId))
+        {
+            return mViewports[i];
+        }
+    }
+}
+
+void WindowManager::configure(const WindowPropertiesImpl &windowPropertiesImpl)
+{
+    SDL_Log("---------------------------------------------------- \n");
+    SDL_Log("WindowManager::configure -- Configuring... \n");
+    mWindowPropertiesImpl = windowPropertiesImpl;
+    createWindow();
+    createViewports();
+    SDL_Log("WindowManager::configure -- Configuring Success. \n");
+    SDL_Log("---------------------------------------------------- \n");
+}
+
 void WindowManager::createViewports()
 {
-    const std::vector<ViewportProperties> & viewportProperties = mGameInstanceProperties.getViewportProperties();
+    const std::vector<ViewportProperties> & viewportProperties = mWindowPropertiesImpl.getViewportProperties();
 
     for (size_t i = 0; i < viewportProperties.size(); i++)
     {
-        mViewports.push_back(new Viewport(viewportProperties[i], mGameInstanceProperties.getWindowProperties()));
+        Viewport viewport = Viewport(viewportProperties[i], mWindowPropertiesImpl.getWindowProperties());
+        mViewports.push_back(viewport);
     }
 }
 
 void WindowManager::createWindow()
 {
-    mWindow = new Window(mGameInstanceProperties.getWindowProperties());
+    mWindow = Window(mWindowPropertiesImpl.getWindowProperties());
 }

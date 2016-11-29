@@ -25,9 +25,9 @@ const MenuPropertiesContainer & ConfigManager::getMenuPropertiesContainer(const 
 {
     return mMenuPropertiesContainers[uiMenuId];
 }
-const GameInstanceProperties & ConfigManager::getGameInstanceProperties()
+const WindowPropertiesImpl & ConfigManager::getWindowPropertiesImpl()
 {
-    return mGameInstanceProperties;
+    return mWindowPropertiesImpl;
 }
 
 void ConfigManager::reloadDynamicData()
@@ -39,7 +39,7 @@ void ConfigManager::loadConstants()
 {
     SDL_Log("----------------------------------------------------\n");
     SDL_Log("ConfigManager::loadConstants -- loading contants...\n");
-    loadGameInstanceConstants();
+    loadWindowProperties();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");
@@ -63,7 +63,7 @@ void ConfigManager::addMenu(IMenuProperties & menuPropertiesImpl)
     SDL_Log("ConfigManager::addMenu -- added uiMenuId: %s \n", uiMenuId.c_str());
 }
 
-void ConfigManager::loadGameInstanceConstants()
+void ConfigManager::loadWindowProperties()
 {
-    mGameInstanceProperties.loadAll();
+    mWindowPropertiesImpl.loadAll();
 }

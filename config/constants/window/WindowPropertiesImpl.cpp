@@ -1,37 +1,31 @@
 #include "include/global.hpp"
 
-GameInstanceProperties::GameInstanceProperties()
+WindowPropertiesImpl::WindowPropertiesImpl()
 {
 
 }
 
-GameInstanceProperties::~GameInstanceProperties()
+WindowPropertiesImpl::~WindowPropertiesImpl()
 {
 
 }
 
-void GameInstanceProperties::loadAll()
+void WindowPropertiesImpl::loadAll()
 {
     setViewports();
     setWindowProfiles();
-    setRegisteredSDLTypeEvents();
 }
 
-const std::vector<SDL_EventType> & GameInstanceProperties::getRegisteredSDLTypeEvents() const
-{
-    return mRegisteredSDLTypeEvents;
-}
-
-const std::vector<ViewportProperties> & GameInstanceProperties::getViewportProperties() const
+const std::vector<ViewportProperties> & WindowPropertiesImpl::getViewportProperties() const
 {
     return mViewportProperties;
 }
-const WindowProperties & GameInstanceProperties::getWindowProperties()
+const WindowProperties & WindowPropertiesImpl::getWindowProperties()
 {
     return mWindowProperties["linux"];
 }
 
-void GameInstanceProperties::setViewports()
+void WindowPropertiesImpl::setViewports()
 {
     mViewportProperties.clear();
 
@@ -51,7 +45,7 @@ void GameInstanceProperties::setViewports()
     mViewportProperties.push_back(fullscreen);
 }
 
-void GameInstanceProperties::setWindowProfiles()
+void WindowPropertiesImpl::setWindowProfiles()
 {
     RGBAColors white = { 255, 255, 255, 255 };
 
@@ -63,10 +57,4 @@ void GameInstanceProperties::setWindowProfiles()
     mWindowProperties["linux"] = linuxProperties;
     mWindowProperties["mac"] = macProperties;
     mWindowProperties["android"] = androidProperties;
-}
-
-void GameInstanceProperties::setRegisteredSDLTypeEvents()
-{
-    mRegisteredSDLTypeEvents.push_back(SDL_QUIT);
-    mRegisteredSDLTypeEvents.push_back(SDL_WINDOWEVENT);
 }

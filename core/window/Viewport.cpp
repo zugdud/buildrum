@@ -11,6 +11,20 @@ Viewport::~Viewport()
 
 }
 
+bool isViewport(const std::string & viewportId)
+{
+    if (mViewportProperties.viewportId == viewportId)
+    {
+        return true;
+    }
+    return false;
+}
+
+const SDL_Rect & getRect()
+{
+    return mViewport;
+}
+
 void Viewport::setViewport(const WindowProperties &windowProperties)
 {
     mViewport.x = windowProperties.screenWidth * mViewportProperties.xPadRatio;

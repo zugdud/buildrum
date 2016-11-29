@@ -4,6 +4,7 @@ MenuPropertiesContainer::MenuPropertiesContainer()
 {
 
 }
+
 MenuPropertiesContainer::~MenuPropertiesContainer()
 {
 

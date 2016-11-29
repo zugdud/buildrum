@@ -40,11 +40,13 @@ void MainMenuPropertiesImpl::setUIMenuProperties(MenuPropertiesContainer & menuP
 
 void MainMenuPropertiesImpl::setButtonProperties(MenuPropertiesContainer & menuPropertiesContainer)
 {
-    // orderId, buttonId, xPadding, yPadding, actionId
-    UIButtonProperties newGame = { 0, "newGame", 20, 20, "newGame" };
-    UIButtonProperties resumeGame = { 1, "resumeGame", 20, 20, "resumeGame" };
-    UIButtonProperties quitGame = { 2, "quitGame", 20, 20, "quitGame" };
+    // orderId, buttonId, xPadding, yPadding, actionId, spacer
+    UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", true };
+    UIButtonProperties newGame = { 1, "newGame", 20, 20, "newGame", false };
+    UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame", false };
+    UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame", false };
 
+    menuPropertiesContainer.addUIButtonProperties(spacer);
     menuPropertiesContainer.addUIButtonProperties(newGame);
     menuPropertiesContainer.addUIButtonProperties(resumeGame);
     menuPropertiesContainer.addUIButtonProperties(quitGame);
@@ -52,11 +54,11 @@ void MainMenuPropertiesImpl::setButtonProperties(MenuPropertiesContainer & menuP
 
 void MainMenuPropertiesImpl::setUILabelProperties(MenuPropertiesContainer & menuPropertiesContainer)
 {
-    // orderId, labelText, fontId, xPadding, yPadding
-    UILabelProperties mainMenuLabel = { 0, "Main Menu", "OpenSans-Bold", 10, 10 };
-    UILabelProperties newGame = { 1, "New Game", "OpenSans-Light", 20, 20 };
-    UILabelProperties resumeGame = { 2, "Resume Game", "OpenSans-Light", 20, 20 };
-    UILabelProperties quitGame = { 3, "Quit Game", "OpenSans-Light", 20, 20 };
+    // orderId, labelText, fontId, xPadding, yPadding, spacer
+    UILabelProperties mainMenuLabel = { 0, "Main Menu", "OpenSans-Bold", 10, 10, false };
+    UILabelProperties newGame = { 1, "New Game", "OpenSans-Light", 20, 20, false };
+    UILabelProperties resumeGame = { 2, "Resume Game", "OpenSans-Light", 20, 20, false };
+    UILabelProperties quitGame = { 3, "Quit Game", "OpenSans-Light", 20, 20, false };
 
     menuPropertiesContainer.addUILabelProperties(mainMenuLabel);
     menuPropertiesContainer.addUILabelProperties(newGame);

@@ -5,14 +5,16 @@ public:
 GameInstance();
 ~GameInstance();
 
+void init();
 void run();
 
 private:
 
 void inputEventTypeCallback(SDL_EventType sdlEventType);
 
-WindowManager *mWindowManager;
 InputEventTypeHandler *mInputEventTypeHandler;
+
+UIMenu mMainMenu;
 
 bool mRunning;
 

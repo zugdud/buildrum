@@ -19,7 +19,7 @@
 
 #include "config/containers/MenuPropertiesContainer.hpp"
 #include "config/constants/menus/IMenuProperties.hpp"
-#include "config/constants/gameinstance/GameInstanceProperties.hpp"
+#include "config/constants/window/WindowPropertiesImpl.hpp"
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 

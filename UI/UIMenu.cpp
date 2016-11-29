@@ -17,11 +17,16 @@ void UIMenu::resetPosition(const SDL_Rect & envelope)
                        mMenuPropertiesContainer.getUIMenuProperties().yPadding,
                        envelope);
 
-    UIElement::logRectDimensions("UIMenu", mMenuPropertiesContainer.getUIMenuProperties().uiMenuId, UIElement::getRect());
-
-    SDL_Log("UIMenu::resetPosition -- checking menu configuration... \n");
+    std::string uiMenuId = mMenuPropertiesContainer.getUIMenuProperties().uiMenuId;
+    std::string viewportId = mMenuPropertiesContainer.getUIMenuProperties().viewportId;
+    SDL_Log("---------------------------------------------------- \n");
+    SDL_Log("UIMenu::resetPosition -- checking menu configuration for [uiMenuId: %s] [viewportId: %s]... \n",
+            uiMenuId.c_str(),
+            viewportId.c_str());
     if (checkConfig())
     {
+        UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
+        UIElement::logRectDimensions("UIMenu", uiMenuId, UIElement::getRect());
         recalculateGridCellSize();
         regenerateButtons();
         regenerateLabels();
@@ -31,6 +36,7 @@ void UIMenu::resetPosition(const SDL_Rect & envelope)
     {
         SDL_Log("UIMenu::resetPosition -- ERROR: Not updating position due to checkConfig() failure! \n");
     }
+    SDL_Log("---------------------------------------------------- \n");
 }
 
 bool UIMenu::checkConfig()

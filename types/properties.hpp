@@ -55,6 +55,7 @@ struct UILabelProperties
     std::string fontId;
     int xPadding;
     int yPadding;
+    bool spacer;
 };
 
 struct UIButtonStateProperties
@@ -74,6 +75,7 @@ struct UIButtonProperties
     int xPadding;
     int yPadding;
     std::string actionId;
+    bool spacer;
 };
 
 struct UIMenuProperties
