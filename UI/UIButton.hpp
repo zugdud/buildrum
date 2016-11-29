@@ -8,7 +8,7 @@ UIButton(const UIButtonProperties & uiButtonProperties, const SDL_Rect & envelop
 
 private:
 
-void addUIButtonState(const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
+void addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
 
 UIButtonProperties mUIButtonProperties;
 std::vector<UIButtonState> mUIButtonStates;

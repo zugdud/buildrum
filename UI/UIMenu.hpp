@@ -2,13 +2,14 @@ class UIMenu : public UIElement
 {
 public:
 
-UIMenu(const UIMenuProperties & UIMenuProperties, const SDL_Rect & envelope);
+UIMenu(const IUIMenuProperties & menuProperties, const SDL_Rect & envelope);
 ~UIMenu();
 
 private:
 
-UIMenuProperties mUIMenuProperties;
+IUIMenuProperties mIUIMenuProperties;
+
 std::vector<UIButton> mUIButtons;
-std::vector<UILabel> mUIButtonStateProperties;
+std::vector<UILabel> mUILabels;
 
 };

@@ -133,7 +133,7 @@ struct InputTouchEventProperties
 {
     std::string viewportId;
     SDL_Rect triggerEventRect;
-}
+};
 
 struct InputScrollEventProperties
 {
@@ -142,7 +142,7 @@ struct InputScrollEventProperties
     double minRate;
     double maxRate;
     int momentumMs;
-}
+};
 
 struct InputPinchEventProperties
 {
@@ -150,4 +150,4 @@ struct InputPinchEventProperties
     double scaleFactor;
     double minRate;
     double maxRate;
-}
+};
