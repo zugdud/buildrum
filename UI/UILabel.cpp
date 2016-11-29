@@ -4,7 +4,7 @@ UILabel::UILabel(const UILabelProperties & uiLabelProperties, const SDL_Rect & e
 {
     mUILabelProperties = uiLabelProperties;
     UIElement::setRect(uiLabelProperties.xPadding, uiLabelProperties.yPadding, envelope);
-    UIElement::logDimensions(mUILabelProperties.labelText);
+    UIElement::logRectDimensions("UILabel", mUILabelProperties.labelText, UIElement::getRect());
 }
 
 UILabel::~UILabel()

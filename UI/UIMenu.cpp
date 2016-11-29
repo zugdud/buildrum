@@ -12,13 +12,82 @@ UIMenu::~UIMenu()
 
 void UIMenu::resetPosition(const SDL_Rect & envelope)
 {
+
     UIElement::setRect(mMenuPropertiesContainer.getUIMenuProperties().xPadding,
                        mMenuPropertiesContainer.getUIMenuProperties().yPadding,
                        envelope);
-    UIElement::logDimensions(mMenuPropertiesContainer.getUIMenuProperties().uiMenuId);
 
-    regenerateButtons();
-    regenerateLabels();
+    UIElement::logRectDimensions("UIMenu", mMenuPropertiesContainer.getUIMenuProperties().uiMenuId, UIElement::getRect());
+
+    SDL_Log("UIMenu::resetPosition -- checking menu configuration... \n");
+    if (checkConfig())
+    {
+        recalculateGridCellSize();
+        regenerateButtons();
+        regenerateLabels();
+        SDL_Log("UIMenu::resetPosition -- resetPosition Success! \n");
+    }
+    else
+    {
+        SDL_Log("UIMenu::resetPosition -- ERROR: Not updating position due to checkConfig() failure! \n");
+    }
+}
+
+bool UIMenu::checkConfig()
+{
+
+    bool result = true;
+
+    const int columns = mMenuPropertiesContainer.getUIMenuProperties().columns;
+    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+
+    const std::vector<UIButtonProperties> & uiButtonProperties = mMenuPropertiesContainer.getUIButtonProperties();
+    const std::vector<UILabelProperties> & uiLabelProperties = mMenuPropertiesContainer.getUILabelProperties();
+
+    const size_t gridCellCount = rows * columns;
+
+    if (gridCellCount != uiButtonProperties.size())
+    {
+        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %lu uiButtonProperties.size(): %lu \n", gridCellCount, uiButtonProperties.size());
+        result = false;
+    }
+    if (gridCellCount != uiLabelProperties.size())
+    {
+        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %lu uiLabelProperties.size(): %lu \n", gridCellCount, uiLabelProperties.size());
+        result = false;
+    }
+
+    return result;
+}
+
+void UIMenu::recalculateGridCellSize()
+{
+    mGridCells.clear();
+    const int columns = mMenuPropertiesContainer.getUIMenuProperties().columns;
+    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+    const int gridCellCount = rows * columns;
+    const int gridCellWidth = UIElement::getRect().w / columns;
+    const int gridCellHeight = UIElement::getRect().h / rows;
+
+    for (int linearIndex = 0; linearIndex < gridCellCount; linearIndex++)
+    {
+        mGridCells.push_back(calculateRect(linearIndex, gridCellWidth, gridCellHeight));
+    }
+}
+
+SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidth, const int & gridCellHeight)
+{
+    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+
+    const int thisColumn = linearIndex / rows;
+    const int thisRow = linearIndex %  rows;
+    const int x = gridCellWidth * thisColumn;
+    const int y = gridCellHeight * thisRow;
+
+    const SDL_Rect rect = { x, y, gridCellWidth, gridCellHeight };
+
+    UIElement::logRectDimensions("UIMenu", "gridCell", rect);
+    return rect;
 }
 
 void UIMenu::regenerateButtons()

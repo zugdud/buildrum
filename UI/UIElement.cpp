@@ -25,12 +25,13 @@ void UIElement::setRect(const int & xPadding, const int & yPadding, const SDL_Re
     mRect.h = envelope.h - (yPadding * 2);
 }
 
-void UIElement::logDimensions(const std::string & name)
+void UIElement::logRectDimensions(const std::string & elementType, const std::string & elementName, const SDL_Rect & rect)
 {
-    SDL_Log("UIElement::logDimensions -- name: %s [x: %d y: %d w: %d h: %d] \n",
-            name.c_str(),
-            mRect.x,
-            mRect.y,
-            mRect.w,
-            mRect.h);
+    SDL_Log("UIElement::logRectDimensions -- type: %s name: %s [x: %d y: %d w: %d h: %d] \n",
+            elementType.c_str(),
+            elementName.c_str(),
+            rect.x,
+            rect.y,
+            rect.w,
+            rect.h);
 }

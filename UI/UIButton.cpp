@@ -5,7 +5,7 @@ UIButton::UIButton(const UIButtonProperties & uiButtonProperties, const SDL_Rect
     mUIButtonProperties = uiButtonProperties;
     UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
     addUIButtonStates(uiButtonStateProperties);
-    UIElement::logDimensions(mUIButtonProperties.buttonId);
+    UIElement::logRectDimensions("UIButton", mUIButtonProperties.buttonId, UIElement::getRect());
 }
 
 UIButton::~UIButton()
