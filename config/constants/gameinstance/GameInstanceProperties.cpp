@@ -5,6 +5,8 @@ GameInstanceProperties::GameInstanceProperties()
     setViewports();
     setWindowProfiles();
     setRegisteredSDLTypeEvents();
+
+    mMainMenuProperties = new MainMenuProperties();
 }
 
 GameInstanceProperties::~GameInstanceProperties()

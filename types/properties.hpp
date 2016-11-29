@@ -70,22 +70,6 @@ struct UIButtonProperties
     int xPadding;
     int yPadding;
     std::string actionId;
-    int numButtonStates;
-    UIButtonStateProperties buttonStates[arraySize];
-
-};
-
-struct UIPaneProperties
-{
-    std::string uiPaneId;
-    int xPadding;
-    int yPadding;
-    int gridId;
-    int spriteId;
-    int numButtons;
-    UIButtonProperties buttons[arraySize];
-    int numLabels;
-    UILabelProperties labels[arraySize];
 };
 
 struct UIMenuProperties
@@ -94,8 +78,6 @@ struct UIMenuProperties
     std::string mViewportId;
     int mRows;
     int mColumns;
-    int mNumPanes;
-    UIPaneProperties UIPanes[arraySize];
     int xPadding;
     int yPadding;
 };
@@ -140,30 +122,25 @@ struct FontProperties
 // Input
 // ------------------------------------------------------------------------------
 
-// struct InputTypeEventProperties
-// {
-//     std::string TypeEventName;
-//     SDL_EventType sdlEventType;
-// }
-//
-// struct InputKeyEventProperties
-// {
-//     std::string KeyEventName;
-//     SDL_Keycode sdlKeyCode;
-// }
-//
-// struct InputPointEventProperties
-// {
-//     std::string pointEventName;
-//     std::string viewportId;
-//     SDL_Rect triggerEventRect;
-// }
-//
-// struct InputScrollEventProperties
-// {
-//     std::string scrollEventName;
-//     std::string viewportId;
-//     double scaleFactor;
-//     double minScrollRate;
-//     double maxScrollRate;
-// }
+struct InputTouchEventProperties
+{
+    std::string viewportId;
+    SDL_Rect triggerEventRect;
+}
+
+struct InputScrollEventProperties
+{
+    std::string viewportId;
+    double scaleFactor;
+    double minRate;
+    double maxRate;
+    int momentumMs;
+}
+
+struct InputPinchEventProperties
+{
+    std::string viewportId;
+    double scaleFactor;
+    double minRate;
+    double maxRate;
+}

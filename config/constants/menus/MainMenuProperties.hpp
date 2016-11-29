@@ -8,6 +8,9 @@ MainMenuProperties();
 
 private:
 
-UIMenuProperties mMainMenuProperties;
+UIMenuProperties mUIMenuProperties;
+std::vector<UIButtonProperties> mUIButtonProperties;
+std::vector<UIButtonStateProperties> mUIButtonStateProperties;
+std::vector<UILabelProperties> mUILabelProperties;
 
 };

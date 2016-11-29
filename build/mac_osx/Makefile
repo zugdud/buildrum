@@ -34,8 +34,12 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 
 # define the C source files
 SRCS = main.cpp \
-constants/GameInstanceProperties.cpp \
-core/GameInstance.cpp
+config/constants/gameinstance/GameInstanceProperties.cpp \
+core/window/Viewport.cpp \
+core/window/Window.cpp \
+core/window/WindowManager.cpp \
+core/GameInstance.cpp \
+input/InputEventTypeHandler.cpp \
 
 # define the C object files
 #

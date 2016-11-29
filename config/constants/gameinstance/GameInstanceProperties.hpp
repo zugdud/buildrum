@@ -21,4 +21,5 @@ std::vector<UIMenuProperties> mUIMenuProperties;
 
 std::vector<SDL_EventType> mRegisteredSDLTypeEvents;
 
+MainMenuProperties *mMainMenuProperties;
 };
