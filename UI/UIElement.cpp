@@ -1,6 +1,23 @@
 #include "include/global.hpp"
 
-UIElement::UIElement(const int & xPadding, const int & yPadding, const SDL_Rect & envelope)
+UIElement::UIElement()
+{
+
+}
+
+
+
+UIElement::~UIElement()
+{
+
+}
+
+const SDL_Rect & UIElement::getRect()
+{
+    return mRect;
+}
+
+void UIElement::setRect(const int & xPadding, const int & yPadding, const SDL_Rect & envelope)
 {
     mRect.x = xPadding;
     mRect.y = yPadding;
@@ -8,7 +25,12 @@ UIElement::UIElement(const int & xPadding, const int & yPadding, const SDL_Rect 
     mRect.h = envelope.h - (yPadding * 2);
 }
 
-UIElement::~UIElement()
+void UIElement::logDimensions(std::string name)
 {
-
+    SDL_Log("UIElement::logDimensions -- name: %s [x: %d y: %d w: %d h: %d] \n",
+            name.c_str(),
+            mRect.x,
+            mRect.y,
+            mRect.w,
+            mRect.h);
 }

@@ -51,9 +51,10 @@ struct CameraProperties
 struct UILabelProperties
 {
     int orderId;
-    std::string labelId;
     std::string labelText;
     std::string fontId;
+    int xPadding;
+    int yPadding;
 };
 
 struct UIButtonStateProperties
@@ -61,6 +62,9 @@ struct UIButtonStateProperties
     std::string buttonState;
     int spriteId;
     std::string soundEffectId;
+    RGBAColors bgColor;
+    RGBAColors borderColor;
+    bool drawBorder;
 };
 
 struct UIButtonProperties
@@ -74,12 +78,15 @@ struct UIButtonProperties
 
 struct UIMenuProperties
 {
-    std::string mUIMenuId;
-    std::string mViewportId;
-    int mRows;
-    int mColumns;
+    std::string uiMenuId;
+    std::string viewportId;
+    int rows;
+    int columns;
     int xPadding;
     int yPadding;
+    RGBAColors bgColor;
+    RGBAColors gridLineColor;
+    bool drawBorder;
 };
 
 // ------------------------------------------------------------------------------
