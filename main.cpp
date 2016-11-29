@@ -2,8 +2,9 @@
 
 int main(int argc, char *args[])
 {
-    GameInstance gameInstance;
+    ConfigManager::getInstance()->loadConstants();
 
+    GameInstance gameInstance;
     gameInstance.run();
     return 0;
 }

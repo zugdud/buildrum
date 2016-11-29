@@ -25,7 +25,7 @@ void UIElement::setRect(const int & xPadding, const int & yPadding, const SDL_Re
     mRect.h = envelope.h - (yPadding * 2);
 }
 
-void UIElement::logDimensions(std::string name)
+void UIElement::logDimensions(const std::string & name)
 {
     SDL_Log("UIElement::logDimensions -- name: %s [x: %d y: %d w: %d h: %d] \n",
             name.c_str(),

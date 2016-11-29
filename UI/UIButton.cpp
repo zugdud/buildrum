@@ -3,9 +3,9 @@
 UIButton::UIButton(const UIButtonProperties & uiButtonProperties, const SDL_Rect & envelope, const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
 {
     mUIButtonProperties = uiButtonProperties;
-    UIElement::setRect(UIButtonProperties.xPadding, UIButtonProperties.yPadding, envelope);
-    addUIButtonStates(const std::vector<UIButtonStateProperties> &uiButtonStateProperties);
-    UIElement::logDimensions(mUIButtonProperties.uiMenuId);
+    UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
+    addUIButtonStates(uiButtonStateProperties);
+    UIElement::logDimensions(mUIButtonProperties.buttonId);
 }
 
 UIButton::~UIButton()
@@ -17,6 +17,7 @@ void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & ui
 {
     for (size_t i = 0; i < uiButtonStateProperties.size(); i++)
     {
-        mUIButtonStates.push_back(new ButtonState(uiButtonStateProperties[i]));
+        UIButtonState uiButtonState =  UIButtonState(uiButtonStateProperties[i]);
+        mUIButtonStates.push_back(uiButtonState);
     }
 }

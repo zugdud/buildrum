@@ -17,9 +17,11 @@
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
 
-#include "config/constants/menus/MenuProperties.hpp"
-#include "config/constants/menus/MainMenuProperties.hpp"
+#include "config/containers/MenuPropertiesContainer.hpp"
+#include "config/constants/menus/IMenuProperties.hpp"
 #include "config/constants/gameinstance/GameInstanceProperties.hpp"
+#include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
+#include "config/ConfigManager.hpp"
 
 #include "core/window/Viewport.hpp"
 #include "core/window/Window.hpp"

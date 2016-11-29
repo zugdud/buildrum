@@ -5,9 +5,11 @@ public:
 GameInstanceProperties();
 ~GameInstanceProperties();
 
-const std::vector<ViewportProperties> & getViewportProperties();
+void loadAll();
+
+const std::vector<ViewportProperties> & getViewportProperties() const;
 const WindowProperties & getWindowProperties();
-const std::vector<SDL_EventType> & getRegisteredSDLTypeEvents();
+const std::vector<SDL_EventType> & getRegisteredSDLTypeEvents() const;
 
 private:
 
@@ -21,5 +23,4 @@ std::vector<UIMenuProperties> mUIMenuProperties;
 
 std::vector<SDL_EventType> mRegisteredSDLTypeEvents;
 
-IUIMenuProperties *mMainMenuProperties;
 };

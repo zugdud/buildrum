@@ -1,9 +1,9 @@
-class MenuProperties
+class MenuPropertiesContainer
 {
 public:
 
-MenuProperties();
-~MenuProperties();
+MenuPropertiesContainer();
+~MenuPropertiesContainer();
 
 void setUIMenuProperties(const UIMenuProperties & uiMenuProperties);
 void addUIButtonProperties(const UIButtonProperties & uiButtonProperties);

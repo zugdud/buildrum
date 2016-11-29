@@ -1,10 +1,8 @@
 #include "include/global.hpp"
 
-UIMenu::UIMenu(const IUIMenuProperties & menuProperties, const SDL_Rect & envelope)
+UIMenu::UIMenu(const MenuPropertiesContainer & menuPropertiesContainer)
 {
-    IUIMenuProperties = mIUIMenuProperties;
-    UIElement::setRect(UIMenuProperties.xPadding, UIMenuProperties.yPadding, envelope);
-    UIElement::logDimensions(mIUImenuProperties.getUIMenuProperties.uiMenuId);
+    mMenuPropertiesContainer = menuPropertiesContainer;
 }
 
 UIMenu::~UIMenu()
@@ -12,22 +10,36 @@ UIMenu::~UIMenu()
 
 }
 
-
-void UIMenu::addButtons()
+void UIMenu::resetPosition(const SDL_Rect & envelope)
 {
-    const std::vector<UIButtonProperties> & uiButtonProperties = mIUImenuProperties.getUIButtonProperties();
-    const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIUImenuProperties.getUIButtonStateProperties();
+    UIElement::setRect(mMenuPropertiesContainer.getUIMenuProperties().xPadding,
+                       mMenuPropertiesContainer.getUIMenuProperties().yPadding,
+                       envelope);
+    UIElement::logDimensions(mMenuPropertiesContainer.getUIMenuProperties().uiMenuId);
+
+    regenerateButtons();
+    regenerateLabels();
+}
+
+void UIMenu::regenerateButtons()
+{
+    mUIButtons.clear();
+    const std::vector<UIButtonProperties> & uiButtonProperties = mMenuPropertiesContainer.getUIButtonProperties();
+    const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mMenuPropertiesContainer.getUIButtonStateProperties();
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
-        mUIButtons.push_back(new UIButton(uiButtonProperties[i]), UIElement::getRect(), uiButtonStateProperties);
+        UIButton uiButton = UIButton(uiButtonStateProperties[i], UIElement::getRect(), uiButtonStateProperties);
+        mUIButtons.push_back(uiButton);
     }
 }
 
-void UIMenu::addLabels()
+void UIMenu::regenerateLabels()
 {
-    const std::vector<UILabelProperties> & uiLabelProperties = mIUImenuProperties.getUILabelProperties();
+    mUILabels.clear();
+    const std::vector<UILabelProperties> & uiLabelProperties = mMenuPropertiesContainer.getUILabelProperties();
     for (size_t i = 0; i < uiLabelProperties.size(); i++)
     {
-        mUILabels.push_back(new UIButton(uiLabelProperties[i]), UIElement::getRect());
+        UILabel uiLabel = UILabel(uiLabelProperties[i], UIElement::getRect());
+        mUILabels.push_back(uiLabel);
     }
 }

@@ -2,11 +2,7 @@
 
 GameInstanceProperties::GameInstanceProperties()
 {
-    setViewports();
-    setWindowProfiles();
-    setRegisteredSDLTypeEvents();
 
-    mMainMenuProperties = new MainMenuProperties();
 }
 
 GameInstanceProperties::~GameInstanceProperties()
@@ -14,12 +10,19 @@ GameInstanceProperties::~GameInstanceProperties()
 
 }
 
-const std::vector<SDL_EventType> & GameInstanceProperties::getRegisteredSDLTypeEvents()
+void GameInstanceProperties::loadAll()
+{
+    setViewports();
+    setWindowProfiles();
+    setRegisteredSDLTypeEvents();
+}
+
+const std::vector<SDL_EventType> & GameInstanceProperties::getRegisteredSDLTypeEvents() const
 {
     return mRegisteredSDLTypeEvents;
 }
 
-const std::vector<ViewportProperties> & GameInstanceProperties::getViewportProperties()
+const std::vector<ViewportProperties> & GameInstanceProperties::getViewportProperties() const
 {
     return mViewportProperties;
 }

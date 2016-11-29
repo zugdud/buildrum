@@ -2,13 +2,14 @@
 
 GameInstance::GameInstance()
 {
-    mGameInstanceProperties = new GameInstanceProperties();
-    mWindowManager = new WindowManager(*mGameInstanceProperties);
+
+    mWindowManager = new WindowManager(ConfigManager::getInstance()->getGameInstanceProperties());
     mInputEventTypeHandler = new InputEventTypeHandler();
 
     mRunning = false;
 
-    const std::vector<SDL_EventType> & registeredSDLTypeEvents = mGameInstanceProperties->getRegisteredSDLTypeEvents();
+    const GameInstanceProperties & gameInstanceProperties = ConfigManager::getInstance()->getGameInstanceProperties();
+    const std::vector<SDL_EventType> & registeredSDLTypeEvents = gameInstanceProperties.getRegisteredSDLTypeEvents();
     for (size_t i = 0; i < registeredSDLTypeEvents.size(); i++)
     {
         mInputEventTypeHandler->registerObserver(registeredSDLTypeEvents[i], this);
