@@ -1,8 +1,7 @@
 class ConfigManager
 {
 
-static ConfigManager *singletonInstance;
-
+static ConfigManager *mSingletonInstance;
 
 public:
 

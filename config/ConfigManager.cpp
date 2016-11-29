@@ -1,5 +1,7 @@
 #include "include/global.hpp"
 
+ConfigManager *ConfigManager::mSingletonInstance = 0;
+
 ConfigManager::ConfigManager()
 {
     SDL_Log("ConfigManager Instantiated. \n");
@@ -12,11 +14,11 @@ ConfigManager::~ConfigManager()
 
 ConfigManager * ConfigManager::getInstance()
 {
-    if (!singletonInstance)
+    if (!mSingletonInstance)
     {
-        singletonInstance = new ConfigManager;
+        mSingletonInstance = new ConfigManager;
     }
-    return singletonInstance;
+    return mSingletonInstance;
 }
 
 const MenuPropertiesContainer & ConfigManager::getMenuPropertiesContainer(const std::string &uiMenuId)

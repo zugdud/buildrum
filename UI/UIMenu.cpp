@@ -28,7 +28,7 @@ void UIMenu::regenerateButtons()
     const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mMenuPropertiesContainer.getUIButtonStateProperties();
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
-        UIButton uiButton = UIButton(uiButtonStateProperties[i], UIElement::getRect(), uiButtonStateProperties);
+        UIButton uiButton = UIButton(uiButtonProperties[i], UIElement::getRect(), uiButtonStateProperties);
         mUIButtons.push_back(uiButton);
     }
 }
