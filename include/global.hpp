@@ -37,4 +37,6 @@
 #include "UI/UILabel.hpp"
 #include "UI/UIMenu.hpp"
 
+#include "renderers/MenuRenderer.hpp"
+
 #include "core/GameInstance.hpp"

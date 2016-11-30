@@ -27,7 +27,7 @@ void MenuPropertiesContainer::addUILabelProperties(const UILabelProperties & uiL
     mUILabelProperties.push_back(uiLabelProperties);
 }
 
-const UIMenuProperties & MenuPropertiesContainer::getUIMenuProperties()
+const UIMenuProperties & MenuPropertiesContainer::getUIMenuProperties() const
 {
     return mUIMenuProperties;
 }

@@ -10,6 +10,9 @@ static WindowManager * getInstance();
 void configure(const WindowPropertiesImpl &windowPropertiesImpl);
 void registerObserver(WindowEventObserver *windowEventObserver);
 
+const Window & getWindow();
+SDL_Renderer * getSDLRenderer();
+
 void switchActiveViewport(const std::string & viewportId);
 const Viewport &getActiveViewport() const;
 const Viewport &getViewport(const std::string & viewportId) const;

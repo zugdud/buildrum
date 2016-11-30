@@ -10,6 +10,19 @@ UIMenu::~UIMenu()
 
 }
 
+const std::vector<SDL_Rect> & UIMenu::getGridCells() const
+{
+    return mGridCells;
+}
+const std::vector<UIButton> & UIMenu::getUIButtons()
+{
+    return mUIButtons;
+}
+const std::vector<UILabel> & UIMenu::getUILabels()
+{
+    return mUILabels;
+}
+
 void UIMenu::configure(const MenuPropertiesContainer &menuPropertiesContainer)
 {
     mMenuPropertiesContainer = menuPropertiesContainer;
@@ -23,7 +36,7 @@ void UIMenu::configure(const MenuPropertiesContainer &menuPropertiesContainer)
 //     }
 // }
 
-const MenuPropertiesContainer & UIMenu::getMenuPropertiesContainer()
+const MenuPropertiesContainer & UIMenu::getMenuPropertiesContainer() const
 {
     return mMenuPropertiesContainer;
 }

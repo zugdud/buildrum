@@ -35,12 +35,12 @@ bool Window::createWindow(const WindowProperties &windowProperties)
     }
 }
 
-SDL_Renderer * Window::getWindowRenderer()
+SDL_Renderer * Window::getSDLWindowRenderer()
 {
     return mSDLWindowRenderer;
 }
 
-void Window::clearScreen()
+void Window::clearScreen() const
 {
     SDL_SetRenderDrawColor(mSDLWindowRenderer,
                            mWindowProperties.bgColor.red,
@@ -50,7 +50,7 @@ void Window::clearScreen()
     SDL_RenderClear(mSDLWindowRenderer);
 }
 
-void Window::updateScreen()
+void Window::updateScreen() const
 {
     SDL_RenderPresent(mSDLWindowRenderer);
 }

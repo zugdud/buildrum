@@ -13,6 +13,11 @@ WindowManager::~WindowManager()
 
 }
 
+SDL_Renderer * WindowManager::getSDLRenderer()
+{
+    return mWindow.getSDLWindowRenderer();
+}
+
 WindowManager * WindowManager::getInstance()
 {
     if (!mSingletonInstance)
@@ -20,6 +25,11 @@ WindowManager * WindowManager::getInstance()
         mSingletonInstance = new WindowManager;
     }
     return mSingletonInstance;
+}
+
+const Window & WindowManager::getWindow()
+{
+    return mWindow;
 }
 
 void WindowManager::registerObserver(WindowEventObserver *windowEventObserver)
@@ -31,10 +41,14 @@ void WindowManager::switchActiveViewport(const std::string & viewportId)
 {
     mActiveViewportId = viewportId;
     const SDL_Rect & viewportRect = getActiveViewport().getRect();
-    const int result = SDL_RenderSetViewport(mWindow.getWindowRenderer(), &viewportRect);
+    const int result = SDL_RenderSetViewport(mWindow.getSDLWindowRenderer(), &viewportRect);
     if (result == -1)
     {
-        SDL_Log("Error setting viewportId: %s SDLError: %s \n", viewportId.c_str(), SDL_GetError());
+        SDL_Log("WindowManager::switchActiveViewport -- ERROR: setting viewportId: %s SDLError: %s \n", viewportId.c_str(), SDL_GetError());
+    }
+    else
+    {
+        // SDL_Log("WindowManager::switchActiveViewport -- viewportId: %s \n", viewportId.c_str());
     }
 }
 

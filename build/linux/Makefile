@@ -41,7 +41,8 @@ UI/UIElement.cpp \
 UI/UIButtonState.cpp \
 UI/UIButton.cpp \
 UI/UILabel.cpp \
-UI/UIMenu.cpp
+UI/UIMenu.cpp \
+renderers/MenuRenderer.cpp
 
 
 # define the C object files

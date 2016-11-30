@@ -5,11 +5,11 @@ public:
 Window();
 ~Window();
 
-SDL_Renderer * getWindowRenderer();
+SDL_Renderer * getSDLWindowRenderer();
 
 bool createWindow(const WindowProperties &windowProperties);
-void clearScreen();
-void updateScreen();
+void clearScreen() const;
+void updateScreen() const;
 
 
 private:

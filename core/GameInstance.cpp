@@ -20,16 +20,23 @@ void GameInstance::init()
     mInputEventTypeHandler->registerObserver(SDL_QUIT, this);
 }
 
-void GameInstance::start()
+void GameInstance::mainMenu()
 {
     mMainMenu.configure(ConfigManager::getInstance()->getMenuPropertiesContainer("MainMenu"));
     mMainMenu.resetPosition(WindowManager::getInstance()->getActiveViewport().getRect());
 
-    mRunning = true;
-
+    mRunning  = true;
+    MenuRenderer menuRenderer;
+    const Window & window = WindowManager::getInstance()->getWindow();
     while ( mRunning )
     {
         mInputEventTypeHandler->pollEventQueue();
+        window.clearScreen();
+
+        menuRenderer.renderMenu(mMainMenu);
+
+        window.updateScreen();
+
     }
 }
 
