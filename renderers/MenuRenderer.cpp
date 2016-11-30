@@ -14,6 +14,8 @@ void MenuRenderer::renderMenu(const UIMenu & uiMenu)
 {
     WindowManager::getInstance()->switchActiveViewport(uiMenu.getMenuPropertiesContainer().getUIMenuProperties().viewportId);
     drawGridCells(uiMenu);
+    drawButtons(uiMenu.getUIButtons());
+
 }
 
 void MenuRenderer::drawCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
@@ -56,7 +58,13 @@ void MenuRenderer::drawGridCells(const UIMenu & uiMenu)
     }
 }
 
-void MenuRenderer::drawButtons(const UIButton & uiButton)
+void MenuRenderer::drawButtons(const std::vector<UIButton> & uiButtons)
 {
-
+    for (size_t i = 0; i < uiButtons.size(); i++)
+    {
+        if (!uiButtons[i].getUIButtonProperties().isSpacer)
+        {
+            drawCell(uiButtons[i].getCurrentUIButtonState().getUIButtonStateProperties(), uiButtons[i]);
+        }
+    }
 }

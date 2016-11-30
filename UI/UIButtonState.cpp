@@ -9,3 +9,8 @@ UIButtonState::~UIButtonState()
 {
 
 }
+
+const UIButtonStateProperties & UIButtonState::getUIButtonStateProperties() const
+{
+    return mUIButtonStateProperties;
+}

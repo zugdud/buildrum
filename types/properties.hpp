@@ -60,7 +60,6 @@ struct UILabelProperties
 
 struct UIRenderCellDetails
 {
-    bool isSpacer;
     RGBAColors backgroundColor;
     RGBAColors outlineColor;
     bool showBorderColor;
@@ -84,8 +83,8 @@ struct UIButtonProperties
     int xPadding;
     int yPadding;
     std::string actionId;
-    bool spacer;
     std::string defaultButtonState;
+    bool isSpacer;
 };
 
 struct UIMenuProperties

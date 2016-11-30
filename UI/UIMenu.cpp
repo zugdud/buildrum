@@ -14,7 +14,7 @@ const std::vector<SDL_Rect> & UIMenu::getGridCells() const
 {
     return mGridCells;
 }
-const std::vector<UIButton> & UIMenu::getUIButtons()
+const std::vector<UIButton> & UIMenu::getUIButtons() const
 {
     return mUIButtons;
 }

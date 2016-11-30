@@ -23,8 +23,8 @@ void MainMenuPropertiesImpl::setUIMenuProperties(MenuPropertiesContainer & menuP
     RGBAColors blue = { 0, 0, 255, 255 };
     RGBAColors green = { 0, 255, 0, 255 };
 
-    // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { false, blue, green, true, true, 0, false  };
+    // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
+    UIRenderCellDetails gridCD = { blue, green, true, true, 0, false };
 
     UIMenuProperties uiMenuProperties;
 
@@ -41,11 +41,11 @@ void MainMenuPropertiesImpl::setUIMenuProperties(MenuPropertiesContainer & menuP
 
 void MainMenuPropertiesImpl::setButtonProperties(MenuPropertiesContainer & menuPropertiesContainer)
 {
-    // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState
-    UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", true, "buttonAvailable" };
-    UIButtonProperties newGame = { 1, "newGame", 20, 20, "newGame", false, "buttonAvailable" };
-    UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame", false, "buttonAvailable" };
-    UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame", false, "buttonAvailable" };
+    // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
+    UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", "buttonAvailable", true };
+    UIButtonProperties newGame = { 1, "newGame", 20, 20, "newGame",  "buttonAvailable", false };
+    UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
+    UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
 
     menuPropertiesContainer.addUIButtonProperties(spacer);
     menuPropertiesContainer.addUIButtonProperties(newGame);
@@ -61,16 +61,16 @@ void MainMenuPropertiesImpl::setUIButtonStateProperties(MenuPropertiesContainer 
 
     // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
     // UIButtonStateProperties: buttonState, spriteId, soundEffectId, uiRenderCellDetails
-    UIRenderCellDetails buttonSelectedCD = { false, green, red, true, true, 0, false  };
+    UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, 0, false  };
     UIButtonStateProperties buttonSelected = { "buttonSelected", 0, "buttonSelected", buttonSelectedCD };
 
-    UIRenderCellDetails buttonAvailableCD = { false, black, red, true, true, 0, false  };
+    UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, 0, false  };
     UIButtonStateProperties buttonAvailable = { "buttonAvailable", 1, "", buttonAvailableCD };
 
-    UIRenderCellDetails buttonCooldownCD = { false, black, red, true, true, 0, false  };
+    UIRenderCellDetails buttonCooldownCD = {  black, red, true, true, 0, false  };
     UIButtonStateProperties buttonCooldown = { "buttonCooldown", 2, "", buttonCooldownCD };
 
-    UIRenderCellDetails buttonUnavailableCD = { false, black, red, true, true, 0, false  };
+    UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, 0, false  };
     UIButtonStateProperties buttonUnavailable = { "buttonUnavailable", 3, "", buttonUnavailableCD };
 
     menuPropertiesContainer.addUIButtonStateProperties(buttonSelected);
