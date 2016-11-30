@@ -2,18 +2,19 @@ class Window
 {
 public:
 
-Window(const WindowProperties &windowProperties);
+Window();
 ~Window();
 
 SDL_Renderer * getWindowRenderer();
 
+bool createWindow(const WindowProperties &windowProperties);
 void clearScreen();
 void updateScreen();
 
 
 private:
 
-bool createWindow();
+
 bool init();
 
 SDL_Window *mSDLWindow;

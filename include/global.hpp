@@ -24,6 +24,7 @@
 #include "config/ConfigManager.hpp"
 
 #include "core/window/Viewport.hpp"
+#include "core/window/WindowEventObserver.hpp"
 #include "core/window/Window.hpp"
 #include "core/window/WindowManager.hpp"
 

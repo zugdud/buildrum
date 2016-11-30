@@ -3,7 +3,6 @@
 GameInstance::GameInstance()
 {
 
-
 }
 
 GameInstance::~GameInstance()
@@ -15,14 +14,23 @@ void GameInstance::init()
 {
     ConfigManager::getInstance()->loadConstants();
     WindowManager::getInstance()->configure(ConfigManager::getInstance()->getWindowPropertiesImpl());
+    WindowManager::getInstance()->switchActiveViewport("fullscreen"); // TODO from config
 
     mInputEventTypeHandler = new InputEventTypeHandler();
     mInputEventTypeHandler->registerObserver(SDL_QUIT, this);
+}
 
-    mMainMenu = UIMenu(ConfigManager::getInstance()->getMenuPropertiesContainer("MainMenu"));
-    SDL_Rect screen = { 100, 100, 1000, 1000 };
-    mainMenu.resetPosition(screen);
-    mRunning = false;
+void GameInstance::start()
+{
+    mMainMenu.configure(ConfigManager::getInstance()->getMenuPropertiesContainer("MainMenu"));
+    mMainMenu.resetPosition(WindowManager::getInstance()->getActiveViewport().getRect());
+
+    mRunning = true;
+
+    while ( mRunning )
+    {
+        mInputEventTypeHandler->pollEventQueue();
+    }
 }
 
 void GameInstance::inputEventTypeCallback(SDL_EventType sdlEventType)
@@ -35,10 +43,5 @@ void GameInstance::inputEventTypeCallback(SDL_EventType sdlEventType)
 
 void GameInstance::run()
 {
-    mRunning = true;
 
-    while ( mRunning )
-    {
-        mInputEventTypeHandler->pollEventQueue();
-    }
 }

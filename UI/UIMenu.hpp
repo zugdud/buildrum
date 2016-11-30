@@ -2,10 +2,13 @@ class UIMenu : public UIElement
 {
 public:
 
-UIMenu(const MenuPropertiesContainer & menuPropertiesContainer);
+UIMenu();
 ~UIMenu();
 
+void viewportSwitchEvent(const Viewport & activeViewport);
 void resetPosition(const SDL_Rect & envelope);
+const MenuPropertiesContainer & getMenuPropertiesContainer();
+void configure(const MenuPropertiesContainer &menuPropertiesContainer);
 
 private:
 

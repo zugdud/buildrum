@@ -1,13 +1,31 @@
 #include "include/global.hpp"
 
-UIMenu::UIMenu(const MenuPropertiesContainer & menuPropertiesContainer)
+UIMenu::UIMenu()
 {
-    mMenuPropertiesContainer = menuPropertiesContainer;
+
 }
 
 UIMenu::~UIMenu()
 {
 
+}
+
+void UIMenu::configure(const MenuPropertiesContainer &menuPropertiesContainer)
+{
+    mMenuPropertiesContainer = menuPropertiesContainer;
+}
+
+// void UIMenu::viewportSwitchEvent(const Viewport & activeViewport)
+// {
+//     if (mMenuPropertiesContainer.getUIMenuProperties().viewportId == activeViewport.getViewportProperties().viewportId)
+//     {
+//         mEnvelope = activeViewport.getRect();
+//     }
+// }
+
+const MenuPropertiesContainer & UIMenu::getMenuPropertiesContainer()
+{
+    return mMenuPropertiesContainer;
 }
 
 void UIMenu::resetPosition(const SDL_Rect & envelope)

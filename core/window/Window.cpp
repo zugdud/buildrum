@@ -1,9 +1,8 @@
 #include "include/global.hpp"
 
-Window::Window(const WindowProperties &windowProperties)
+Window::Window()
 {
-    mWindowProperties = windowProperties;
-    createWindow();
+
 }
 
 Window::~Window()
@@ -17,8 +16,9 @@ Window::~Window()
     // SDL_Quit needs to be in proper shutdown sequence
 }
 
-bool Window::createWindow()
+bool Window::createWindow(const WindowProperties &windowProperties)
 {
+    mWindowProperties = windowProperties;
     SDL_Log("Window::createWindow windowName: %s screenWidth: %d screenHeight: %d \n",
             mWindowProperties.windowName.c_str(),
             mWindowProperties.screenWidth,

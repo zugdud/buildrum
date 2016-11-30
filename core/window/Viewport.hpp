@@ -5,7 +5,9 @@ public:
 Viewport(const ViewportProperties &viewportProperties, const WindowProperties &windowProperties);
 ~Viewport();
 
-const SDL_Rect & getRect();
+const SDL_Rect & getRect() const;
+const ViewportProperties & getViewportProperties() const;
+bool isViewport(const std::string & viewportId) const;
 
 private:
 

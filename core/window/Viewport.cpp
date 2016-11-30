@@ -11,7 +11,12 @@ Viewport::~Viewport()
 
 }
 
-bool isViewport(const std::string & viewportId)
+const ViewportProperties & Viewport::getViewportProperties() const
+{
+    return mViewportProperties;
+}
+
+bool Viewport::isViewport(const std::string & viewportId) const
 {
     if (mViewportProperties.viewportId == viewportId)
     {
@@ -20,7 +25,7 @@ bool isViewport(const std::string & viewportId)
     return false;
 }
 
-const SDL_Rect & getRect()
+const SDL_Rect & Viewport::getRect() const
 {
     return mViewport;
 }

@@ -7,19 +7,27 @@ public:
 
 static WindowManager * getInstance();
 
-void configure(const WindowPropertiesImpl &mWindowPropertiesImpl);
-const Viewport & getViewport(const std::string & viewportId);
+void configure(const WindowPropertiesImpl &windowPropertiesImpl);
+void registerObserver(WindowEventObserver *windowEventObserver);
+
+void switchActiveViewport(const std::string & viewportId);
+const Viewport &getActiveViewport() const;
+const Viewport &getViewport(const std::string & viewportId) const;
 
 private:
 
 WindowManager();
 ~WindowManager();
 
+void notifyObservers();
 void createViewports();
-void createWindow();
+
+std::string mActiveViewportId;
 
 WindowPropertiesImpl mWindowPropertiesImpl;
 std::vector<Viewport> mViewports;
+std::vector<WindowEventObserver * > mObservers;
+
 Window mWindow;
 
 };
