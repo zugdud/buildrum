@@ -115,11 +115,13 @@ void UIMenu::recalculateGridCellSize()
 SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidth, const int & gridCellHeight)
 {
     const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+    const int xPadding = mMenuPropertiesContainer.getUIMenuProperties().xPadding;
+    const int yPadding = mMenuPropertiesContainer.getUIMenuProperties().yPadding;
 
     const int thisColumn = linearIndex / rows;
     const int thisRow = linearIndex %  rows;
-    const int x = gridCellWidth * thisColumn;
-    const int y = gridCellHeight * thisRow;
+    const int x = (gridCellWidth * thisColumn) + xPadding;
+    const int y = (gridCellHeight * thisRow) + yPadding;
 
     const SDL_Rect rect = { x, y, gridCellWidth, gridCellHeight };
 

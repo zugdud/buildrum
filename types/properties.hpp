@@ -55,7 +55,18 @@ struct UILabelProperties
     std::string fontId;
     int xPadding;
     int yPadding;
-    bool spacer;
+    bool isSpacer;
+};
+
+struct UIRenderCellDetails
+{
+    bool isSpacer;
+    RGBAColors backgroundColor;
+    RGBAColors outlineColor;
+    bool showBorderColor;
+    bool showBackgroundColor;
+    int backgroundSpriteId;
+    bool showbackgroundSprite;
 };
 
 struct UIButtonStateProperties
@@ -63,9 +74,7 @@ struct UIButtonStateProperties
     std::string buttonState;
     int spriteId;
     std::string soundEffectId;
-    RGBAColors bgColor;
-    RGBAColors borderColor;
-    bool drawBorder;
+    UIRenderCellDetails uiRenderCellDetails;
 };
 
 struct UIButtonProperties
@@ -76,6 +85,7 @@ struct UIButtonProperties
     int yPadding;
     std::string actionId;
     bool spacer;
+    std::string defaultButtonState;
 };
 
 struct UIMenuProperties
@@ -86,9 +96,7 @@ struct UIMenuProperties
     int columns;
     int xPadding;
     int yPadding;
-    RGBAColors bgColor;
-    RGBAColors gridLineColor;
-    bool drawBorder;
+    UIRenderCellDetails uiRenderCellDetails;
 };
 
 // ------------------------------------------------------------------------------

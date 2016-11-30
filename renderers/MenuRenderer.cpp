@@ -16,26 +16,47 @@ void MenuRenderer::renderMenu(const UIMenu & uiMenu)
     drawGridCells(uiMenu);
 }
 
+void MenuRenderer::drawCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
+{
+    if (uiCd.showBackgroundColor)
+    {
+        SDL_SetRenderDrawColor(mSDLRenderer,
+                               uiCd.backgroundColor.red,
+                               uiCd.backgroundColor.green,
+                               uiCd.backgroundColor.blue,
+                               uiCd.backgroundColor.alpha);
+        SDL_RenderFillRect(mSDLRenderer, &cellRect);
+    }
+
+    if (uiCd.showbackgroundSprite)
+    {
+        // TODO backgroundSpriteId, cellRect
+    }
+
+    if (uiCd.showBorderColor)
+    {
+        SDL_SetRenderDrawColor(mSDLRenderer,
+                               uiCd.outlineColor.red,
+                               uiCd.outlineColor.green,
+                               uiCd.outlineColor.blue,
+                               uiCd.outlineColor.alpha);
+        SDL_RenderDrawRect(mSDLRenderer, &cellRect);
+    }
+
+}
+
 void MenuRenderer::drawGridCells(const UIMenu & uiMenu)
 {
     const std::vector<SDL_Rect> & menuGridCells = uiMenu.getGridCells();
-    const RGBAColors bgcolor = uiMenu.getMenuPropertiesContainer().getUIMenuProperties().bgColor;
-    const RGBAColors gridLineColor = uiMenu.getMenuPropertiesContainer().getUIMenuProperties().gridLineColor;
+    const UIRenderCellDetails & uiCd = uiMenu.getMenuPropertiesContainer().getUIMenuProperties().uiRenderCellDetails;
 
     for (size_t i = 0; i < menuGridCells.size(); i++)
     {
-        SDL_SetRenderDrawColor(mSDLRenderer,
-                               bgcolor.red,
-                               bgcolor.green,
-                               bgcolor.blue,
-                               bgcolor.alpha);
-        SDL_RenderFillRect(mSDLRenderer, &menuGridCells[i]);
-
-        SDL_SetRenderDrawColor(mSDLRenderer,
-                               gridLineColor.red,
-                               gridLineColor.green,
-                               gridLineColor.blue,
-                               gridLineColor.alpha);
-        SDL_RenderDrawRect(mSDLRenderer, &menuGridCells[i]);
+        drawCell(uiCd, menuGridCells[i]);
     }
+}
+
+void MenuRenderer::drawButtons(const UIButton & uiButton)
+{
+
 }
