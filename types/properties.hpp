@@ -70,7 +70,7 @@ struct UIRenderCellDetails
 
 struct UIButtonStateProperties
 {
-    std::string buttonState;
+    std::string buttonStateId;
     int spriteId;
     std::string soundEffectId;
     UIRenderCellDetails uiRenderCellDetails;

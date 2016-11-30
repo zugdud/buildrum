@@ -12,7 +12,7 @@ UIElement::~UIElement()
 
 }
 
-const SDL_Rect & UIElement::getRect()
+const SDL_Rect & UIElement::getRect() const
 {
     return mRect;
 }

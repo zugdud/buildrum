@@ -1,6 +1,8 @@
 #include "include/global.hpp"
 
-UIButton::UIButton(const UIButtonProperties & uiButtonProperties, const SDL_Rect & envelope, const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
+UIButton::UIButton(const UIButtonProperties & uiButtonProperties,
+                   const SDL_Rect & envelope,
+                   const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
 {
     mUIButtonProperties = uiButtonProperties;
     UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
@@ -18,18 +20,18 @@ UIButton::~UIButton()
 
 bool UIButton::setDefaultButtonState()
 {
-
-    for (size_t i = 0; i < mUIButtonStates.size(); i++)
+    // check that the defaultButtonState exists
+    if (mUIButtonStates.count(mUIButtonProperties.defaultButtonState) == 1)
     {
-        if (mUIButtonStates[i].mUIButtonStateProperties.getUIButtonStateProperties() == mUIButtonProperties.defaultButtonState)
-        {
-            mCurrentUIButtonState = mUIButtonStates[i];
-            return true;
-        }
+        mCurrentUIButtonStateId = mUIButtonProperties.defaultButtonState;
+        return true;
     }
-
-    SDL_Log("UIButton::setDefaultButtonState -- ERROR: defaultButtonState: %s not found in mUIButtonStates \n", mUIButtonProperties.defaultButtonState);
-    return false;
+    else
+    {
+        mCurrentUIButtonStateId = "unknown";
+        SDL_Log("UIButton::setDefaultButtonState -- ERROR: defaultButtonState: %s not found in mUIButtonStates \n", mUIButtonProperties.defaultButtonState.c_str());
+        return false;
+    }
 }
 
 const UIButtonProperties & UIButton::getUIButtonProperties() const
@@ -39,7 +41,7 @@ const UIButtonProperties & UIButton::getUIButtonProperties() const
 
 const UIButtonState & UIButton::getCurrentUIButtonState() const
 {
-    return mCurrentUIButtonState;
+    return mUIButtonStates.at(mCurrentUIButtonStateId);
 }
 
 void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
@@ -47,6 +49,6 @@ void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & ui
     for (size_t i = 0; i < uiButtonStateProperties.size(); i++)
     {
         UIButtonState uiButtonState =  UIButtonState(uiButtonStateProperties[i]);
-        mUIButtonStates.push_back(uiButtonState);
+        mUIButtonStates.insert(std::pair<std::string, UIButtonState>(uiButtonState.getUIButtonStateProperties().buttonStateId, uiButtonState) );
     }
 }

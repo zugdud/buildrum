@@ -64,7 +64,7 @@ void MenuRenderer::drawButtons(const std::vector<UIButton> & uiButtons)
     {
         if (!uiButtons[i].getUIButtonProperties().isSpacer)
         {
-            drawCell(uiButtons[i].getCurrentUIButtonState().getUIButtonStateProperties(), uiButtons[i]);
+            drawCell(uiButtons[i].getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails, uiButtons[i].getRect());
         }
     }
 }

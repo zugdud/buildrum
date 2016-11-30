@@ -12,12 +12,12 @@ const UIButtonState & getCurrentUIButtonState() const;
 
 private:
 
-void checkConfig();
+bool setDefaultButtonState();
 void addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
 
 UIButtonProperties mUIButtonProperties;
 
-UIButtonState mCurrentUIButtonState;
-std::vector<UIButtonState> mUIButtonStates;
+std::string mCurrentUIButtonStateId;
+std::map<std::string, UIButtonState> mUIButtonStates; // buttonStateId->buttonstate
 
 };
