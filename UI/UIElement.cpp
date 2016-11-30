@@ -19,8 +19,8 @@ const SDL_Rect & UIElement::getRect() const
 
 void UIElement::setRect(const int & xPadding, const int & yPadding, const SDL_Rect & envelope)
 {
-    mRect.x = xPadding;
-    mRect.y = yPadding;
+    mRect.x = envelope.x + xPadding;
+    mRect.y = envelope.y + yPadding;
     mRect.w = envelope.w - (xPadding * 2);
     mRect.h = envelope.h - (yPadding * 2);
 }

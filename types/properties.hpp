@@ -130,7 +130,7 @@ struct MusicTrackProperties
 
 struct FontProperties
 {
-    int fontId;
+    std::string fontName;
     std::string fileName;
 };
 
