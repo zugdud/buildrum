@@ -7,7 +7,7 @@ WindowPropertiesImpl();
 
 void loadAll();
 
-const std::vector<ViewContext> & getViewContextsProperties() const;
+const std::vector<ViewContextProperties> & getViewContextProperties() const;
 const WindowProperties & getWindowProperties();
 
 private:

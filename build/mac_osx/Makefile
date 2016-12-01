@@ -35,19 +35,25 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 # define the C source files
 SRCS = main.cpp \
 config/ConfigManager.cpp \
+config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
+config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
-config/containers/IMenuProperties.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
-core/window/Viewport.cpp \
-core/window/Window.cpp \
-core/window/WindowManager.cpp \
+window/Viewport.cpp \
+window/Window.cpp \
+window/WindowManager.cpp \
+window/viewContext.cpp \
 core/GameInstance.cpp \
 input/InputEventTypeHandler.cpp \
-UI/UIElement.cpp \
-UI/UIButtonState.cpp \
-UI/UIButton.cpp \
-UI/UILabel.cpp \
-UI/UIMenu.cpp
+UI/elements/UIElement.cpp \
+UI/elements/UIButtonState.cpp \
+UI/elements/UIButton.cpp \
+UI/elements/UILabel.cpp \
+UI/elements/UIMenu.cpp \
+UI/MenuManager.cpp \
+renderers/MenuRenderer.cpp \
+media/fonts/FontManager.cpp \
+media/fonts/FontTextures.cpp
 
 # define the C object files
 #

@@ -11,8 +11,8 @@ const std::vector<UILabel> & getUILabels() const;
 
 void viewportSwitchEvent(const Viewport & activeViewport);
 void resetPosition(const SDL_Rect & envelope);
-const IMenuProperties & getIMenuProperties() const;
-void configure(const IMenuProperties &IMenuProperties);
+IMenuProperties * getIMenuProperties() const;
+void configure(IMenuProperties *IMenuProperties);
 
 private:
 
@@ -23,7 +23,7 @@ void regenerateLabels();
 
 SDL_Rect calculateRect(const int & linearIndex, const int & gridCellWidth, const int & gridCellHeight);
 
-IMenuProperties & mIMenuProperties;
+IMenuProperties *mIMenuProperties;
 
 std::vector<SDL_Rect> mGridCells;
 std::vector<UIButton> mUIButtons;

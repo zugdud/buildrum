@@ -2,12 +2,16 @@ class Viewport
 {
 public:
 
-Viewport(const ViewportProperties &viewportProperties, const WindowProperties &windowProperties);
+Viewport();
 ~Viewport();
 
-const SDL_Rect & getRect() const;
 const ViewportProperties & getViewportProperties() const;
-bool isViewport(const std::string & viewportId) const;
+void setRenderedViewport();
+
+void configure(const ViewportProperties &viewportProperties,
+               const WindowProperties &windowProperties,
+               SDL_Renderer *sdlRenderer);
+
 
 private:
 
@@ -15,5 +19,5 @@ void setViewport(const WindowProperties &windowProperties);
 
 ViewportProperties mViewportProperties;
 SDL_Rect mViewport;
-
+SDL_Renderer *mSDLRenderer;
 };

@@ -28,7 +28,7 @@ struct WindowProperties
 struct RenderingProperties
 {
     bool useRenderer;
-    int numLayer;
+    int numLayers;
     std::string layerIds[maxSize];
 };
 

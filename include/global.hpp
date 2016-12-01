@@ -28,10 +28,11 @@
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
-#include "core/window/Viewport.hpp"
-#include "core/window/WindowEventObserver.hpp"
-#include "core/window/Window.hpp"
-#include "core/window/WindowManager.hpp"
+#include "window/Viewport.hpp"
+#include "window/ViewContext.hpp"
+#include "window/WindowEventObserver.hpp"
+#include "window/Window.hpp"
+#include "window/WindowManager.hpp"
 
 #include "input/InputEventTypeObserver.hpp"
 #include "input/InputEventTypeHandler.hpp"
