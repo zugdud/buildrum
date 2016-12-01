@@ -23,26 +23,26 @@ FontManager * FontManager::getInstance()
     return mSingletonInstance;
 }
 
-const FontTextures & getTexture(const std::string & fontName, const std::string & text)
+const FontTextures & FontManager::getTextures(const std::string & fontProfileName, const std::string & text)
 {
-    if (mTextures.at(fontName).textureExists(text))
+    if (mFontTextures.at(fontProfileName).textureExists(text))
     {
-        return mTextures.at(fontName);
+        return mFontTextures.at(fontProfileName);
     }
     else
     {
-        createFontTexture(text, mFontProperties.at(fontName));
-        return mTextures.at(fontName);
+        createFontTexture(text, mFontProfile.at(fontProfileName));
+        return mFontTextures.at(fontProfileName);
     }
 }
 
 void FontManager::configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
-                            const FontPropertiesImpl &fontPropertiesImpl)
+                            const FontProfileImpl &FontProfileImpl)
 {
     SDL_Log("---------------------------------------------------- \n");
     SDL_Log("FontManager::configure -- Configuring... \n");
-    mEnvironmentMediaProperties = environmentMediaPropertiesImpl;
-    mFontPropertiesImpl = fontPropertiesImpl;
+    mEnvironmentMediaPropertiesImpl = environmentMediaPropertiesImpl;
+    mFontProfileImpl = FontProfileImpl;
     init();
     SDL_Log("FontManager::configure -- Configuring Success. \n");
     SDL_Log("---------------------------------------------------- \n");
@@ -66,37 +66,35 @@ bool FontManager::init()
 
 void FontManager::loadAllMedia()
 {
-    for (size_t i = 0; i < mFontProperties.size(); i++)
+    for (std::map<std::string, FontProfile>::iterator it = mFontProfile.begin(); it != mFontProfile.end(); ++it)
     {
-        loadFont(mFontProperties[i]);
+        loadFont(it->second);
     }
 }
 
 
-void FontManager::loadFont(const FontProperties & fontProperties)
+void FontManager::loadFont(const FontProfile & fontProfiles)
 {
-    const std::string relFilePath = mEnvironmentMediaProperties.fontDirName + fontProperties.filePath;
-    TTF_Font *loadedFont = TTF_OpenFont(relFilePath.c_str(), fontProperties.fontSize);
+    const std::string relFilePath = mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().fontDirName + fontProfiles.filePath;
+    TTF_Font *loadedFont = TTF_OpenFont(relFilePath.c_str(), fontProfiles.fontSize);
 
     if ( loadedFont == NULL )
     {
-        SDL_Log("Failed to load font -- fontName: %s relFilePath: %s SDL_ttf Error: %s \n", fontProperties.fontName.c_str(), relFilePath.c_str(), TTF_GetError());
+        SDL_Log("Failed to load font -- fontProfileName: %s relFilePath: %s SDL_ttf Error: %s \n", fontProfiles.fontProfileName.c_str(), relFilePath.c_str(), TTF_GetError());
     }
     else
     {
 
-        mFontMap.insert(std::pair<std::string, TTF_Font * >(fontProperties.fontName, loadedFont) );
-
-        FontTextures fontTextures = FontTextures();
-        mFontMap.insert(std::pair<std::string, TTF_Font * >(fontProperties.fontName, fontTextures) );
+        mFontMap.insert(std::pair<std::string, TTF_Font * >(fontProfiles.fontProfileName, loadedFont) );
+        mFontTextures.insert(std::pair<std::string, FontTextures>(fontProfiles.fontProfileName, FontTextures()) );
     }
 }
 
-void FontManager::createFontTexture(const std::string & text, const FontProperties & fontProperties)
+void FontManager::createFontTexture(const std::string & text, const FontProfile & fontProfiles)
 {
-    SDL_Surface *textSurface = TTF_RenderText_Solid(mFontMap.at(fontProperties.fontName),
+    SDL_Surface *textSurface = TTF_RenderText_Solid(mFontMap.at(fontProfiles.fontProfileName),
                                                     text.c_str(),
-                                                    fontProperties.fontColor);
+                                                    fontProfiles.fontColor);
 
     if ( textSurface == NULL )
     {
@@ -104,9 +102,9 @@ void FontManager::createFontTexture(const std::string & text, const FontProperti
     }
     else
     {
-        SDL_Rect textureRect = { 0, 0, textSurface.w, textSurface.h };
-        fontTexture = SDL_CreateTextureFromSurface(WindowManager::getInstance()->getSDLRenderer(),
-                                                   textSurface);
+        SDL_Rect textureRect = { 0, 0, textSurface->w, textSurface->h };
+        SDL_Texture *fontTexture = SDL_CreateTextureFromSurface(WindowManager::getInstance()->getSDLRenderer(),
+                                                                textSurface);
 
         if ( fontTexture == NULL )
         {
@@ -114,10 +112,10 @@ void FontManager::createFontTexture(const std::string & text, const FontProperti
         }
         else
         {
-            mFontTextures.at(fontProperties.fontName).addTexture(text, textureRect, fontTexture);
-            SDL_Log("FontManager::createFontTexture -- created new texture for text: [%s] fontName: [%s] textureRect: [w: %d h: %d] \n",
-                    text,
-                    fontProperties.fontName,
+            mFontTextures.at(fontProfiles.fontProfileName).addTexture(text, textureRect, fontTexture);
+            SDL_Log("FontManager::createFontTexture -- created new texture for text: [%s] fontProfileName: [%s] textureRect: [w: %d h: %d] \n",
+                    text.c_str(),
+                    fontProfiles.fontProfileName.c_str(),
                     textureRect.w,
                     textureRect.h);
         }

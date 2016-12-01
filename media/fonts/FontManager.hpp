@@ -7,9 +7,9 @@ public:
 
 static FontManager * getInstance();
 void configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
-               const FontPropertiesImpl &fontPropertiesImpl);
+               const FontProfileImpl &FontProfileImpl);
 
-const FontTextures & getTextures(const std::string & fontName, const std::string & text);
+const FontTextures & getTextures(const std::string & fontProfileName, const std::string & text);
 
 
 private:
@@ -17,16 +17,16 @@ private:
 FontManager();
 ~FontManager();
 
-init();
-loadAllMedia();
-void loadFont(const FontProperties & fontProperties);
-void createFontTexture(const std::string & text, const FontProperties & fontProperties);
+bool init();
+void loadAllMedia();
+void loadFont(const FontProfile & FontProfile);
+void createFontTexture(const std::string & text, const FontProfile & FontProfile);
 
 EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
-FontPropertiesImpl mFontPropertiesImpl;
+FontProfileImpl mFontProfileImpl;
 
-std::map<std::string, FontProperties> mFontProperties; // fontName->FontProperties
-std::map<std::string, TTF_Font * > mFontMap; // fontName->FontManager
-std::map<std::string, FontTextures> mFontTextures; // fontName->FontTexture map for all strings
+std::map<std::string, FontProfile> mFontProfile; // fontProfileName->FontProfile
+std::map<std::string, TTF_Font * > mFontMap; // fontProfileName->FontManager
+std::map<std::string, FontTextures> mFontTextures; // fontProfileName->FontTexture map for all strings
 
 };

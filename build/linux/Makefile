@@ -29,6 +29,8 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 # define the C source files
 SRCS = main.cpp \
 config/ConfigManager.cpp \
+config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
+config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/containers/MenuPropertiesContainer.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
@@ -42,8 +44,9 @@ UI/UIButtonState.cpp \
 UI/UIButton.cpp \
 UI/UILabel.cpp \
 UI/UIMenu.cpp \
-renderers/MenuRenderer.cpp
-
+renderers/MenuRenderer.cpp \
+media/fonts/FontManager.cpp \
+media/fonts/FontTextures.cpp \
 
 # define the C object files
 #

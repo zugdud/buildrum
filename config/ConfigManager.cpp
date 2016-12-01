@@ -25,6 +25,17 @@ const MenuPropertiesContainer & ConfigManager::getMenuPropertiesContainer(const 
 {
     return mMenuPropertiesContainers[uiMenuId];
 }
+
+const EnvironmentMediaPropertiesImpl & ConfigManager::getEnvironmentMediaPropertiesImpl()
+{
+    return mEnvironmentMediaPropertiesImpl;
+}
+
+const FontProfileImpl & ConfigManager::getFontProfileImpl()
+{
+    return mFontProfileImpl;
+}
+
 const WindowPropertiesImpl & ConfigManager::getWindowPropertiesImpl()
 {
     return mWindowPropertiesImpl;
@@ -40,7 +51,8 @@ void ConfigManager::loadConstants()
     SDL_Log("----------------------------------------------------\n");
     SDL_Log("ConfigManager::loadConstants -- loading contants...\n");
     mWindowPropertiesImpl.loadAll();
-    mFontPropertiesImpl.loadAll();
+    mEnvironmentMediaPropertiesImpl.loadAll();
+    mFontProfileImpl.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");

@@ -1,9 +1,9 @@
-class FontProperties
+class EnvironmentMediaPropertiesImpl
 {
 public:
 
-FontProperties();
-~FontProperties();
+EnvironmentMediaPropertiesImpl();
+~EnvironmentMediaPropertiesImpl();
 
 void loadAll();
 const EnvironmentMediaProperties & getEnvironmentMediaProperties();

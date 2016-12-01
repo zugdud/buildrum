@@ -8,6 +8,9 @@ public:
 static ConfigManager * getInstance();
 
 const MenuPropertiesContainer &getMenuPropertiesContainer(const std::string &uiMenuId);
+
+const EnvironmentMediaPropertiesImpl &getEnvironmentMediaPropertiesImpl();
+const FontProfileImpl &getFontProfileImpl();
 const WindowPropertiesImpl &getWindowPropertiesImpl();
 
 void reloadDynamicData();
@@ -23,8 +26,10 @@ void loadMenuConstants();
 
 void addMenu(IMenuProperties & menuPropertiesImpl);
 
-FontPropertiesImpl mFontPropertiesImpl;
+EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
+FontProfileImpl mFontProfileImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
+
 std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers;
 
 };

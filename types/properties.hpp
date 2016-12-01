@@ -128,11 +128,11 @@ struct MusicTrackProperties
     std::string fileName;
 };
 
-struct FontProperties
+struct FontProfile
 {
-    std::string fontName;
+    std::string fontProfileName;
     int fontSize;
-    std::string fileName;
+    std::string filePath;
     SDL_Color fontColor;
 };
 

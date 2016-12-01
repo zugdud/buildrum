@@ -19,6 +19,10 @@
 
 #include "config/containers/MenuPropertiesContainer.hpp"
 #include "config/constants/menus/IMenuProperties.hpp"
+
+#include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
+#include "config/constants/media/fonts/FontProfilesImpl.hpp"
+
 #include "config/constants/window/WindowPropertiesImpl.hpp"
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
@@ -30,6 +34,9 @@
 
 #include "input/InputEventTypeObserver.hpp"
 #include "input/InputEventTypeHandler.hpp"
+
+#include "media/fonts/FontTextures.hpp"
+#include "media/fonts/FontManager.hpp"
 
 #include "UI/UIElement.hpp"
 #include "UI/UIButtonState.hpp"
