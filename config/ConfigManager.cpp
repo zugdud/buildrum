@@ -39,7 +39,8 @@ void ConfigManager::loadConstants()
 {
     SDL_Log("----------------------------------------------------\n");
     SDL_Log("ConfigManager::loadConstants -- loading contants...\n");
-    loadWindowProperties();
+    mWindowPropertiesImpl.loadAll();
+    mFontPropertiesImpl.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");
@@ -61,9 +62,4 @@ void ConfigManager::addMenu(IMenuProperties & menuPropertiesImpl)
     std::string uiMenuId = menuPropertiesContainer.getUIMenuProperties().uiMenuId;
     mMenuPropertiesContainers[uiMenuId] = menuPropertiesContainer;
     SDL_Log("ConfigManager::addMenu -- added uiMenuId: %s \n", uiMenuId.c_str());
-}
-
-void ConfigManager::loadWindowProperties()
-{
-    mWindowPropertiesImpl.loadAll();
 }

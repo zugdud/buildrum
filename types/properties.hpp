@@ -131,7 +131,9 @@ struct MusicTrackProperties
 struct FontProperties
 {
     std::string fontName;
+    int fontSize;
     std::string fileName;
+    SDL_Color fontColor;
 };
 
 // ------------------------------------------------------------------------------

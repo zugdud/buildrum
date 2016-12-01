@@ -23,6 +23,7 @@ void loadMenuConstants();
 
 void addMenu(IMenuProperties & menuPropertiesImpl);
 
+FontPropertiesImpl mFontPropertiesImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
 std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers;
 
