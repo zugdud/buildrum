@@ -23,33 +23,33 @@ const std::vector<UILabel> & UIMenu::getUILabels() const
     return mUILabels;
 }
 
-void UIMenu::configure(const MenuPropertiesContainer &menuPropertiesContainer)
+void UIMenu::configure(const IMenuProperties &IMenuProperties)
 {
-    mMenuPropertiesContainer = menuPropertiesContainer;
+    mIMenuProperties = IMenuProperties;
 }
 
 // void UIMenu::viewportSwitchEvent(const Viewport & activeViewport)
 // {
-//     if (mMenuPropertiesContainer.getUIMenuProperties().viewportId == activeViewport.getViewportProperties().viewportId)
+//     if (mIMenuProperties.getUIMenuProperties().viewportId == activeViewport.getViewportProperties().viewportId)
 //     {
 //         mEnvelope = activeViewport.getRect();
 //     }
 // }
 
-const MenuPropertiesContainer & UIMenu::getMenuPropertiesContainer() const
+const IMenuProperties & UIMenu::getIMenuProperties() const
 {
-    return mMenuPropertiesContainer;
+    return mIMenuProperties;
 }
 
 void UIMenu::resetPosition(const SDL_Rect & envelope)
 {
 
-    UIElement::setRect(mMenuPropertiesContainer.getUIMenuProperties().xPadding,
-                       mMenuPropertiesContainer.getUIMenuProperties().yPadding,
+    UIElement::setRect(mIMenuProperties.getUIMenuProperties().xPadding,
+                       mIMenuProperties.getUIMenuProperties().yPadding,
                        envelope);
 
-    std::string uiMenuId = mMenuPropertiesContainer.getUIMenuProperties().uiMenuId;
-    std::string viewportId = mMenuPropertiesContainer.getUIMenuProperties().viewportId;
+    std::string uiMenuId = mIMenuProperties.getUIMenuProperties().uiMenuId;
+    std::string viewportId = mIMenuProperties.getUIMenuProperties().viewportId;
     SDL_Log("---------------------------------------------------- \n");
     SDL_Log("UIMenu::resetPosition -- checking menu configuration for [uiMenuId: %s] [viewportId: %s]... \n",
             uiMenuId.c_str(),
@@ -75,11 +75,11 @@ bool UIMenu::checkConfig()
 
     bool result = true;
 
-    const int columns = mMenuPropertiesContainer.getUIMenuProperties().columns;
-    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+    const int columns = mIMenuProperties.getUIMenuProperties().columns;
+    const int rows =  mIMenuProperties.getUIMenuProperties().rows;
 
-    const std::vector<UIButtonProperties> & uiButtonProperties = mMenuPropertiesContainer.getUIButtonProperties();
-    const std::vector<UILabelProperties> & uiLabelProperties = mMenuPropertiesContainer.getUILabelProperties();
+    const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties.getUIButtonProperties();
+    const std::vector<UILabelProperties> & uiLabelProperties = mIMenuProperties.getUILabelProperties();
 
     const size_t gridCellCount = rows * columns;
 
@@ -100,8 +100,8 @@ bool UIMenu::checkConfig()
 void UIMenu::recalculateGridCellSize()
 {
     mGridCells.clear();
-    const int columns = mMenuPropertiesContainer.getUIMenuProperties().columns;
-    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+    const int columns = mIMenuProperties.getUIMenuProperties().columns;
+    const int rows =  mIMenuProperties.getUIMenuProperties().rows;
     const int gridCellCount = rows * columns;
     const int gridCellWidth = UIElement::getRect().w / columns;
     const int gridCellHeight = UIElement::getRect().h / rows;
@@ -114,7 +114,7 @@ void UIMenu::recalculateGridCellSize()
 
 SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidth, const int & gridCellHeight)
 {
-    const int rows =  mMenuPropertiesContainer.getUIMenuProperties().rows;
+    const int rows =  mIMenuProperties.getUIMenuProperties().rows;
 
     const int thisColumn = linearIndex / rows;
     const int thisRow = linearIndex %  rows;
@@ -130,8 +130,8 @@ SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidt
 void UIMenu::regenerateButtons()
 {
     mUIButtons.clear();
-    const std::vector<UIButtonProperties> & uiButtonProperties = mMenuPropertiesContainer.getUIButtonProperties();
-    const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mMenuPropertiesContainer.getUIButtonStateProperties();
+    const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties.getUIButtonProperties();
+    const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties.getUIButtonStateProperties();
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
         UIButton uiButton = UIButton(uiButtonProperties[i], mGridCells[i], uiButtonStateProperties);
@@ -142,7 +142,7 @@ void UIMenu::regenerateButtons()
 void UIMenu::regenerateLabels()
 {
     mUILabels.clear();
-    const std::vector<UILabelProperties> & uiLabelProperties = mMenuPropertiesContainer.getUILabelProperties();
+    const std::vector<UILabelProperties> & uiLabelProperties = mIMenuProperties.getUILabelProperties();
     for (size_t i = 0; i < uiLabelProperties.size(); i++)
     {
         UILabel uiLabel = UILabel(uiLabelProperties[i], mGridCells[i]);

@@ -25,12 +25,11 @@ struct WindowProperties
     int screenHeight;
 };
 
-struct ViewportRenderingProperties
+struct RenderingProperties
 {
-    bool renderWorld;
-    bool renderMenu;
-    bool renderMiniMap;
-    std::string renderMenuId;
+    bool useRenderer;
+    int numLayer;
+    std::string layerIds[maxSize];
 };
 
 struct ViewportProperties
@@ -41,10 +40,12 @@ struct ViewportProperties
     double windowWidthRatio;
     double windowHeightRatio;
     RGBAColors bgColor;
-    ViewportRenderingProperties renderingProperties;
+    RenderingProperties worldRenderingProperties;
+    RenderingProperties minimapRenderingProperties;
+    RenderingProperties menuRenderingProperties;
 };
 
-struct ViewContext
+struct ViewContextProperties
 {
     std::string viewContextId;
     int numViewports;

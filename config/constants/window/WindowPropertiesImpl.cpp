@@ -16,46 +16,55 @@ void WindowPropertiesImpl::loadAll()
     setWindowProfiles();
 }
 
-const std::vector<ViewportProperties> & WindowPropertiesImpl::getViewportProperties() const
+const std::vector<mViewContextProperties> & WindowPropertiesImpl::getViewContextProperties() const
 {
-    return mViewportProperties;
+    return mViewContextProperties;
 }
+
 const WindowProperties & WindowPropertiesImpl::getWindowProperties()
 {
     return mWindowProperties["linux"];
 }
 
-void WindowPropertiesImpl::setViewports()
+void WindowPropertiesImpl::setViewContexts()
 {
-    mViewportProperties.clear();
+    mViewContexts.clear();
 
     RGBAColors red = { 255, 0, 0, 255 };
     RGBAColors green = { 0, 255, 0, 255 };
     RGBAColors blue = { 0, 0, 255, 255 };
 
-    // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red };
-    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green };
-    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
-    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
+    // RenderingProperties useRenderer, numLayerIds, layerIds
+    RenderingProperties noRender;
+    noRender.useRenderer = false;
+    noRender.numLayers = 0;
 
-    mViewportProperties.push_back(actionMenu);
-    mViewportProperties.push_back(minimap);
-    mViewportProperties.push_back(gameView);
-    mViewportProperties.push_back(fullscreen);
+    RenderingProperties fullscreen_menu_RP;
+    fullscreen_menu_RP.useRenderer = true;
+    fullscreen_menu_RP.numLayers = 1;
+    fullscreen_menu_RP[0] = "MainMenu";
+
+    // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red, noRender, noRender, noRender };
+    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green, noRender, noRender, noRender };
+    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue, noRender, noRender, noRender };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue, noRender, noRender, fullscreen_menu_RP };
 
     // viewContextId, numViewports, viewports[]
-    ViewContext fullscreenContext;
+    ViewContextProperties fullscreenContext;
     fullscreenContext.viewContextId = "start";
     fullscreenContext.numViewports = 1;
     fullscreenContext.viewports[0] = fullscreen;
 
-    ViewContext gameplayContext;
+    ViewContextProperties gameplayContext;
     gameplayContext.viewContextId = "gameplay";
     gameplayContext.numViewports = 3;
     gameplayContext.viewports[0] = actionMenu;
     gameplayContext.viewports[1] = minimap;
     gameplayContext.viewports[2] = gameView;
+
+    mViewContextProperties.push_back(fullscreenContext);
+    mViewContextProperties.push_back(gameplayContext);
 }
 
 void WindowPropertiesImpl::setWindowProfiles()

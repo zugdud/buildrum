@@ -36,7 +36,7 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 SRCS = main.cpp \
 config/ConfigManager.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
-config/containers/MenuPropertiesContainer.cpp \
+config/containers/IMenuProperties.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 core/window/Viewport.cpp \
 core/window/Window.cpp \

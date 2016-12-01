@@ -26,12 +26,12 @@ void notifyObservers();
 void createViewports();
 
 std::string mActiveViewportId;
+ViewContext mActiveViewContextId;
 
 WindowPropertiesImpl mWindowPropertiesImpl;
 std::vector<Viewport> mViewports;
 std::vector<WindowEventObserver * > mObservers;
 
 Window mWindow;
-ViewContext mViewContext;
 
 };

@@ -26,9 +26,9 @@ const std::vector<std::string> & ConfigManager::getMenuIds()
     return mMenuIds;
 }
 
-const MenuPropertiesContainer & ConfigManager::getMenuPropertiesContainer(const std::string &uiMenuId)
+IMenuProperties * ConfigManager::getIMenuProperties(const std::string &uiMenuId)
 {
-    return mMenuPropertiesContainers[uiMenuId];
+    return mIMenuProperties[uiMenuId];
 }
 
 const EnvironmentMediaPropertiesImpl & ConfigManager::getEnvironmentMediaPropertiesImpl()
@@ -65,19 +65,14 @@ void ConfigManager::loadConstants()
 
 void ConfigManager::loadMenuConstants()
 {
-
-    MainMenuPropertiesImpl mainMenuPropertiesImpl;
-
-    addMenu(mainMenuPropertiesImpl);
+    addMenu(new MainMenuPropertiesImpl());
 }
 
-void ConfigManager::addMenu(IMenuProperties & menuPropertiesImpl)
+void ConfigManager::addMenu(IMenuProperties *menuProperties)
 {
-    MenuPropertiesContainer menuPropertiesContainer;
-
-    menuPropertiesImpl.setProperties(menuPropertiesContainer);
-    std::string uiMenuId = menuPropertiesContainer.getUIMenuProperties().uiMenuId;
+    menuProperties->setProperties();
+    std::string uiMenuId = menuProperties->getUIMenuProperties().uiMenuId;
     mMenuIds.push_back(uiMenuId);
-    mMenuPropertiesContainers[uiMenuId] = menuPropertiesContainer;
+    mIMenuProperties[uiMenuId] = menuProperties;
     SDL_Log("ConfigManager::addMenu -- added uiMenuId: %s \n", uiMenuId.c_str());
 }

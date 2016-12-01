@@ -10,15 +10,32 @@ MainMenuPropertiesImpl::~MainMenuPropertiesImpl()
 
 }
 
-void MainMenuPropertiesImpl::setProperties(MenuPropertiesContainer & menuPropertiesContainer)
+void MainMenuPropertiesImpl::setProperties()
 {
-    setUIMenuProperties(menuPropertiesContainer);
-    setButtonProperties(menuPropertiesContainer);
-    setUILabelProperties(menuPropertiesContainer);
-    setUIButtonStateProperties(menuPropertiesContainer);
+    setUIMenuProperties();
+    setButtonProperties();
+    setUILabelProperties();
+    setUIButtonStateProperties();
 }
 
-void MainMenuPropertiesImpl::setUIMenuProperties(MenuPropertiesContainer & menuPropertiesContainer)
+const UIMenuProperties & MainMenuPropertiesImpl::getUIMenuProperties() const
+{
+    return mUIMenuProperties;
+}
+const std::vector<UIButtonProperties> & MainMenuPropertiesImpl::getUIButtonProperties()
+{
+    return mUIButtonProperties;
+}
+const std::vector<UIButtonStateProperties> & MainMenuPropertiesImpl::getUIButtonStateProperties()
+{
+    return mUIButtonStateProperties;
+}
+const std::vector<UILabelProperties> & MainMenuPropertiesImpl::getUILabelProperties()
+{
+    return mUILabelProperties;
+}
+
+void MainMenuPropertiesImpl::setUIMenuProperties()
 {
     RGBAColors blue = { 0, 0, 255, 255 };
     RGBAColors green = { 0, 255, 0, 255 };
@@ -36,10 +53,10 @@ void MainMenuPropertiesImpl::setUIMenuProperties(MenuPropertiesContainer & menuP
     uiMenuProperties.yPadding = 50;
     uiMenuProperties.uiRenderCellDetails = gridCD;
 
-    menuPropertiesContainer.setUIMenuProperties(uiMenuProperties);
+    mUIMenuProperties = uiMenuProperties;
 }
 
-void MainMenuPropertiesImpl::setButtonProperties(MenuPropertiesContainer & menuPropertiesContainer)
+void MainMenuPropertiesImpl::setButtonProperties()
 {
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
     UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", "buttonAvailable", true };
@@ -47,13 +64,13 @@ void MainMenuPropertiesImpl::setButtonProperties(MenuPropertiesContainer & menuP
     UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
     UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
 
-    menuPropertiesContainer.addUIButtonProperties(spacer);
-    menuPropertiesContainer.addUIButtonProperties(newGame);
-    menuPropertiesContainer.addUIButtonProperties(resumeGame);
-    menuPropertiesContainer.addUIButtonProperties(quitGame);
+    mUIButtonProperties.push_back(spacer);
+    mUIButtonProperties.push_back(newGame);
+    mUIButtonProperties.push_back(resumeGame);
+    mUIButtonProperties.push_back(quitGame);
 }
 
-void MainMenuPropertiesImpl::setUIButtonStateProperties(MenuPropertiesContainer & menuPropertiesContainer)
+void MainMenuPropertiesImpl::setUIButtonStateProperties()
 {
     RGBAColors black = { 0, 0, 0, 255 };
     RGBAColors red = { 255, 0, 0, 255 };
@@ -73,13 +90,13 @@ void MainMenuPropertiesImpl::setUIButtonStateProperties(MenuPropertiesContainer 
     UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, 0, false  };
     UIButtonStateProperties buttonUnavailable = { "buttonUnavailable", 3, "", buttonUnavailableCD };
 
-    menuPropertiesContainer.addUIButtonStateProperties(buttonSelected);
-    menuPropertiesContainer.addUIButtonStateProperties(buttonAvailable);
-    menuPropertiesContainer.addUIButtonStateProperties(buttonCooldown);
-    menuPropertiesContainer.addUIButtonStateProperties(buttonUnavailable);
+    mUIButtonStateProperties.push_back(buttonSelected);
+    mUIButtonStateProperties.push_back(buttonAvailable);
+    mUIButtonStateProperties.push_back(buttonCooldown);
+    mUIButtonStateProperties.push_back(buttonUnavailable);
 }
 
-void MainMenuPropertiesImpl::setUILabelProperties(MenuPropertiesContainer & menuPropertiesContainer)
+void MainMenuPropertiesImpl::setUILabelProperties()
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer
     UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false };
@@ -87,8 +104,8 @@ void MainMenuPropertiesImpl::setUILabelProperties(MenuPropertiesContainer & menu
     UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false };
     UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false };
 
-    menuPropertiesContainer.addUILabelProperties(mainMenuLabel);
-    menuPropertiesContainer.addUILabelProperties(newGame);
-    menuPropertiesContainer.addUILabelProperties(resumeGame);
-    menuPropertiesContainer.addUILabelProperties(quitGame);
+    mUILabelProperties.push_back(mainMenuLabel);
+    mUILabelProperties.push_back(newGame);
+    mUILabelProperties.push_back(resumeGame);
+    mUILabelProperties.push_back(quitGame);
 }

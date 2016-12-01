@@ -12,7 +12,7 @@ MenuRenderer::~MenuRenderer()
 
 void MenuRenderer::renderMenu(const UIMenu & uiMenu)
 {
-    WindowManager::getInstance()->switchActiveViewport(uiMenu.getMenuPropertiesContainer().getUIMenuProperties().viewportId);
+    WindowManager::getInstance()->switchActiveViewport(uiMenu.getIMenuProperties().getUIMenuProperties().viewportId);
     renderGridCells(uiMenu);
     renderButtons(uiMenu.getUIButtons());
     renderLabels(uiMenu.getUILabels());
@@ -65,7 +65,7 @@ void MenuRenderer::renderLabel(const UILabelProperties & uiLP, const SDL_Rect & 
 void MenuRenderer::renderGridCells(const UIMenu & uiMenu)
 {
     const std::vector<SDL_Rect> & menuGridCells = uiMenu.getGridCells();
-    const UIRenderCellDetails & uiCd = uiMenu.getMenuPropertiesContainer().getUIMenuProperties().uiRenderCellDetails;
+    const UIRenderCellDetails & uiCd = uiMenu.getIMenuProperties().getUIMenuProperties().uiRenderCellDetails;
 
     for (size_t i = 0; i < menuGridCells.size(); i++)
     {

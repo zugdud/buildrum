@@ -10,7 +10,7 @@ static ConfigManager * getInstance();
 
 const std::vector<std::string> & getMenuIds();
 
-const MenuPropertiesContainer &getMenuPropertiesContainer(const std::string &uiMenuId);
+IMenuProperties * getIMenuProperties(const std::string &uiMenuId);
 
 const EnvironmentMediaPropertiesImpl &getEnvironmentMediaPropertiesImpl();
 const FontProfileImpl &getFontProfileImpl();
@@ -27,13 +27,13 @@ ConfigManager();
 void loadWindowProperties();
 void loadMenuConstants();
 
-void addMenu(IMenuProperties & menuPropertiesImpl);
+void addMenu(IMenuProperties *menuProperties);
 
 EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
 FontProfileImpl mFontProfileImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
 
 std::vector<std::string> mMenuIds;
-std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers; // menuId->MenuPropertiesContainer
+std::map<std::string, IMenuProperties *> mIMenuProperties; // menuId->MenuProperties
 
 };

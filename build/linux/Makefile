@@ -32,7 +32,6 @@ config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
-config/containers/MenuPropertiesContainer.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 core/window/Viewport.cpp \
 core/window/Window.cpp \

@@ -24,6 +24,6 @@ MenuManager& operator=(const MenuManager&);
 
 private:
 
-std::map < std::string, UIMenu> mUiMenus;
+std::map <std::string, UIMenu> mUiMenus;
 
 };

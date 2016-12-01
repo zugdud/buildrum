@@ -90,11 +90,11 @@ void WindowManager::configure(const WindowPropertiesImpl &windowPropertiesImpl)
 
 void WindowManager::createViewports()
 {
-    const std::vector<ViewportProperties> & viewportProperties = mWindowPropertiesImpl.getViewportProperties();
+    const std::vector<ViewContext> & viewContexts = mWindowPropertiesImpl.getViewContexts();
 
-    for (size_t i = 0; i < viewportProperties.size(); i++)
+    for (size_t i = 0; i < viewContexts.size(); i++)
     {
-        Viewport viewport = Viewport(viewportProperties[i], mWindowPropertiesImpl.getWindowProperties());
-        mViewports.push_back(viewport);
+        // Viewport viewport = Viewport(viewportProperties[i], mWindowPropertiesImpl.getWindowProperties());
+        // mViewports.push_back(viewport);
     }
 }

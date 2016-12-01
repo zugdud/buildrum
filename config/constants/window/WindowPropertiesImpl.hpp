@@ -7,15 +7,15 @@ WindowPropertiesImpl();
 
 void loadAll();
 
-const std::vector<ViewportProperties> & getViewportProperties() const;
+const std::vector<ViewContext> & getViewContextsProperties() const;
 const WindowProperties & getWindowProperties();
 
 private:
 
-void setViewports();
+void setViewContexts();
 void setWindowProfiles();
 
-std::vector<ViewportProperties> mViewportProperties;
+std::vector<ViewContextProperties> mViewContextProperties;
 std::map<std::string, WindowProperties> mWindowProperties; // profileId->Window
 std::vector<UIMenuProperties> mUIMenuProperties;
 

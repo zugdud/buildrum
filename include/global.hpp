@@ -19,7 +19,6 @@
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
 
-#include "config/containers/MenuPropertiesContainer.hpp"
 #include "config/constants/menus/IMenuProperties.hpp"
 
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"

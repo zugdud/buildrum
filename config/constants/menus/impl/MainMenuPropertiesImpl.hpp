@@ -5,13 +5,23 @@ public:
 MainMenuPropertiesImpl();
 ~MainMenuPropertiesImpl();
 
-void setProperties(MenuPropertiesContainer & menuPropertiesContainer);
+void setProperties();
+
+const UIMenuProperties & getUIMenuProperties() const;
+const std::vector<UIButtonProperties> & getUIButtonProperties();
+const std::vector<UIButtonStateProperties> & getUIButtonStateProperties();
+const std::vector<UILabelProperties> & getUILabelProperties();
 
 private:
 
-void setUIMenuProperties(MenuPropertiesContainer & menuPropertiesContainer);
-void setButtonProperties(MenuPropertiesContainer & menuPropertiesContainer);
-void setUILabelProperties(MenuPropertiesContainer & menuPropertiesContainer);
-void setUIButtonStateProperties(MenuPropertiesContainer & menuPropertiesContainer);
+void setUIMenuProperties();
+void setButtonProperties();
+void setUILabelProperties();
+void setUIButtonStateProperties();
+
+UIMenuProperties mUIMenuProperties;
+std::vector<UIButtonProperties> mUIButtonProperties;
+std::vector<UIButtonStateProperties> mUIButtonStateProperties;
+std::vector<UILabelProperties> mUILabelProperties;
 
 };

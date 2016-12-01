@@ -40,14 +40,14 @@ void GameInstance::run()
     MenuRenderer menuRenderer;
 
     WindowManager::getInstance()->switchActiveViewport("fullscreen");
-    MenuManager::Instance().repositionMenu("mainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
+    MenuManager::Instance().repositionMenu("MainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
 
     const Window & window = WindowManager::getInstance()->getWindow();
     while ( mRunning )
     {
         mInputEventTypeHandler->pollEventQueue();
         window.clearScreen();
-        menuRenderer.renderMenu(MenuManager::Instance().getUIMenu("mainMenu"));
+        menuRenderer.renderMenu(MenuManager::Instance().getUIMenu("MainMenu"));
         window.updateScreen();
     }
 }
