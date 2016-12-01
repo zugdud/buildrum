@@ -32,5 +32,6 @@ std::vector<Viewport> mViewports;
 std::vector<WindowEventObserver * > mObservers;
 
 Window mWindow;
+ViewContext mViewContext;
 
 };

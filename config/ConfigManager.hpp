@@ -7,6 +7,9 @@ public:
 
 static ConfigManager * getInstance();
 
+
+const std::vector<std::string> & getMenuIds();
+
 const MenuPropertiesContainer &getMenuPropertiesContainer(const std::string &uiMenuId);
 
 const EnvironmentMediaPropertiesImpl &getEnvironmentMediaPropertiesImpl();
@@ -30,6 +33,7 @@ EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
 FontProfileImpl mFontProfileImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
 
-std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers;
+std::vector<std::string> mMenuIds;
+std::map<std::string, MenuPropertiesContainer> mMenuPropertiesContainers; // menuId->MenuPropertiesContainer
 
 };

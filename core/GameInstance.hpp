@@ -6,7 +6,6 @@ GameInstance();
 ~GameInstance();
 
 bool init();
-void mainMenu();
 void run();
 
 private:
@@ -17,4 +16,5 @@ InputEventTypeHandler *mInputEventTypeHandler;
 
 UIMenu mMainMenu;
 bool mRunning;
+
 };

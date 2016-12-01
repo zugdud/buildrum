@@ -43,6 +43,19 @@ void WindowPropertiesImpl::setViewports()
     mViewportProperties.push_back(minimap);
     mViewportProperties.push_back(gameView);
     mViewportProperties.push_back(fullscreen);
+
+    // viewContextId, numViewports, viewports[]
+    ViewContext fullscreenContext;
+    fullscreenContext.viewContextId = "start";
+    fullscreenContext.numViewports = 1;
+    fullscreenContext.viewports[0] = fullscreen;
+
+    ViewContext gameplayContext;
+    gameplayContext.viewContextId = "gameplay";
+    gameplayContext.numViewports = 3;
+    gameplayContext.viewports[0] = actionMenu;
+    gameplayContext.viewports[1] = minimap;
+    gameplayContext.viewports[2] = gameView;
 }
 
 void WindowPropertiesImpl::setWindowProfiles()

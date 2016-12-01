@@ -13,6 +13,8 @@
 #include <SDL_log.h>
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
+#include <SDL_thread.h>
+#include <SDL_timer.h>
 
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
@@ -38,11 +40,12 @@
 #include "media/fonts/FontTextures.hpp"
 #include "media/fonts/FontManager.hpp"
 
-#include "UI/UIElement.hpp"
-#include "UI/UIButtonState.hpp"
-#include "UI/UIButton.hpp"
-#include "UI/UILabel.hpp"
-#include "UI/UIMenu.hpp"
+#include "UI/elements/UIElement.hpp"
+#include "UI/elements/UIButtonState.hpp"
+#include "UI/elements/UIButton.hpp"
+#include "UI/elements/UILabel.hpp"
+#include "UI/elements/UIMenu.hpp"
+#include "UI/MenuManager.hpp"
 
 #include "renderers/MenuRenderer.hpp"
 

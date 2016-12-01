@@ -12,12 +12,16 @@ GameInstance::~GameInstance()
 
 bool GameInstance::init()
 {
-
+    // ConfigManager
     ConfigManager::getInstance()->loadConstants();
 
+    // WindowManager
     WindowManager::getInstance()->configure(ConfigManager::getInstance()->getWindowPropertiesImpl());
-    WindowManager::getInstance()->switchActiveViewport("fullscreen"); // TODO from config
 
+    // MenuManager
+    MenuManager::Instance().configure();
+
+    // FontManager
     if (!FontManager::getInstance()->configure(ConfigManager::getInstance()->getEnvironmentMediaPropertiesImpl(),
                                                ConfigManager::getInstance()->getFontProfileImpl()))
     {
@@ -30,23 +34,21 @@ bool GameInstance::init()
     return true;
 }
 
-void GameInstance::mainMenu()
+void GameInstance::run()
 {
-    mMainMenu.configure(ConfigManager::getInstance()->getMenuPropertiesContainer("MainMenu"));
-    mMainMenu.resetPosition(WindowManager::getInstance()->getActiveViewport().getRect());
-
     mRunning  = true;
     MenuRenderer menuRenderer;
+
+    WindowManager::getInstance()->switchActiveViewport("fullscreen");
+    MenuManager::Instance().repositionMenu("mainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
+
     const Window & window = WindowManager::getInstance()->getWindow();
     while ( mRunning )
     {
         mInputEventTypeHandler->pollEventQueue();
         window.clearScreen();
-
-        menuRenderer.renderMenu(mMainMenu);
-
+        menuRenderer.renderMenu(MenuManager::Instance().getUIMenu("mainMenu"));
         window.updateScreen();
-
     }
 }
 
@@ -56,9 +58,4 @@ void GameInstance::inputEventTypeCallback(SDL_EventType sdlEventType)
     {
         mRunning = false;
     }
-}
-
-void GameInstance::run()
-{
-
 }

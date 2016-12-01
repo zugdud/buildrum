@@ -39,11 +39,12 @@ core/window/Window.cpp \
 core/window/WindowManager.cpp \
 core/GameInstance.cpp \
 input/InputEventTypeHandler.cpp \
-UI/UIElement.cpp \
-UI/UIButtonState.cpp \
-UI/UIButton.cpp \
-UI/UILabel.cpp \
-UI/UIMenu.cpp \
+UI/elements/UIElement.cpp \
+UI/elements/UIButtonState.cpp \
+UI/elements/UIButton.cpp \
+UI/elements/UILabel.cpp \
+UI/elements/UIMenu.cpp \
+UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \

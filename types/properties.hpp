@@ -1,4 +1,4 @@
-const int arraySize = 256;
+const int maxSize = 256;
 
 // ------------------------------------------------------------------------------
 // Env
@@ -25,6 +25,14 @@ struct WindowProperties
     int screenHeight;
 };
 
+struct ViewportRenderingProperties
+{
+    bool renderWorld;
+    bool renderMenu;
+    bool renderMiniMap;
+    std::string renderMenuId;
+};
+
 struct ViewportProperties
 {
     std::string viewportId;
@@ -33,6 +41,14 @@ struct ViewportProperties
     double windowWidthRatio;
     double windowHeightRatio;
     RGBAColors bgColor;
+    ViewportRenderingProperties renderingProperties;
+};
+
+struct ViewContext
+{
+    std::string viewContextId;
+    int numViewports;
+    ViewportProperties viewports[maxSize];
 };
 
 struct CameraProperties

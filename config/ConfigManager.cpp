@@ -21,6 +21,11 @@ ConfigManager * ConfigManager::getInstance()
     return mSingletonInstance;
 }
 
+const std::vector<std::string> & ConfigManager::getMenuIds()
+{
+    return mMenuIds;
+}
+
 const MenuPropertiesContainer & ConfigManager::getMenuPropertiesContainer(const std::string &uiMenuId)
 {
     return mMenuPropertiesContainers[uiMenuId];
@@ -72,6 +77,7 @@ void ConfigManager::addMenu(IMenuProperties & menuPropertiesImpl)
 
     menuPropertiesImpl.setProperties(menuPropertiesContainer);
     std::string uiMenuId = menuPropertiesContainer.getUIMenuProperties().uiMenuId;
+    mMenuIds.push_back(uiMenuId);
     mMenuPropertiesContainers[uiMenuId] = menuPropertiesContainer;
     SDL_Log("ConfigManager::addMenu -- added uiMenuId: %s \n", uiMenuId.c_str());
 }
