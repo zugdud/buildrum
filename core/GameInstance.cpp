@@ -10,18 +10,24 @@ GameInstance::~GameInstance()
 
 }
 
-void GameInstance::init()
+bool GameInstance::init()
 {
+
     ConfigManager::getInstance()->loadConstants();
 
     WindowManager::getInstance()->configure(ConfigManager::getInstance()->getWindowPropertiesImpl());
     WindowManager::getInstance()->switchActiveViewport("fullscreen"); // TODO from config
 
-    FontManager::getInstance()->configure(ConfigManager::getInstance()->getEnvironmentMediaPropertiesImpl(),
-                                          ConfigManager::getInstance()->getFontProfileImpl());
+    if (!FontManager::getInstance()->configure(ConfigManager::getInstance()->getEnvironmentMediaPropertiesImpl(),
+                                               ConfigManager::getInstance()->getFontProfileImpl()))
+    {
+        return false;
+    }
 
     mInputEventTypeHandler = new InputEventTypeHandler();
     mInputEventTypeHandler->registerObserver(SDL_QUIT, this);
+
+    return true;
 }
 
 void GameInstance::mainMenu()

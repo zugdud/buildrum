@@ -52,7 +52,7 @@ struct UILabelProperties
 {
     int orderId;
     std::string labelText;
-    std::string fontId;
+    std::string fontProfileName;
     int xPadding;
     int yPadding;
     bool isSpacer;

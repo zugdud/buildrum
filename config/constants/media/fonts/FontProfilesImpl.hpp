@@ -6,7 +6,7 @@ FontProfileImpl();
 ~FontProfileImpl();
 
 void loadAll();
-const std::vector<FontProfile> & getFontProfile();
+const std::vector<FontProfile> & getFontProfiles();
 
 private:
 

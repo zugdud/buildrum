@@ -18,7 +18,7 @@ const std::vector<UIButton> & UIMenu::getUIButtons() const
 {
     return mUIButtons;
 }
-const std::vector<UILabel> & UIMenu::getUILabels()
+const std::vector<UILabel> & UIMenu::getUILabels() const
 {
     return mUILabels;
 }

@@ -5,11 +5,11 @@ public:
 FontTextures();
 ~FontTextures();
 
-void addTexture(const std::string text, const SDL_Rect & rect, SDL_Texture *texture);
+void addTexture(const std::string & text, const SDL_Rect & rect, SDL_Texture *texture);
 
-bool textureExists(const std::string & text);
-SDL_Texture * getTexture(const std::string & text);
-const SDL_Rect & getRect(const std::string & text);
+bool textureExists(const std::string & text) const;
+SDL_Texture * getTexture(const std::string & text) const;
+const SDL_Rect & getRect(const std::string & text) const;
 
 private:
 

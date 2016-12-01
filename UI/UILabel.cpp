@@ -11,3 +11,8 @@ UILabel::~UILabel()
 {
 
 }
+
+const UILabelProperties & UILabel::getUILabelProperties() const
+{
+    return mUILabelProperties;
+}

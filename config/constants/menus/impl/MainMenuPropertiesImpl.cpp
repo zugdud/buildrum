@@ -82,10 +82,10 @@ void MainMenuPropertiesImpl::setUIButtonStateProperties(MenuPropertiesContainer 
 void MainMenuPropertiesImpl::setUILabelProperties(MenuPropertiesContainer & menuPropertiesContainer)
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer
-    UILabelProperties mainMenuLabel = { 0, "Main Menu", "OpenSans-Bold", 10, 10, false };
-    UILabelProperties newGame = { 1, "New Game", "OpenSans-Light", 20, 20, false };
-    UILabelProperties resumeGame = { 2, "Resume Game", "OpenSans-Light", 20, 20, false };
-    UILabelProperties quitGame = { 3, "Quit Game", "OpenSans-Light", 20, 20, false };
+    UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false };
+    UILabelProperties newGame = { 1, "New Game", "Heading_1_OpenSansLight", 20, 20, false };
+    UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false };
+    UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false };
 
     menuPropertiesContainer.addUILabelProperties(mainMenuLabel);
     menuPropertiesContainer.addUILabelProperties(newGame);

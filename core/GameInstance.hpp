@@ -5,7 +5,7 @@ public:
 GameInstance();
 ~GameInstance();
 
-void init();
+bool init();
 void mainMenu();
 void run();
 

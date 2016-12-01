@@ -21,7 +21,7 @@ void EnvironmentMediaPropertiesImpl::setEnvironmentMediaProperties()
     mEnvironmentMediaProperties.imageDirName = "";
     mEnvironmentMediaProperties.soundEffectDirName = "";
     mEnvironmentMediaProperties.musicTrackDirName = "";
-    mEnvironmentMediaProperties.fontDirName = "media/fonts/";
+    mEnvironmentMediaProperties.fontDirName = "files/media/fonts/";
 }
 
 const EnvironmentMediaProperties & EnvironmentMediaPropertiesImpl::getEnvironmentMediaProperties()

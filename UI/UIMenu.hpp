@@ -7,7 +7,7 @@ UIMenu();
 
 const std::vector<SDL_Rect> &  getGridCells() const;
 const std::vector<UIButton> & getUIButtons() const;
-const std::vector<UILabel> & getUILabels();
+const std::vector<UILabel> & getUILabels() const;
 
 void viewportSwitchEvent(const Viewport & activeViewport);
 void resetPosition(const SDL_Rect & envelope);
