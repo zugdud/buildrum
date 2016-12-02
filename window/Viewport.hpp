@@ -14,11 +14,11 @@ void configure(const ViewportProperties &viewportProperties,
 void addRenderer(IRenderer *renderer);
 void renderUpdate() const;
 
+
 private:
 
-
-void registerObserver(ViewportObserver *viewportObserver);
 void positionViewport(const WindowProperties &windowProperties);
+void registerObserver(ViewportObserver *viewportObserver);
 void setRenderedViewport() const;
 
 ViewportProperties mViewportProperties;

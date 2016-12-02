@@ -38,12 +38,11 @@ void GameInstance::run()
 {
     mRunning  = true;
 
-    WindowManager::getInstance()->setActiveViewContext("start");
+
 
     MenuRenderer *menuRenderer = new MenuRenderer();
     menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
-
-    // TODO ADD RENDERERS TO VIEWPORTS
+    WindowManager::getInstance()->setActiveViewContext("start");
 
 
     const Window & window = WindowManager::getInstance()->getWindow();

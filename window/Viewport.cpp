@@ -32,26 +32,32 @@ void Viewport::positionViewport(const WindowProperties &windowProperties)
     mViewport.w = windowProperties.screenWidth * mViewportProperties.windowWidthRatio;
     mViewport.h = windowProperties.screenHeight * mViewportProperties.windowHeightRatio;
 
-    SDL_Log("Viewport::setViewport -- viewportId: %s x: %d y: %d w: %d h: %d \n",
+    SDL_Log("Viewport::positionViewport -- viewportId: %s x: %d y: %d w: %d h: %d \n",
             mViewportProperties.viewportId.c_str(),
             mViewport.x,
             mViewport.y,
             mViewport.w,
             mViewport.h);
+}
+
+void Viewport::addRenderer(IRenderer *renderer)
+{
+    SDL_Log("Viewport::addRenderer -- adding renderer to viewportId: %s \n", mViewportProperties.viewportId.c_str());
+    mRenderers.push_back(renderer);
+
+    // register all layers as observers
+    std::vector<UIMenu> & layers = renderer->getAllLayers();
+    for (size_t i = 0; i < layers.size(); i++)
+    {
+        SDL_Log("Viewport::addRenderer -- registering observer to to viewportId: %s \n", mViewportProperties.viewportId.c_str());
+        registerObserver(&layers[i]);
+    }
 
     // update the envelope rect for all items in the viewport
     for (size_t i = 0; i < mObservers.size(); i++)
     {
         mObservers[i]->updateEnvelope(mViewport);
     }
-}
-
-void Viewport::addRenderer(IRenderer *renderer)
-{
-    mRenderers.push_back(renderer);
-    // register all layers
-
-
 }
 
 void Viewport::renderUpdate() const
@@ -73,6 +79,6 @@ void Viewport::setRenderedViewport() const
     }
     else
     {
-        SDL_Log("WindowManager::setRenderedViewport -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
+        // SDL_Log("WindowManager::setRenderedViewport -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
     }
 }
