@@ -7,7 +7,7 @@ MenuRenderer();
 
 void addLayer(const UIMenu & uimenu);
 void renderAllLayers();
-void updatePositionAllLayers();
+std::vector<UIMenu> & getAllLayers();
 
 private:
 

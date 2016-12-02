@@ -25,5 +25,6 @@ ViewportProperties mViewportProperties;
 SDL_Rect mViewport;
 SDL_Renderer *mSDLRenderer;
 
+std::vector<ViewportObserver *> mObservers;
 std::vector<IRenderer *> mRenderers;
 };

@@ -1,5 +1,6 @@
 class UIMenu : public UIElement, public ViewportObserver
 {
+
 public:
 
 UIMenu();

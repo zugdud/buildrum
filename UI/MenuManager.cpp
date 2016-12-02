@@ -30,8 +30,3 @@ void MenuManager::configure()
     SDL_Log("----------------------------------------------------\n");
 
 }
-
-void MenuManager::repositionMenu(const std::string & menuId, const SDL_Rect & envelope)
-{
-    mUiMenus.at(menuId).resetPosition(envelope);
-}

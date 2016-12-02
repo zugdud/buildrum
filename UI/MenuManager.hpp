@@ -12,7 +12,6 @@ static MenuManager& Instance()
 
 
 void configure();
-void repositionMenu(const std::string & menuId, const SDL_Rect & envelope);
 const UIMenu & getUIMenu(const std::string & menuId);
 
 protected:

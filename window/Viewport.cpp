@@ -42,7 +42,7 @@ void Viewport::positionViewport(const WindowProperties &windowProperties)
     // update the envelope rect for all items in the viewport
     for (size_t i = 0; i < mObservers.size(); i++)
     {
-        mObservers->updateEnvelope(mViewport);
+        mObservers[i]->updateEnvelope(mViewport);
     }
 }
 

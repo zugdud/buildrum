@@ -9,17 +9,15 @@ MenuRenderer::~MenuRenderer()
 {
 
 }
+
+std::vector<UIMenu> & MenuRenderer::getAllLayers()
+{
+    return mLayers;
+}
+
 void MenuRenderer::addLayer(const UIMenu & uimenu)
 {
     mLayers.push_back(uimenu);
-}
-
-void MenuRenderer::updatePositionAllLayers()
-{
-    for (size_t i = 0; i < mLayers.size(); i++)
-    {
-        mLayers[i].resetPosition();
-    }
 }
 
 void MenuRenderer::renderAllLayers()
