@@ -6,9 +6,11 @@ GameInstance();
 ~GameInstance();
 
 bool init();
-void run();
+void showStartScreen();
 
 private:
+
+void setupStartScreen();
 
 void inputEventTypeCallback(SDL_EventType sdlEventType);
 

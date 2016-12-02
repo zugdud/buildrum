@@ -31,36 +31,39 @@ bool GameInstance::init()
     mInputEventTypeHandler = new InputEventTypeHandler();
     mInputEventTypeHandler->registerObserver(SDL_QUIT, this);
 
+    setupStartScreen();
     return true;
 }
 
-void GameInstance::run()
+void GameInstance::setupStartScreen()
 {
-    mRunning  = true;
-
-
-
     MenuRenderer *menuRenderer = new MenuRenderer();
+
     menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
     WindowManager::getInstance()->setActiveViewContext("start");
 
+    std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
+    for (size_t i = 0; i < startScreenViewports.size(); i++)
+    {
+        startScreenViewports[i].addRenderer(menuRenderer);
+    }
+}
+
+void GameInstance::showStartScreen()
+{
+    mRunning  = true;
 
     const Window & window = WindowManager::getInstance()->getWindow();
-    std::vector <Viewport> & viewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
-    for (size_t i = 0; i < viewports.size(); i++)
-    {
-        viewports[i].addRenderer(menuRenderer);
-    }
+    std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
 
     while ( mRunning )
     {
         mInputEventTypeHandler->pollEventQueue();
         window.clearScreen();
-        for (size_t i = 0; i < viewports.size(); i++)
+        for (size_t i = 0; i < startScreenViewports.size(); i++)
         {
-            viewports[i].renderUpdate();
+            startScreenViewports[i].renderUpdate();
         }
-
         window.updateScreen();
     }
 }
