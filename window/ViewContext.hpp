@@ -9,7 +9,7 @@ void configure(ViewContextProperties ViewContextProperties,
                const WindowProperties & windowProperties,
                SDL_Renderer *sdlRenderer);
 
-const std::vector<Viewport> & getViewports();
+std::vector<Viewport> & getViewports();
 
 private:
 

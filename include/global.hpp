@@ -28,12 +28,6 @@
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
-#include "window/Viewport.hpp"
-#include "window/ViewContext.hpp"
-#include "window/WindowEventObserver.hpp"
-#include "window/Window.hpp"
-#include "window/WindowManager.hpp"
-
 #include "input/InputEventTypeObserver.hpp"
 #include "input/InputEventTypeHandler.hpp"
 
@@ -46,6 +40,13 @@
 #include "UI/elements/UILabel.hpp"
 #include "UI/elements/UIMenu.hpp"
 #include "UI/MenuManager.hpp"
+
+#include "renderers/IRenderer.hpp"
+
+#include "window/Viewport.hpp"
+#include "window/ViewContext.hpp"
+#include "window/Window.hpp"
+#include "window/WindowManager.hpp"
 
 #include "renderers/MenuRenderer.hpp"
 

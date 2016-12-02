@@ -41,7 +41,7 @@ IMenuProperties * UIMenu::getIMenuProperties() const
     return mIMenuProperties;
 }
 
-void UIMenu::resetPosition(const SDL_Rect & envelope)
+void UIMenu::updateEnvelope(const SDL_Rect & envelope)
 {
 
     UIElement::setRect(mIMenuProperties->getUIMenuProperties().xPadding,

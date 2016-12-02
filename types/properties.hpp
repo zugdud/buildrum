@@ -25,13 +25,6 @@ struct WindowProperties
     int screenHeight;
 };
 
-struct RenderingProperties
-{
-    bool useRenderer;
-    int numLayers;
-    std::string layerIds;
-};
-
 struct ViewportProperties
 {
     std::string viewportId;
@@ -40,9 +33,6 @@ struct ViewportProperties
     double windowWidthRatio;
     double windowHeightRatio;
     RGBAColors bgColor;
-    RenderingProperties worldRenderingProperties;
-    RenderingProperties minimapRenderingProperties;
-    RenderingProperties menuRenderingProperties;
 };
 
 struct ViewContextProperties

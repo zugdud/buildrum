@@ -33,9 +33,10 @@ config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
-core/window/Viewport.cpp \
-core/window/Window.cpp \
-core/window/WindowManager.cpp \
+window/Viewport.cpp \
+window/Window.cpp \
+window/WindowManager.cpp \
+window/ViewContext.cpp \
 core/GameInstance.cpp \
 input/InputEventTypeHandler.cpp \
 UI/elements/UIElement.cpp \
@@ -46,7 +47,7 @@ UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 media/fonts/FontManager.cpp \
-media/fonts/FontTextures.cpp \
+media/fonts/FontTextures.cpp
 
 # define the C object files
 #

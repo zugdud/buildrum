@@ -10,7 +10,7 @@ ViewContext::~ViewContext()
 
 }
 
-const std::vector<Viewport> & ViewContext::getViewports()
+std::vector<Viewport> & ViewContext::getViewports()
 {
     return mViewports;
 }

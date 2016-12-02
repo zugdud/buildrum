@@ -16,10 +16,16 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
 {
     mViewportProperties = viewportProperties;
     mSDLRenderer = sdlRenderer;
-    setViewport(windowProperties);
+    positionViewport(windowProperties);
 }
 
-void Viewport::setViewport(const WindowProperties &windowProperties)
+void Viewport::registerObserver(ViewportObserver *viewportObserver)
+{
+    mObservers.push_back(viewportObserver);
+}
+
+
+void Viewport::positionViewport(const WindowProperties &windowProperties)
 {
     mViewport.x = windowProperties.screenWidth * mViewportProperties.xPadRatio;
     mViewport.y = windowProperties.screenHeight * mViewportProperties.yPadRatio;
@@ -32,9 +38,32 @@ void Viewport::setViewport(const WindowProperties &windowProperties)
             mViewport.y,
             mViewport.w,
             mViewport.h);
+
+    // update the envelope rect for all items in the viewport
+    for (size_t i = 0; i < mObservers.size(); i++)
+    {
+        mObservers->updateEnvelope(mViewport);
+    }
 }
 
-void Viewport::setRenderedViewport()
+void Viewport::addRenderer(IRenderer *renderer)
+{
+    mRenderers.push_back(renderer);
+    // register all layers
+
+
+}
+
+void Viewport::renderUpdate() const
+{
+    for (size_t i = 0; i < mRenderers.size(); i++)
+    {
+        setRenderedViewport();
+        mRenderers[i]->renderAllLayers();
+    }
+}
+
+void Viewport::setRenderedViewport() const
 {
     const int result = SDL_RenderSetViewport(mSDLRenderer, &mViewport);
 

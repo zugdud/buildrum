@@ -9,10 +9,29 @@ MenuRenderer::~MenuRenderer()
 {
 
 }
-
-void MenuRenderer::renderMenu(const UIMenu & uiMenu)
+void MenuRenderer::addLayer(const UIMenu & uimenu)
 {
-    // WindowManager::getInstance()->switchActiveViewport(uiMenu.getIMenuProperties().getUIMenuProperties().viewportId);
+    mLayers.push_back(uimenu);
+}
+
+void MenuRenderer::updatePositionAllLayers()
+{
+    for (size_t i = 0; i < mLayers.size(); i++)
+    {
+        mLayers[i].resetPosition();
+    }
+}
+
+void MenuRenderer::renderAllLayers()
+{
+    for (size_t i = 0; i < mLayers.size(); i++)
+    {
+        renderLayer(mLayers[i]);
+    }
+}
+
+void MenuRenderer::renderLayer(const UIMenu & uiMenu)
+{
     renderGridCells(uiMenu);
     renderButtons(uiMenu.getUIButtons());
     renderLabels(uiMenu.getUILabels());
@@ -49,10 +68,6 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
 
 void MenuRenderer::renderLabel(const UILabelProperties & uiLP, const SDL_Rect & cellRect)
 {
-    // SDL_Texture * getTexture(const std::string & text);
-    // const SDL_Rect & getRect(const std::string & text);
-    // const FontTextures & getTextures(const std::string & fontProfileName, const std::string & text);
-
     const FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
 
     SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);

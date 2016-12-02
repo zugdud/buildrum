@@ -32,26 +32,15 @@ void WindowPropertiesImpl::setViewContexts()
     RGBAColors green = { 0, 255, 0, 255 };
     RGBAColors blue = { 0, 0, 255, 255 };
 
-    // RenderingProperties useRenderer, numLayerIds, layerIds
-    RenderingProperties noRender;
-
-    noRender.useRenderer = false;
-    noRender.numLayers = 0;
-    noRender.layerIds = "MainMenu";
-
-    RenderingProperties fullscreen_menu_RP;
-    fullscreen_menu_RP.useRenderer = true;
-    fullscreen_menu_RP.numLayers = 1;
-    fullscreen_menu_RP.layerIds = "MainMenu";
-
     // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red, noRender, noRender, noRender };
-    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green, noRender, noRender, noRender };
-    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue, noRender, noRender, noRender };
-    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue, noRender, noRender, fullscreen_menu_RP };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red };
+    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
 
     // viewContextId, numViewports, viewports[]
     ViewContextProperties fullscreenContext;
+
     fullscreenContext.viewContextId = "start";
     fullscreenContext.numViewports = 1;
     fullscreenContext.viewports[0] = fullscreen;

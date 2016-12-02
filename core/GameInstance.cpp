@@ -37,18 +37,32 @@ bool GameInstance::init()
 void GameInstance::run()
 {
     mRunning  = true;
-    MenuRenderer menuRenderer;
 
     WindowManager::getInstance()->setActiveViewContext("start");
-    MenuManager::Instance().repositionMenu("MainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
 
-    // const Window & window = WindowManager::getInstance()->getWindow();
+    MenuRenderer *menuRenderer = new MenuRenderer();
+    menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
+
+    // TODO ADD RENDERERS TO VIEWPORTS
+
+
+    const Window & window = WindowManager::getInstance()->getWindow();
+    std::vector <Viewport> & viewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
+    for (size_t i = 0; i < viewports.size(); i++)
+    {
+        viewports[i].addRenderer(menuRenderer);
+    }
+
     while ( mRunning )
     {
         mInputEventTypeHandler->pollEventQueue();
-        // window.clearScreen();
-        // menuRenderer.renderMenu(MenuManager::Instance().getUIMenu("MainMenu"));
-        // window.updateScreen();
+        window.clearScreen();
+        for (size_t i = 0; i < viewports.size(); i++)
+        {
+            viewports[i].renderUpdate();
+        }
+
+        window.updateScreen();
     }
 }
 

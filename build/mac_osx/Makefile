@@ -42,7 +42,7 @@ config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
-window/viewContext.cpp \
+window/ViewContext.cpp \
 core/GameInstance.cpp \
 input/InputEventTypeHandler.cpp \
 UI/elements/UIElement.cpp \

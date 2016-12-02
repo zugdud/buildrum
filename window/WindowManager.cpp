@@ -17,7 +17,7 @@ void WindowManager::setActiveViewContext(const std::string & viewContextId)
 {
     mActiveViewContextId = viewContextId;
 }
-const ViewContext & WindowManager::getActiveViewContext() const
+ViewContext & WindowManager::getActiveViewContext()
 {
     return mViewContexts.at(mActiveViewContextId);
 }
@@ -39,11 +39,6 @@ WindowManager * WindowManager::getInstance()
 const Window & WindowManager::getWindow()
 {
     return mWindow;
-}
-
-void WindowManager::registerObserver(WindowEventObserver *windowEventObserver)
-{
-    mObservers.push_back(windowEventObserver);
 }
 
 void WindowManager::configure(const WindowPropertiesImpl &windowPropertiesImpl)
