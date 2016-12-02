@@ -13,6 +13,15 @@ WindowManager::~WindowManager()
 
 }
 
+void WindowManager::setActiveViewContext(const std::string & viewContextId)
+{
+    mActiveViewContextId = viewContextId;
+}
+const ViewContext & WindowManager::getActiveViewContext() const
+{
+    return mViewContexts.at(mActiveViewContextId);
+}
+
 SDL_Renderer * WindowManager::getSDLRenderer()
 {
     return mWindow.getSDLWindowRenderer();
@@ -58,6 +67,6 @@ void WindowManager::createViewContexts()
         viewContext.configure(viewContextProperties[i],
                               mWindowPropertiesImpl.getWindowProperties(),
                               mWindow.getSDLWindowRenderer());
-        mViewContexts.push_back(viewContext);
+        mViewContexts.insert(std::pair<std::string, ViewContext>(viewContextProperties[i].viewContextId, viewContext) );
     }
 }

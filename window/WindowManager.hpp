@@ -13,7 +13,7 @@ void registerObserver(WindowEventObserver *windowEventObserver);
 const Window & getWindow();
 SDL_Renderer * getSDLRenderer();
 
-void setActiveViewContext(const ViewContext & viewContext);
+void setActiveViewContext(const std::string & viewContextId);
 const ViewContext &getActiveViewContext() const;
 
 private:
@@ -24,11 +24,12 @@ WindowManager();
 void notifyObservers();
 void createViewContexts();
 
-ViewContext mActiveViewContext;
+std::string mActiveViewContextId;
 
 WindowPropertiesImpl mWindowPropertiesImpl;
-std::vector<ViewContext> mViewContexts;
 std::vector<WindowEventObserver * > mObservers;
+
+std::map<std::string, ViewContext> mViewContexts;
 
 Window mWindow;
 

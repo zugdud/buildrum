@@ -39,8 +39,8 @@ void GameInstance::run()
     mRunning  = true;
     MenuRenderer menuRenderer;
 
-    // WindowManager::getInstance()->switchActiveViewport("fullscreen");
-    // MenuManager::Instance().repositionMenu("MainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
+    WindowManager::getInstance()->setActiveViewContext("start");
+    MenuManager::Instance().repositionMenu("MainMenu", WindowManager::getInstance()->getActiveViewport().getRect());
 
     // const Window & window = WindowManager::getInstance()->getWindow();
     while ( mRunning )

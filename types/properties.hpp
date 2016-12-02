@@ -29,7 +29,7 @@ struct RenderingProperties
 {
     bool useRenderer;
     int numLayers;
-    std::string layerIds[maxSize];
+    std::string layerIds;
 };
 
 struct ViewportProperties

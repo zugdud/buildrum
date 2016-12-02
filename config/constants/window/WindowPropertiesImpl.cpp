@@ -37,11 +37,12 @@ void WindowPropertiesImpl::setViewContexts()
 
     noRender.useRenderer = false;
     noRender.numLayers = 0;
+    noRender.layerIds = "MainMenu";
 
     RenderingProperties fullscreen_menu_RP;
     fullscreen_menu_RP.useRenderer = true;
     fullscreen_menu_RP.numLayers = 1;
-    fullscreen_menu_RP.layerIds[0] = "MainMenu";
+    fullscreen_menu_RP.layerIds = "MainMenu";
 
     // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
     ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red, noRender, noRender, noRender };
