@@ -6,11 +6,11 @@ virtual void quitEventCallback() = 0;
 
 };
 
-class TouchEventObserver
+class PointEventObserver
 {
 public:
 
-virtual void touchEventCallback(SDL_Event touchEvent) = 0;
+virtual void pointEventCallback(PointInt pointInt) = 0;
 
 };
 

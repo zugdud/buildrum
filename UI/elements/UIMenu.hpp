@@ -1,4 +1,4 @@
-class UIMenu : public UIElement, public ViewportObserver, public TouchEventObserver
+class UIMenu : public UIElement, public ViewportObserver, public PointEventObserver
 {
 
 public:
@@ -16,7 +16,7 @@ void configure(IMenuProperties *IMenuProperties);
 
 private:
 
-void touchEventCallback(SDL_Event touchEvent);
+void pointEventCallback(PointInt pointInt);
 
 bool checkConfig();
 void recalculateGridCellSize();

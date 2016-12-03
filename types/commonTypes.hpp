@@ -6,6 +6,12 @@ struct RGBAColors
     uint8_t alpha;
 };
 
+struct PointInt
+{
+    int x;
+    int y;
+};
+
 struct PointDouble
 {
     double x;

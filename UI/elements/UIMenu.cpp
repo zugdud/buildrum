@@ -28,9 +28,9 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
     mIMenuProperties = IMenuProperties;
 }
 
-void UIMenu::touchEventCallback(SDL_Event touchEvent)
+void UIMenu::pointEventCallback(PointInt pointInt)
 {
-    SDL_Log("UIMenu::touchEventCallback \n");
+    SDL_Log("UIMenu::touchEventCallback x: %d y: %d \n", pointInt.x, pointInt.y);
 }
 
 IMenuProperties * UIMenu::getIMenuProperties() const

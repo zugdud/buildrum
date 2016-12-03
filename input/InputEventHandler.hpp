@@ -6,13 +6,13 @@ InputEventHandler();
 ~InputEventHandler();
 
 void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
-void registerTouchEventObserver(TouchEventObserver *touchEventObserver);
+void registerPointEventObserver(PointEventObserver *pointEventObserver);
 
 void pollEventQueue();
 
 private:
 
 std::vector<QuitEventObserver *> mQuitEventObservers;
-std::vector<TouchEventObserver *> mTouchEventObserver;
+std::vector<PointEventObserver *> mPointEventObserver;
 
 };

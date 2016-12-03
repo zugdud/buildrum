@@ -10,9 +10,9 @@ InputEventHandler::~InputEventHandler()
 
 }
 
-void InputEventHandler::registerTouchEventObserver(TouchEventObserver *touchEventObserver)
+void InputEventHandler::registerPointEventObserver(PointEventObserver *pointEventObserver)
 {
-    mTouchEventObserver.push_back(touchEventObserver);
+    mPointEventObserver.push_back(pointEventObserver);
 }
 
 void InputEventHandler::registerQuitEventObserver(QuitEventObserver *quitEventObserver)
@@ -26,12 +26,24 @@ void InputEventHandler::pollEventQueue()
 
     while ( SDL_PollEvent(&sdlEvent) != 0 )
     {
-        // touch event
-        if (sdlEvent.type == SDL_FINGERDOWN)
+        // point event
+        if (sdlEvent.type == SDL_FINGERDOWN || sdlEvent.type == SDL_MOUSEBUTTONDOWN)
         {
-            for (size_t i = 0; i < mQuitEventObservers.size(); i++)
+            PointInt pointInt = { 0, 0 };
+            if (SDL_FINGERDOWN)
             {
-                mTouchEventObserver[i]->touchEventCallback(sdlEvent);
+                pointInt.x = sdlEvent.tfinger.dx;
+                pointInt.y = sdlEvent.tfinger.dy;
+            }
+            else if (SDL_MOUSEBUTTONDOWN)
+            {
+                pointInt.x = sdlEvent.button.x;
+                pointInt.y = sdlEvent.button.y;
+            }
+
+            for (size_t i = 0; i < mPointEventObserver.size(); i++)
+            {
+                mPointEventObserver[i]->pointEventCallback(pointInt);
             }
         }
         // quit event
@@ -48,6 +60,31 @@ void InputEventHandler::pollEventQueue()
         }
     }
 }
+
+//
+// void InputEventHandler::handleMouseEvents(SDL_Event & e)
+// {
+//     switch (e.type)
+//     {
+//         case SDL_MOUSEBUTTONDOWN: {
+//             if (mBuildMenu->isMenuArea(e.button.x, e.button.y))
+//             {
+//                 Button *button = mBuildMenu->selectedButton(e.button.x, e.button.y);
+//                 mPlayer->setCurrentAction(button->getAction());
+//             }
+//             else
+//             {
+//                 Action *action = mPlayer->getCurrentAction();
+//                 action->performAction(mCursor->getHighlightedTileId());
+//             }
+//         } break;
+//         case SDL_MOUSEMOTION: {
+//             mCursor->setPosition(e.motion.x, e.motion.y);
+//             mCursor->setEdge();
+//         } break;
+//     }
+// }
+
 //
 // void InputEventHandler::handleTouchEvents(SDL_EventType & touchEvent)
 // {
