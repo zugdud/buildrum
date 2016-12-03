@@ -11,3 +11,8 @@ struct PointDouble
     double x;
     double y;
 };
+
+struct InputEvent
+{
+    SDL_Event sdlEvent;
+};

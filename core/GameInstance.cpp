@@ -28,8 +28,7 @@ bool GameInstance::init()
         return false;
     }
 
-    mInputEventTypeHandler = new InputEventTypeHandler();
-    mInputEventTypeHandler->registerObserver(SDL_QUIT, this);
+    mInputEventHandler.registerObserver(this);
 
     setupStartScreen();
     return true;
@@ -58,7 +57,7 @@ void GameInstance::showStartScreen()
 
     while ( mRunning )
     {
-        mInputEventTypeHandler->pollEventQueue();
+        mInputEventHandler.pollEventQueue();
         window.clearScreen();
         for (size_t i = 0; i < startScreenViewports.size(); i++)
         {
@@ -68,9 +67,9 @@ void GameInstance::showStartScreen()
     }
 }
 
-void GameInstance::inputEventTypeCallback(SDL_EventType sdlEventType)
+void GameInstance::inputEventCallback(InputEvent inputEvent)
 {
-    if (sdlEventType == SDL_QUIT)
+    if (inputEvent.sdlEvent.type == SDL_QUIT)
     {
         mRunning = false;
     }

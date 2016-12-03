@@ -1,4 +1,4 @@
-class GameInstance : public InputEventTypeObserver
+class GameInstance : public InputEventObserver
 {
 public:
 
@@ -11,10 +11,9 @@ void showStartScreen();
 private:
 
 void setupStartScreen();
+void inputEventCallback(InputEvent inputEvent);
 
-void inputEventTypeCallback(SDL_EventType sdlEventType);
-
-InputEventTypeHandler *mInputEventTypeHandler;
+InputEventHandler mInputEventHandler;
 
 UIMenu mMainMenu;
 bool mRunning;

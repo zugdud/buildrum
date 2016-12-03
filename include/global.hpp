@@ -29,8 +29,8 @@
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
-#include "input/InputEventTypeObserver.hpp"
-#include "input/InputEventTypeHandler.hpp"
+#include "input/InputEventObserver.hpp"
+#include "input/InputEventHandler.hpp"
 
 #include "media/fonts/FontTextures.hpp"
 #include "media/fonts/FontManager.hpp"
