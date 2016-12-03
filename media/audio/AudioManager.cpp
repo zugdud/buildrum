@@ -1,4 +1,4 @@
-#include "config/include.h"
+#include "include/global.hpp"
 
 AudioManager::AudioManager()
 {
@@ -7,74 +7,71 @@ AudioManager::AudioManager()
 
 AudioManager::~AudioManager()
 {
-    destroy();
-}
-
-bool AudioManager::init()
-{
-    bool success = false;
-
-    // Initialize SDL_mixer
-    if ( Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0 )
-    {
-        SDL_Log("SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
-        success = false;
-    }
-
-    success = loadAllMedia();
-    mMusicState = STOPPED;
-    mAudioState = ENABLED;
-
-    return success;
-}
-
-void AudioManager::destroy()
-{
     // TODO
     // Mix_FreeChunk();
     // Mix_FreeMusic();
     // Mix_Quit();
 }
 
-void AudioManager::playSound(SoundEffectId soundEffectId)
+void AudioManager::configure(const AudioPlayerProperties & audioPlayerProperties)
 {
-    if (mAudioState == ENABLED)
-    {
-        Mix_PlayChannel(-1, mSoundEffectMap[soundEffectId], 0);
-    }
+    mAudioPlayerProperties = audioPlayerProperties;
 }
 
-void AudioManager::setActiveMusicLoop(MusicTrackId musicTrackId)
+bool AudioManager::init()
 {
-    if (mAudioState == ENABLED)
+    // Initialize SDL_mixer
+    bool mixInitSuccess = Mix_OpenAudio(mAudioPlayerProperties.frequency,
+                                        MIX_DEFAULT_FORMAT,
+                                        mAudioPlayerProperties.channels,
+                                        mAudioPlayerProperties.chunksize);
+
+    if (mixInitSuccess)
     {
-        mMusicState = PLAYING;
-        Mix_PlayMusic(mMusicTrackMap[musicTrackId], -1);
+
+        SDL_Log("SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
+        return false;
     }
+    return true;
 }
 
-void AudioManager::stopActiveMusic()
+
+void AudioManager::playSound(std::string soundEffectId)
 {
-    if (mAudioState == ENABLED)
-    {
-        Mix_HaltMusic();
-    }
+    Mix_PlayChannel(-1, mSoundEffectMap[soundEffectId], 0);
 }
 
-void AudioManager::togglePausePlayMusic()
+
+void stopMusic();
+void pauseMusic();
+
+void AudioManager::setMusicTrack(std::string musicTrackId)
 {
-    if (mAudioState == ENABLED)
-    {
-        if ( mMusicState == PAUSED )
-        {
-            Mix_ResumeMusic();
-            mMusicState = PLAYING;
-        }
-        else
-        {
-            Mix_PauseMusic();
-        }
-    }
+    mSelectedMusicTrackId = musicTrackId;
+}
+
+void AudioManager::playMusic()
+{
+    Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], -1);
+    mMusicPlayerState = PLAYING;
+}
+
+void AudioManager::stopMusic()
+{
+    Mix_HaltMusic();
+    mMusicPlayerState = STOPPED;
+}
+
+void AudioManager::pauseMusic()
+{
+    Mix_PauseMusic();
+    mMusicPlayerState = PAUSED;
+}
+
+void AudioManager::resumeMusic()
+{
+    Mix_ResumeMusic();
+    mMusicPlayerState = PLAYING;
 }
 
 bool AudioManager::loadAllMedia()

@@ -122,6 +122,15 @@ struct SpriteSheetProperties
     std::string fileName;
 };
 
+struct AudioPlayerProperties
+{
+    int frequency;
+    Uint16 format;
+    int channels;
+    int chunksize;
+};
+
+
 struct SoundEffectProperties
 {
     int soundEffectId;
