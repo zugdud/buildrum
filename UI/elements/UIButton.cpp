@@ -1,14 +1,9 @@
 #include "include/global.hpp"
 
-UIButton::UIButton(const UIButtonProperties & uiButtonProperties,
-                   const SDL_Rect & envelope,
-                   const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
+UIButton::UIButton(const UIButtonProperties &uiButtonProperties, const std::vector<UIButtonStateProperties> &uiButtonStateProperties)
 {
     mUIButtonProperties = uiButtonProperties;
-    UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
     addUIButtonStates(uiButtonStateProperties);
-    UIElement::logRectDimensions("UIButton", mUIButtonProperties.buttonId, UIElement::getRect());
-
     setDefaultButtonState();
 }
 
@@ -17,6 +12,19 @@ UIButton::~UIButton()
 
 }
 
+void UIButton::updateEnvelope(const SDL_Rect &envelope)
+{
+    UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
+    UIElement::logRectDimensions("UIButton", mUIButtonProperties.buttonId, UIElement::getRect());
+}
+
+void UIButton::pointEventCallback(PointInt pointInt)
+{
+    if (UIElement::isPointInRect(pointInt))
+    {
+        SDL_Log("Touched buttonId: %s \n ", mUIButtonProperties.buttonId.c_str());
+    }
+}
 
 bool UIButton::setDefaultButtonState()
 {

@@ -1,15 +1,19 @@
 #include "include/global.hpp"
 
-UILabel::UILabel(const UILabelProperties & uiLabelProperties, const SDL_Rect & envelope)
+UILabel::UILabel(const UILabelProperties & uiLabelProperties)
 {
     mUILabelProperties = uiLabelProperties;
-    UIElement::setRect(uiLabelProperties.xPadding, uiLabelProperties.yPadding, envelope);
-    UIElement::logRectDimensions("UILabel", mUILabelProperties.labelText, UIElement::getRect());
 }
 
 UILabel::~UILabel()
 {
 
+}
+
+void UILabel::updateEnvelope(const SDL_Rect &envelope)
+{
+    UIElement::setRect(mUILabelProperties.xPadding, mUILabelProperties.yPadding, envelope);
+    UIElement::logRectDimensions("UILabel", mUILabelProperties.labelText, UIElement::getRect());
 }
 
 const UILabelProperties & UILabel::getUILabelProperties() const

@@ -37,12 +37,21 @@ bool GameInstance::init()
 
 void GameInstance::setupStartScreen()
 {
+
     MenuRenderer *menuRenderer = new MenuRenderer();
 
-    menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
-    mInputEventHandler.registerPointEventObserver(MenuManager::Instance().getUIMenu("MainMenu"));
-    WindowManager::getInstance()->setActiveViewContext("start");
+    // register input handlers with menu
+    std::vector<UIButton> & uiButtons = MenuManager::Instance().getUIMenu("MainMenu")->getUIButtonsRW();
+    for (size_t i = 0; i < uiButtons.size(); i++)
+    {
+        mInputEventHandler.registerPointEventObserver(&uiButtons[i]);
+    }
 
+    // add menu as a layer to fullscreen renderer
+    menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
+
+    // add renderers to viewport
+    WindowManager::getInstance()->setActiveViewContext("start");
     std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
     for (size_t i = 0; i < startScreenViewports.size(); i++)
     {

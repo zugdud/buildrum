@@ -1,14 +1,15 @@
-class UIButton : public UIElement
+class UIButton : public UIElement, public PointEventObserver
 {
 public:
 
-UIButton(const UIButtonProperties & uiButtonProperties,
-         const SDL_Rect & envelope,
-         const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
+UIButton(const UIButtonProperties &uiButtonProperties, const std::vector<UIButtonStateProperties> &uiButtonStateProperties);
 ~UIButton();
 
 const UIButtonProperties & getUIButtonProperties() const;
 const UIButtonState & getCurrentUIButtonState() const;
+void updateEnvelope(const SDL_Rect &envelope);
+
+void pointEventCallback(PointInt pointInt);
 
 private:
 

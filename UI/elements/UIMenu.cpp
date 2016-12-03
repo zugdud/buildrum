@@ -10,6 +10,11 @@ UIMenu::~UIMenu()
 
 }
 
+std::vector<UIButton> & UIMenu::getUIButtonsRW()
+{
+    return mUIButtons;
+}
+
 const std::vector<SDL_Rect> & UIMenu::getGridCells() const
 {
     return mGridCells;
@@ -26,20 +31,9 @@ const std::vector<UILabel> & UIMenu::getUILabels() const
 void UIMenu::configure(IMenuProperties *IMenuProperties)
 {
     mIMenuProperties = IMenuProperties;
-}
-
-void UIMenu::pointEventCallback(PointInt pointInt)
-{
-    SDL_Log("UIMenu::touchEventCallback x: %d y: %d \n", pointInt.x, pointInt.y);
-    UIElement::logRectDimensions("UIMenu", "HUR", UIElement::getRect());
-    if (UIElement::isPointInRect(pointInt))
-    {
-        SDL_Log("IN! \n ");
-    }
-    else
-    {
-        SDL_Log("OUT! \n ");
-    }
+    recalculateGridCellSize();
+    createButtons();
+    createLabels();
 }
 
 IMenuProperties * UIMenu::getIMenuProperties() const
@@ -62,11 +56,10 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
             viewportId.c_str());
     if (checkConfig())
     {
+        recalculateGridCellSize();
+        updateEnvelopes();
         UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
         UIElement::logRectDimensions("UIMenu", uiMenuId, UIElement::getRect());
-        recalculateGridCellSize();
-        regenerateButtons();
-        regenerateLabels();
         SDL_Log("UIMenu::resetPosition -- resetPosition Success! \n");
     }
     else
@@ -133,25 +126,34 @@ SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidt
     return rect;
 }
 
-void UIMenu::regenerateButtons()
+void UIMenu::createButtons()
 {
     mUIButtons.clear();
     const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties->getUIButtonProperties();
     const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties->getUIButtonStateProperties();
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
-        UIButton uiButton = UIButton(uiButtonProperties[i], mGridCells[i], uiButtonStateProperties);
+        UIButton uiButton = UIButton(uiButtonProperties[i], uiButtonStateProperties);
         mUIButtons.push_back(uiButton);
     }
 }
 
-void UIMenu::regenerateLabels()
+void UIMenu::createLabels()
 {
     mUILabels.clear();
     const std::vector<UILabelProperties> & uiLabelProperties = mIMenuProperties->getUILabelProperties();
     for (size_t i = 0; i < uiLabelProperties.size(); i++)
     {
-        UILabel uiLabel = UILabel(uiLabelProperties[i], mGridCells[i]);
+        UILabel uiLabel = UILabel(uiLabelProperties[i]);
         mUILabels.push_back(uiLabel);
+    }
+}
+
+void UIMenu::updateEnvelopes()
+{
+    for (size_t i = 0; i < mGridCells.size(); i++)
+    {
+        mUIButtons[i].updateEnvelope(mGridCells[i]);
+        mUILabels[i].updateEnvelope(mGridCells[i]);
     }
 }
