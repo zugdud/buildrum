@@ -16,3 +16,10 @@ struct InputEvent
 {
     SDL_Event sdlEvent;
 };
+
+enum BuildProfileTypes
+{
+    LINUX_BUILD,
+    MAC_BUILD,
+    ANDROID_BUILD
+};

@@ -1,5 +1,3 @@
-const int maxSize = 256;
-
 // ------------------------------------------------------------------------------
 // Env
 // ------------------------------------------------------------------------------
@@ -39,7 +37,7 @@ struct ViewContextProperties
 {
     std::string viewContextId;
     int numViewports;
-    ViewportProperties viewports[maxSize];
+    ViewportProperties viewports[256];
 };
 
 struct CameraProperties

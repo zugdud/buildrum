@@ -23,7 +23,7 @@ const std::vector<ViewContextProperties> & WindowPropertiesImpl::getViewContextP
 
 const WindowProperties & WindowPropertiesImpl::getWindowProperties()
 {
-    return mWindowProperties["linux"];
+    return mWindowProperties;
 }
 
 void WindowPropertiesImpl::setViewContexts()
@@ -65,7 +65,11 @@ void WindowPropertiesImpl::setWindowProfiles()
     WindowProperties macProperties = { "Buildrum", white, 1024, 768 };
     WindowProperties androidProperties = { "Buildrum", white, 1280, 760 };
 
-    mWindowProperties["linux"] = linuxProperties;
-    mWindowProperties["mac"] = macProperties;
-    mWindowProperties["android"] = androidProperties;
+
+    switch (G_BUILD_PROFILE)
+    {
+        case LINUX_BUILD: mWindowProperties = linuxProperties; break;
+        case MAC_BUILD: mWindowProperties = macProperties; break;
+        case ANDROID_BUILD: mWindowProperties = androidProperties; break;
+    }
 }

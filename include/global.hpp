@@ -18,6 +18,9 @@
 
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
+
+#include "include/constants.hpp"
+
 #include "window/ViewportObserver.hpp"
 
 #include "config/constants/menus/IMenuProperties.hpp"

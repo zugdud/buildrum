@@ -12,6 +12,7 @@ GameInstance::~GameInstance()
 
 bool GameInstance::init()
 {
+    SDL_Log("GameInstance::init -- BuildProfile: %d \n", G_BUILD_PROFILE);
     // ConfigManager
     ConfigManager::getInstance()->loadConstants();
 
