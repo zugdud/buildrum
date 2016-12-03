@@ -128,18 +128,19 @@ struct AudioPlayerProperties
     Uint16 format;
     int channels;
     int chunksize;
+    std::string defaultMusicTrackId;
 };
 
 
 struct SoundEffectProperties
 {
-    int soundEffectId;
+    std::string soundEffectId;
     std::string fileName;
 };
 
 struct MusicTrackProperties
 {
-    int musicTrackId;
+    std::string musicTrackId;
     std::string fileName;
 };
 

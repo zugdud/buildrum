@@ -13,26 +13,33 @@ AudioManager::~AudioManager()
     // Mix_Quit();
 }
 
-void AudioManager::configure(const AudioPlayerProperties & audioPlayerProperties)
+void AudioManager::configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
+                             const AudioPlayerProperties & audioPlayerProperties)
 {
+    mEnvironmentMediaPropertiesImpl = environmentMediaPropertiesImpl;
     mAudioPlayerProperties = audioPlayerProperties;
+    mSelectedMusicTrackId = mAudioPlayerProperties.defaultMusicTrackId;
+    mMusicPlayerState = STOPPED;
 }
 
 bool AudioManager::init()
 {
+    SDL_Log("----------------------------------------------------\n");
+    SDL_Log("AudioManager::init starting... \n");
     // Initialize SDL_mixer
-    bool mixInitSuccess = Mix_OpenAudio(mAudioPlayerProperties.frequency,
-                                        MIX_DEFAULT_FORMAT,
-                                        mAudioPlayerProperties.channels,
-                                        mAudioPlayerProperties.chunksize);
+    bool initSuccess = Mix_OpenAudio(mAudioPlayerProperties.frequency,
+                                     MIX_DEFAULT_FORMAT,
+                                     mAudioPlayerProperties.channels,
+                                     mAudioPlayerProperties.chunksize);
 
-    if (mixInitSuccess)
+    if (initSuccess)
     {
-
         SDL_Log("SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
-        return false;
+        initSuccess = false;
     }
-    return true;
+
+    SDL_Log("----------------------------------------------------\n");
+    return initSuccess;
 }
 
 
