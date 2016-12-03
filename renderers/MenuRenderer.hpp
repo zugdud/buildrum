@@ -5,22 +5,22 @@ public:
 MenuRenderer();
 ~MenuRenderer();
 
-void addLayer(const UIMenu & uimenu);
+void addLayer(UIMenu *uimenu);
 void renderAllLayers();
-std::vector<UIMenu> & getAllLayers();
+std::vector<UIMenu *> & getAllLayers();
 
 private:
 
-void renderLayer(const UIMenu & uiMenu);
+void renderLayer(UIMenu *uiMenu);
 
 void renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect);
 void renderLabel(const UILabelProperties & uiLP, const SDL_Rect & cellRect);
 
-void renderGridCells(const UIMenu & uiMenu);
+void renderGridCells(UIMenu *uiMenu);
 void renderButtons(const std::vector<UIButton> & uiButtons);
 void renderLabels(const std::vector<UILabel> & uiLabels);
 
 SDL_Renderer *mSDLRenderer;
-std::vector<UIMenu> mLayers;
+std::vector<UIMenu *> mLayers;
 
 };

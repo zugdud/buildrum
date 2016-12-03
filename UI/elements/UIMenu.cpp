@@ -31,6 +31,15 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
 void UIMenu::pointEventCallback(PointInt pointInt)
 {
     SDL_Log("UIMenu::touchEventCallback x: %d y: %d \n", pointInt.x, pointInt.y);
+    UIElement::logRectDimensions("UIMenu", "HUR", UIElement::getRect());
+    if (UIElement::isPointInRect(pointInt))
+    {
+        SDL_Log("IN! \n ");
+    }
+    else
+    {
+        SDL_Log("OUT! \n ");
+    }
 }
 
 IMenuProperties * UIMenu::getIMenuProperties() const

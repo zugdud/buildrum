@@ -40,7 +40,7 @@ void GameInstance::setupStartScreen()
     MenuRenderer *menuRenderer = new MenuRenderer();
 
     menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
-    mInputEventHandler.registerPointEventObserver(MenuManager::Instance().getUIMenuPtr("MainMenu"));
+    mInputEventHandler.registerPointEventObserver(MenuManager::Instance().getUIMenu("MainMenu"));
     WindowManager::getInstance()->setActiveViewContext("start");
 
     std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();

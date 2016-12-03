@@ -1,4 +1,4 @@
-class UIMenu : public UIElement, public ViewportObserver, public PointEventObserver
+class UIMenu : virtual public UIElement, public ViewportObserver, public PointEventObserver
 {
 
 public:

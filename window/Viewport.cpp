@@ -46,11 +46,11 @@ void Viewport::addRenderer(IRenderer *renderer)
     mRenderers.push_back(renderer);
 
     // register all layers as observers
-    std::vector<UIMenu> & layers = renderer->getAllLayers();
+    std::vector<UIMenu *> & layers = renderer->getAllLayers();
     for (size_t i = 0; i < layers.size(); i++)
     {
         SDL_Log("Viewport::addRenderer -- registering observer to to viewportId: %s \n", mViewportProperties.viewportId.c_str());
-        registerObserver(&layers[i]);
+        registerObserver(layers[i]);
     }
 
     // update the envelope rect for all items in the viewport

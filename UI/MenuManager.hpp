@@ -12,8 +12,7 @@ static MenuManager& Instance()
 
 
 void configure();
-const UIMenu & getUIMenu(const std::string & menuId);
-UIMenu * getUIMenuPtr(const std::string & menuId);
+UIMenu * getUIMenu(const std::string & menuId);
 
 protected:
 
@@ -24,6 +23,6 @@ MenuManager& operator=(const MenuManager&);
 
 private:
 
-std::map <std::string, UIMenu> mUiMenus;
+std::map <std::string, UIMenu *> mUiMenus;
 
 };

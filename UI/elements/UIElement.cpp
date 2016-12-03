@@ -35,3 +35,15 @@ void UIElement::logRectDimensions(const std::string & elementType, const std::st
             rect.w,
             rect.h);
 }
+
+bool UIElement::isPointInRect(const PointInt & pointInt)
+{
+    if (pointInt.x >= mRect.x && pointInt.x <= (mRect.x + mRect.w) )
+    {
+        if (pointInt.y >= mRect.y && pointInt.y <= (mRect.y + mRect.h) )
+        {
+            return true;
+        }
+    }
+    return false;
+}

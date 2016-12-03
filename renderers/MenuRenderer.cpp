@@ -10,12 +10,12 @@ MenuRenderer::~MenuRenderer()
 
 }
 
-std::vector<UIMenu> & MenuRenderer::getAllLayers()
+std::vector<UIMenu *> & MenuRenderer::getAllLayers()
 {
     return mLayers;
 }
 
-void MenuRenderer::addLayer(const UIMenu & uimenu)
+void MenuRenderer::addLayer(UIMenu *uimenu)
 {
     mLayers.push_back(uimenu);
 }
@@ -28,11 +28,11 @@ void MenuRenderer::renderAllLayers()
     }
 }
 
-void MenuRenderer::renderLayer(const UIMenu & uiMenu)
+void MenuRenderer::renderLayer(UIMenu *uiMenu)
 {
     renderGridCells(uiMenu);
-    renderButtons(uiMenu.getUIButtons());
-    renderLabels(uiMenu.getUILabels());
+    renderButtons(uiMenu->getUIButtons());
+    renderLabels(uiMenu->getUILabels());
 }
 
 void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
@@ -75,10 +75,10 @@ void MenuRenderer::renderLabel(const UILabelProperties & uiLP, const SDL_Rect & 
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
-void MenuRenderer::renderGridCells(const UIMenu & uiMenu)
+void MenuRenderer::renderGridCells(UIMenu *uiMenu)
 {
-    const std::vector<SDL_Rect> & menuGridCells = uiMenu.getGridCells();
-    const UIRenderCellDetails & uiCd = uiMenu.getIMenuProperties()->getUIMenuProperties().uiRenderCellDetails;
+    const std::vector<SDL_Rect> & menuGridCells = uiMenu->getGridCells();
+    const UIRenderCellDetails & uiCd = uiMenu->getIMenuProperties()->getUIMenuProperties().uiRenderCellDetails;
 
     for (size_t i = 0; i < menuGridCells.size(); i++)
     {
