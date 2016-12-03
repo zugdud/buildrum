@@ -2,7 +2,7 @@ class QuitEventObserver
 {
 public:
 
-virtual void quitEvent() = 0;
+virtual void quitEventCallback() = 0;
 
 };
 
@@ -10,7 +10,7 @@ class TouchEventObserver
 {
 public:
 
-virtual void touchEvent(SDL_TouchFingerEvent touchEvent) = 0;
+virtual void touchEventCallback(SDL_Event touchEvent) = 0;
 
 };
 
@@ -18,7 +18,7 @@ class ScrollEventObserver
 {
 public:
 
-virtual void scrollEvent(SDL_TouchFingerEvent scrollEvent) = 0;
+virtual void scrollEventCallback(SDL_Event scrollEvent) = 0;
 
 };
 
@@ -26,6 +26,6 @@ class ZoomEventObserver
 {
 public:
 
-virtual void zoomEvent(SDL_MultiGestureEvent zoomEvent) = 0;
+virtual void zoomEventCallback(SDL_Event zoomEvent) = 0;
 
 };

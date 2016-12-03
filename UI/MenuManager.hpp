@@ -13,6 +13,7 @@ static MenuManager& Instance()
 
 void configure();
 const UIMenu & getUIMenu(const std::string & menuId);
+UIMenu * getUIMenuPtr(const std::string & menuId);
 
 protected:
 

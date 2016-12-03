@@ -38,7 +38,7 @@ window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
 core/GameInstance.cpp \
-input/InputEventTypeHandler.cpp \
+input/InputEventHandler.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \

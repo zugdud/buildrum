@@ -5,11 +5,14 @@ public:
 InputEventHandler();
 ~InputEventHandler();
 
-void registerObserver(InputEventObserver *observer);
+void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
+void registerTouchEventObserver(TouchEventObserver *touchEventObserver);
+
 void pollEventQueue();
 
 private:
 
-std::vector<InputEventObserver *> mObservers;
+std::vector<QuitEventObserver *> mQuitEventObservers;
+std::vector<TouchEventObserver *> mTouchEventObserver;
 
 };

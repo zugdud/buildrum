@@ -15,6 +15,11 @@ const UIMenu & MenuManager::getUIMenu(const std::string & menuId)
     return mUiMenus.at(menuId);
 }
 
+UIMenu * MenuManager::getUIMenuPtr(const std::string & menuId)
+{
+    return &mUiMenus.at(menuId);
+}
+
 void MenuManager::configure()
 {
     SDL_Log("----------------------------------------------------\n");

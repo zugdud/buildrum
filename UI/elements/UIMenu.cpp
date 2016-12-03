@@ -28,13 +28,10 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
     mIMenuProperties = IMenuProperties;
 }
 
-// void UIMenu::viewportSwitchEvent(const Viewport & activeViewport)
-// {
-//     if (mIMenuProperties.getUIMenuProperties().viewportId == activeViewport.getViewportProperties().viewportId)
-//     {
-//         mEnvelope = activeViewport.getRect();
-//     }
-// }
+void UIMenu::touchEventCallback(SDL_Event touchEvent)
+{
+    SDL_Log("UIMenu::touchEventCallback \n");
+}
 
 IMenuProperties * UIMenu::getIMenuProperties() const
 {

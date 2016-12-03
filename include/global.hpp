@@ -29,7 +29,7 @@
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
-#include "input/InputEventObserver.hpp"
+#include "input/InputEventObservers.hpp"
 #include "input/InputEventHandler.hpp"
 
 #include "media/fonts/FontTextures.hpp"

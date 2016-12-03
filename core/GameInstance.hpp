@@ -1,4 +1,4 @@
-class GameInstance : public InputEventObserver
+class GameInstance : public QuitEventObserver
 {
 public:
 
@@ -11,7 +11,7 @@ void showStartScreen();
 private:
 
 void setupStartScreen();
-void inputEventCallback(InputEvent inputEvent);
+void quitEventCallback();
 
 InputEventHandler mInputEventHandler;
 

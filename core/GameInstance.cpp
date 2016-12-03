@@ -28,7 +28,7 @@ bool GameInstance::init()
         return false;
     }
 
-    mInputEventHandler.registerObserver(this);
+    mInputEventHandler.registerQuitEventObserver(this);
 
     setupStartScreen();
     return true;
@@ -39,6 +39,7 @@ void GameInstance::setupStartScreen()
     MenuRenderer *menuRenderer = new MenuRenderer();
 
     menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
+    mInputEventHandler.registerTouchEventObserver(MenuManager::Instance().getUIMenuPtr("MainMenu"));
     WindowManager::getInstance()->setActiveViewContext("start");
 
     std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
@@ -67,10 +68,7 @@ void GameInstance::showStartScreen()
     }
 }
 
-void GameInstance::inputEventCallback(InputEvent inputEvent)
+void GameInstance::quitEventCallback()
 {
-    if (inputEvent.sdlEvent.type == SDL_QUIT)
-    {
-        mRunning = false;
-    }
+    mRunning = false;
 }
