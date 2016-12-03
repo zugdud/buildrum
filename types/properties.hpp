@@ -61,6 +61,7 @@ struct UILabelProperties
     int xPadding;
     int yPadding;
     bool isSpacer;
+    std::string alignment;
 };
 
 struct UIRenderCellDetails

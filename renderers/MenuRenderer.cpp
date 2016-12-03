@@ -73,7 +73,22 @@ void MenuRenderer::renderLabel(UILabel *uiLabel)
 
         SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
         const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);
-        const SDL_Rect renderRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
+
+
+        SDL_Rect renderRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
+        const int heightPadding = (cellRect.h - textureSize.h) / 2;
+        renderRect.y = cellRect.y + heightPadding;     // center y axis
+
+        if (uiLP.alignment == "center")
+        {
+            const int widthPadding = (cellRect.w - textureSize.w) / 2;
+            renderRect.x = cellRect.x + widthPadding; // center padding offset
+        }
+        else
+        {
+            // default left alignment
+            renderRect.x = cellRect.x + uiLP.xPadding;
+        }
 
         SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
     }

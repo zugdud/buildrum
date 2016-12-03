@@ -98,11 +98,11 @@ void MainMenuPropertiesImpl::setUIButtonStateProperties()
 
 void MainMenuPropertiesImpl::setUILabelProperties()
 {
-    // orderId, labelText, fontId, xPadding, yPadding, isSpacer
-    UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false };
-    UILabelProperties newGame = { 1, "New Game", "Heading_1_OpenSansLight", 20, 20, false };
-    UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false };
-    UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false };
+    // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
+    UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties newGame = { 1, "New Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
+    UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
+    UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
 
     mUILabelProperties.push_back(mainMenuLabel);
     mUILabelProperties.push_back(newGame);
