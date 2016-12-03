@@ -41,9 +41,9 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
             viewportId.c_str());
     if (checkConfig())
     {
-        repositionGridCells();
         UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
         UIElement::logRectDimensions("UIMenu", uiMenuId, UIElement::getRect());
+        repositionGridCells();
         SDL_Log("UIMenu::resetPosition -- resetPosition Success! \n");
     }
     else

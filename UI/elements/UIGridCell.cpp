@@ -13,8 +13,8 @@ UIGridCell::~UIGridCell()
 
 void UIGridCell::updateEnvelope(const SDL_Rect &envelope)
 {
-    UIElement::setRect(envelope.x, envelope.y, envelope);
-    UIElement::logRectDimensions("UIGridCell", "Setting grid cell", UIElement::getRect());
+    UIElement::setRect(0, 0, envelope);
+    UIElement::logRectDimensions("UIGridCell", mUIButton->getUIButtonProperties().buttonId, UIElement::getRect());
 
     mUIButton->updateEnvelope(envelope);
     mUILabel->updateEnvelope(envelope);

@@ -87,7 +87,13 @@ void MenuRenderer::renderGridCells(UIMenu *uiMenu)
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
         renderCell(gridCellDetails, uiGridCells[i].getRect());
+    }
+    for (size_t i = 0; i < uiGridCells.size(); i++)
+    {
         renderButton(uiGridCells[i].getUIButton());
+    }
+    for (size_t i = 0; i < uiGridCells.size(); i++)
+    {
         renderLabel(uiGridCells[i].getUILabel());
     }
 }
