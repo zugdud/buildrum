@@ -31,8 +31,6 @@ void MenuRenderer::renderAllLayers()
 void MenuRenderer::renderLayer(UIMenu *uiMenu)
 {
     renderGridCells(uiMenu);
-    renderButtons(uiMenu->getUIButtons());
-    renderLabels(uiMenu->getUILabels());
 }
 
 void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
@@ -66,44 +64,37 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
 
 void MenuRenderer::renderLabel(const UILabelProperties & uiLP, const SDL_Rect & cellRect)
 {
-    const FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
+    if (!uiLP.isSpacer)
+    {
+        const FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
 
-    SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
-    const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);
-    const SDL_Rect destRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
+        SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
+        const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);
+        const SDL_Rect destRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
 
-    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
+        SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
+    }
 }
 
 void MenuRenderer::renderGridCells(UIMenu *uiMenu)
 {
-    const std::vector<SDL_Rect> & menuGridCells = uiMenu->getGridCells();
-    const UIRenderCellDetails & uiCd = uiMenu->getIMenuProperties()->getUIMenuProperties().uiRenderCellDetails;
+    const std::vector<UIGridCell> & uiGridCells = uiMenu->getGridCells();
+    const UIRenderCellDetails & gridCellDetails = uiMenu->getIMenuProperties()->getUIMenuProperties().uiRenderCellDetails;
 
-    for (size_t i = 0; i < menuGridCells.size(); i++)
+    for (size_t i = 0; i < uiGridCells.size(); i++)
     {
-        renderCell(uiCd, menuGridCells[i]);
+        const UIGridCell uiGridCell = uiGridCells[i];
+        renderCell(gridCellDetails, uiGridCell.getRect());
+        renderButton(uiGridCell.getUIButton());
+        renderLabel(uiGridCell.getUILabel());
     }
 }
 
-void MenuRenderer::renderButtons(const std::vector<UIButton> & uiButtons)
+void MenuRenderer::renderButton(const UIButton & uiButton)
 {
-    for (size_t i = 0; i < uiButtons.size(); i++)
+    if (!uiButton.getUIButtonProperties().isSpacer)
     {
-        if (!uiButtons[i].getUIButtonProperties().isSpacer)
-        {
-            renderCell(uiButtons[i].getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails, uiButtons[i].getRect());
-        }
-    }
-}
-
-void MenuRenderer::renderLabels(const std::vector<UILabel> & uiLabels)
-{
-    for (size_t i = 0; i < uiLabels.size(); i++)
-    {
-        if (!uiLabels[i].getUILabelProperties().isSpacer)
-        {
-            renderLabel(uiLabels[i].getUILabelProperties(), uiLabels[i].getRect());
-        }
+        renderCell(uiButton.getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails,
+                   uiButton.getRect());
     }
 }

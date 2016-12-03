@@ -49,6 +49,7 @@ UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \
 UI/elements/UILabel.cpp \
+UI/elements/UIGridCell.cpp \
 UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \

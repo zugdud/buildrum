@@ -42,6 +42,7 @@
 #include "UI/elements/UIButtonState.hpp"
 #include "UI/elements/UIButton.hpp"
 #include "UI/elements/UILabel.hpp"
+#include "UI/elements/UIGridCell.hpp"
 #include "UI/elements/UIMenu.hpp"
 #include "UI/MenuManager.hpp"
 

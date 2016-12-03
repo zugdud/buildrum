@@ -56,8 +56,7 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
             viewportId.c_str());
     if (checkConfig())
     {
-        recalculateGridCellSize();
-        updateEnvelopes();
+        repositionGridCells();
         UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
         UIElement::logRectDimensions("UIMenu", uiMenuId, UIElement::getRect());
         SDL_Log("UIMenu::resetPosition -- resetPosition Success! \n");
@@ -71,7 +70,6 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
 
 bool UIMenu::checkConfig()
 {
-
     bool result = true;
 
     const int columns = mIMenuProperties->getUIMenuProperties().columns;
@@ -96,64 +94,61 @@ bool UIMenu::checkConfig()
     return result;
 }
 
-void UIMenu::recalculateGridCellSize()
+void UIMenu::repositionGridCells()
 {
-    mGridCells.clear();
     const int columns = mIMenuProperties->getUIMenuProperties().columns;
     const int rows =  mIMenuProperties->getUIMenuProperties().rows;
     const int gridCellCount = rows * columns;
     const int gridCellWidth = UIElement::getRect().w / columns;
     const int gridCellHeight = UIElement::getRect().h / rows;
 
-    for (int linearIndex = 0; linearIndex < gridCellCount; linearIndex++)
+    for (size_t linearIndex = 0; linearIndex < mGridCells.size(); linearIndex++)
     {
-        mGridCells.push_back(calculateRect(linearIndex, gridCellWidth, gridCellHeight));
+        const int thisColumn = linearIndex / mIMenuProperties->getUIMenuProperties().rows;
+        const int thisRow = linearIndex %  mIMenuProperties->getUIMenuProperties().rows;
+        const int x = (gridCellWidth * thisColumn) + UIElement::getRect().x;
+        const int y = (gridCellHeight * thisRow) + UIElement::getRect().y;
+
+        const SDL_Rect gridCellEnvelope = { x, y, gridCellWidth, gridCellHeight };
+        mGridCells[i].updateEnvelope(gridCellEnvelope);
     }
 }
 
-SDL_Rect UIMenu::calculateRect(const int & linearIndex, const int & gridCellWidth, const int & gridCellHeight)
+void UIMenu::createGridCells()
 {
-    const int rows =  mIMenuProperties->getUIMenuProperties().rows;
+    mUIGridCells.clear();
 
-    const int thisColumn = linearIndex / rows;
-    const int thisRow = linearIndex %  rows;
-    const int x = (gridCellWidth * thisColumn) + UIElement::getRect().x;
-    const int y = (gridCellHeight * thisRow) + UIElement::getRect().y;
+    std::vector<UIButton> & uiButtons;
+    std::vector<UIButton> & uiLabels;
+    createButtons(uiButtons);
+    createLabels(uiLabels);
 
-    const SDL_Rect rect = { x, y, gridCellWidth, gridCellHeight };
-
-    UIElement::logRectDimensions("UIMenu", "gridCell", rect);
-    return rect;
+    for (int i = 0; i < gridCellCount; i++)
+    {
+        UIGridCell uiGridCell = UIGridCell(uiButtons[i], uiLabels[i]);
+        mUIGridCells.push_back(uiGridCell);
+    }
 }
 
-void UIMenu::createButtons()
+void UIMenu::createButtons(std::vector<UIButton> & uiButtons)
 {
-    mUIButtons.clear();
     const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties->getUIButtonProperties();
     const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties->getUIButtonStateProperties();
+
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
         UIButton uiButton = UIButton(uiButtonProperties[i], uiButtonStateProperties);
-        mUIButtons.push_back(uiButton);
+        uiButtons.push_back(uiButton);
     }
 }
 
-void UIMenu::createLabels()
+void UIMenu::createLabels(std::vector<UILabel> & uiLabels)
 {
-    mUILabels.clear();
     const std::vector<UILabelProperties> & uiLabelProperties = mIMenuProperties->getUILabelProperties();
+
     for (size_t i = 0; i < uiLabelProperties.size(); i++)
     {
         UILabel uiLabel = UILabel(uiLabelProperties[i]);
-        mUILabels.push_back(uiLabel);
-    }
-}
-
-void UIMenu::updateEnvelopes()
-{
-    for (size_t i = 0; i < mGridCells.size(); i++)
-    {
-        mUIButtons[i].updateEnvelope(mGridCells[i]);
-        mUILabels[i].updateEnvelope(mGridCells[i]);
+        uiLabels.push_back(uiLabel);
     }
 }
