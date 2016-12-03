@@ -2,18 +2,17 @@ class UIGridCell : public UIElement
 {
 public:
 
-UIGridCell(const UIButton & uiButton,
-           const UILabel & uiLabel);
+UIGridCell(UIButton *uiButton, UILabel *uiLabel);
 ~UIGridCell();
 
-const UIButton & getUIButton();
-const UILabel & getUILabel();
+UIButton * getUIButton();
+UILabel * getUILabel();
 
 void updateEnvelope(const SDL_Rect &envelope);
 
 private:
 
-UIButton mUIButton;
-UILabel mUILabel;
+UIButton *mUIButton;
+UILabel *mUILabel;
 
 };

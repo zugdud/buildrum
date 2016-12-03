@@ -62,39 +62,41 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
 
 }
 
-void MenuRenderer::renderLabel(const UILabelProperties & uiLP, const SDL_Rect & cellRect)
+void MenuRenderer::renderLabel(UILabel *uiLabel)
 {
-    if (!uiLP.isSpacer)
+    if (!uiLabel->getUILabelProperties().isSpacer)
     {
+        const UILabelProperties & uiLP = uiLabel->getUILabelProperties();
+        const SDL_Rect cellRect = uiLabel->getRect();
+
         const FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
 
         SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
         const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);
-        const SDL_Rect destRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
+        const SDL_Rect renderRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
 
-        SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
+        SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
     }
 }
 
 void MenuRenderer::renderGridCells(UIMenu *uiMenu)
 {
-    const std::vector<UIGridCell> & uiGridCells = uiMenu->getGridCells();
+    std::vector<UIGridCell> & uiGridCells = uiMenu->getGridCells();
     const UIRenderCellDetails & gridCellDetails = uiMenu->getIMenuProperties()->getUIMenuProperties().uiRenderCellDetails;
 
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
-        const UIGridCell uiGridCell = uiGridCells[i];
-        renderCell(gridCellDetails, uiGridCell.getRect());
-        renderButton(uiGridCell.getUIButton());
-        renderLabel(uiGridCell.getUILabel());
+        renderCell(gridCellDetails, uiGridCells[i].getRect());
+        renderButton(uiGridCells[i].getUIButton());
+        renderLabel(uiGridCells[i].getUILabel());
     }
 }
 
-void MenuRenderer::renderButton(const UIButton & uiButton)
+void MenuRenderer::renderButton(UIButton *uiButton)
 {
-    if (!uiButton.getUIButtonProperties().isSpacer)
+    if (!uiButton->getUIButtonProperties().isSpacer)
     {
-        renderCell(uiButton.getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails,
-                   uiButton.getRect());
+        renderCell(uiButton->getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails,
+                   uiButton->getRect());
     }
 }

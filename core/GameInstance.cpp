@@ -41,10 +41,10 @@ void GameInstance::setupStartScreen()
     MenuRenderer *menuRenderer = new MenuRenderer();
 
     // register input handlers with menu
-    std::vector<UIButton> & uiButtons = MenuManager::Instance().getUIMenu("MainMenu")->getUIButtonsRW();
-    for (size_t i = 0; i < uiButtons.size(); i++)
+    std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu("MainMenu")->getGridCells();
+    for (size_t i = 0; i < uiGridCells.size(); i++)
     {
-        mInputEventHandler.registerPointEventObserver(&uiButtons[i]);
+        mInputEventHandler.registerPointEventObserver(uiGridCells[i].getUIButton());
     }
 
     // add menu as a layer to fullscreen renderer

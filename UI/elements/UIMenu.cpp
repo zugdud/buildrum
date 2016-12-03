@@ -10,30 +10,10 @@ UIMenu::~UIMenu()
 
 }
 
-std::vector<UIButton> & UIMenu::getUIButtonsRW()
-{
-    return mUIButtons;
-}
 
-const std::vector<SDL_Rect> & UIMenu::getGridCells() const
+std::vector<UIGridCell> & UIMenu::getGridCells()
 {
-    return mGridCells;
-}
-const std::vector<UIButton> & UIMenu::getUIButtons() const
-{
-    return mUIButtons;
-}
-const std::vector<UILabel> & UIMenu::getUILabels() const
-{
-    return mUILabels;
-}
-
-void UIMenu::configure(IMenuProperties *IMenuProperties)
-{
-    mIMenuProperties = IMenuProperties;
-    recalculateGridCellSize();
-    createButtons();
-    createLabels();
+    return mUIGridCells;
 }
 
 IMenuProperties * UIMenu::getIMenuProperties() const
@@ -41,9 +21,14 @@ IMenuProperties * UIMenu::getIMenuProperties() const
     return mIMenuProperties;
 }
 
+void UIMenu::configure(IMenuProperties *IMenuProperties)
+{
+    mIMenuProperties = IMenuProperties;
+    createGridCells();
+}
+
 void UIMenu::updateEnvelope(const SDL_Rect & envelope)
 {
-
     UIElement::setRect(mIMenuProperties->getUIMenuProperties().xPadding,
                        mIMenuProperties->getUIMenuProperties().yPadding,
                        envelope);
@@ -98,11 +83,10 @@ void UIMenu::repositionGridCells()
 {
     const int columns = mIMenuProperties->getUIMenuProperties().columns;
     const int rows =  mIMenuProperties->getUIMenuProperties().rows;
-    const int gridCellCount = rows * columns;
     const int gridCellWidth = UIElement::getRect().w / columns;
     const int gridCellHeight = UIElement::getRect().h / rows;
 
-    for (size_t linearIndex = 0; linearIndex < mGridCells.size(); linearIndex++)
+    for (size_t linearIndex = 0; linearIndex < mUIGridCells.size(); linearIndex++)
     {
         const int thisColumn = linearIndex / mIMenuProperties->getUIMenuProperties().rows;
         const int thisRow = linearIndex %  mIMenuProperties->getUIMenuProperties().rows;
@@ -110,16 +94,19 @@ void UIMenu::repositionGridCells()
         const int y = (gridCellHeight * thisRow) + UIElement::getRect().y;
 
         const SDL_Rect gridCellEnvelope = { x, y, gridCellWidth, gridCellHeight };
-        mGridCells[i].updateEnvelope(gridCellEnvelope);
+        mUIGridCells[linearIndex].updateEnvelope(gridCellEnvelope);
     }
 }
 
 void UIMenu::createGridCells()
 {
     mUIGridCells.clear();
+    const int columns = mIMenuProperties->getUIMenuProperties().columns;
+    const int rows =  mIMenuProperties->getUIMenuProperties().rows;
+    const int gridCellCount = rows * columns;
 
-    std::vector<UIButton> & uiButtons;
-    std::vector<UIButton> & uiLabels;
+    std::vector<UIButton *> uiButtons;
+    std::vector<UILabel *> uiLabels;
     createButtons(uiButtons);
     createLabels(uiLabels);
 
@@ -130,25 +117,23 @@ void UIMenu::createGridCells()
     }
 }
 
-void UIMenu::createButtons(std::vector<UIButton> & uiButtons)
+void UIMenu::createButtons(std::vector<UIButton *> & uiButtons)
 {
     const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties->getUIButtonProperties();
     const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties->getUIButtonStateProperties();
 
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
-        UIButton uiButton = UIButton(uiButtonProperties[i], uiButtonStateProperties);
-        uiButtons.push_back(uiButton);
+        uiButtons.push_back(new UIButton(uiButtonProperties[i], uiButtonStateProperties));
     }
 }
 
-void UIMenu::createLabels(std::vector<UILabel> & uiLabels)
+void UIMenu::createLabels(std::vector<UILabel *> & uiLabels)
 {
     const std::vector<UILabelProperties> & uiLabelProperties = mIMenuProperties->getUILabelProperties();
 
     for (size_t i = 0; i < uiLabelProperties.size(); i++)
     {
-        UILabel uiLabel = UILabel(uiLabelProperties[i]);
-        uiLabels.push_back(uiLabel);
+        uiLabels.push_back(new UILabel(uiLabelProperties[i]));
     }
 }

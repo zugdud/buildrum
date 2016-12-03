@@ -6,7 +6,7 @@ public:
 UIMenu();
 ~UIMenu();
 
-const std::vector<UIGridCell> &  getGridCells() const;
+std::vector<UIGridCell> & getGridCells();
 
 void updateEnvelope(const SDL_Rect & envelope);
 
@@ -18,8 +18,8 @@ private:
 bool checkConfig();
 
 void createGridCells();
-void createButtons();
-void createLabels();
+void createButtons(std::vector<UIButton *> & uiButtons);
+void createLabels(std::vector<UILabel *> & uiLabels);
 
 void repositionGridCells();
 
