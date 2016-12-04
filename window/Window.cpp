@@ -101,6 +101,14 @@ bool Window::init()
                                        mWindowProperties.bgColor.green,
                                        mWindowProperties.bgColor.blue,
                                        mWindowProperties.bgColor.alpha);
+
+                // Initialize PNG loading
+                int imgFlags = IMG_INIT_PNG;
+                if ( !( IMG_Init(imgFlags) & imgFlags ) )
+                {
+                    SDL_Log("Window::createWindow -- SDL_image could not initialize! SDL_image Error: %s", IMG_GetError());
+                    success = false;
+                }
             }
         }
     }

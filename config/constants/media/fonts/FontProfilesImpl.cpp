@@ -12,6 +12,7 @@ FontProfileImpl::~FontProfileImpl()
 
 void FontProfileImpl::loadAll()
 {
+    SDL_Log("FontProfileImpl::loadAll -- loading configuration ...\n");
     setFontProfile();
 }
 

@@ -5,7 +5,7 @@ public:
 AudioContentImpl();
 ~AudioContentImpl();
 
-void load();
+void loadAll();
 
 const std::vector<SoundEffectProperties> & getSoundEffects();
 const std::vector<MusicTrackProperties> & getMusicTracks();

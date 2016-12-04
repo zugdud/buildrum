@@ -12,6 +12,7 @@ WindowPropertiesImpl::~WindowPropertiesImpl()
 
 void WindowPropertiesImpl::loadAll()
 {
+    SDL_Log("MainMenuPropertiesImpl::loadAll -- loading configuration ...\n");
     setViewContexts();
     setWindowProfiles();
 }

@@ -10,8 +10,10 @@ AudioContentImpl::~AudioContentImpl()
 
 }
 
-void AudioContentImpl::load()
+void AudioContentImpl::loadAll()
 {
+    SDL_Log("AudioContentImpl::loadAll -- loading configuration ...\n");
+
     AudioPlayerProperties audioPlayerProperties;
 
     audioPlayerProperties.frequency = 44100;
@@ -43,6 +45,15 @@ void AudioContentImpl::setSoundEffects()
     SoundEffectProperties effect1;
     SoundEffectProperties effect2;
     SoundEffectProperties effect3;
+
+    effect1.soundEffectId = "pop_1";
+    effect1.fileName = "pop_1.wav";
+
+    effect2.soundEffectId = "punch_1";
+    effect2.fileName = "punch_1.wav";
+
+    effect3.soundEffectId = "woosh_1";
+    effect3.fileName = "woosh_1.wav";
 
     mSoundEffects.push_back(effect1);
     mSoundEffects.push_back(effect2);

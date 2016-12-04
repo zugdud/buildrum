@@ -12,6 +12,7 @@ MainMenuPropertiesImpl::~MainMenuPropertiesImpl()
 
 void MainMenuPropertiesImpl::setProperties()
 {
+    SDL_Log("MainMenuPropertiesImpl::loadAll -- loading configuration ...\n");
     setUIMenuProperties();
     setButtonProperties();
     setUILabelProperties();

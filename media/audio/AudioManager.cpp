@@ -29,27 +29,24 @@ bool AudioManager::init()
 {
     SDL_Log("----------------------------------------------------\n");
     SDL_Log("AudioManager::init starting... \n");
-
+    bool initSuccess = true;
     // Initialize SDL_mixer
-    bool initSuccess = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
-    // bool initSuccess = Mix_OpenAudio(mAudioContentImpl.getAudioPlayerProperties().frequency,
-    //                                  MIX_DEFAULT_FORMAT,
-    //                                  mAudioContentImpl.getAudioPlayerProperties().channels,
-    //                                  mAudioContentImpl.getAudioPlayerProperties().chunksize);
-
-    if (!initSuccess)
+    if ( Mix_OpenAudio(mAudioContentImpl.getAudioPlayerProperties().frequency,
+                       MIX_DEFAULT_FORMAT,
+                       mAudioContentImpl.getAudioPlayerProperties().channels,
+                       mAudioContentImpl.getAudioPlayerProperties().chunksize) < 0)
     {
         SDL_Log("AudioManager::init -- ERROR: SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
         initSuccess = false;
     }
 
-    if (loadSoundEffects(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().soundEffectDirName, mAudioContentImpl.getSoundEffects()))
+    if (!loadSoundEffects(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().soundEffectDirName, mAudioContentImpl.getSoundEffects()))
     {
         SDL_Log("AudioManager::init -- ERROR: Failed to load one or more sound effects! \n");
         initSuccess = false;
     }
 
-    if (loadMusicTracks(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().musicTrackDirName, mAudioContentImpl.getMusicTracks()))
+    if (!loadMusicTracks(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().musicTrackDirName, mAudioContentImpl.getMusicTracks()))
     {
         SDL_Log("AudioManager::init -- ERROR: Failed to load one or more music tracks! \n");
         initSuccess = false;
@@ -100,6 +97,7 @@ void AudioManager::resumeMusic()
 
 bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, const std::vector<SoundEffectProperties> & soundEffectProperties)
 {
+    SDL_Log("AudioManager::loadSoundEffects -- num soundTracks: %lu \n", soundEffectProperties.size());
     bool success = true;
 
     for (size_t i = 0; i < soundEffectProperties.size(); i++)
@@ -128,7 +126,7 @@ bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, cons
 
 bool AudioManager::loadMusicTracks(const std::string & musicTrackDirName, const std::vector<MusicTrackProperties> & musicTrackProperties)
 {
-
+    SDL_Log("AudioManager::loadMusicTracks -- num musicTracks: %lu \n", musicTrackProperties.size());
     bool success = true;
 
     for (size_t i = 0; i < musicTrackProperties.size(); i++)

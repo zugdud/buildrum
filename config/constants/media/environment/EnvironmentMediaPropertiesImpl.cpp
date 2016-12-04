@@ -12,6 +12,7 @@ EnvironmentMediaPropertiesImpl::~EnvironmentMediaPropertiesImpl()
 
 void EnvironmentMediaPropertiesImpl::loadAll()
 {
+    SDL_Log("EnvironmentMediaPropertiesImpl::loadAll -- loading configuration ...\n");
     setEnvironmentMediaProperties();
 }
 
