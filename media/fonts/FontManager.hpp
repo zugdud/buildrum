@@ -9,7 +9,7 @@ static FontManager * getInstance();
 bool configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
                const FontProfileImpl &FontProfileImpl);
 
-const FontTextures & getTextures(const std::string & fontProfileName, const std::string & text);
+FontTextures & getTextures(const std::string & fontProfileName, const std::string & text);
 
 
 private:

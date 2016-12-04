@@ -53,16 +53,17 @@ const UIButtonProperties & UIButton::getUIButtonProperties() const
     return mUIButtonProperties;
 }
 
-const UIButtonState & UIButton::getCurrentUIButtonState() const
+const UIButtonState & UIButton::getCurrentUIButtonState()
 {
-    return mUIButtonStates.at(mCurrentUIButtonStateId);
+    return mUIButtonStates[mCurrentUIButtonStateId];
 }
 
 void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
 {
     for (size_t i = 0; i < uiButtonStateProperties.size(); i++)
     {
-        UIButtonState uiButtonState =  UIButtonState(uiButtonStateProperties[i]);
+        UIButtonState uiButtonState =  UIButtonState();
+        uiButtonState.configure(uiButtonStateProperties[i]);
         mUIButtonStates.insert(std::pair<std::string, UIButtonState>(uiButtonState.getUIButtonStateProperties().buttonStateId, uiButtonState) );
     }
 }

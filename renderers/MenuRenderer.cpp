@@ -69,7 +69,7 @@ void MenuRenderer::renderLabel(UILabel *uiLabel)
         const UILabelProperties & uiLP = uiLabel->getUILabelProperties();
         const SDL_Rect cellRect = uiLabel->getRect();
 
-        const FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
+        FontTextures & fontTextures = FontManager::getInstance()->getTextures(uiLP.fontProfileName, uiLP.labelText);
 
         SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
         const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);

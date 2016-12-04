@@ -12,7 +12,7 @@ MenuManager::~MenuManager()
 
 UIMenu * MenuManager::getUIMenu(const std::string & menuId)
 {
-    return mUiMenus.at(menuId);
+    return mUiMenus[menuId];
 }
 
 void MenuManager::configure()

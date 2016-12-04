@@ -38,6 +38,7 @@ window/Viewport.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
+core/EventManager.cpp \
 core/GameInstance.cpp \
 input/InputEventHandler.cpp \
 UI/elements/UIElement.cpp \

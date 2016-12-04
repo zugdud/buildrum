@@ -32,11 +32,11 @@ bool FontTextures::textureExists(const std::string & text) const
     }
 }
 
-SDL_Texture * FontTextures::getTexture(const std::string & text) const
+SDL_Texture * FontTextures::getTexture(const std::string & text)
 {
-    return mTextures.at(text);
+    return mTextures[text];
 }
-const SDL_Rect & FontTextures::getRect(const std::string & text) const
+const SDL_Rect & FontTextures::getRect(const std::string & text)
 {
-    return mRects.at(text);
+    return mRects[text];
 }

@@ -67,12 +67,12 @@ bool UIMenu::checkConfig()
 
     if (gridCellCount != uiButtonProperties.size())
     {
-        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %lu uiButtonProperties.size(): %lu \n", gridCellCount, uiButtonProperties.size());
+        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %zu uiButtonProperties.size(): %zu \n", gridCellCount, uiButtonProperties.size());
         result = false;
     }
     if (gridCellCount != uiLabelProperties.size())
     {
-        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %lu uiLabelProperties.size(): %lu \n", gridCellCount, uiLabelProperties.size());
+        SDL_Log("UIMenu::checkConfig -- ERROR: gridCellCount: %zu uiLabelProperties.size(): %zu \n", gridCellCount, uiLabelProperties.size());
         result = false;
     }
 

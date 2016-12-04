@@ -64,7 +64,7 @@ void WindowPropertiesImpl::setWindowProfiles()
     // windowName, bgColor, screenWidth, screenHeight
     WindowProperties linuxProperties = { "Buildrum", white, 1280, 960 };
     WindowProperties macProperties = { "Buildrum", white, 1024, 768 };
-    WindowProperties androidProperties = { "Buildrum", white, 1280, 760 };
+    WindowProperties androidProperties = { "Buildrum", white, 1440, 2560 };
 
 
     switch (G_BUILD_PROFILE)

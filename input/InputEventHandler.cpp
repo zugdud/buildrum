@@ -50,21 +50,11 @@ void InputEventHandler::dispatchPointEvent(const SDL_Event & sdlEvent)
 {
     PointInt pointInt = { 0, 0 };
 
-    switch (G_BUILD_PROFILE)
-    {
-        case LINUX_BUILD: {
-            pointInt.x = sdlEvent.button.x;
-            pointInt.y = sdlEvent.button.y;
-        }; break;
-        case MAC_BUILD: {
-            pointInt.x = sdlEvent.button.x;
-            pointInt.y = sdlEvent.button.y;
-        }; break;
-        case ANDROID_BUILD: {
-            pointInt.x = sdlEvent.tfinger.dx;
-            pointInt.y = sdlEvent.tfinger.dy;
-        }; break;
-    }
+    pointInt.x = sdlEvent.button.x;
+    pointInt.y = sdlEvent.button.y;
+
+    // pointInt.x = sdlEvent.tfinger.dx;
+    // pointInt.y = sdlEvent.tfinger.dy;
 
     for (size_t i = 0; i < mPointEventObserver.size(); i++)
     {

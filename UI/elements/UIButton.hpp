@@ -6,8 +6,9 @@ UIButton(const UIButtonProperties &uiButtonProperties, const std::vector<UIButto
 ~UIButton();
 
 const UIButtonProperties & getUIButtonProperties() const;
-const UIButtonState & getCurrentUIButtonState() const;
+const UIButtonState & getCurrentUIButtonState();
 void updateEnvelope(const SDL_Rect &envelope);
+void configure(const UIButtonStateProperties &uiButtonStateProperties);
 
 void pointEventCallback(PointInt pointInt);
 void setUIEventConnector(UIEventConnector *uiEventConnector);

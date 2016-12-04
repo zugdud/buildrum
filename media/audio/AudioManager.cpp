@@ -97,7 +97,7 @@ void AudioManager::resumeMusic()
 
 bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, const std::vector<SoundEffectProperties> & soundEffectProperties)
 {
-    SDL_Log("AudioManager::loadSoundEffects -- num soundTracks: %lu \n", soundEffectProperties.size());
+    SDL_Log("AudioManager::loadSoundEffects -- num soundTracks: %zu \n", soundEffectProperties.size());
     bool success = true;
 
     for (size_t i = 0; i < soundEffectProperties.size(); i++)
@@ -126,7 +126,7 @@ bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, cons
 
 bool AudioManager::loadMusicTracks(const std::string & musicTrackDirName, const std::vector<MusicTrackProperties> & musicTrackProperties)
 {
-    SDL_Log("AudioManager::loadMusicTracks -- num musicTracks: %lu \n", musicTrackProperties.size());
+    SDL_Log("AudioManager::loadMusicTracks -- num musicTracks: %zu \n", musicTrackProperties.size());
     bool success = true;
 
     for (size_t i = 0; i < musicTrackProperties.size(); i++)

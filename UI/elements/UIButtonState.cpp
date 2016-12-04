@@ -1,13 +1,18 @@
 #include "include/global.hpp"
 
-UIButtonState::UIButtonState(const UIButtonStateProperties & uiButtonStateProperties)
+UIButtonState::UIButtonState()
 {
-    mUIButtonStateProperties = uiButtonStateProperties;
+
 }
 
 UIButtonState::~UIButtonState()
 {
 
+}
+
+void UIButtonState::configure(const UIButtonStateProperties &uiButtonStateProperties)
+{
+    mUIButtonStateProperties = uiButtonStateProperties;
 }
 
 const UIButtonStateProperties & UIButtonState::getUIButtonStateProperties() const

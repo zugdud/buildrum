@@ -23,16 +23,16 @@ FontManager * FontManager::getInstance()
     return mSingletonInstance;
 }
 
-const FontTextures & FontManager::getTextures(const std::string & fontProfileName, const std::string & text)
+FontTextures & FontManager::getTextures(const std::string & fontProfileName, const std::string & text)
 {
-    if (mFontTextures.at(fontProfileName).textureExists(text))
+    if (mFontTextures[fontProfileName].textureExists(text))
     {
-        return mFontTextures.at(fontProfileName);
+        return mFontTextures[fontProfileName];
     }
     else
     {
-        createFontTexture(text, mFontProfiles.at(fontProfileName));
-        return mFontTextures.at(fontProfileName);
+        createFontTexture(text, mFontProfiles[fontProfileName]);
+        return mFontTextures[fontProfileName];
     }
 }
 
@@ -46,7 +46,7 @@ bool FontManager::configure(const EnvironmentMediaPropertiesImpl &environmentMed
 
     if (init())
     {
-        SDL_Log("FontManager::configure -- sizes mFontProfiles: %lu mFontMap: %lu mFontTextures: %lu \n", mFontProfiles.size(), mFontMap.size(), mFontTextures.size());
+        SDL_Log("FontManager::configure -- sizes mFontProfiles: %zu mFontMap: %zu mFontTextures: %zu \n", mFontProfiles.size(), mFontMap.size(), mFontTextures.size());
         SDL_Log("FontManager::configure -- Configuring Success. \n");
         SDL_Log("---------------------------------------------------- \n");
         return true;
@@ -111,7 +111,7 @@ bool FontManager::loadFont(const FontProfile &fontProfiles)
 
 void FontManager::createFontTexture(const std::string & text, const FontProfile & fontProfiles)
 {
-    SDL_Surface *textSurface = TTF_RenderText_Solid(mFontMap.at(fontProfiles.fontProfileName),
+    SDL_Surface *textSurface = TTF_RenderText_Solid(mFontMap[fontProfiles.fontProfileName],
                                                     text.c_str(),
                                                     fontProfiles.fontColor);
 
@@ -132,7 +132,7 @@ void FontManager::createFontTexture(const std::string & text, const FontProfile 
         else
         {
 
-            mFontTextures.at(fontProfiles.fontProfileName).addTexture(text, textureRect, fontTexture);
+            mFontTextures[fontProfiles.fontProfileName].addTexture(text, textureRect, fontTexture);
             SDL_Log("FontManager::createFontTexture -- created new texture for text: [%s] fontProfileName: [%s] textureRect: [w: %d h: %d] \n",
                     text.c_str(),
                     fontProfiles.fontProfileName.c_str(),

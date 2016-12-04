@@ -2,11 +2,11 @@ class UIButtonState
 {
 public:
 
-UIButtonState(const UIButtonStateProperties & UIButtonStateProperties);
+UIButtonState();
 ~UIButtonState();
 
 const UIButtonStateProperties & getUIButtonStateProperties() const;
-
+void configure(const UIButtonStateProperties &uiButtonStateProperties);
 
 private:
 
