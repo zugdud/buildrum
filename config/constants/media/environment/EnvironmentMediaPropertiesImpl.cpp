@@ -19,8 +19,8 @@ void EnvironmentMediaPropertiesImpl::setEnvironmentMediaProperties()
 {
     mEnvironmentMediaProperties.mediaDirBasePath = "";
     mEnvironmentMediaProperties.imageDirName = "";
-    mEnvironmentMediaProperties.soundEffectDirName = "";
-    mEnvironmentMediaProperties.musicTrackDirName = "";
+    mEnvironmentMediaProperties.soundEffectDirName = "files/media/soundEffects/";
+    mEnvironmentMediaProperties.musicTrackDirName = "files/media/musicTracks/";
     mEnvironmentMediaProperties.fontDirName = "files/media/fonts/";
 }
 

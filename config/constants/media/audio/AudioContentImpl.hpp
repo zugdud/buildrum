@@ -7,8 +7,9 @@ AudioContentImpl();
 
 void load();
 
-const std::vector<std::string> & getSoundEffects();
-const std::vector<std::string> & getMusicTracks();
+const std::vector<SoundEffectProperties> & getSoundEffects();
+const std::vector<MusicTrackProperties> & getMusicTracks();
+const AudioPlayerProperties & getAudioPlayerProperties();
 
 private:
 
@@ -18,6 +19,6 @@ void setMusicTracks();
 std::vector<SoundEffectProperties> mSoundEffects;
 std::vector<MusicTrackProperties> mMusicTracks;
 
-
+AudioPlayerProperties mAudioPlayerProperties;
 
 };

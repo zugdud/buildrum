@@ -13,28 +13,45 @@ AudioManager::~AudioManager()
     // Mix_Quit();
 }
 
-void AudioManager::configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
-                             const AudioPlayerProperties & audioPlayerProperties)
+bool AudioManager::configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
+                             const AudioContentImpl & audioContentImpl)
 {
     mEnvironmentMediaPropertiesImpl = environmentMediaPropertiesImpl;
-    mAudioPlayerProperties = audioPlayerProperties;
+    mAudioContentImpl = audioContentImpl;
     mSelectedMusicTrackId = mAudioPlayerProperties.defaultMusicTrackId;
     mMusicPlayerState = STOPPED;
+
+    bool initResult = init();
+    return initResult;
 }
 
 bool AudioManager::init()
 {
     SDL_Log("----------------------------------------------------\n");
     SDL_Log("AudioManager::init starting... \n");
-    // Initialize SDL_mixer
-    bool initSuccess = Mix_OpenAudio(mAudioPlayerProperties.frequency,
-                                     MIX_DEFAULT_FORMAT,
-                                     mAudioPlayerProperties.channels,
-                                     mAudioPlayerProperties.chunksize);
 
-    if (initSuccess)
+    // Initialize SDL_mixer
+    bool initSuccess = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
+    // bool initSuccess = Mix_OpenAudio(mAudioContentImpl.getAudioPlayerProperties().frequency,
+    //                                  MIX_DEFAULT_FORMAT,
+    //                                  mAudioContentImpl.getAudioPlayerProperties().channels,
+    //                                  mAudioContentImpl.getAudioPlayerProperties().chunksize);
+
+    if (!initSuccess)
     {
-        SDL_Log("SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
+        SDL_Log("AudioManager::init -- ERROR: SDL_mixer could not initialize!  SDL_mixer Error: %s \n", Mix_GetError() );
+        initSuccess = false;
+    }
+
+    if (loadSoundEffects(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().soundEffectDirName, mAudioContentImpl.getSoundEffects()))
+    {
+        SDL_Log("AudioManager::init -- ERROR: Failed to load one or more sound effects! \n");
+        initSuccess = false;
+    }
+
+    if (loadMusicTracks(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().musicTrackDirName, mAudioContentImpl.getMusicTracks()))
+    {
+        SDL_Log("AudioManager::init -- ERROR: Failed to load one or more music tracks! \n");
         initSuccess = false;
     }
 
@@ -81,55 +98,59 @@ void AudioManager::resumeMusic()
     mMusicPlayerState = PLAYING;
 }
 
-bool AudioManager::loadAllMedia()
+bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, const std::vector<SoundEffectProperties> & soundEffectProperties)
 {
+    bool success = true;
 
-    bool success = false;
-
-    success = loadMediaSoundEffect(PROJECTILE_FIRE, "files/projectile_fire.wav");
-    success = loadMediaSoundEffect(PROJECTILE_HIT, "files/projectile_hit.wav");
-    success = loadMediaSoundEffect(GRUNT_DESTROY, "files/grunt_destroy.wav");
-
-    success = loadMediaMusicTrack(MUSIC_TRACK_1, "files/music_track_1.mp3");
+    for (size_t i = 0; i < soundEffectProperties.size(); i++)
+    {
+        const std::string filePath = soundEffectDirName + soundEffectProperties[i].fileName;
+        Mix_Chunk *loadedWav = Mix_LoadWAV(filePath.c_str());
+        if ( loadedWav == NULL )
+        {
+            SDL_Log("AudioManager::loadSoundEffects -- ERROR: Failed to load soundEffectId: [%s] filePath: %s SDL_mixer Error: %s \n",
+                    soundEffectProperties[i].soundEffectId.c_str(),
+                    filePath.c_str(),
+                    Mix_GetError());
+            success = false;
+        }
+        else
+        {
+            SDL_Log("AudioManager::loadSoundEffects -- loaded soundEffectId: [%s] filePath: %s \n",
+                    soundEffectProperties[i].soundEffectId.c_str(),
+                    filePath.c_str());
+            mSoundEffectMap[soundEffectProperties[i].soundEffectId] = loadedWav;
+        }
+    }
 
     return success;
 }
 
-
-bool AudioManager::loadMediaSoundEffect(SoundEffectId soundEffectId, std::string filePath)
+bool AudioManager::loadMusicTracks(const std::string & musicTrackDirName, const std::vector<MusicTrackProperties> & musicTrackProperties)
 {
+
     bool success = true;
 
-    Mix_Chunk *loadedWav = Mix_LoadWAV(filePath.c_str());
-
-    if ( loadedWav == NULL )
+    for (size_t i = 0; i < musicTrackProperties.size(); i++)
     {
-        SDL_Log("Failed to sound effect -- filePath: %s SDL_mixer Error: %s \n", filePath.c_str(), Mix_GetError());
-        success = false;
+        const std::string filePath = musicTrackDirName + musicTrackProperties[i].fileName;
+        Mix_Music *loadedMusic = Mix_LoadMUS(filePath.c_str());
+        if ( loadedMusic == NULL )
+        {
+            SDL_Log("AudioManager::loadMediaMusicTrack -- ERROR: Failed to load musicTrackId: %s filePath: %s SDL_mixer Error: %s \n",
+                    musicTrackProperties[i].musicTrackId.c_str(),
+                    filePath.c_str(),
+                    Mix_GetError());
+            success = false;
+        }
+        else
+        {
+            SDL_Log("AudioManager::loadMediaMusicTrack -- loaded musicTrackId: [%s] filePath: %s \n",
+                    musicTrackProperties[i].musicTrackId.c_str(),
+                    filePath.c_str());
+            mMusicTrackMap[musicTrackProperties[i].musicTrackId] = loadedMusic;
+        }
     }
-    else
-    {
-        // load success, map it
-        mSoundEffectMap[soundEffectId] = loadedWav;
-    }
-    return success;
-}
 
-bool AudioManager::loadMediaMusicTrack(MusicTrackId musicTrackId, std::string filePath)
-{
-    bool success = true;
-
-    Mix_Music *loadedMusic = Mix_LoadMUS(filePath.c_str());
-
-    if ( loadedMusic == NULL )
-    {
-        SDL_Log("Failed to music track -- filePath: %s SDL_mixer Error: %s \n", filePath.c_str(), Mix_GetError());
-        success = false;
-    }
-    else
-    {
-        // load success, map it
-        mMusicTrackMap[musicTrackId] = loadedMusic;
-    }
     return success;
 }

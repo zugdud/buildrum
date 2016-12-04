@@ -10,11 +10,23 @@ AudioContentImpl::~AudioContentImpl()
 
 }
 
-void load()
+void AudioContentImpl::load()
 {
+    AudioPlayerProperties audioPlayerProperties;
+
+    audioPlayerProperties.frequency = 44100;
+    audioPlayerProperties.channels = 2;
+    audioPlayerProperties.chunksize = 2048;
+    audioPlayerProperties.defaultMusicTrackId = "Casual-friday_electronic-beat-music";
+    mAudioPlayerProperties = audioPlayerProperties;
 
     setSoundEffects();
     setMusicTracks();
+}
+
+const AudioPlayerProperties & AudioContentImpl::getAudioPlayerProperties()
+{
+    return mAudioPlayerProperties;
 }
 
 const std::vector<SoundEffectProperties> & AudioContentImpl::getSoundEffects()
@@ -44,16 +56,16 @@ void AudioContentImpl::setMusicTracks()
     MusicTrackProperties track3;
     MusicTrackProperties track4;
 
-    track1.soundEffectId = "Electro-punk-action-background-music";
+    track1.musicTrackId = "Electro-punk-action-background-music";
     track1.fileName = "Electro-punk-action-background-music.mp3";
 
-    track2.soundEffectId = "Terra-incognita-instrumental-background-music";
+    track2.musicTrackId = "Terra-incognita-instrumental-background-music";
     track2.fileName = "Terra-incognita-instrumental-background-music.mp3";
 
-    track3.soundEffectId = "Psychedelic-trip-electronic-music-beat";
+    track3.musicTrackId = "Psychedelic-trip-electronic-music-beat";
     track3.fileName = "Psychedelic-trip-electronic-music-beat.mp3";
 
-    track4.soundEffectId = "Casual-friday_electronic-beat-music";
+    track4.musicTrackId = "Casual-friday_electronic-beat-music";
     track4.fileName = "Casual-friday_electronic-beat-music.mp3";
 
     mMusicTracks.push_back(track1);

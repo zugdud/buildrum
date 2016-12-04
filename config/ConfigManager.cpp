@@ -36,6 +36,11 @@ const EnvironmentMediaPropertiesImpl & ConfigManager::getEnvironmentMediaPropert
     return mEnvironmentMediaPropertiesImpl;
 }
 
+const AudioContentImpl & ConfigManager::getAudioContentImpl()
+{
+    return mAudioContentImpl;
+}
+
 const FontProfileImpl & ConfigManager::getFontProfileImpl()
 {
     return mFontProfileImpl;

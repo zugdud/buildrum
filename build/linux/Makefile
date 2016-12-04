@@ -31,6 +31,7 @@ SRCS = main.cpp \
 config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
+config/constants/media/audio/AudioContentImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
@@ -48,7 +49,8 @@ UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 media/fonts/FontManager.cpp \
-media/fonts/FontTextures.cpp
+media/fonts/FontTextures.cpp \
+media/audio/AudioManager.cpp
 
 # define the C object files
 #

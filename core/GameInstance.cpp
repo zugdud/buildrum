@@ -29,6 +29,13 @@ bool GameInstance::init()
         return false;
     }
 
+    // Audio Manager
+    if (!AudioManager::Instance().configure(ConfigManager::getInstance()->getEnvironmentMediaPropertiesImpl(),
+                                            ConfigManager::getInstance()->getAudioContentImpl()))
+    {
+        return false;
+    }
+
     mInputEventHandler.registerQuitEventObserver(this);
 
     setupStartScreen();
