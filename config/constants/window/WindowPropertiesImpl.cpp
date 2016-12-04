@@ -42,12 +42,12 @@ void WindowPropertiesImpl::setViewContexts()
     // viewContextId, numViewports, viewports[]
     ViewContextProperties fullscreenContext;
 
-    fullscreenContext.viewContextId = "start";
+    fullscreenContext.viewContextId = "MainMenu";
     fullscreenContext.numViewports = 1;
     fullscreenContext.viewports[0] = fullscreen;
 
     ViewContextProperties gameplayContext;
-    gameplayContext.viewContextId = "gameplay";
+    gameplayContext.viewContextId = "GameScene";
     gameplayContext.numViewports = 3;
     gameplayContext.viewports[0] = actionMenu;
     gameplayContext.viewports[1] = minimap;

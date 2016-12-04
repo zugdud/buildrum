@@ -58,7 +58,7 @@ void GameInstance::setupStartScreen()
     menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
 
     // add renderers to viewport
-    WindowManager::getInstance()->setActiveViewContext("start");
+    WindowManager::getInstance()->setActiveViewContext("MainMenu");
     std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
     for (size_t i = 0; i < startScreenViewports.size(); i++)
     {
@@ -66,13 +66,23 @@ void GameInstance::setupStartScreen()
     }
 }
 
+void GameInstance::setupGameScene()
+{
+    // todo
+}
+
+
 void GameInstance::showStartScreen()
 {
+    WindowManager::getInstance()->setActiveViewContext("MainMenu");
     mRunning  = true;
 
     const Window & window = WindowManager::getInstance()->getWindow();
     std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
 
+    // play music
+    AudioManager::Instance().setMusicTrack("MainMenu");
+    AudioManager::Instance().playMusic();
     while ( mRunning )
     {
         mInputEventHandler.pollEventQueue();
@@ -83,6 +93,31 @@ void GameInstance::showStartScreen()
         }
         window.updateScreen();
     }
+    AudioManager::Instance().stopMusic();
+}
+
+void GameInstance::showGameScene()
+{
+    WindowManager::getInstance()->setActiveViewContext("GameScene");
+    mRunning  = true;
+
+    const Window & window = WindowManager::getInstance()->getWindow();
+    std::vector <Viewport> & gameSceneViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
+
+    // play music
+    AudioManager::Instance().setMusicTrack("GameScene1");
+    AudioManager::Instance().playMusic();
+    while ( mRunning )
+    {
+        mInputEventHandler.pollEventQueue();
+        window.clearScreen();
+        for (size_t i = 0; i < gameSceneViewports.size(); i++)
+        {
+            gameSceneViewports[i].renderUpdate();
+        }
+        window.updateScreen();
+    }
+    AudioManager::Instance().stopMusic();
 }
 
 void GameInstance::quitEventCallback()

@@ -23,6 +23,7 @@ void UIButton::pointEventCallback(PointInt pointInt)
     if (UIElement::isPointInRect(pointInt))
     {
         SDL_Log("Touched buttonId: %s \n ", mUIButtonProperties.buttonId.c_str());
+        AudioManager::Instance().playSound("pop_1");
     }
 }
 
