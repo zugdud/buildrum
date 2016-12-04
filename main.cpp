@@ -41,8 +41,8 @@ int main(int argc, char *args[])
 
     if (gameInstance.init())
     {
-        // gameInstance.showStartScreen();
-        gameInstance.showGameScene();
+        gameInstance.showStartScreen();
+        // gameInstance.showGameScene();
     }
     else
     {

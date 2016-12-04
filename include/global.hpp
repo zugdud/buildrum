@@ -21,6 +21,8 @@
 
 #include "include/constants.hpp"
 
+#include "core/IEventManager.hpp"
+
 #include "window/ViewportObserver.hpp"
 
 #include "config/constants/menus/IMenuProperties.hpp"
@@ -57,4 +59,5 @@
 
 #include "renderers/MenuRenderer.hpp"
 
+#include "core/EventManager.hpp"
 #include "core/GameInstance.hpp"

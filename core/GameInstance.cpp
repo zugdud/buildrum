@@ -36,6 +36,9 @@ bool GameInstance::init()
         return false;
     }
 
+    // Event mAudioManager
+    EventManager::getInstance()->configure(&AudioManager::Instance());
+
     mInputEventHandler.registerQuitEventObserver(this);
 
     setupStartScreen();
@@ -52,6 +55,7 @@ void GameInstance::setupStartScreen()
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
         mInputEventHandler.registerPointEventObserver(uiGridCells[i].getUIButton());
+        uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
     }
 
     // add menu as a layer to fullscreen renderer

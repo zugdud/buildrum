@@ -12,6 +12,11 @@ UIButton::~UIButton()
 
 }
 
+void UIButton::setUIEventConnector(UIEventConnector *uiEventConnector)
+{
+    mUIEventConnector = uiEventConnector;
+}
+
 void UIButton::updateEnvelope(const SDL_Rect &envelope)
 {
     UIElement::setRect(mUIButtonProperties.xPadding, mUIButtonProperties.yPadding, envelope);
@@ -23,7 +28,7 @@ void UIButton::pointEventCallback(PointInt pointInt)
     if (UIElement::isPointInRect(pointInt))
     {
         SDL_Log("Touched buttonId: %s \n ", mUIButtonProperties.buttonId.c_str());
-        AudioManager::Instance().playSound("pop_1");
+        mUIEventConnector->uiEventRaised(mUIButtonProperties.buttonId);
     }
 }
 

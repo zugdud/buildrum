@@ -10,6 +10,7 @@ const UIButtonState & getCurrentUIButtonState() const;
 void updateEnvelope(const SDL_Rect &envelope);
 
 void pointEventCallback(PointInt pointInt);
+void setUIEventConnector(UIEventConnector *uiEventConnector);
 
 private:
 
@@ -17,6 +18,7 @@ bool setDefaultButtonState();
 void addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
 
 UIButtonProperties mUIButtonProperties;
+UIEventConnector *mUIEventConnector;
 
 std::string mCurrentUIButtonStateId;
 std::map<std::string, UIButtonState> mUIButtonStates; // buttonStateId->buttonstate
