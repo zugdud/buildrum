@@ -44,6 +44,19 @@ void GameSceneImpl::update()
     mWindow.updateScreen();
 }
 
+void GameSceneImpl::attach()
+{
+
+}
+
+void GameSceneImpl::detatch()
+{
+    // detatchLayersToMenuRenderer();
+    // detatchSceneRenderersToViewports();
+    // detatchInputManagerToUIElements();
+    // detatchUIElementsToEventManager();
+}
+
 void GameSceneImpl::handleMusicPlaylist()
 {
     if (mAudioManager->getMusicPlayerState() == STOPPED)

@@ -6,6 +6,8 @@ MenuRenderer();
 ~MenuRenderer();
 
 void addLayer(UIMenu *uimenu);
+void removeLayer(const std::string & menuId);
+
 void renderAllLayers();
 std::vector<UIMenu *> & getAllLayers();
 

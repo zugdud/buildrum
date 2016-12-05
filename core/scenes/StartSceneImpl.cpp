@@ -29,11 +29,25 @@ void StartSceneImpl::init()
             mMusicTrackIds.size(),
             mMenuIds.size());
 
+
+}
+
+void StartSceneImpl::attach()
+{
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
     attachInputManagerToUIElements();
     attachUIElementsToEventManager();
 }
+
+void StartSceneImpl::detatch()
+{
+    detatchLayersToMenuRenderer();
+    // detatchSceneRenderersToViewports();
+    // detatchInputManagerToUIElements();
+    // detatchUIElementsToEventManager();
+}
+
 
 void StartSceneImpl::update()
 {
@@ -59,6 +73,48 @@ void StartSceneImpl::handleMusicPlaylist()
         mAudioManager->playMusic();
     }
 }
+
+//
+void StartSceneImpl::detatchLayersToMenuRenderer()
+{
+    for (size_t i = 0; i < mMenuIds.size(); i++)
+    {
+        mMenuRenderer.removeLayer(mMenuIds[i]);
+    }
+}
+//
+// void StartSceneImpl::attachSceneRenderersToViewports()
+// {
+//     // attach renderers to viewports
+//     for (size_t i = 0; i < mViewports.size(); i++)
+//     {
+//         mViewports[i].addRenderer(&mMenuRenderer);
+//     }
+// }
+//
+// void StartSceneImpl::attachInputManagerToUIElements()
+// {
+//     // each menu
+//     for (size_t i = 0; i < mMenuIds.size(); i++)
+//     {
+//         // attach input handler to ui elements
+//         std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
+//         for (size_t i = 0; i < uiGridCells.size(); i++)
+//         {
+//             mInputEventManager->registerPointEventObserver(uiGridCells[i].getUIButton());
+//         }
+//     }
+// }
+//
+// void StartSceneImpl::attachUIElementsToEventManager()
+// {
+//     // attach UI elements to event handler
+//     std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mSceneId)->getGridCells();
+//     for (size_t i = 0; i < uiGridCells.size(); i++)
+//     {
+//         uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
+//     }
+// }
 
 void StartSceneImpl::attachLayersToMenuRenderer()
 {

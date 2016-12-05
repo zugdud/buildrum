@@ -15,8 +15,25 @@ std::vector<UIMenu *> & MenuRenderer::getAllLayers()
     return mLayers;
 }
 
+void MenuRenderer::removeLayer(const std::string & uiMenuId)
+{
+    for (size_t i = 0; i < mLayers.size(); i++)
+    {
+        if (mLayers[i]->getIMenuProperties()->getUIMenuProperties().uiMenuId == uiMenuId )
+        {
+            SDL_Log("MenuRenderer::removeLayer -- removing menu from renderer, uiMenuId: %s \n",
+                    uiMenuId.c_str());
+            mLayers.erase(mLayers.begin() + i);
+        }
+
+    }
+}
+
+
 void MenuRenderer::addLayer(UIMenu *uimenu)
 {
+    SDL_Log("MenuRenderer::addLayer -- adding menu to renderer, uiMenuId: %s \n",
+            uimenu->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str());
     mLayers.push_back(uimenu);
 }
 

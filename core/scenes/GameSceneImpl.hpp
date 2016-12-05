@@ -10,7 +10,11 @@ const std::string & getSceneId();
 const std::string & getViewContextId();
 const std::vector<std::string> & getMusicTrackIds();
 const std::vector<std::string> & getMenuIds();
+
 void update();
+
+void attach();
+void detatch();
 
 private:
 
