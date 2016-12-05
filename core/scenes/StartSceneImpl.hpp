@@ -1,4 +1,4 @@
-class StartSceneImpl : public IScene
+class StartSceneImpl : virtual public IScene
 {
 
 public:
@@ -10,14 +10,17 @@ const std::string & getSceneId();
 const std::string & getViewContextId();
 const std::vector<std::string> & getMusicTrackIds();
 const std::vector<std::string> & getMenuIds();
+void update();
 
 private:
 
 void init();
+
 void attachLayersToMenuRenderer();
-void attachRenderersToViewports();
-void attachInputHandlers();
-void attachEventHandlers();
+void attachSceneRenderersToViewports();
+void attachInputManagerToUIElements();
+void attachUIElementsToEventManager();
+
 void handleMusicPlaylist();
 
 std::string mSceneId;
@@ -25,9 +28,9 @@ std::string mViewContextId;
 std::vector<std::string> mMusicTrackIds;
 std::vector<std::string> mMenuIds;
 
-Window & mWindow;
-std::vector <Viewport> & mViewports;
-AudioManager & mAudioManager;
+Window mWindow;
+std::vector <Viewport> mViewports;
+AudioManager *mAudioManager;
 InputEventManager *mInputEventManager;
 
 size_t mCurrentMusicTrackIdsIndex;

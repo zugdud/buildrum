@@ -21,11 +21,11 @@ SceneManager * SceneManager::getInstance()
     return mSingletonInstance;
 }
 
-bool SceneManager::init()
+void SceneManager::init()
 {
 
     // start scene
-    IScene *startScene = new StartSceneImpl();
+    StartSceneImpl *startScene = new StartSceneImpl();
 
     mScenes[startScene->getSceneId()] = startScene;
     mActiveSceneId = startScene->getSceneId();
@@ -37,10 +37,9 @@ bool SceneManager::init()
 void SceneManager::setActiveScene(const std::string & activeSceneId)
 {
     mActiveSceneId = activeSceneId;
-    WindowManager::getInstance()->setActiveViewContext(mActiveSceneId);
 }
 
-void GameInstance::updateActiveScene()
+void SceneManager::updateActiveScene()
 {
-    mScenes[mActiveSceneId].update();
+    mScenes[mActiveSceneId]->update();
 }

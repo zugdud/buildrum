@@ -9,7 +9,7 @@ StartSceneImpl::StartSceneImpl()
     mCurrentMusicTrackIdsIndex = 0;
 
     mWindow = WindowManager::getInstance()->getWindow();
-    mAudioManager = AudioManager::Instance();
+    mAudioManager = &AudioManager::Instance();
     mViewports = WindowManager::getInstance()->getViewContext(mViewContextId).getViewports();
     mInputEventManager = InputEventManager::getInstance();
 
@@ -26,13 +26,13 @@ void StartSceneImpl::init()
     SDL_Log("StartSceneImpl::init -- creating mSceneId: %s mViewContextId: %s mMusicTrackIdsCount: %zu mMenuIdsCount: %zu \n",
             mSceneId.c_str(),
             mViewContextId.c_str(),
-            mMusicTrackIds.size()
+            mMusicTrackIds.size(),
             mMenuIds.size());
 
-    attachInputHandlers();
-    attachInputHandlers();
     attachLayersToMenuRenderer();
-    attachRenderersToViewports();
+    attachSceneRenderersToViewports();
+    attachInputManagerToUIElements();
+    attachUIElementsToEventManager();
 }
 
 void StartSceneImpl::update()
@@ -51,11 +51,11 @@ void StartSceneImpl::handleMusicPlaylist()
     if (mAudioManager->getMusicPlayerState() == STOPPED)
     {
         mCurrentMusicTrackIdsIndex++;
-        if (mCurrentMusicTrackIdsIndex > 0 && !mCurrentMusicTrackIdsIndex < mMusicTrackIds.size())
+        if (mCurrentMusicTrackIdsIndex >= mMusicTrackIds.size())
         {
             mCurrentMusicTrackIdsIndex = 0;
         }
-        mAudioManager->setMusicTrack(mMusicTrackIds[mCurrentMusicTrackIdsIndex])
+        mAudioManager->setMusicTrack(mMusicTrackIds[mCurrentMusicTrackIdsIndex]);
         mAudioManager->playMusic();
     }
 }
@@ -64,7 +64,7 @@ void StartSceneImpl::attachLayersToMenuRenderer()
 {
     for (size_t i = 0; i < mMenuIds.size(); i++)
     {
-        mMenuRenderer->addLayer(MenuManager::Instance().getUIMenu(mMenuIds[i]));
+        mMenuRenderer.addLayer(MenuManager::Instance().getUIMenu(mMenuIds[i]));
     }
 }
 
@@ -73,7 +73,7 @@ void StartSceneImpl::attachSceneRenderersToViewports()
     // attach renderers to viewports
     for (size_t i = 0; i < mViewports.size(); i++)
     {
-        mViewports[i].addRenderer(mMenuRenderer);
+        mViewports[i].addRenderer(&mMenuRenderer);
     }
 }
 
@@ -101,19 +101,19 @@ void StartSceneImpl::attachUIElementsToEventManager()
     }
 }
 
-const std::string & getSceneId()
+const std::string & StartSceneImpl::getSceneId()
 {
     return mSceneId;
 }
-const std::string & getViewContextId()
+const std::string & StartSceneImpl::getViewContextId()
 {
     return mViewContextId;
 }
-const std::vector<std::string> & getMusicTrackIds()
+const std::vector<std::string> & StartSceneImpl::getMusicTrackIds()
 {
     return mMusicTrackIds;
 }
-const std::vector<std::string> & getMenuIds()
+const std::vector<std::string> & StartSceneImpl::getMenuIds()
 {
     return mMenuIds;
 }
