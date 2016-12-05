@@ -3,8 +3,8 @@ class StartSceneImpl : public IScene
 
 public:
 
-StartSceneImpl::StartSceneImpl();
-StartSceneImpl::~StartSceneImpl();
+StartSceneImpl();
+~StartSceneImpl();
 
 const std::string & getSceneId();
 const std::string & getViewContextId();

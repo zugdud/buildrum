@@ -1,6 +1,6 @@
 #include "include/global.hpp"
 
-SceneManager *SceneManager::mSingletonInstance = 0;
+InputEventManager *InputEventManager::mSingletonInstance = 0;
 
 InputEventManager::InputEventManager()
 {
@@ -12,11 +12,11 @@ InputEventManager::~InputEventManager()
 
 }
 
-SceneManager * SceneManager::getInstance()
+InputEventManager * InputEventManager::getInstance()
 {
     if (!mSingletonInstance)
     {
-        mSingletonInstance = new SceneManager;
+        mSingletonInstance = new InputEventManager;
     }
     return mSingletonInstance;
 }

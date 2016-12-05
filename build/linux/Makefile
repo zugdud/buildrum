@@ -42,7 +42,7 @@ core/EventManager.cpp \
 core/GameInstance.cpp \
 core/SceneManager.cpp \
 core/scenes/StartSceneImpl.cpp \
-input/InputEventHandler.cpp \
+input/InputEventManager.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \
