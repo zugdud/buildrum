@@ -31,6 +31,11 @@ void EventManager::uiEventRaised(const std::string & eventId)
 {
     SDL_Log("EventManager::uiEventRaised -- eventId: %s \n", eventId.c_str());
     mAudioManager->playSound("pop_1");
+    if (eventId == "newGame")
+    {
+        AudioManager::Instance().stopMusic();
+        SceneManager::getInstance()->setActiveScene("GameScene");
+    }
 }
 
 // play music

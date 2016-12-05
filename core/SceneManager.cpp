@@ -31,6 +31,9 @@ void SceneManager::init()
     mActiveSceneId = startScene->getSceneId();
 
     // game scene
+    GameSceneImpl *gameScene = new GameSceneImpl();
+
+    mScenes[gameScene->getSceneId()] = gameScene;
 
 }
 

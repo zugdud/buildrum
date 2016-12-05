@@ -61,6 +61,7 @@
 
 #include "core/scenes/IScene.hpp"
 #include "core/scenes/StartSceneImpl.hpp"
+#include "core/scenes/GameSceneImpl.hpp"
 
 #include "core/SceneManager.hpp"
 #include "core/EventManager.hpp"
