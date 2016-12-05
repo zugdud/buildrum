@@ -18,7 +18,7 @@ struct EnvironmentMediaProperties
 struct WindowProperties
 {
     std::string windowName;
-    RGBAColors bgColor;
+    SDL_Color bgColor;
     int screenWidth;
     int screenHeight;
 };
@@ -30,7 +30,7 @@ struct ViewportProperties
     double yPadRatio;
     double windowWidthRatio;
     double windowHeightRatio;
-    RGBAColors bgColor;
+    SDL_Color bgColor;
 };
 
 struct ViewContextProperties
@@ -66,8 +66,8 @@ struct UILabelProperties
 
 struct UIRenderCellDetails
 {
-    RGBAColors backgroundColor;
-    RGBAColors outlineColor;
+    SDL_Color backgroundColor;
+    SDL_Color outlineColor;
     bool showBorderColor;
     bool showBackgroundColor;
     int backgroundSpriteId;

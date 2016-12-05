@@ -43,10 +43,10 @@ SDL_Renderer * Window::getSDLWindowRenderer()
 void Window::clearScreen() const
 {
     SDL_SetRenderDrawColor(mSDLWindowRenderer,
-                           mWindowProperties.bgColor.red,
-                           mWindowProperties.bgColor.green,
-                           mWindowProperties.bgColor.blue,
-                           mWindowProperties.bgColor.alpha);
+                           mWindowProperties.bgColor.r,
+                           mWindowProperties.bgColor.g,
+                           mWindowProperties.bgColor.b,
+                           mWindowProperties.bgColor.a);
     SDL_RenderClear(mSDLWindowRenderer);
 }
 
@@ -97,10 +97,10 @@ bool Window::init()
             {
                 // Initialize renderer color
                 SDL_SetRenderDrawColor(mSDLWindowRenderer,
-                                       mWindowProperties.bgColor.red,
-                                       mWindowProperties.bgColor.green,
-                                       mWindowProperties.bgColor.blue,
-                                       mWindowProperties.bgColor.alpha);
+                                       mWindowProperties.bgColor.r,
+                                       mWindowProperties.bgColor.g,
+                                       mWindowProperties.bgColor.b,
+                                       mWindowProperties.bgColor.a);
 
                 // Initialize PNG loading
                 int imgFlags = IMG_INIT_PNG;

@@ -38,10 +38,10 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
     if (uiCd.showBackgroundColor)
     {
         SDL_SetRenderDrawColor(mSDLRenderer,
-                               uiCd.backgroundColor.red,
-                               uiCd.backgroundColor.green,
-                               uiCd.backgroundColor.blue,
-                               uiCd.backgroundColor.alpha);
+                               uiCd.backgroundColor.r,
+                               uiCd.backgroundColor.g,
+                               uiCd.backgroundColor.b,
+                               uiCd.backgroundColor.a);
         SDL_RenderFillRect(mSDLRenderer, &cellRect);
     }
 
@@ -53,10 +53,10 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
     if (uiCd.showBorderColor)
     {
         SDL_SetRenderDrawColor(mSDLRenderer,
-                               uiCd.outlineColor.red,
-                               uiCd.outlineColor.green,
-                               uiCd.outlineColor.blue,
-                               uiCd.outlineColor.alpha);
+                               uiCd.outlineColor.r,
+                               uiCd.outlineColor.g,
+                               uiCd.outlineColor.b,
+                               uiCd.outlineColor.a);
         SDL_RenderDrawRect(mSDLRenderer, &cellRect);
     }
 

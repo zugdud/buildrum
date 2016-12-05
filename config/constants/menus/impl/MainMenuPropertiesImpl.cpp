@@ -38,8 +38,8 @@ const std::vector<UILabelProperties> & MainMenuPropertiesImpl::getUILabelPropert
 
 void MainMenuPropertiesImpl::setUIMenuProperties()
 {
-    RGBAColors blue = { 0, 0, 255, 255 };
-    RGBAColors green = { 0, 255, 0, 255 };
+    SDL_Color blue = { 0, 0, 255, 255 };
+    SDL_Color green = { 0, 255, 0, 255 };
 
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
     UIRenderCellDetails gridCD = { blue, green, true, true, 0, false };
@@ -73,9 +73,9 @@ void MainMenuPropertiesImpl::setButtonProperties()
 
 void MainMenuPropertiesImpl::setUIButtonStateProperties()
 {
-    RGBAColors black = { 0, 0, 0, 255 };
-    RGBAColors red = { 255, 0, 0, 255 };
-    RGBAColors green = { 0, 255, 0, 255 };
+    SDL_Color black = { 0, 0, 0, 255 };
+    SDL_Color red = { 255, 0, 0, 255 };
+    SDL_Color green = { 0, 255, 0, 255 };
 
     // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
     // UIButtonStateProperties: buttonState, spriteId, soundEffectId, uiRenderCellDetails

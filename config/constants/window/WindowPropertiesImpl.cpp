@@ -29,9 +29,9 @@ const WindowProperties & WindowPropertiesImpl::getWindowProperties()
 
 void WindowPropertiesImpl::setViewContexts()
 {
-    RGBAColors red = { 255, 0, 0, 255 };
-    RGBAColors green = { 0, 255, 0, 255 };
-    RGBAColors blue = { 0, 0, 255, 255 };
+    SDL_Color red = { 255, 0, 0, 255 };
+    SDL_Color green = { 0, 255, 0, 255 };
+    SDL_Color blue = { 0, 0, 255, 255 };
 
     // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
     ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red };
@@ -59,7 +59,7 @@ void WindowPropertiesImpl::setViewContexts()
 
 void WindowPropertiesImpl::setWindowProfiles()
 {
-    RGBAColors white = { 255, 255, 255, 255 };
+    SDL_Color white = { 255, 255, 255, 255 };
 
     // windowName, bgColor, screenWidth, screenHeight
 
