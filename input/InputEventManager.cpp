@@ -1,26 +1,37 @@
 #include "include/global.hpp"
 
-InputEventHandler::InputEventHandler()
+SceneManager *SceneManager::mSingletonInstance = 0;
+
+InputEventManager::InputEventManager()
 {
 
 }
 
-InputEventHandler::~InputEventHandler()
+InputEventManager::~InputEventManager()
 {
 
 }
 
-void InputEventHandler::registerPointEventObserver(PointEventObserver *pointEventObserver)
+SceneManager * SceneManager::getInstance()
+{
+    if (!mSingletonInstance)
+    {
+        mSingletonInstance = new SceneManager;
+    }
+    return mSingletonInstance;
+}
+
+void InputEventManager::registerPointEventObserver(PointEventObserver *pointEventObserver)
 {
     mPointEventObserver.push_back(pointEventObserver);
 }
 
-void InputEventHandler::registerQuitEventObserver(QuitEventObserver *quitEventObserver)
+void InputEventManager::registerQuitEventObserver(QuitEventObserver *quitEventObserver)
 {
     mQuitEventObservers.push_back(quitEventObserver);
 }
 
-void InputEventHandler::pollEventQueue()
+void InputEventManager::pollEventQueue()
 {
     SDL_Event sdlEvent;
 
@@ -46,7 +57,7 @@ void InputEventHandler::pollEventQueue()
     }
 }
 
-void InputEventHandler::dispatchPointEvent(const SDL_Event & sdlEvent)
+void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
 {
     PointInt pointInt = { 0, 0 };
 

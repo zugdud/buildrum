@@ -39,89 +39,24 @@ bool GameInstance::init()
     // Event mAudioManager
     EventManager::getInstance()->configure(&AudioManager::Instance());
 
-    mInputEventHandler.registerQuitEventObserver(this);
+    // init inputEventManager
+    InputEventManager::getInstance()->registerQuitEventObserver(this);
 
-    setupStartScreen();
+    // scenemanaager
+    SceneManager::getInstance()->init();
+
     return true;
 }
 
-void GameInstance::setupStartScreen()
+void GameInstance::run()
 {
-
-    MenuRenderer *menuRenderer = new MenuRenderer();
-
-    // register input handlers with menu
-    std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu("MainMenu")->getGridCells();
-    for (size_t i = 0; i < uiGridCells.size(); i++)
-    {
-        mInputEventHandler.registerPointEventObserver(uiGridCells[i].getUIButton());
-        uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
-    }
-
-    // add menu as a layer to fullscreen renderer
-    menuRenderer->addLayer(MenuManager::Instance().getUIMenu("MainMenu"));
-
-    // add renderers to viewport
-    WindowManager::getInstance()->setActiveViewContext("MainMenu");
-    std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
-    for (size_t i = 0; i < startScreenViewports.size(); i++)
-    {
-        startScreenViewports[i].addRenderer(menuRenderer);
-    }
-}
-
-void GameInstance::setupGameScene()
-{
-    // todo
-}
-
-
-void GameInstance::showStartScreen()
-{
-    WindowManager::getInstance()->setActiveViewContext("MainMenu");
     mRunning  = true;
 
-    const Window & window = WindowManager::getInstance()->getWindow();
-    std::vector <Viewport> & startScreenViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
-
-    // play music
-    AudioManager::Instance().setMusicTrack("MainMenu");
-    AudioManager::Instance().playMusic();
     while ( mRunning )
     {
         mInputEventHandler.pollEventQueue();
-        window.clearScreen();
-        for (size_t i = 0; i < startScreenViewports.size(); i++)
-        {
-            startScreenViewports[i].renderUpdate();
-        }
-        window.updateScreen();
+        SceneManager::getInstance()->updateActiveScene();
     }
-    AudioManager::Instance().stopMusic();
-}
-
-void GameInstance::showGameScene()
-{
-    WindowManager::getInstance()->setActiveViewContext("GameScene");
-    mRunning  = true;
-
-    const Window & window = WindowManager::getInstance()->getWindow();
-    std::vector <Viewport> & gameSceneViewports = WindowManager::getInstance()->getActiveViewContext().getViewports();
-
-    // play music
-    AudioManager::Instance().setMusicTrack("GameScene1");
-    AudioManager::Instance().playMusic();
-    while ( mRunning )
-    {
-        mInputEventHandler.pollEventQueue();
-        window.clearScreen();
-        for (size_t i = 0; i < gameSceneViewports.size(); i++)
-        {
-            gameSceneViewports[i].renderUpdate();
-        }
-        window.updateScreen();
-    }
-    AudioManager::Instance().stopMusic();
 }
 
 void GameInstance::quitEventCallback()

@@ -68,19 +68,35 @@ void pauseMusic();
 
 void AudioManager::setMusicTrack(std::string musicTrackId)
 {
+    SDL_Log("AudioManager::setMusicTrack -- setMusicTrack: %s \n", musicTrackId.c_str());
     mSelectedMusicTrackId = musicTrackId;
+}
+
+MusicPlayerState AudioManager::getMusicPlayerState()
+{
+    if (mMusicPlayerState != PAUSED)
+    {
+        if (Mix_PlayingMusic() == 1)
+        {
+            mMusicPlayerState = PLAYING;
+        }
+        if (Mix_PlayingMusic() == 0)
+        {
+            mMusicPlayerState = STOPPED;
+        }
+    }
+    return mMusicPlayerState;
 }
 
 void AudioManager::playMusic()
 {
-    Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], -1);
-    mMusicPlayerState = PLAYING;
+    SDL_Log("AudioManager::playMusic -- mSelectedMusicTrackId: %s \n", mSelectedMusicTrackId.c_str());
+    Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], 0);
 }
 
 void AudioManager::stopMusic()
 {
     Mix_HaltMusic();
-    mMusicPlayerState = STOPPED;
 }
 
 void AudioManager::pauseMusic()
@@ -92,7 +108,6 @@ void AudioManager::pauseMusic()
 void AudioManager::resumeMusic()
 {
     Mix_ResumeMusic();
-    mMusicPlayerState = PLAYING;
 }
 
 bool AudioManager::loadSoundEffects(const std::string & soundEffectDirName, const std::vector<SoundEffectProperties> & soundEffectProperties)

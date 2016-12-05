@@ -1,14 +1,21 @@
-class InputEventHandler
+class InputEventManager
 {
 
+static InputEventManager *mSingletonInstance;
+
 public:
-InputEventHandler();
-~InputEventHandler();
 
 void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
 void registerPointEventObserver(PointEventObserver *pointEventObserver);
 
 void pollEventQueue();
+
+protected:
+
+InputEventManager();
+InputEventManager(const InputEventManager *);
+InputEventManager& operator=(const InputEventManager *);
+~InputEventManager();
 
 private:
 

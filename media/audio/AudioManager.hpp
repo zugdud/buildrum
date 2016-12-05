@@ -27,6 +27,7 @@ void playMusic();
 void stopMusic();
 void pauseMusic();
 void resumeMusic();
+MusicPlayerState getMusicPlayerState();
 
 protected:
 

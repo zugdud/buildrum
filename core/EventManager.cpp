@@ -32,3 +32,8 @@ void EventManager::uiEventRaised(const std::string & eventId)
     SDL_Log("EventManager::uiEventRaised -- eventId: %s \n", eventId.c_str());
     mAudioManager->playSound("pop_1");
 }
+
+// play music
+// AudioManager::Instance().setMusicTrack("MainMenu");
+// AudioManager::Instance().playMusic();
+// AudioManager::Instance().stopMusic();

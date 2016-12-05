@@ -13,13 +13,9 @@ WindowManager::~WindowManager()
 
 }
 
-void WindowManager::setActiveViewContext(const std::string & viewContextId)
+ViewContext & WindowManager::getViewContext(const std::string & viewContextId)
 {
-    mActiveViewContextId = viewContextId;
-}
-ViewContext & WindowManager::getActiveViewContext()
-{
-    return mViewContexts[mActiveViewContextId];
+    return mViewContexts[viewContextId];
 }
 
 SDL_Renderer * WindowManager::getSDLRenderer()

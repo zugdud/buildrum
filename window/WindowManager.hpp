@@ -12,8 +12,7 @@ void configure(const WindowPropertiesImpl &windowPropertiesImpl);
 const Window & getWindow();
 SDL_Renderer * getSDLRenderer();
 
-void setActiveViewContext(const std::string & viewContextId);
-ViewContext &getActiveViewContext();
+ViewContext &getViewContext(const std::string & viewContextId);
 
 private:
 
@@ -23,7 +22,6 @@ WindowManager();
 void notifyObservers();
 void createViewContexts();
 
-std::string mActiveViewContextId;
 WindowPropertiesImpl mWindowPropertiesImpl;
 
 std::map<std::string, ViewContext> mViewContexts;

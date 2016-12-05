@@ -36,7 +36,7 @@
 #include "config/ConfigManager.hpp"
 
 #include "input/InputEventObservers.hpp"
-#include "input/InputEventHandler.hpp"
+#include "input/InputEventManager.hpp"
 
 #include "media/fonts/FontTextures.hpp"
 #include "media/fonts/FontManager.hpp"
@@ -59,5 +59,9 @@
 
 #include "renderers/MenuRenderer.hpp"
 
+#include "core/scenes/IScene.hpp"
+#include "core/scenes/StartSceneImpl.hpp"
+
+#include "core/SceneManager.hpp"
 #include "core/EventManager.hpp"
 #include "core/GameInstance.hpp"
