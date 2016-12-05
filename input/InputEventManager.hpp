@@ -5,6 +5,8 @@ static InputEventManager *mSingletonInstance;
 
 public:
 
+static InputEventManager * getInstance();
+
 void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
 void registerPointEventObserver(PointEventObserver *pointEventObserver);
 

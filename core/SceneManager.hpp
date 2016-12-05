@@ -1,4 +1,4 @@
-class SceneManager : public UIEventConnector
+class SceneManager
 {
 
 static SceneManager *mSingletonInstance;

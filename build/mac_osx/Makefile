@@ -46,7 +46,9 @@ window/WindowManager.cpp \
 window/ViewContext.cpp \
 core/EventManager.cpp \
 core/GameInstance.cpp \
-input/InputEventHandler.cpp \
+core/SceneManager.cpp \
+core/scenes/StartSceneImpl.cpp \
+input/InputEventManager.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \

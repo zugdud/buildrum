@@ -54,7 +54,7 @@ void GameInstance::run()
 
     while ( mRunning )
     {
-        mInputEventHandler.pollEventQueue();
+        InputEventManager::getInstance()->pollEventQueue();
         SceneManager::getInstance()->updateActiveScene();
     }
 }
