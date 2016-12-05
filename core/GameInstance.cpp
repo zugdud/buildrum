@@ -39,9 +39,6 @@ bool GameInstance::init()
     // Event mAudioManager
     EventManager::getInstance()->configure(&AudioManager::Instance());
 
-    // init inputEventManager
-    InputEventManager::getInstance()->registerQuitEventObserver(this);
-
     // scenemanaager
     SceneManager::getInstance()->init();
 
@@ -50,6 +47,7 @@ bool GameInstance::init()
 
 void GameInstance::run()
 {
+    InputEventManager::getInstance()->registerQuitEventObserver(this);
     mRunning  = true;
 
     while ( mRunning )
