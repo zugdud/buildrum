@@ -1,3 +1,5 @@
+#define LINUX_BUILD_TARGET
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -18,8 +20,6 @@
 
 #include "types/commonTypes.hpp"
 #include "types/properties.hpp"
-
-#include "include/constants.hpp"
 
 #include "core/IEventManager.hpp"
 

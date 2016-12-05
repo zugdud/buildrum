@@ -62,15 +62,20 @@ void WindowPropertiesImpl::setWindowProfiles()
     RGBAColors white = { 255, 255, 255, 255 };
 
     // windowName, bgColor, screenWidth, screenHeight
+
+    #ifdef LINUX_BUILD_TARGET
     WindowProperties linuxProperties = { "Buildrum", white, 1280, 960 };
+    mWindowProperties = linuxProperties;
+    #endif
+
+    #ifdef MAC_BUILD_TARGET
     WindowProperties macProperties = { "Buildrum", white, 1024, 768 };
+    mWindowProperties = macProperties;
+    #endif
+
+    #ifdef ANDROID_BUILD_TARGET
     WindowProperties androidProperties = { "Buildrum", white, 1440, 2560 };
+    mWindowProperties = androidProperties;
+    #endif
 
-
-    switch (G_BUILD_PROFILE)
-    {
-        case LINUX_BUILD: mWindowProperties = linuxProperties; break;
-        case MAC_BUILD: mWindowProperties = macProperties; break;
-        case ANDROID_BUILD: mWindowProperties = androidProperties; break;
-    }
 }
