@@ -34,7 +34,8 @@ MenuRenderer mMenuRenderer;
 
 private:
 
-void detatchLayersToMenuRenderer();
+void detatchLayersFromMenuRenderer();
+void detatchSceneRenderersFromViewports();
 
 void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();

@@ -23,8 +23,6 @@
 
 #include "core/IEventManager.hpp"
 
-#include "window/ViewportObserver.hpp"
-
 #include "config/constants/menus/IMenuProperties.hpp"
 
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"

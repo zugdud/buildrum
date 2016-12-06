@@ -19,12 +19,6 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
     positionViewport(windowProperties);
 }
 
-void Viewport::registerObserver(ViewportObserver *viewportObserver)
-{
-    mObservers.push_back(viewportObserver);
-}
-
-
 void Viewport::positionViewport(const WindowProperties &windowProperties)
 {
     mViewport.x = windowProperties.screenWidth * mViewportProperties.xPadRatio;
@@ -45,18 +39,21 @@ void Viewport::addRenderer(IRenderer *renderer)
     SDL_Log("Viewport::addRenderer -- adding renderer to viewportId: %s \n", mViewportProperties.viewportId.c_str());
     mRenderers.push_back(renderer);
 
-    // register all layers as observers
+    // update envelopes
     std::vector<UIMenu *> & layers = renderer->getAllLayers();
     for (size_t i = 0; i < layers.size(); i++)
     {
-        SDL_Log("Viewport::addRenderer -- registering observer to to viewportId: %s \n", mViewportProperties.viewportId.c_str());
-        registerObserver(layers[i]);
+        SDL_Log("Viewport::addRenderer -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
+        layers[i]->updateEnvelope(mViewport);
     }
+}
 
-    // update the envelope rect for all items in the viewport
-    for (size_t i = 0; i < mObservers.size(); i++)
+void Viewport::removeAllRenderers()
+{
+    for (size_t i = 0; i < mRenderers.size(); i++)
     {
-        mObservers[i]->updateEnvelope(mViewport);
+        SDL_Log("Viewport::removeRenderer -- removing renderer from viewportId: %s \n", mViewportProperties.viewportId.c_str());
+        mRenderers.erase(mRenderers.begin() + i);
     }
 }
 

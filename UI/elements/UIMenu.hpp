@@ -1,4 +1,4 @@
-class UIMenu : public UIElement, public ViewportObserver
+class UIMenu : public UIElement
 {
 
 public:

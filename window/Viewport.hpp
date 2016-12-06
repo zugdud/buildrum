@@ -12,19 +12,18 @@ void configure(const ViewportProperties &viewportProperties,
                SDL_Renderer *sdlRenderer);
 
 void addRenderer(IRenderer *renderer);
+void removeAllRenderers();
 void renderUpdate() const;
 
 
 private:
 
 void positionViewport(const WindowProperties &windowProperties);
-void registerObserver(ViewportObserver *viewportObserver);
 void setRenderedViewport() const;
 
 ViewportProperties mViewportProperties;
 SDL_Rect mViewport;
 SDL_Renderer *mSDLRenderer;
 
-std::vector<ViewportObserver *> mObservers;
 std::vector<IRenderer *> mRenderers;
 };

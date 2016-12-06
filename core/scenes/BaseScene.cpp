@@ -58,29 +58,29 @@ void BaseScene::attach()
 
 void BaseScene::detatch()
 {
-    // detatchLayersToMenuRenderer();
-    // detatchSceneRenderersToViewports();
+    detatchLayersFromMenuRenderer();
+    detatchSceneRenderersFromViewports();
     // detatchInputManagerToUIElements();
     // detatchUIElementsToEventManager();
 }
 
 //
-void BaseScene::detatchLayersToMenuRenderer()
+void BaseScene::detatchLayersFromMenuRenderer()
 {
     for (size_t i = 0; i < mMenuIds.size(); i++)
     {
         mMenuRenderer.removeLayer(mMenuIds[i]);
     }
 }
-//
-// void StartSceneImpl::attachSceneRenderersToViewports()
-// {
-//     // attach renderers to viewports
-//     for (size_t i = 0; i < mViewports.size(); i++)
-//     {
-//         mViewports[i].addRenderer(&mMenuRenderer);
-//     }
-// }
+
+void BaseScene::detatchSceneRenderersFromViewports()
+{
+    // remove renderers from viewports
+    for (size_t i = 0; i < mViewports.size(); i++)
+    {
+        mViewports[i].removeAllRenderers();
+    }
+}
 //
 // void StartSceneImpl::attachInputManagerToUIElements()
 // {
