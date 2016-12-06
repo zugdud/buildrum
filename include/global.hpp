@@ -60,6 +60,7 @@
 #include "renderers/MenuRenderer.hpp"
 
 #include "core/scenes/IScene.hpp"
+#include "core/scenes/BaseScene.hpp"
 #include "core/scenes/StartSceneImpl.hpp"
 #include "core/scenes/GameSceneImpl.hpp"
 
