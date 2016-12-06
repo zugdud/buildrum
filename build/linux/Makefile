@@ -59,6 +59,7 @@ media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \
 media/sprites/Sprite.cpp \
 media/sprites/SpriteSheet.cpp \
+media/sprites/SpriteSheetManager.cpp \
 
 # define the C object files
 #

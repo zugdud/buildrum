@@ -12,7 +12,9 @@ GameInstance::~GameInstance()
 
 bool GameInstance::init()
 {
-    SDL_Log("GameInstance::init \n");
+
+    SDL_Log("==================================================== \n");
+    SDL_Log("GameInstance::init -- setting up manager instances... \n");
     // ConfigManager
     ConfigManager::getInstance()->loadConstants();
 
@@ -36,12 +38,20 @@ bool GameInstance::init()
         return false;
     }
 
+    // Sprite Sheet Manager
+    if (!SpriteSheetManager::Instance().configure(ConfigManager::getInstance()->getEnvironmentMediaPropertiesImpl(),
+                                                  ConfigManager::getInstance()->getSpriteSheetPropertiesImpl()))
+    {
+        return false;
+    }
+
     // Event mAudioManager
     EventManager::getInstance()->configure(&AudioManager::Instance());
 
     // scenemanaager
     SceneManager::getInstance()->init();
 
+    SDL_Log("==================================================== \n");
     return true;
 }
 

@@ -43,6 +43,7 @@
 
 #include "media/sprites/Sprite.hpp"
 #include "media/sprites/SpriteSheet.hpp"
+#include "media/sprites/SpriteSheetManager.hpp"
 
 #include "UI/elements/UIElement.hpp"
 #include "UI/elements/UIButtonState.hpp"
