@@ -16,6 +16,7 @@ const EnvironmentMediaPropertiesImpl &getEnvironmentMediaPropertiesImpl();
 const FontProfileImpl &getFontProfileImpl();
 const WindowPropertiesImpl &getWindowPropertiesImpl();
 const AudioContentImpl & getAudioContentImpl();
+const SpriteSheetPropertiesImpl & getSpriteSheetPropertiesImpl();
 
 void reloadDynamicData();
 void loadConstants();
@@ -34,6 +35,7 @@ EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
 FontProfileImpl mFontProfileImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
 AudioContentImpl mAudioContentImpl;
+SpriteSheetPropertiesImpl mSpriteSheetPropertiesImpl;
 
 std::vector<std::string> mMenuIds;
 std::map<std::string, IMenuProperties *> mIMenuProperties; // menuId->MenuProperties

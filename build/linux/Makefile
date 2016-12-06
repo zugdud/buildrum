@@ -32,6 +32,7 @@ config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
+config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
@@ -55,7 +56,9 @@ UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
-media/audio/AudioManager.cpp
+media/audio/AudioManager.cpp \
+media/sprites/Sprite.cpp \
+media/sprites/SpriteSheet.cpp \
 
 # define the C object files
 #

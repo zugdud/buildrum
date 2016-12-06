@@ -40,13 +40,13 @@ bool AudioManager::init()
         initSuccess = false;
     }
 
-    if (!loadSoundEffects(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().soundEffectDirName, mAudioContentImpl.getSoundEffects()))
+    if (!loadSoundEffects(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().soundEffectDirPath, mAudioContentImpl.getSoundEffects()))
     {
         SDL_Log("AudioManager::init -- ERROR: Failed to load one or more sound effects! \n");
         initSuccess = false;
     }
 
-    if (!loadMusicTracks(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().musicTrackDirName, mAudioContentImpl.getMusicTracks()))
+    if (!loadMusicTracks(mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().musicTrackDirPath, mAudioContentImpl.getMusicTracks()))
     {
         SDL_Log("AudioManager::init -- ERROR: Failed to load one or more music tracks! \n");
         initSuccess = false;

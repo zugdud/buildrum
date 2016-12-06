@@ -51,6 +51,11 @@ const WindowPropertiesImpl & ConfigManager::getWindowPropertiesImpl()
     return mWindowPropertiesImpl;
 }
 
+const SpriteSheetPropertiesImpl & ConfigManager::getSpriteSheetPropertiesImpl()
+{
+    return mSpriteSheetPropertiesImpl;
+}
+
 void ConfigManager::reloadDynamicData()
 {
 
@@ -64,6 +69,7 @@ void ConfigManager::loadConstants()
     mEnvironmentMediaPropertiesImpl.loadAll();
     mFontProfileImpl.loadAll();
     mAudioContentImpl.loadAll();
+    mSpriteSheetPropertiesImpl.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");

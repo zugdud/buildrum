@@ -4,11 +4,10 @@
 
 struct EnvironmentMediaProperties
 {
-    std::string mediaDirBasePath;
-    std::string imageDirName;
-    std::string soundEffectDirName;
-    std::string musicTrackDirName;
-    std::string fontDirName;
+    std::string spriteSheetDirPath;
+    std::string soundEffectDirPath;
+    std::string musicTrackDirPath;
+    std::string fontDirPath;
 };
 
 // ------------------------------------------------------------------------------
@@ -115,14 +114,16 @@ struct UIMenuProperties
 struct SpriteSheetProperties
 {
     std::string spriteSheetId;
+    std::string fileName;
     int rows;
     int columns;
     int spriteSize;
     int spriteCount;
-    int spriteSheetPixelWidth;
-    int spriteSheetPixelHeight;
-    std::string fileName;
+    int sheetPixelWidth;
+    int sheetPixelHeight;
+    SDL_Color colorKey;
 };
+
 
 struct AudioPlayerProperties
 {

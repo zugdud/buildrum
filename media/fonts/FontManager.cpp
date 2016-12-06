@@ -92,7 +92,7 @@ bool FontManager::loadAllMedia()
 
 bool FontManager::loadFont(const FontProfile &fontProfiles)
 {
-    const std::string relFilePath = mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().fontDirName + fontProfiles.filePath;
+    const std::string relFilePath = mEnvironmentMediaPropertiesImpl.getEnvironmentMediaProperties().fontDirPath + fontProfiles.filePath;
     TTF_Font *loadedFont = TTF_OpenFont(relFilePath.c_str(), fontProfiles.fontSize);
 
     if ( loadedFont == NULL )

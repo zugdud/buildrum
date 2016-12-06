@@ -28,6 +28,7 @@
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
 #include "config/constants/media/fonts/FontProfilesImpl.hpp"
 #include "config/constants/media/audio/AudioContentImpl.hpp"
+#include "config/constants/media/sprites/SpriteSheetPropertiesImpl.hpp"
 
 #include "config/constants/window/WindowPropertiesImpl.hpp"
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
@@ -39,6 +40,9 @@
 #include "media/fonts/FontTextures.hpp"
 #include "media/fonts/FontManager.hpp"
 #include "media/audio/AudioManager.hpp"
+
+#include "media/sprites/Sprite.hpp"
+#include "media/sprites/SpriteSheet.hpp"
 
 #include "UI/elements/UIElement.hpp"
 #include "UI/elements/UIButtonState.hpp"
