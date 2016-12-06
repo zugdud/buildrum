@@ -60,7 +60,7 @@ void BaseScene::detatch()
 {
     detatchLayersFromMenuRenderer();
     detatchSceneRenderersFromViewports();
-    // detatchInputManagerToUIElements();
+    detatchInputManagerFromUIElements();
     // detatchUIElementsToEventManager();
 }
 
@@ -81,20 +81,20 @@ void BaseScene::detatchSceneRenderersFromViewports()
         mViewports[i].removeAllRenderers();
     }
 }
-//
-// void StartSceneImpl::attachInputManagerToUIElements()
-// {
-//     // each menu
-//     for (size_t i = 0; i < mMenuIds.size(); i++)
-//     {
-//         // attach input handler to ui elements
-//         std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
-//         for (size_t i = 0; i < uiGridCells.size(); i++)
-//         {
-//             mInputEventManager->registerPointEventObserver(uiGridCells[i].getUIButton());
-//         }
-//     }
-// }
+
+void BaseScene::detatchInputManagerFromUIElements()
+{
+    // each menu
+    for (size_t i = 0; i < mMenuIds.size(); i++)
+    {
+        // detatch input handler to ui elements
+        std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
+        for (size_t i = 0; i < uiGridCells.size(); i++)
+        {
+            mInputEventManager->removePointEventObserver(uiGridCells[i].getUIButton()->getId());
+        }
+    }
+}
 //
 // void StartSceneImpl::attachUIElementsToEventManager()
 // {

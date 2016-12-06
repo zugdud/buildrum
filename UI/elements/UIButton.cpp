@@ -12,6 +12,11 @@ UIButton::~UIButton()
 
 }
 
+const std::string & UIButton::getId()
+{
+    return mUIButtonProperties.buttonId;
+}
+
 void UIButton::setUIEventConnector(UIEventConnector *uiEventConnector)
 {
     mUIEventConnector = uiEventConnector;

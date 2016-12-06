@@ -36,6 +36,7 @@ private:
 
 void detatchLayersFromMenuRenderer();
 void detatchSceneRenderersFromViewports();
+void detatchInputManagerFromUIElements();
 
 void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();

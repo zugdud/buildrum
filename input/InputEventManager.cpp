@@ -21,8 +21,22 @@ InputEventManager * InputEventManager::getInstance()
     return mSingletonInstance;
 }
 
+void InputEventManager::removePointEventObserver(const std::string & id)
+{
+    for (size_t i = 0; i < mPointEventObserver.size(); i++)
+    {
+        if (mPointEventObserver[i]->getId() == id)
+        {
+            SDL_Log("InputEventManager::removePointEventObserver -- removing observer id: %s \n", id.c_str());
+            mPointEventObserver.erase(mPointEventObserver.begin() + i);
+        }
+    }
+}
+
+
 void InputEventManager::registerPointEventObserver(PointEventObserver *pointEventObserver)
 {
+    SDL_Log("InputEventManager::registerPointEventObserver -- registering observer id: %s \n", pointEventObserver->getId().c_str());
     mPointEventObserver.push_back(pointEventObserver);
 }
 

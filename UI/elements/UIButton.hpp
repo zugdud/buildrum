@@ -13,6 +13,8 @@ void configure(const UIButtonStateProperties &uiButtonStateProperties);
 void pointEventCallback(PointInt pointInt);
 void setUIEventConnector(UIEventConnector *uiEventConnector);
 
+const std::string & getId();
+
 private:
 
 bool setDefaultButtonState();

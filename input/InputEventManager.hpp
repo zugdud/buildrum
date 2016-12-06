@@ -10,6 +10,9 @@ static InputEventManager * getInstance();
 void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
 void registerPointEventObserver(PointEventObserver *pointEventObserver);
 
+void removePointEventObserver(const std::string & id);
+
+
 void pollEventQueue();
 
 protected:
