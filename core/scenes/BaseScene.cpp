@@ -16,6 +16,7 @@ BaseScene::BaseScene(const std::string & sceneId)
             mMusicTrackIds.size(),
             mMenuIds.size());
 }
+
 BaseScene::~BaseScene()
 {
 
@@ -57,7 +58,7 @@ void BaseScene::attach()
 
 void BaseScene::detatch()
 {
-    detatchLayersToMenuRenderer();
+    // detatchLayersToMenuRenderer();
     // detatchSceneRenderersToViewports();
     // detatchInputManagerToUIElements();
     // detatchUIElementsToEventManager();
@@ -138,11 +139,15 @@ void BaseScene::attachInputManagerToUIElements()
 
 void BaseScene::attachUIElementsToEventManager()
 {
-    // attach UI elements to event handler
-    std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mSceneId)->getGridCells();
-    for (size_t i = 0; i < uiGridCells.size(); i++)
+    // each menu
+    for (size_t i = 0; i < mMenuIds.size(); i++)
     {
-        uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
+        // attach UI elements to event handler
+        std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
+        for (size_t i = 0; i < uiGridCells.size(); i++)
+        {
+            uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
+        }
     }
 }
 

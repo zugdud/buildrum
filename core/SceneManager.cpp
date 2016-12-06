@@ -23,12 +23,8 @@ SceneManager * SceneManager::getInstance()
 
 void SceneManager::init()
 {
-    // start scen
     mScenes["MainMenu"] = new StartSceneImpl("MainMenu");
-
-    // game scene
-    GameSceneImpl *gameScene = new GameSceneImpl();
-    mScenes[gameScene->getSceneId()] = gameScene;
+    mScenes["GameScene"] = new GameSceneImpl("GameScene");
 
     // attach to active scene
     mActiveSceneId = "MainMenu";
