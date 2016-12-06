@@ -50,18 +50,24 @@ void BaseScene::handleMusicPlaylist()
 
 void BaseScene::attach()
 {
+    SDL_Log("----------------------------------------------------");
+    SDL_Log("BaseScene::attach -- attaching handlers to sceneId: %s \n", mSceneId.c_str());
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
     attachInputManagerToUIElements();
-    attachUIElementsToEventManager();
+    attachUIElementsToEventManager();     // only needed once
+    SDL_Log("----------------------------------------------------");
 }
 
 void BaseScene::detatch()
 {
+    SDL_Log("----------------------------------------------------");
+    SDL_Log("BaseScene::detatch -- removing handlers from sceneId: %s \n", mSceneId.c_str());
     detatchLayersFromMenuRenderer();
     detatchSceneRenderersFromViewports();
     detatchInputManagerFromUIElements();
-    // detatchUIElementsToEventManager();
+    // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
+    SDL_Log("----------------------------------------------------");
 }
 
 //
@@ -95,16 +101,6 @@ void BaseScene::detatchInputManagerFromUIElements()
         }
     }
 }
-//
-// void StartSceneImpl::attachUIElementsToEventManager()
-// {
-//     // attach UI elements to event handler
-//     std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mSceneId)->getGridCells();
-//     for (size_t i = 0; i < uiGridCells.size(); i++)
-//     {
-//         uiGridCells[i].getUIButton()->setUIEventConnector(EventManager::getInstance());
-//     }
-// }
 
 void BaseScene::attachLayersToMenuRenderer()
 {

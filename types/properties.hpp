@@ -114,11 +114,9 @@ struct UIMenuProperties
 
 struct SpriteSheetProperties
 {
-    int spriteSheetId;
+    std::string spriteSheetId;
     int rows;
     int columns;
-    int startSpriteId;
-    int endSpriteId;
     int spriteSize;
     int spriteCount;
     int spriteSheetPixelWidth;
