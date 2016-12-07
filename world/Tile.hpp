@@ -7,6 +7,6 @@ Tile();
 
 private:
 
-std::vector<Tile *> mTiles;
+std::vector<Entity *> mEntities;
 
 };

@@ -11,6 +11,31 @@ struct EnvironmentMediaProperties
 };
 
 // ------------------------------------------------------------------------------
+// Entities
+// ------------------------------------------------------------------------------
+
+struct ObstacleProperties
+{
+    bool isDestructable;
+};
+
+struct SurfaceProperties
+{
+    EntityProperties entityProperties;
+    int weightValue;
+};
+
+struct EntityProperties
+{
+    std::string entityId;
+    EntityOrientation defaultOrientation;
+    SpriteProperties spriteUp;
+    SpriteProperties spriteDown;
+    SpriteProperties spriteLeft;
+    SpriteProperties spriteRight;
+};
+
+// ------------------------------------------------------------------------------
 // Window
 // ------------------------------------------------------------------------------
 

@@ -21,6 +21,11 @@ ConfigManager * ConfigManager::getInstance()
     return mSingletonInstance;
 }
 
+const SurfacePropertiesImpl & ConfigManager::getSurfacePropertiesImpl()
+{
+    return mSurfacePropertiesImpl;
+}
+
 const std::vector<std::string> & ConfigManager::getMenuIds()
 {
     return mMenuIds;
@@ -70,6 +75,7 @@ void ConfigManager::loadConstants()
     mFontProfileImpl.loadAll();
     mAudioContentImpl.loadAll();
     mSpriteSheetPropertiesImpl.loadAll();
+    mSurfaceProperties.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");

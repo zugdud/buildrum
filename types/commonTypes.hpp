@@ -10,10 +10,12 @@ struct PointDouble
     double y;
 };
 
-struct SpriteInfo
+struct SpriteProperties
 {
     int spriteId;
     std::string spriteSheetId;
+    SDL_RendererFlip sdlRendererFlip;
+    double angle;
 };
 
 enum EntityOrientation

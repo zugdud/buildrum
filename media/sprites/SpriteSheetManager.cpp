@@ -11,8 +11,6 @@ SpriteSheetManager::~SpriteSheetManager()
 
 }
 
-
-
 bool SpriteSheetManager::configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
                                    const SpriteSheetPropertiesImpl &spriteSheetPropertiesImpl)
 {

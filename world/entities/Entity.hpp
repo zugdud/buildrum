@@ -5,10 +5,11 @@ public:
 Entity();
 ~Entity();
 
-private:
-
+protected:
 
 EntityOrientation mEntityOrientation;
+
+private:
 
 
 };
