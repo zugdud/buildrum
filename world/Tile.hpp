@@ -2,11 +2,14 @@ class Tile
 {
 public:
 
-Tile();
+Tile(const int & tileId);
 ~Tile();
+
+void setSurface
 
 private:
 
-std::vector<Entity *> mEntities;
+int tileId;
+std::vector<Surface> mSurfaces;
 
 };

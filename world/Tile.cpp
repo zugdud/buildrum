@@ -1,8 +1,8 @@
 #include "include/global.hpp"
 
-Tile::Tile()
+Tile::Tile(const int & tileId)
 {
-
+    mTileId = tileId;
 }
 
 Tile::~Tile()

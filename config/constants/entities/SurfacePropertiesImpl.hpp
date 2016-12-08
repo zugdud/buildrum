@@ -7,10 +7,10 @@ Surfaces();
 
 void loadAll();
 
-std::vector<SurfaceProperties> & getSurfaceProperties();
+const SurfaceProperties & getSurfaceProperties(const std::string entityId);
 
 private:
 
-std::vector<SurfaceProperties> mSurfaceProperties;
+std::map<std::string, SurfaceProperties> mSurfaceProperties;
 
 };

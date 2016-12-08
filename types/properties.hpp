@@ -29,11 +29,17 @@ struct EntityProperties
 {
     std::string entityId;
     EntityOrientation defaultOrientation;
+    int numLayers;
+    SpriteLayer spriteLayers[256];
+};
+
+struct SpriteLayer
+{
     SpriteProperties spriteUp;
     SpriteProperties spriteDown;
     SpriteProperties spriteLeft;
     SpriteProperties spriteRight;
-};
+}
 
 // ------------------------------------------------------------------------------
 // Window
