@@ -16,44 +16,71 @@ void SurfacePropertiesImpl::loadAll()
     loadSurfaces();
 }
 
-void SurfacePropertiesImpl::loadSurfaces()
+void SurfacePropertiesImpl::loadSurface(const std::string & entityId,
+                                        const)
 {
 
-    // SpriteLayer -- entityId, spriteUp, spriteDown, spriteLeft, spriteRight
-    // SpriteProperties -- spriteId, spriteSheetId, sdlRendererFlip, angle
+    std::vector<SpriteProperties> spriteProperties;
+    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
+    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
+    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
+    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
 
-    // EntityProperties -- entityId, defaultOrientation
-    // SurfaceProperties -- EntityProperties, weightValue
+    std::vector<SpriteLayer> spriteLayers;
+    spriteLayers.push_back(buildSpriteLayer(spriteProperties));
+    mSurfaceProperties["field_1"] = buildSurface(buildEntity("field_1", spriteLayers), 10);
 
+}
 
+SpriteProperties SurfacePropertiesImpl::buildSpriteProperties(const int & spriteId,
+                                                              const std::string spriteSheetId)
+{
+    SpriteProperties spriteProperties = { spriteId, spriteSheetId, SDL_FLIP_NONE, 0 };
 
-    // grass_1
-    SpriteProperties grass_1_sprite = { 200, "castle_1", SDL_FLIP_NONE, 0 };
-    SpriteLayer grass_1_layer = { grass_1_sprite, grass_1_sprite, grass_1_sprite, grass_1_sprite };
+    return spriteProperties;
+}
 
-    EntityProperties grass_1_ent = { "grass_1", DOWN };
-    SurfaceProperties grass_1_surface;
+SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties)
+{
+    if (spriteProperties.size() == 4)
+    {
+        SpriteProperties up = spriteProperties[0];
+        SpriteProperties down = spriteProperties[1];
+        SpriteProperties left = spriteProperties[2];
+        SpriteProperties right = spriteProperties[3];
 
-    grass_1_surface.entityProperties =  grass_1_ent;
-    grass_1_surface.weightValue = 10;
-    grass_1_surface.numLayers = 1;
-    grass_1_surface.spriteLayers[0] = grass_1_layer;
+        SpriteLayer spriteLayer;
+        spriteLayer.spriteUp = up;
+        spriteLayer.spriteDown = down;
+        spriteLayer.spriteLeft = left;
+        spriteLayer.spriteRight = right;
+        return spriteLayer;
+    }
+    else
+    {
+        SDL_Log("SurfacePropertiesImpl::buildSpriteLayer -- ERROR: spriteProperties.size() out of bounds: %zu \n", spriteProperties.size());
+    }
+}
 
-    mSurfaceProperties["grass_1"] = grass_1_surface;
+EntityProperties SurfacePropertiesImpl::buildEntity(const std::string & entityId,
+                                                    const std::vector<SpriteLayer> & spriteLayers)
+{
+    EntityProperties entityProperties;
 
-    // water_1
-    SpriteProperties water_1_sprite = { 200, "castle_1", SDL_FLIP_NONE, 0 };
-    SpriteLayer water_1_layer = { water_1_sprite, water_1_sprite, water_1_sprite, water_1_sprite };
+    entityProperties.entityId = entityId;
+    entityProperties.defaultOrientation = UP;
+    entityProperties.numLayers = spriteLayers.size();
+    int numLayers;
+    for (size_t i = 0; i < spriteLayers.size(); i++)
+    {
+        entityProperties.spriteLayers[i] = spriteLayers[i];
+    }
+}
 
-    EntityProperties water_1_ent = { "water_1", DOWN };
-    SurfaceProperties water_1_surface;
+EntityProperties SurfacePropertiesImpl::buildSurface(const EntityProperties & entityProperties,
+                                                     const int & weight)
+{
 
-    water_1_surface.entityProperties =  water_1_ent;
-    water_1_surface.weightValue = 100;
-    water_1_surface.numLayers = 1;
-    water_1_surface.spriteLayers[0] = water_1_ent;
-
-    mSurfaceProperties["water_1"] = water_1_surface;
 }
 
 const SurfaceProperties &  SurfacePropertiesImpl::getSurfaceProperties(const std::string entityId)

@@ -36,8 +36,10 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 SRCS = main.cpp \
 config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
+config/constants/entities/SurfacePropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
+config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
@@ -61,7 +63,10 @@ UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
-media/audio/AudioManager.cpp
+media/audio/AudioManager.cpp \
+media/sprites/Sprite.cpp \
+media/sprites/SpriteSheet.cpp \
+media/sprites/SpriteSheetManager.cpp \
 
 # define the C object files
 #

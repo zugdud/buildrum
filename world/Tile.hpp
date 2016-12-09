@@ -5,11 +5,12 @@ public:
 Tile(const int & tileId);
 ~Tile();
 
-void setSurface
+void setSurface(const Surface & surface);
+const Surface & getSurface();
 
 private:
 
 int tileId;
-std::vector<Surface> mSurfaces;
+Surface mSurface;
 
 };

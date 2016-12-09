@@ -19,11 +19,19 @@
 #include <SDL_timer.h>
 
 #include "types/commonTypes.hpp"
-#include "types/properties.hpp"
+
+#include "types/entity_properties.hpp"
+#include "types/media_properties.hpp"
+#include "types/misc_properties.hpp"
+#include "types/ui_properties.hpp"
+#include "types/window_properties.hpp"
+#include "types/world_properties.hpp"
 
 #include "core/IEventManager.hpp"
 
 #include "config/constants/menus/IMenuProperties.hpp"
+
+#include "config/constants/entities/SurfacePropertiesImpl.hpp"
 
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
 #include "config/constants/media/fonts/FontProfilesImpl.hpp"

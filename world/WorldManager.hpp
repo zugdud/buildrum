@@ -18,4 +18,6 @@ WorldManager& operator=(const WorldManager&);
 
 private:
 
+World mWorld;
+
 };

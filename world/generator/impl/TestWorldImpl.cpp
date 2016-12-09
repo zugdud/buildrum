@@ -2,6 +2,7 @@
 
 TestWorldImpl::TestWorldImpl()
 {
+    SDL_Log("TestWorldImpl::TestWorldImpl construct \n");
     mTileCount = 65536;
     mSurfacePropertiesImpl = ConfigManager::getInstance()->getSurfacePropertiesImpl();
 }

@@ -5,10 +5,13 @@ public:
 World();
 ~World();
 
-void configure(const std::vector<Tile> & tiles);
+void configure(const WorldProperties & worldProperties, const std::vector<Tile> & tiles);
+const Tile & getTile(const int & tileId);
+
 
 private:
 
+WorldProperties mWorldProperties;
 std::vector<Tile> mTiles;
 
 };

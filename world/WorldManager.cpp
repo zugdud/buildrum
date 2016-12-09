@@ -9,3 +9,8 @@ WorldManager::~WorldManager()
 {
 
 }
+
+WorldManager::loadWorld()
+{
+    mWorld = GenerateWorld("testWorld");
+}
