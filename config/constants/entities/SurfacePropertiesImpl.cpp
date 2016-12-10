@@ -16,20 +16,33 @@ void SurfacePropertiesImpl::loadAll()
     loadSurfaces();
 }
 
-void SurfacePropertiesImpl::loadSurface(const std::string & entityId,
-                                        const)
+void SurfacePropertiesImpl::loadSurfaces()
+{
+    addSurface("field_1", 20, "castle_1", 10);
+    addSurface("field_2", 40, "castle_1", 10);
+    addSurface("field_3", 60, "castle_1", 10);
+    addSurface("water_1", 80, "castle_1", 100);
+    addSurface("water_2", 100, "castle_1", 100);
+    addSurface("water_3", 120, "castle_1", 100);
+}
+
+void SurfacePropertiesImpl::addSurface(const std::string & entityId,
+                                       const int & spriteId,
+                                       const std::string & spriteSheetId,
+                                       const int & weightValue)
 {
 
     std::vector<SpriteProperties> spriteProperties;
-    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
-    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
-    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
-    spriteProperties.push_back(buildSpriteProperties(200, "castle_1"));
+    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
+    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
+    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
+    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
 
     std::vector<SpriteLayer> spriteLayers;
     spriteLayers.push_back(buildSpriteLayer(spriteProperties));
-    mSurfaceProperties["field_1"] = buildSurface(buildEntity("field_1", spriteLayers), 10);
-
+    EntityProperties entityProperties = buildEntity(entityId, spriteLayers);
+    SurfaceProperties surfaceProperties = buildSurface(entityProperties, weightValue);
+    mSurfaceProperties[entityId] = surfaceProperties;
 }
 
 SpriteProperties SurfacePropertiesImpl::buildSpriteProperties(const int & spriteId,
@@ -42,6 +55,8 @@ SpriteProperties SurfacePropertiesImpl::buildSpriteProperties(const int & sprite
 
 SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties)
 {
+    SpriteLayer spriteLayer;
+
     if (spriteProperties.size() == 4)
     {
         SpriteProperties up = spriteProperties[0];
@@ -49,17 +64,18 @@ SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProp
         SpriteProperties left = spriteProperties[2];
         SpriteProperties right = spriteProperties[3];
 
-        SpriteLayer spriteLayer;
+
         spriteLayer.spriteUp = up;
         spriteLayer.spriteDown = down;
         spriteLayer.spriteLeft = left;
         spriteLayer.spriteRight = right;
-        return spriteLayer;
+
     }
     else
     {
         SDL_Log("SurfacePropertiesImpl::buildSpriteLayer -- ERROR: spriteProperties.size() out of bounds: %zu \n", spriteProperties.size());
     }
+    return spriteLayer;
 }
 
 EntityProperties SurfacePropertiesImpl::buildEntity(const std::string & entityId,
@@ -70,17 +86,22 @@ EntityProperties SurfacePropertiesImpl::buildEntity(const std::string & entityId
     entityProperties.entityId = entityId;
     entityProperties.defaultOrientation = UP;
     entityProperties.numLayers = spriteLayers.size();
-    int numLayers;
     for (size_t i = 0; i < spriteLayers.size(); i++)
     {
         entityProperties.spriteLayers[i] = spriteLayers[i];
     }
+    return entityProperties;
 }
 
-EntityProperties SurfacePropertiesImpl::buildSurface(const EntityProperties & entityProperties,
-                                                     const int & weight)
+SurfaceProperties SurfacePropertiesImpl::buildSurface(const EntityProperties & entityProperties,
+                                                      const int & weight)
 {
+    SurfaceProperties surfaceProperties;
 
+    surfaceProperties.entityProperties = entityProperties;
+    surfaceProperties.weightValue = weight;
+
+    return surfaceProperties;
 }
 
 const SurfaceProperties &  SurfacePropertiesImpl::getSurfaceProperties(const std::string entityId)

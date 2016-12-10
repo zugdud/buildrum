@@ -68,6 +68,14 @@ media/sprites/Sprite.cpp \
 media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
 
+world/entities/Entity.cpp \
+world/entities/Suface.cpp \
+world/generator/impl/TestWorldImpl.cpp \
+world/generator/GenerateWorld.cpp \
+world/Tile.cpp \
+world/World.cpp \
+world/WorldManager.cpp \
+
 # define the C object files
 #
 # This uses Suffix Replacement within a macro:

@@ -68,6 +68,14 @@
 #include "window/Window.hpp"
 #include "window/WindowManager.hpp"
 
+#include "world/entities/Entity.hpp"
+#include "world/entities/Suface.hpp"
+#include "world/generator/impl/TestWorldImpl.hpp"
+#include "world/generator/GenerateWorld.hpp"
+#include "world/Tile.hpp"
+#include "world/World.hpp"
+#include "world/WorldManager.hpp"
+
 #include "renderers/MenuRenderer.hpp"
 
 #include "core/scenes/IScene.hpp"
