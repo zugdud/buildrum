@@ -2,7 +2,7 @@
 
 Viewport::Viewport()
 {
-
+    mWorldViewport = false;
 }
 
 Viewport::~Viewport()
@@ -17,6 +17,16 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
     mViewportProperties = viewportProperties;
     mSDLRenderer = sdlRenderer;
     positionViewport(windowProperties);
+}
+
+bool Viewport::isWorldViewport()
+{
+    return mWorldViewport;
+}
+void Viewport::setWorldViewport()
+{
+    mCamera.configure(ConfigManager::getInstance()->getCameraProperties);
+    // void configure(const CameraProperties &CameraProperties, const WindowProperties &windowProperties, const WorldProperties &worldProperties);
 }
 
 void Viewport::positionViewport(const WindowProperties &windowProperties)

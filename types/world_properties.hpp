@@ -7,4 +7,5 @@ struct WorldProperties
     int rows;
     int columns;
     int numTiles;
+    int textureSize;
 };
