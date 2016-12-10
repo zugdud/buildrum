@@ -19,6 +19,7 @@ struct ViewportProperties
     double windowWidthRatio;
     double windowHeightRatio;
     SDL_Color bgColor;
+    CameraProperties cameraProperties;
 };
 
 struct ViewContextProperties

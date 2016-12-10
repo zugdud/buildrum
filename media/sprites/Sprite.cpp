@@ -10,3 +10,12 @@ Sprite::~Sprite()
 {
 
 }
+
+const int & Sprite::getSpriteId()
+{
+    return mSpriteId;
+}
+const SDL_Rect & Sprite::getRect()
+{
+    return mRect;
+}

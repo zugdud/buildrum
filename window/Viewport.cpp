@@ -2,7 +2,7 @@
 
 Viewport::Viewport()
 {
-    mWorldViewport = false;
+    mHasWorld = false;
 }
 
 Viewport::~Viewport()
@@ -19,14 +19,14 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
     positionViewport(windowProperties);
 }
 
-bool Viewport::isWorldViewport()
+const bool & Viewport::hasWorld()
 {
-    return mWorldViewport;
+    return mHasWorld;
 }
-void Viewport::setWorldViewport()
+
+void Viewport::setWorld(const WorldProperties &worldProperties)
 {
-    mCamera.configure(ConfigManager::getInstance()->getCameraProperties);
-    // void configure(const CameraProperties &CameraProperties, const WindowProperties &windowProperties, const WorldProperties &worldProperties);
+    mCamera.configure(mViewportProperties.cameraProperties, worldProperties);
 }
 
 void Viewport::positionViewport(const WindowProperties &windowProperties)

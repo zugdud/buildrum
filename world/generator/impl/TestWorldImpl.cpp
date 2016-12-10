@@ -3,7 +3,7 @@
 TestWorldImpl::TestWorldImpl()
 {
     SDL_Log("TestWorldImpl::TestWorldImpl construct \n");
-    mTileCount = 65536;
+    setWorldProperties();
     mSurfacePropertiesImpl = ConfigManager::getInstance()->getSurfacePropertiesImpl();
 }
 
@@ -12,15 +12,32 @@ TestWorldImpl::~TestWorldImpl()
 
 }
 
+void TestWorldImpl::setWorldProperties()
+{
+    WorldProperties worldProperties;
+
+    worldProperties.worldId = "testWorld";
+    worldProperties.rows = 64;
+    worldProperties.columns = 64;
+    worldProperties.columns = 4096;
+    worldProperties.textureSize = 32;
+
+    mWorldProperties = worldProperties;
+}
+
 void TestWorldImpl::setWorld(World & world)
 {
-    for (int tileId = 0; tileId < mTileCount; tileId++)
+    for (int tileId = 0; tileId < mWorldProperties.numTiles; tileId++)
     {
-        Tile tile = Tile(tileId);
+        Tile tile;
+        tile.configure(tileId);
         setTile(tile);
         mTiles.push_back(tile);
     }
+
+    world.configure(mWorldProperties, mTiles);
 }
+
 
 void TestWorldImpl::setTile(Tile & tile)
 {

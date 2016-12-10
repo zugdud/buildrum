@@ -15,8 +15,8 @@ void addRenderer(IRenderer *renderer);
 void removeAllRenderers();
 void renderUpdate() const;
 
-bool isWorldViewport();
-void setWorldViewport();
+const bool & hasWorld();
+void setWorld();
 
 
 private:
@@ -30,6 +30,6 @@ SDL_Renderer *mSDLRenderer;
 
 std::vector<IRenderer *> mRenderers;
 
-bool mWorldViewport;
+bool mHasWorld;
 Camera mCamera;
 };

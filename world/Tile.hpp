@@ -2,8 +2,10 @@ class Tile
 {
 public:
 
-Tile(const int & tileId);
+Tile();
 ~Tile();
+
+void configure(const int & tileId);
 
 void setSurface(const Surface & surface);
 const Surface & getSurface();

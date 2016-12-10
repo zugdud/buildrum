@@ -16,4 +16,5 @@ int mTileCount;
 SurfacePropertiesImpl mSurfacePropertiesImpl;
 std::vector<Tile> mTiles;
 
+WorldProperties mWorldProperties;
 };

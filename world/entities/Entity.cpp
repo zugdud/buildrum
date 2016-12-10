@@ -9,3 +9,8 @@ Entity::~Entity()
 {
 
 }
+
+const EntityOrientation & Entity::getEntityOrientation()
+{
+    return mEntityOrientation;
+}

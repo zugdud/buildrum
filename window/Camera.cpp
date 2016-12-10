@@ -10,14 +10,14 @@ Camera::~Camera()
 
 }
 
-void Camera::configure(const CameraProperties &CameraProperties, const WindowProperties &windowProperties, const WorldProperties & worldProperties)
+void Camera::configure(const CameraProperties &CameraProperties, const SDL_Rect & viewportRect, const WorldProperties & worldProperties)
 {
     mCameraProperties = CameraProperties;
 
     mCamera.x = mCameraProperties.initPositionX;
     mCamera.y = mCameraProperties.initPositionY;
-    mCamera.w = windowProperties.screenWidth;
-    mCamera.h = windowProperties.screenHeight;
+    mCamera.w = viewportRect.w;
+    mCamera.h = viewportRect.h;
 
     mZoomFactor = mCameraProperties.defaultZoomFactor;
     mTextureSize =  worldProperties.textureSize;

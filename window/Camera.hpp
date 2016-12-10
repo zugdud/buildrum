@@ -5,7 +5,7 @@ public:
 Camera();
 ~Camera();
 
-void configure(const CameraProperties &CameraProperties, const WindowProperties &windowProperties, const WorldProperties & worldProperties);
+void configure(const CameraProperties &CameraProperties, const SDL_Rect & viewportRect, const WorldProperties & worldProperties);
 
 bool isViewableArea(const PointInt & pointInt);
 void move(const PointDouble & pointDouble);

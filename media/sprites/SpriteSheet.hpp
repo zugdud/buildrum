@@ -9,6 +9,9 @@ bool configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesI
                const SpriteSheetProperties &spriteSheetProperties);
 bool loadSpriteSheet();
 
+SDL_Texture * getTexture();
+const Sprite & getSprite(const int & spriteId);
+
 private:
 
 void setSprites();
@@ -19,5 +22,6 @@ SpriteSheetProperties mSpriteSheetProperties;
 
 std::vector<Sprite> mSprites;
 
+SDL_Texture *mTexture;
 SDL_Renderer *mSDLRenderer;
 };

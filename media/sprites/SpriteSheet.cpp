@@ -79,7 +79,7 @@ bool SpriteSheet::loadSpriteSheet()
             mSpriteSheetProperties.spriteSheetId.c_str(),
             filePath.c_str());
 
-    SDL_Texture *newTexture = NULL;
+    mTexture = NULL;
     SDL_Surface *loadedSurface = IMG_Load(filePath.c_str() );
 
     if ( loadedSurface == NULL )
@@ -96,14 +96,14 @@ bool SpriteSheet::loadSpriteSheet()
         else
         {
 
-            newTexture = SDL_CreateTexture(mSDLRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h);
-            if ( newTexture == NULL )
+            mTexture = SDL_CreateTexture(mSDLRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h);
+            if ( mTexture == NULL )
             {
                 SDL_Log("SpriteSheet::loadSpriteSheet -- Unable to create blank texture, SDL error: %s", SDL_GetError());
             }
             else
             {
-                applyTransparency(newTexture, formattedSurface);
+                applyTransparency(mTexture, formattedSurface);
 
             }
 
@@ -114,7 +114,7 @@ bool SpriteSheet::loadSpriteSheet()
     }
 
 
-    if (newTexture != NULL)
+    if (mTexture != NULL)
     {
         return true;
     }
@@ -156,4 +156,13 @@ void SpriteSheet::applyTransparency(SDL_Texture *newTexture, SDL_Surface *format
         }
     }
     SDL_UnlockTexture(newTexture);
+}
+
+SDL_Texture * SpriteSheet::getTexture()
+{
+    return mTexture;
+}
+const Sprite & SpriteSheet::getSprite(const int & spriteId)
+{
+    return mSprites[spriteId];
 }

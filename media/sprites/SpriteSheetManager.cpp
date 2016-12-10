@@ -24,6 +24,11 @@ bool SpriteSheetManager::configure(const EnvironmentMediaPropertiesImpl &environ
     return success;
 }
 
+const SpriteSheet & SpriteSheetManager::getSpriteSheet(const std::string & spriteSheetId)
+{
+    return mSpriteSheets[spriteSheetId];
+}
+
 bool SpriteSheetManager::loadSpriteSheets()
 {
     const std::vector<SpriteSheetProperties> & spriteSheetProperties = mSpriteSheetPropertiesImpl.getSpriteSheetProperties();

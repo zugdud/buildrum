@@ -24,3 +24,13 @@ const Tile & World::getTile(const int & tileId)
     }
     return mTiles[tileId];
 }
+
+const std::vector<Tile> & World::getTiles()
+{
+    return mTiles;
+}
+
+const WorldProperties & World::getWorldProperties()
+{
+    return mWorldProperties;
+}

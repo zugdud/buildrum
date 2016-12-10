@@ -1,13 +1,18 @@
 #include "include/global.hpp"
 
-Tile::Tile(const int & tileId)
+Tile::Tile()
 {
-    mTileId = tileId;
+
 }
 
 Tile::~Tile()
 {
 
+}
+
+void configure(const int & tileId)
+{
+    mTileId = tileId;
 }
 
 const Surface & Tile::getSurface()
