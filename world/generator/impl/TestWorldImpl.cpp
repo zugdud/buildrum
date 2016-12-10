@@ -16,7 +16,9 @@ void TestWorldImpl::setWorld(World & world)
 {
     for (int tileId = 0; tileId < mTileCount; tileId++)
     {
-        mTiles.push_back(setTile(Tile(tileId)));
+        Tile tile = Tile(tileId);
+        setTile(tile);
+        mTiles.push_back(tile);
     }
 }
 
@@ -27,5 +29,5 @@ void TestWorldImpl::setTile(Tile & tile)
 
 void TestWorldImpl::setSurface(Surface & surface)
 {
-    surface.configure(mSurfaceProperties.getSurfaceProperties("grass_1"));
+    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("grass_1"));
 }

@@ -9,6 +9,8 @@ static WorldManager& Instance()
     return instance;
 }
 
+void loadWorld(const std::string & worldId);
+
 protected:
 
 WorldManager();

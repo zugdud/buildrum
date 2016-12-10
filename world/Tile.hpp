@@ -10,7 +10,7 @@ const Surface & getSurface();
 
 private:
 
-int tileId;
+int mTileId;
 Surface mSurface;
 
 };

@@ -67,7 +67,6 @@ media/audio/AudioManager.cpp \
 media/sprites/Sprite.cpp \
 media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
-
 world/entities/Entity.cpp \
 world/entities/Suface.cpp \
 world/generator/impl/TestWorldImpl.cpp \

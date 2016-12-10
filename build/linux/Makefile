@@ -30,6 +30,7 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 SRCS = main.cpp \
 config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
+config/constants/entities/SurfacePropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
 config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
@@ -60,6 +61,13 @@ media/audio/AudioManager.cpp \
 media/sprites/Sprite.cpp \
 media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
+world/entities/Entity.cpp \
+world/entities/Surface.cpp \
+world/generator/impl/TestWorldImpl.cpp \
+world/generator/GenerateWorld.cpp \
+world/Tile.cpp \
+world/World.cpp \
+world/WorldManager.cpp \
 
 # define the C object files
 #

@@ -18,12 +18,9 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
 
 const Tile & World::getTile(const int & tileId)
 {
-    if (tileId <= (mWorldProperties.numTiles - 1))
+    if (tileId > (mWorldProperties.numTiles - 1))
     {
-        return mTiles[tileId];
+        SDL_Log("World::getTile -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
     }
-    else
-    {
-        SDL_Log("World::getTile -- requested tileId out of bounds tileId: %d \n", tileId);
-    }
+    return mTiles[tileId];
 }

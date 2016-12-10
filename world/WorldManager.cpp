@@ -10,8 +10,10 @@ WorldManager::~WorldManager()
 
 }
 
-WorldManager::loadWorld(const std::string & worldId)
+void WorldManager::loadWorld(const std::string & worldId)
 {
     SDL_Log("WorldManager::loadWorld -- worldId: %s \n", worldId.c_str());
-    mWorld = GenerateWorld(worldId);
+    GenerateWorld generateWorld;
+    generateWorld.createWorld(worldId);
+    mWorld = generateWorld.getWorld();
 }
