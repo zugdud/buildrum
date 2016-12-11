@@ -30,6 +30,7 @@ Window mWindow;
 std::vector <Viewport> mViewports;
 InputEventManager *mInputEventManager;
 std::vector<std::string> mMenuIds;
+
 MenuRenderer mMenuRenderer;
 WorldRenderer mWorldRenderer;
 

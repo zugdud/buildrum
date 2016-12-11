@@ -103,3 +103,12 @@ const SDL_Rect & Camera::getRect()
 {
     return mCamera;
 }
+
+void Camera::scrollEventCallback(SDL_Event scrollEvent)
+{
+
+}
+void Camera::zoomEventCallback(SDL_Event zoomEvent)
+{
+
+}

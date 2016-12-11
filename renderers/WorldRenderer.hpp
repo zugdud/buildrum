@@ -21,7 +21,7 @@ void renderLayers(const Tile & tile);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
-Camera mCamera;
+
 World mWorld;
 bool mAttached;
 

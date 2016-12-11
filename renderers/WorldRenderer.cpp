@@ -20,7 +20,7 @@ void WorldRenderer::attach(const Viewport &viewport)
 {
 
     mWorld = WorldManager::Instance().getWorld();
-    mCamera.configure(viewport, mWorld.getWorldProperties());
+    Camera::Instance().configure(viewport, mWorld.getWorldProperties());
     mAttached = true;
     SDL_Log("WorldRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 }
@@ -39,11 +39,11 @@ void WorldRenderer::renderWorld()
 
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
-            if (mCamera.isViewableArea(tiles[tileId].getRect()))
+            if (Camera::Instance().isViewableArea(tiles[tileId].getRect()))
             {
-                drawTile(tiles[tileId]);
+                // drawTile(tiles[tileId]);
+                renderLayers(tiles[tileId]);
                 renderText(tiles[tileId]);
-                // renderLayers(tiles[tileId], tileRect);
             }
         }
     }
@@ -86,10 +86,6 @@ void WorldRenderer::renderLayers(const Tile & tile)
     const Surface & surface = tile.getSurface();
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;
     const EntityOrientation entityOrientation = surface.getEntityOrientation();
-
-    // SDL_Log("WorldRenderer::renderTile -- entityId: %s numLayers: %d \n",
-    //         entityProperties.entityId.c_str(),
-    //         entityProperties.numLayers);
 
     for (int i = 0; i < entityProperties.numLayers; i++)
     {
