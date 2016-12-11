@@ -10,7 +10,7 @@ Entity::~Entity()
 
 }
 
-const EntityOrientation & Entity::getEntityOrientation()
+const EntityOrientation & Entity::getEntityOrientation() const
 {
     return mEntityOrientation;
 }

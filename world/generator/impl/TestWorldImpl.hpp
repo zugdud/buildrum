@@ -9,6 +9,7 @@ void setWorld(World & world);
 
 private:
 
+void setWorldProperties();
 void setTile(Tile & tile);
 void setSurface(Surface & surface);
 

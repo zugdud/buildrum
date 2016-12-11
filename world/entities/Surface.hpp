@@ -6,7 +6,7 @@ Surface();
 ~Surface();
 
 void configure(const SurfaceProperties & surfaceProperties);
-const SurfaceProperties & getSurfaceProperties();
+const SurfaceProperties & getSurfaceProperties() const;
 
 private:
 

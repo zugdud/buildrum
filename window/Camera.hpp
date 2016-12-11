@@ -5,7 +5,7 @@ public:
 Camera();
 ~Camera();
 
-void configure(const CameraProperties &CameraProperties, const SDL_Rect & viewportRect, const WorldProperties & worldProperties);
+void configure(const Viewport & viewport, const WorldProperties & worldProperties);
 
 bool isViewableArea(const SDL_Rect & rect);
 void move(const PointDouble & pointDouble);
@@ -22,5 +22,6 @@ double mZoomFactor;
 
 int mWorldPixelHeight;
 int mWorldPixeWidth;
+
 int mTextureSize;
 };

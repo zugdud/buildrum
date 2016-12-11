@@ -158,11 +158,11 @@ void SpriteSheet::applyTransparency(SDL_Texture *newTexture, SDL_Surface *format
     SDL_UnlockTexture(newTexture);
 }
 
-SDL_Texture * SpriteSheet::getTexture()
+SDL_Texture * SpriteSheet::getTexture() const
 {
     return mTexture;
 }
-const Sprite & SpriteSheet::getSprite(const int & spriteId)
+const Sprite & SpriteSheet::getSprite(const int & spriteId) const
 {
     return mSprites[spriteId];
 }

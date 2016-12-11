@@ -14,10 +14,10 @@ void Surface::configure(const SurfaceProperties & surfaceProperties)
 {
 
     mSurfaceProperties =  surfaceProperties;
-    mEntityOrientation = surfaceProperties.defaultOrientation;
+    mEntityOrientation = surfaceProperties.entityProperties.defaultOrientation;
 }
 
-const SurfaceProperties & Surface::getSurfaceProperties()
+const SurfaceProperties & Surface::getSurfaceProperties() const
 {
     return mSurfaceProperties;
 }

@@ -5,7 +5,7 @@ public:
 Entity();
 ~Entity();
 
-const EntityOrientation & getEntityOrientation();
+const EntityOrientation & getEntityOrientation() const;
 
 protected:
 

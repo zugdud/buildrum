@@ -3,6 +3,15 @@
 // Window
 // ------------------------------------------------------------------------------
 
+struct CameraProperties
+{
+    int initPositionX;
+    int initPositionY;
+    double defaultZoomFactor;
+    double maxZoomFactor;
+    double minZoomFactor;
+};
+
 struct WindowProperties
 {
     std::string windowName;
@@ -27,13 +36,4 @@ struct ViewContextProperties
     std::string viewContextId;
     int numViewports;
     ViewportProperties viewports[256];
-};
-
-struct CameraProperties
-{
-    int initPositionX;
-    int initPositionY;
-    double defaultZoomFactor;
-    double maxZoomFactor;
-    double minZoomFactor;
 };

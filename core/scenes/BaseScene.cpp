@@ -107,14 +107,12 @@ void BaseScene::detatchInputManagerFromUIElements()
 
 void BaseScene::attachWorldToWorldRenderer()
 {
-//  void attach(const World & world, const ViewportProperties &viewportProperties);
-
     for (size_t i = 0; i < mViewports.size(); i++)
     {
         const ViewportProperties & viewportProperties = mViewports[i].getViewportProperties();
-        if (viewportProperties.viewportId = mWorldRendererViewportId)
+        if (viewportProperties.viewportId == mWorldRendererViewportId)
         {
-            mWorldRenderer.attach(viewportProperties);
+            mWorldRenderer.attach(mViewports[i]);
         }
     }
 }

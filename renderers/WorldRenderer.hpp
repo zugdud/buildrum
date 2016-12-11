@@ -5,7 +5,7 @@ public:
 WorldRenderer();
 ~WorldRenderer();
 
-void attach(const ViewportProperties &viewportProperties);
+void attach(const Viewport &viewport);
 void detatch();
 
 void render();
@@ -20,7 +20,6 @@ void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & de
 SDL_Renderer *mSDLRenderer;
 Camera mCamera;
 World mWorld;
-
 bool mAttached;
 
 };

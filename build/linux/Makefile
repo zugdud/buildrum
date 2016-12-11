@@ -37,6 +37,7 @@ config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
+window/Camera.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
@@ -55,6 +56,7 @@ UI/elements/UIGridCell.cpp \
 UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
+renderers/WorldRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \

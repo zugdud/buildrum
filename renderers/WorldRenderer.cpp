@@ -20,12 +20,14 @@ void removeFromWorld()
 
 }
 
-void WorldRenderer::attach(const ViewportProperties &viewportProperties)
+void WorldRenderer::attach(const Viewport &viewport)
 {
-    mWorldProperties = World::getInstance().getWorldProperties();
-    mCamera.configure(viewportProperties, mWorldProperties);
+
+    // (const CameraProperties &CameraProperties, const Viewport & viewport, const WorldProperties & worldProperties);
+    mWorld = WorldManager::Instance().getWorld();
+    mCamera.configure(viewport, mWorld.getWorldProperties());
     mAttached = true;
-    SDL_Log("WorldRenderer::attach -- attached to viewportId: %s \n", viewportProperties.viewportId);
+    SDL_Log("WorldRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 }
 
 void WorldRenderer::detatch()
@@ -33,23 +35,18 @@ void WorldRenderer::detatch()
     mAttached = false;
 }
 
-void WorldRenderer::updateConfig()
-{
-
-}
-
-void WorldRenderer::render();
+void WorldRenderer::render()
 {
     if (mAttached)
     {
-        const std::vector<Tile> & tiles = World::getInstance()->getTiles();
+        const std::vector<Tile> & tiles = mWorld.getTiles();
 
-        for (size_t i = 0; i < tiles.size(); i++)
+        for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             const SDL_Rect tileRect = calcRect(tileId);
             if (mCamera.isViewableArea(tileRect))
             {
-                renderTile(tile[i], tileRect);
+                renderTile(tiles[tileId], tileRect);
             }
         }
     }
@@ -57,10 +54,10 @@ void WorldRenderer::render();
 
 SDL_Rect WorldRenderer::calcRect(const int & tileId)
 {
-    const int w = mWorldProperties.textureSize;
-    const int h = mWorldProperties.textureSize;
-    const int x = tileId / mWorldProperties.rows;
-    const int y = tileId %  mWorldProperties.rows;
+    const int x = tileId / mWorld.getWorldProperties().rows;
+    const int y = tileId % mWorld.getWorldProperties().rows;
+    const int w = mWorld.getWorldProperties().textureSize;
+    const int h = mWorld.getWorldProperties().textureSize;
 
     SDL_Rect rect = { x, y, w, h };
 
@@ -69,7 +66,7 @@ SDL_Rect WorldRenderer::calcRect(const int & tileId)
 
 void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
 {
-    const Surface & surface = getSurface();
+    const Surface & surface = tile.getSurface();
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;
     const EntityOrientation entityOrientation = surface.getEntityOrientation();
 
@@ -91,7 +88,6 @@ void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
 void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
     const int center = 0;
-    const int textureSize = mWorldProperties.textureSize;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
     const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
 

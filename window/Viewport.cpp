@@ -2,7 +2,7 @@
 
 Viewport::Viewport()
 {
-    mWorldViewport = false;
+
 }
 
 Viewport::~Viewport()
@@ -83,7 +83,12 @@ void Viewport::setRenderedViewport() const
     }
 }
 
-const bool & Viewport::isWorldViewport()
+const SDL_Rect &  Viewport::getRect() const
 {
-    return mWorldViewport;
+    return mViewport;
+}
+
+const ViewportProperties & Viewport::getViewportProperties() const
+{
+    return mViewportProperties;
 }

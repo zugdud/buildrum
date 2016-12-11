@@ -11,11 +11,11 @@ Sprite::~Sprite()
 
 }
 
-const int & Sprite::getSpriteId()
+const int & Sprite::getSpriteId() const
 {
     return mSpriteId;
 }
-const SDL_Rect & Sprite::getRect()
+const SDL_Rect & Sprite::getRect() const
 {
     return mRect;
 }

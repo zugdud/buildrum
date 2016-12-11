@@ -9,8 +9,8 @@ bool configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesI
                const SpriteSheetProperties &spriteSheetProperties);
 bool loadSpriteSheet();
 
-SDL_Texture * getTexture();
-const Sprite & getSprite(const int & spriteId);
+SDL_Texture * getTexture() const;
+const Sprite & getSprite(const int & spriteId) const;
 
 private:
 

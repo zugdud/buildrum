@@ -64,6 +64,7 @@
 #include "renderers/IRenderer.hpp"
 
 #include "window/Viewport.hpp"
+#include "window/Camera.hpp"
 #include "window/ViewContext.hpp"
 #include "window/Window.hpp"
 #include "window/WindowManager.hpp"
@@ -77,6 +78,7 @@
 #include "world/WorldManager.hpp"
 
 #include "renderers/MenuRenderer.hpp"
+#include "renderers/WorldRenderer.hpp"
 
 #include "core/scenes/IScene.hpp"
 #include "core/scenes/BaseScene.hpp"

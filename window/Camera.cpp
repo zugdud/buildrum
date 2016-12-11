@@ -1,6 +1,6 @@
 #include "include/global.hpp"
 
-Camera::Camera();
+Camera::Camera()
 {
 
 }
@@ -10,25 +10,24 @@ Camera::~Camera()
 
 }
 
-void Camera::configure(const CameraProperties &CameraProperties, const SDL_Rect & viewportRect, const WorldProperties & worldProperties)
+void Camera::configure(const Viewport & viewport, const WorldProperties & worldProperties)
 {
-    mCameraProperties = CameraProperties;
+    mCameraProperties = viewport.getViewportProperties().cameraProperties;
 
     mCamera.x = mCameraProperties.initPositionX;
     mCamera.y = mCameraProperties.initPositionY;
-    mCamera.w = viewportRect.w;
-    mCamera.h = viewportRect.h;
+    mCamera.w = viewport.getRect().w;
+    mCamera.h = viewport.getRect().h;
 
     mZoomFactor = mCameraProperties.defaultZoomFactor;
     mTextureSize =  worldProperties.textureSize;
 
-    mWorldWidth = mTextureSize * worldProperties.columns;
-    mWorldHeight = mTextureSize * worldProperties.rows;
+    mWorldPixeWidth = mTextureSize * worldProperties.columns;
+    mWorldPixelHeight = mTextureSize * worldProperties.rows;
 
-
-    SDL_Log("Camera::configure -- mWorldWidth: %d mWorldHeight: %d mZoomFactor: %d mTextureSize: %d mCamera: [x: %d y: %d w: %d h: %d] \n",
-            mWorldWidth,
-            mWorldHeight,
+    SDL_Log("Camera::configure -- mWorldPixeWidth: %d mWorldPixelHeight: %d mZoomFactor: %f mTextureSize: %d mCamera: [x: %d y: %d w: %d h: %d] \n",
+            mWorldPixeWidth,
+            mWorldPixelHeight,
             mZoomFactor,
             mTextureSize,
             mCamera.x,
@@ -49,7 +48,7 @@ bool Camera::isViewableArea(const SDL_Rect & rect)
     // const int cameraY = mCamera.y / mZoomFactor;
     // const int cameraW = mCamera.w / mZoomFactor;
     // const int cameraH = mCamera.h / mZoomFactor;
-    *
+
     if (padPosX >= mCamera.x  && padNegX <= (mCamera.x + mCamera.w))
     {
         if (padPosY >= mCamera.y && padNegY <= (mCamera.y + mCamera.h))
@@ -77,13 +76,13 @@ void Camera::move(const PointDouble & pointDouble)
     {
         mCamera.y = 0;
     }
-    if ( mCamera.x > (mWorldWidth - mCamera.w))
+    if ( mCamera.x > (mWorldPixeWidth - mCamera.w))
     {
-        mCamera.x = mWorldWidth - mCamera.w;
+        mCamera.x = mWorldPixeWidth - mCamera.w;
     }
-    if ( mCamera.y > (mWorldHeight - mCamera.h))
+    if ( mCamera.y > (mWorldPixelHeight - mCamera.h))
     {
-        mCamera.y = mWorldHeight - mCamera.h;
+        mCamera.y = mWorldPixelHeight - mCamera.h;
     }
 }
 

@@ -8,7 +8,7 @@ Tile();
 void configure(const int & tileId);
 
 void setSurface(const Surface & surface);
-const Surface & getSurface();
+const Surface & getSurface() const;
 
 private:
 
