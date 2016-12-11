@@ -50,6 +50,8 @@ Tile TestWorldImpl::createTile(const int & tileId)
     tileProperties.borderColor = red;
     tileProperties.fillBackground = true;
     tileProperties.backgroundColor = blue;
+    tileProperties.showTileIdText = true;
+    tileProperties.fontProfileName = "Heading_3_OpenSansLight";
 
     tile.configure(tileProperties);
     tile.setSurface(createSurface());

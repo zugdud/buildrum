@@ -15,6 +15,11 @@ void Tile::configure(const TileProperties & tileProperties)
     mTileProperties = tileProperties;
 }
 
+const TileProperties & Tile::getTileProperties() const
+{
+    return mTileProperties;
+}
+
 const Surface & Tile::getSurface() const
 {
     return mSurface;

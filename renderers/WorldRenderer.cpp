@@ -41,14 +41,63 @@ void WorldRenderer::renderWorld()
         {
             const SDL_Rect tileRect = calcRect(tileId);
 
-            // SDL_SetRenderDrawColor(mSDLRenderer, 255, 0, 0, 255);
-            // SDL_RenderFillRect(mSDLRenderer, &tileRect);
 
             if (mCamera.isViewableArea(tileRect))
             {
-                renderLayers(tiles[tileId], tileRect);
+                drawTile(tiles[tileId], tileRect);
+                renderText(tiles[tileId], tileRect);
+                // renderLayers(tiles[tileId], tileRect);
             }
         }
+    }
+}
+
+void WorldRenderer::renderText(const Tile & tile, const SDL_Rect & tileRect)
+{
+    const TileProperties & tileProperties = tile.getTileProperties();
+
+    std::string tileIdString;
+    std::ostringstream convert;
+
+    convert << tileProperties.tileId;
+    tileIdString = convert.str();
+
+    FontTextures & fontTextures = FontManager::getInstance()->getTextures(tileProperties.fontProfileName, tileIdString);
+
+    SDL_Texture *labelTexture = fontTextures.getTexture(tileIdString);
+    const SDL_Rect & textureSize = fontTextures.getRect(tileIdString);
+
+
+    SDL_Rect renderRect = { tileRect.x, tileRect.y, textureSize.w, textureSize.h };
+    const int heightPadding = (tileRect.h - textureSize.h) / 2;
+
+    renderRect.y = tileRect.y + heightPadding;        // center y axis
+    const int widthPadding = (tileRect.w - textureSize.w) / 2;
+    renderRect.x = tileRect.x + widthPadding;         // center padding offset
+
+    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
+}
+
+void WorldRenderer::drawTile(const Tile & tile, const SDL_Rect & tileRect)
+{
+    const TileProperties & tileProperties = tile.getTileProperties();
+
+    if (tileProperties.fillBackground == true)
+    {
+        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.backgroundColor.r,
+                               tileProperties.backgroundColor.g,
+                               tileProperties.backgroundColor.b,
+                               tileProperties.backgroundColor.a);
+        SDL_RenderFillRect(mSDLRenderer, &tileRect);
+    }
+
+    if (tileProperties.drawBorder == true)
+    {
+        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.borderColor.r,
+                               tileProperties.borderColor.g,
+                               tileProperties.borderColor.b,
+                               tileProperties.borderColor.a);
+        SDL_RenderDrawRect(mSDLRenderer, &tileRect);
     }
 }
 

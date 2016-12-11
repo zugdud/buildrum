@@ -18,4 +18,6 @@ struct TileProperties
     SDL_Color borderColor;
     bool fillBackground;
     SDL_Color backgroundColor;
+    bool showTileIdText;
+    std::string fontProfileName;
 };

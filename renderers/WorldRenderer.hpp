@@ -15,6 +15,8 @@ const bool & isAttached();
 
 private:
 
+void renderText(const Tile & tile, const SDL_Rect & tileRect);
+void drawTile(const Tile & tile, const SDL_Rect & tileRect);
 void renderLayers(const Tile & tile, const SDL_Rect & tileRect);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
