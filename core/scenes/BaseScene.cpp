@@ -57,6 +57,7 @@ void BaseScene::attach()
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
     attachInputManagerToUIElements();
+    attachInputManagerToCamera(); // only needed once
     attachUIElementsToEventManager();     // only needed once
     attachWorldToWorldRenderer();
     SDL_Log("----------------------------------------------------");
@@ -103,6 +104,13 @@ void BaseScene::detatchInputManagerFromUIElements()
             mInputEventManager->removePointEventObserver(uiGridCells[i].getUIButton()->getId());
         }
     }
+}
+
+void BaseScene::attachInputManagerToCamera()
+{
+    SDL_Log("BaseScene::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
+    mInputEventManager->registerScrollEventObserver(&Camera::Instance());
+    mInputEventManager->registerZoomEventObserver(&Camera::Instance());
 }
 
 void BaseScene::attachWorldToWorldRenderer()

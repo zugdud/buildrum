@@ -9,6 +9,8 @@ static InputEventManager * getInstance();
 
 void registerQuitEventObserver(QuitEventObserver *quitEventObserver);
 void registerPointEventObserver(PointEventObserver *pointEventObserver);
+void registerScrollEventObserver(ScrollEventObserver *scrollEventObserver);
+void registerZoomEventObserver(ZoomEventObserver *zoomEventObserver);
 
 void removePointEventObserver(const std::string & id);
 
@@ -29,4 +31,6 @@ void dispatchPointEvent(const SDL_Event & sdlEvent);
 std::vector<QuitEventObserver *> mQuitEventObservers;
 std::vector<PointEventObserver *> mPointEventObserver;
 
+std::vector<ScrollEventObserver *> mScrollEventObservers;
+std::vector<ZoomEventObserver *> mZoomEventObservers;
 };

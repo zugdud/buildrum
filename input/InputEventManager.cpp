@@ -33,6 +33,15 @@ void InputEventManager::removePointEventObserver(const std::string & id)
     }
 }
 
+void InputEventManager::registerScrollEventObserver(ScrollEventObserver *scrollEventObserver)
+{
+    mScrollEventObservers.push_back(scrollEventObserver);
+
+}
+void InputEventManager::registerZoomEventObserver(ZoomEventObserver *zoomEventObserver)
+{
+    mZoomEventObservers.push_back(zoomEventObserver);
+}
 
 void InputEventManager::registerPointEventObserver(PointEventObserver *pointEventObserver)
 {
