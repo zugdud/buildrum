@@ -48,13 +48,14 @@ Tile TestWorldImpl::createTile(const int & tileId)
 
 Surface TestWorldImpl::createSurface()
 {
-    Surface suface = Surface();
+    Surface surface = Surface();
 
-    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_1");
+    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_3");
 
-    SDL_Log("TestWorldImpl::setSurface -- entityId: %s weight: %d \n",
-            surfaceProperties.entityProperties.entityId.c_str(),
-            surfaceProperties.weightValue);
+    //
+    // SDL_Log("TestWorldImpl::setSurface -- entityId: %s weight: %d \n",
+    //         surfaceProperties.entityProperties.entityId.c_str(),
+    //         surfaceProperties.weightValue);
     surface.configure(surfaceProperties);
 
     return surface;

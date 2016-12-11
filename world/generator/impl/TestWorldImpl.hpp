@@ -10,8 +10,9 @@ void setWorld(World & world);
 private:
 
 void setWorldProperties();
-void setTileProperties(Tile & tile);
-void setSurfaceProperties(Surface & surface);
+
+Tile createTile(const int & tileId);
+Surface createSurface();
 
 SurfacePropertiesImpl mSurfacePropertiesImpl;
 std::vector<Tile> mTiles;

@@ -19,7 +19,6 @@ const bool & WorldRenderer::isAttached()
 void WorldRenderer::attach(const Viewport &viewport)
 {
 
-    // (const CameraProperties &CameraProperties, const Viewport & viewport, const WorldProperties & worldProperties);
     mWorld = WorldManager::Instance().getWorld();
     mCamera.configure(viewport, mWorld.getWorldProperties());
     mAttached = true;
@@ -46,10 +45,10 @@ void WorldRenderer::renderWorld()
             SDL_SetRenderDrawColor(mSDLRenderer, 255, 0, 0, 255);
             SDL_RenderFillRect(mSDLRenderer, &tileRect);
 
-            // if (mCamera.isViewableArea(tileRect))
-            // {
-            renderTile(tiles[tileId], tileRect);
-            // }
+            if (mCamera.isViewableArea(tileRect))
+            {
+                renderTile(tiles[tileId], tileRect);
+            }
         }
     }
 }
@@ -79,49 +78,34 @@ void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;
     const EntityOrientation entityOrientation = surface.getEntityOrientation();
 
-    // SDL_Log("WorldRenderer::renderTile -- entityProperties.numLayers: %d \n", entityProperties.numLayers);
-    // for (int i = 0; i < entityProperties.numLayers; i++)
-    // {
+    // SDL_Log("WorldRenderer::renderTile -- entityId: %s numLayers: %d \n",
+    //         entityProperties.entityId.c_str(),
+    //         entityProperties.numLayers);
 
-    SDL_Log("WorldRenderer::spriteRect -- entityProperties.numLayers: %d \n", entityProperties.numLayers);
-
-    SpriteProperties spriteProperties = entityProperties.spriteLayers[0].spriteUp;
-
-    switch (entityOrientation)
+    for (int i = 0; i < entityProperties.numLayers; i++)
     {
-        case UP: spriteProperties = entityProperties.spriteLayers[0].spriteUp; break;
-        case DOWN: spriteProperties = entityProperties.spriteLayers[0].spriteDown; break;
-        case LEFT: spriteProperties = entityProperties.spriteLayers[0].spriteLeft; break;
-        case RIGHT: spriteProperties = entityProperties.spriteLayers[0].spriteRight; break;
-    }
+        SpriteProperties spriteProperties = entityProperties.spriteLayers[i].spriteUp;
 
-    renderSprite(spriteProperties, tileRect);
-    // }
+        switch (entityOrientation)
+        {
+            case UP: spriteProperties = entityProperties.spriteLayers[i].spriteUp; break;
+            case DOWN: spriteProperties = entityProperties.spriteLayers[i].spriteDown; break;
+            case LEFT: spriteProperties = entityProperties.spriteLayers[i].spriteLeft; break;
+            case RIGHT: spriteProperties = entityProperties.spriteLayers[i].spriteRight; break;
+        }
+        renderSprite(spriteProperties, tileRect);
+    }
 }
 
 void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
-    SDL_Log("WorldRenderer::spriteRect -- spriteSheetId:  %s spriteId: %d \n", spriteProperties.spriteSheetId.c_str(), spriteProperties.spriteId);
-
     SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
-    // const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
-    SpriteSheet spriteSheet = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId);
-    Sprite sprite = spriteSheet.getSprite(spriteProperties.spriteId);
-    SDL_Rect rect = sprite.getRect();
-
-
-
-
-    // SDL_Log("WorldRenderer::spriteRect -- rect: [x: %d y: %d w: %d h: %d] \n",
-    //         spriteRect.x,
-    //         spriteRect.y,
-    //         spriteRect.w,
-    //         spriteRect.h);
+    const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
 
     SDL_RenderCopyEx(mSDLRenderer,
                      spriteSheetTexture,
-                     &rect,
+                     &spriteRect,
                      &destRect,
                      spriteProperties.angle,
                      center,
