@@ -15,9 +15,9 @@ const bool & isAttached();
 
 private:
 
-void renderText(const Tile & tile, const SDL_Rect & tileRect);
-void drawTile(const Tile & tile, const SDL_Rect & tileRect);
-void renderLayers(const Tile & tile, const SDL_Rect & tileRect);
+void renderText(const Tile & tile);
+void drawTile(const Tile & tile);
+void renderLayers(const Tile & tile);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;

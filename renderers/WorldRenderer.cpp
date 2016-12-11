@@ -39,21 +39,19 @@ void WorldRenderer::renderWorld()
 
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
-            const SDL_Rect tileRect = calcRect(tileId);
-
-
-            if (mCamera.isViewableArea(tileRect))
+            if (mCamera.isViewableArea(tiles[tileId].getRect()))
             {
-                drawTile(tiles[tileId], tileRect);
-                renderText(tiles[tileId], tileRect);
+                drawTile(tiles[tileId]);
+                renderText(tiles[tileId]);
                 // renderLayers(tiles[tileId], tileRect);
             }
         }
     }
 }
 
-void WorldRenderer::renderText(const Tile & tile, const SDL_Rect & tileRect)
+void WorldRenderer::renderText(const Tile & tile)
 {
+    const SDL_Rect & tileRect = tile.getRect();
     const TileProperties & tileProperties = tile.getTileProperties();
 
     std::string tileIdString;
@@ -78,8 +76,9 @@ void WorldRenderer::renderText(const Tile & tile, const SDL_Rect & tileRect)
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
 }
 
-void WorldRenderer::drawTile(const Tile & tile, const SDL_Rect & tileRect)
+void WorldRenderer::drawTile(const Tile & tile)
 {
+    const SDL_Rect & tileRect = tile.getRect();
     const TileProperties & tileProperties = tile.getTileProperties();
 
     if (tileProperties.fillBackground == true)
@@ -101,26 +100,7 @@ void WorldRenderer::drawTile(const Tile & tile, const SDL_Rect & tileRect)
     }
 }
 
-SDL_Rect WorldRenderer::calcRect(const int & tileId)
-{
-    const int x = mWorld.getWorldProperties().textureSize * (tileId / mWorld.getWorldProperties().rows);
-    const int y = mWorld.getWorldProperties().textureSize * (tileId % mWorld.getWorldProperties().rows);
-    const int w = mWorld.getWorldProperties().textureSize;
-    const int h = mWorld.getWorldProperties().textureSize;
-
-    SDL_Rect rect = { x, y, w, h };
-
-    // SDL_Log("WorldRenderer::calcRect -- tileId: %d rect: [x: %d y: %d w: %d h: %d] \n",
-    //         tileId,
-    //         rect.x,
-    //         rect.y,
-    //         rect.w,
-    //         rect.h);
-
-    return rect;
-}
-
-void WorldRenderer::renderLayers(const Tile & tile, const SDL_Rect & tileRect)
+void WorldRenderer::renderLayers(const Tile & tile)
 {
     const Surface & surface = tile.getSurface();
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;
@@ -141,7 +121,7 @@ void WorldRenderer::renderLayers(const Tile & tile, const SDL_Rect & tileRect)
             case LEFT: spriteProperties = entityProperties.spriteLayers[i].spriteLeft; break;
             case RIGHT: spriteProperties = entityProperties.spriteLayers[i].spriteRight; break;
         }
-        renderSprite(spriteProperties, tileRect);
+        renderSprite(spriteProperties, tile.getRect());
     }
 }
 
