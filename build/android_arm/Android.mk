@@ -13,17 +13,24 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
 main.cpp \
 config/ConfigManager.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
+config/constants/entities/SurfacePropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
+config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
+window/Camera.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
 core/EventManager.cpp \
 core/GameInstance.cpp \
-input/InputEventHandler.cpp \
+core/SceneManager.cpp \
+core/scenes/BaseScene.cpp \
+core/scenes/StartSceneImpl.cpp \
+core/scenes/GameSceneImpl.cpp \
+input/InputEventManager.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \
@@ -32,9 +39,20 @@ UI/elements/UIGridCell.cpp \
 UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
+renderers/WorldRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
-media/audio/AudioManager.cpp
+media/audio/AudioManager.cpp \
+media/sprites/Sprite.cpp \
+media/sprites/SpriteSheet.cpp \
+media/sprites/SpriteSheetManager.cpp \
+world/entities/Entity.cpp \
+world/entities/Surface.cpp \
+world/generator/impl/TestWorldImpl.cpp \
+world/generator/GenerateWorld.cpp \
+world/Tile.cpp \
+world/World.cpp \
+world/WorldManager.cpp
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
