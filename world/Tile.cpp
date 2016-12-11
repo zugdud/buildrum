@@ -47,3 +47,31 @@ const SDL_Rect & Tile::getRect() const
 {
     return mRect;
 }
+
+const TextLabel & Tile::getTextLabel() const
+{
+    return mTextLabel;
+}
+
+void Tile::updateLabel()
+{
+    std::string tileIdString;
+    std::ostringstream convert;
+
+    convert << mTileProperties.tileId;
+    tileIdString = convert.str();
+
+    FontTextures & fontTextures = FontManager::getInstance()->getTextures(mTileProperties.fontProfileName, tileIdString);
+
+    mTextLabel.labelTexture = fontTextures.getTexture(tileIdString);
+    const SDL_Rect & textureSize = fontTextures.getRect(tileIdString);
+
+    const int heightPadding = (mRect.h - textureSize.h) / 2;
+    const int widthPadding = (mRect.w - textureSize.w) / 2;
+
+    mTextLabel.rect.y = mRect.y + heightPadding;        // center y axis
+
+    mTextLabel.rect.x = mRect.x + widthPadding;         // center padding offset
+    mTextLabel.rect.w = textureSize.w;
+    mTextLabel.rect.h = textureSize.h;
+}

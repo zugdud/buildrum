@@ -51,29 +51,10 @@ void WorldRenderer::renderWorld()
 
 void WorldRenderer::renderText(const Tile & tile)
 {
-    const SDL_Rect & tileRect = tile.getRect();
-    const TileProperties & tileProperties = tile.getTileProperties();
+    SDL_Texture *labelTexture = tile.getTextLabel().labelTexture;
+    const SDL_Rect & destRect = tile.getTextLabel().rect;
 
-    std::string tileIdString;
-    std::ostringstream convert;
-
-    convert << tileProperties.tileId;
-    tileIdString = convert.str();
-
-    FontTextures & fontTextures = FontManager::getInstance()->getTextures(tileProperties.fontProfileName, tileIdString);
-
-    SDL_Texture *labelTexture = fontTextures.getTexture(tileIdString);
-    const SDL_Rect & textureSize = fontTextures.getRect(tileIdString);
-
-
-    SDL_Rect renderRect = { tileRect.x, tileRect.y, textureSize.w, textureSize.h };
-    const int heightPadding = (tileRect.h - textureSize.h) / 2;
-
-    renderRect.y = tileRect.y + heightPadding;        // center y axis
-    const int widthPadding = (tileRect.w - textureSize.w) / 2;
-    renderRect.x = tileRect.x + widthPadding;         // center padding offset
-
-    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
+    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
 void WorldRenderer::drawTile(const Tile & tile)

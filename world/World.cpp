@@ -15,6 +15,7 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
     mWorldProperties = worldProperties;
     mTiles = tiles;
     updateTileRects();
+    updateTileLabels();
 }
 
 void World::updateTileRects()
@@ -23,6 +24,15 @@ void World::updateTileRects()
     for (size_t i = 0; i < mTiles.size(); i++)
     {
         mTiles[i].updateRect(mWorldProperties);
+    }
+}
+
+void World::updateTileLabels()
+{
+    SDL_Log("World::updateTileLabels \n");
+    for (size_t i = 0; i < mTiles.size(); i++)
+    {
+        mTiles[i].updateLabel();
     }
 }
 

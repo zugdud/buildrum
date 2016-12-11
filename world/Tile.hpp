@@ -15,12 +15,16 @@ void setSurface(const Surface & surface);
 const Surface & getSurface() const;
 
 const SDL_Rect & getRect() const;
+const TextLabel & getTextLabel() const;
+
+void updateLabel();
 
 private:
 
 SDL_Rect mRect;
-
 TileProperties mTileProperties;
 Surface mSurface;
+
+TextLabel mTextLabel;
 
 };

@@ -18,3 +18,9 @@ enum EntityOrientation
     LEFT,
     RIGHT
 };
+
+struct TextLabel
+{
+    SDL_Texture *labelTexture;
+    SDL_Rect rect;
+};
