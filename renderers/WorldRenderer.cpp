@@ -41,13 +41,12 @@ void WorldRenderer::renderWorld()
         {
             const SDL_Rect tileRect = calcRect(tileId);
 
-
-            SDL_SetRenderDrawColor(mSDLRenderer, 255, 0, 0, 255);
-            SDL_RenderFillRect(mSDLRenderer, &tileRect);
+            // SDL_SetRenderDrawColor(mSDLRenderer, 255, 0, 0, 255);
+            // SDL_RenderFillRect(mSDLRenderer, &tileRect);
 
             if (mCamera.isViewableArea(tileRect))
             {
-                renderTile(tiles[tileId], tileRect);
+                renderLayers(tiles[tileId], tileRect);
             }
         }
     }
@@ -72,7 +71,7 @@ SDL_Rect WorldRenderer::calcRect(const int & tileId)
     return rect;
 }
 
-void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
+void WorldRenderer::renderLayers(const Tile & tile, const SDL_Rect & tileRect)
 {
     const Surface & surface = tile.getSurface();
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;

@@ -17,9 +17,9 @@ void TestWorldImpl::setWorldProperties()
     WorldProperties worldProperties;
 
     worldProperties.worldId = "testWorld";
-    worldProperties.rows = 64;
-    worldProperties.columns = 64;
-    worldProperties.numTiles = 4096;
+    worldProperties.rows = 16;
+    worldProperties.columns = 16;
+    worldProperties.numTiles = 256;
     worldProperties.textureSize = 32;
 
     mWorldProperties = worldProperties;
@@ -50,7 +50,7 @@ Surface TestWorldImpl::createSurface()
 {
     Surface surface = Surface();
 
-    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_3");
+    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_1");
 
     //
     // SDL_Log("TestWorldImpl::setSurface -- entityId: %s weight: %d \n",
