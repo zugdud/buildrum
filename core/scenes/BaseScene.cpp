@@ -51,11 +51,14 @@ void BaseScene::handleMusicPlaylist()
 void BaseScene::attach()
 {
     SDL_Log("----------------------------------------------------");
+    WorldManager::Instance().loadWorld("testWorld");
+    SDL_Log("----------------------------------------------------");
     SDL_Log("BaseScene::attach -- attaching handlers to sceneId: %s \n", mSceneId.c_str());
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
     attachInputManagerToUIElements();
     attachUIElementsToEventManager();     // only needed once
+    attachWorldToWorldRenderer();
     SDL_Log("----------------------------------------------------");
 }
 
@@ -98,6 +101,20 @@ void BaseScene::detatchInputManagerFromUIElements()
         for (size_t i = 0; i < uiGridCells.size(); i++)
         {
             mInputEventManager->removePointEventObserver(uiGridCells[i].getUIButton()->getId());
+        }
+    }
+}
+
+void BaseScene::attachWorldToWorldRenderer()
+{
+//  void attach(const World & world, const ViewportProperties &viewportProperties);
+
+    for (size_t i = 0; i < mViewports.size(); i++)
+    {
+        const ViewportProperties & viewportProperties = mViewports[i].getViewportProperties();
+        if (viewportProperties.viewportId = mWorldRendererViewportId)
+        {
+            mWorldRenderer.attach(viewportProperties);
         }
     }
 }

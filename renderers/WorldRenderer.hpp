@@ -5,14 +5,22 @@ public:
 WorldRenderer();
 ~WorldRenderer();
 
-void setWorld(const World & world);
-void removeWorld();
+void attach(const ViewportProperties &viewportProperties);
+void detatch();
 
-void renderWorld();
+void render();
+
+SDL_Rect calcRect(const int & tileId);
 
 private:
 
+void renderTile(const Tile & tile, const SDL_Rect & tileRect);
+void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
+
 SDL_Renderer *mSDLRenderer;
+Camera mCamera;
 World mWorld;
+
+bool mAttached;
 
 };

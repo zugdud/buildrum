@@ -38,12 +38,12 @@ void Camera::configure(const CameraProperties &CameraProperties, const SDL_Rect 
 }
 
 
-bool Camera::isViewableArea(const PointInt & pointInt)
+bool Camera::isViewableArea(const SDL_Rect & rect)
 {
-    const int padPosX = (pointInt.x + mTextureSize);
-    const int padNegX = (pointInt.x - mTextureSize);
-    const int padPosY = (pointInt.y + mTextureSize);
-    const int padNegY = (pointInt.y - mTextureSize);
+    const int padPosX = (rect.x + rect.w);
+    const int padNegX = (rect.x - rect.w);
+    const int padPosY = (rect.y + rect.h);
+    const int padNegY = (rect.y - rect.h);
 
     // const int cameraX = mCamera.x / mZoomFactor;
     // const int cameraY = mCamera.y / mZoomFactor;

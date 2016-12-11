@@ -2,7 +2,7 @@
 
 Viewport::Viewport()
 {
-    mHasWorld = false;
+    mWorldViewport = false;
 }
 
 Viewport::~Viewport()
@@ -19,15 +19,6 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
     positionViewport(windowProperties);
 }
 
-const bool & Viewport::hasWorld()
-{
-    return mHasWorld;
-}
-
-void Viewport::setWorld(const WorldProperties &worldProperties)
-{
-    mCamera.configure(mViewportProperties.cameraProperties, worldProperties);
-}
 
 void Viewport::positionViewport(const WindowProperties &windowProperties)
 {
@@ -56,6 +47,8 @@ void Viewport::addRenderer(IRenderer *renderer)
         SDL_Log("Viewport::addRenderer -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
         layers[i]->updateEnvelope(mViewport);
     }
+
+    // update world renderer
 }
 
 void Viewport::removeAllRenderers()
@@ -88,4 +81,9 @@ void Viewport::setRenderedViewport() const
     {
         // SDL_Log("WindowManager::setRenderedViewport -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
     }
+}
+
+const bool & Viewport::isWorldViewport()
+{
+    return mWorldViewport;
 }

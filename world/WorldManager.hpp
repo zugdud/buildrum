@@ -10,6 +10,7 @@ static WorldManager& Instance()
 }
 
 void loadWorld(const std::string & worldId);
+const World & getWorld();
 
 protected:
 

@@ -31,6 +31,9 @@ std::vector <Viewport> mViewports;
 InputEventManager *mInputEventManager;
 std::vector<std::string> mMenuIds;
 MenuRenderer mMenuRenderer;
+WorldRenderer mWorldRenderer;
+
+std::string mWorldRendererViewportId;
 
 private:
 
@@ -42,5 +45,5 @@ void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();
 void attachInputManagerToUIElements();
 void attachUIElementsToEventManager();
-
+void attachWorldToWorldRenderer();
 };
