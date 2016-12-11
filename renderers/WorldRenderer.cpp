@@ -79,19 +79,21 @@ void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
     const EntityProperties & entityProperties = surface.getSurfaceProperties().entityProperties;
     const EntityOrientation entityOrientation = surface.getEntityOrientation();
 
-    for (int i = 0; i < entityProperties.numLayers; i++)
-    {
-        SpriteProperties spriteProperties = entityProperties.spriteLayers[i].spriteUp;
-        switch (entityOrientation)
-        {
-            case UP: spriteProperties = entityProperties.spriteLayers[i].spriteUp; break;
-            case DOWN: spriteProperties = entityProperties.spriteLayers[i].spriteDown; break;
-            case LEFT: spriteProperties = entityProperties.spriteLayers[i].spriteLeft; break;
-            case RIGHT: spriteProperties = entityProperties.spriteLayers[i].spriteRight; break;
-        }
+    // SDL_Log("WorldRenderer::renderTile -- entityProperties.numLayers: %d \n", entityProperties.numLayers);
+    // for (int i = 0; i < entityProperties.numLayers; i++)
+    // {
+    SpriteProperties spriteProperties = entityProperties.spriteLayers[0].spriteUp;
 
-        renderSprite(spriteProperties, tileRect);
+    switch (entityOrientation)
+    {
+        case UP: spriteProperties = entityProperties.spriteLayers[0].spriteUp; break;
+        case DOWN: spriteProperties = entityProperties.spriteLayers[0].spriteDown; break;
+        case LEFT: spriteProperties = entityProperties.spriteLayers[0].spriteLeft; break;
+        case RIGHT: spriteProperties = entityProperties.spriteLayers[0].spriteRight; break;
     }
+
+    renderSprite(spriteProperties, tileRect);
+    // }
 }
 
 void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)

@@ -64,7 +64,6 @@ SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProp
         SpriteProperties left = spriteProperties[2];
         SpriteProperties right = spriteProperties[3];
 
-
         spriteLayer.spriteUp = up;
         spriteLayer.spriteDown = down;
         spriteLayer.spriteLeft = left;
@@ -75,6 +74,8 @@ SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProp
     {
         SDL_Log("SurfacePropertiesImpl::buildSpriteLayer -- ERROR: spriteProperties.size() out of bounds: %zu \n", spriteProperties.size());
     }
+
+    SDL_Log("SurfacePropertiesImpl::buildSpriteLayer -- spriteLayer size:  %zu \n", spriteProperties.size());
     return spriteLayer;
 }
 
