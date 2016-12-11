@@ -30,5 +30,5 @@ bool loadSpriteSheets();
 EnvironmentMediaPropertiesImpl mEnvironmentMediaPropertiesImpl;
 SpriteSheetPropertiesImpl mSpriteSheetPropertiesImpl;
 
-std::map<std::string, SpriteSheet> mSpriteSheets; // spriteSheetId->scene
+std::map<std::string, SpriteSheet *> mSpriteSheets; // spriteSheetId->scene
 };

@@ -2,6 +2,7 @@
 
 SpriteSheet::SpriteSheet()
 {
+    mTexture = NULL;
     mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
 }
 
@@ -56,19 +57,20 @@ void SpriteSheet::setSprites()
 
             SDL_Rect spriteRect = { pixelX, pixelY, mSpriteSheetProperties.spriteSize, mSpriteSheetProperties.spriteSize };
 
-            SDL_Log("SpriteSheet::setSprites -- spriteSheetId: %s spriteId: %d spriteRect: [x: %d y: %d w: %d h: %d] \n",
-                    mSpriteSheetProperties.spriteSheetId.c_str(),
-                    linearIndex,
-                    spriteRect.x,
-                    spriteRect.y,
-                    spriteRect.w,
-                    spriteRect.h);
+            // SDL_Log("SpriteSheet::setSprites -- spriteSheetId: %s spriteId: %d spriteRect: [x: %d y: %d w: %d h: %d] \n",
+            //         mSpriteSheetProperties.spriteSheetId.c_str(),
+            //         linearIndex,
+            //         spriteRect.x,
+            //         spriteRect.y,
+            //         spriteRect.w,
+            //         spriteRect.h);
 
             mSprites.push_back(Sprite(linearIndex, spriteRect));
             linearIndex++; // spriteSheet index
 
         }
     }
+    SDL_Log("SpriteSheet::setSprites -- set sprites count: %d \n", linearIndex);
 }
 
 bool SpriteSheet::loadSpriteSheet()
@@ -103,8 +105,7 @@ bool SpriteSheet::loadSpriteSheet()
             }
             else
             {
-                applyTransparency(mTexture, formattedSurface);
-
+                // applyTransparency(mTexture, formattedSurface);
             }
 
             SDL_FreeSurface(formattedSurface);
@@ -164,5 +165,6 @@ SDL_Texture * SpriteSheet::getTexture() const
 }
 const Sprite & SpriteSheet::getSprite(const int & spriteId) const
 {
+    SDL_Log("SpriteSheet::getSprite -- spriteId: %d size: %zu \n", spriteId, mSprites.size());
     return mSprites[spriteId];
 }

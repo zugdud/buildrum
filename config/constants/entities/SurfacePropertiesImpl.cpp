@@ -18,9 +18,9 @@ void SurfacePropertiesImpl::loadAll()
 
 void SurfacePropertiesImpl::loadSurfaces()
 {
-    addSurface("field_1", 20, "castle_1", 10);
-    addSurface("field_2", 40, "castle_1", 10);
-    addSurface("field_3", 60, "castle_1", 10);
+    addSurface("field_1", 12, "castle_1", 10);
+    addSurface("field_2", 13, "castle_1", 10);
+    addSurface("field_3", 14, "castle_1", 10);
     addSurface("water_1", 80, "castle_1", 100);
     addSurface("water_2", 100, "castle_1", 100);
     addSurface("water_3", 120, "castle_1", 100);

@@ -26,7 +26,7 @@ bool SpriteSheetManager::configure(const EnvironmentMediaPropertiesImpl &environ
 
 const SpriteSheet & SpriteSheetManager::getSpriteSheet(const std::string & spriteSheetId)
 {
-    return mSpriteSheets[spriteSheetId];
+    return *mSpriteSheets[spriteSheetId];
 }
 
 bool SpriteSheetManager::loadSpriteSheets()
@@ -35,13 +35,13 @@ bool SpriteSheetManager::loadSpriteSheets()
 
     for (size_t i = 0; i < spriteSheetProperties.size(); i++)
     {
-        SpriteSheet spriteSheet = SpriteSheet();
-        bool success = spriteSheet.configure(mEnvironmentMediaPropertiesImpl, spriteSheetProperties[i]);
+        SpriteSheet *spriteSheet = new SpriteSheet();
+        bool success = spriteSheet->configure(mEnvironmentMediaPropertiesImpl, spriteSheetProperties[i]);
         if (success)
         {
             const std::string spriteSheetId = spriteSheetProperties[i].spriteSheetId;
             mSpriteSheets[spriteSheetId] = spriteSheet;
-            SDL_Log("SpriteSheetManager::loadSpriteSheets added spriteSheetId: %s to map \n", spriteSheetId.c_str());
+            SDL_Log("SpriteSheetManager::loadSpriteSheets added spriteSheetId: %s to map size: %zu \n", spriteSheetId.c_str(), mSpriteSheets.size());
         }
         else
         {

@@ -1,4 +1,4 @@
-class WorldRenderer
+class WorldRenderer : public IWorldRenderer
 {
 public:
 
@@ -8,9 +8,10 @@ WorldRenderer();
 void attach(const Viewport &viewport);
 void detatch();
 
-void render();
+void renderWorld();
 
 SDL_Rect calcRect(const int & tileId);
+const bool & isAttached();
 
 private:
 

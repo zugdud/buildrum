@@ -2,7 +2,8 @@
 
 Viewport::Viewport()
 {
-
+    mWorldRenderer = NULL;
+    mWorldViewport = false;
 }
 
 Viewport::~Viewport()
@@ -62,10 +63,14 @@ void Viewport::removeAllRenderers()
 
 void Viewport::renderUpdate() const
 {
+    setRenderedViewport();
     for (size_t i = 0; i < mRenderers.size(); i++)
     {
-        setRenderedViewport();
         mRenderers[i]->renderAllLayers();
+    }
+    if (mWorldViewport)
+    {
+        mWorldRenderer->renderWorld();
     }
 }
 
@@ -91,4 +96,10 @@ const SDL_Rect &  Viewport::getRect() const
 const ViewportProperties & Viewport::getViewportProperties() const
 {
     return mViewportProperties;
+}
+
+void Viewport::attachWorldRenderer(IWorldRenderer *worldRenderer)
+{
+    mWorldRenderer = worldRenderer;
+    mWorldViewport = true;
 }

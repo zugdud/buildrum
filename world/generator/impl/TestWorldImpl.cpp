@@ -19,7 +19,7 @@ void TestWorldImpl::setWorldProperties()
     worldProperties.worldId = "testWorld";
     worldProperties.rows = 64;
     worldProperties.columns = 64;
-    worldProperties.columns = 4096;
+    worldProperties.numTiles = 4096;
     worldProperties.textureSize = 32;
 
     mWorldProperties = worldProperties;
@@ -46,5 +46,5 @@ void TestWorldImpl::setTile(Tile & tile)
 
 void TestWorldImpl::setSurface(Surface & surface)
 {
-    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("grass_1"));
+    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("field_1"));
 }

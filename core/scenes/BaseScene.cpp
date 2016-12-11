@@ -112,7 +112,11 @@ void BaseScene::attachWorldToWorldRenderer()
         const ViewportProperties & viewportProperties = mViewports[i].getViewportProperties();
         if (viewportProperties.viewportId == mWorldRendererViewportId)
         {
+            // configure renderer for the viewport
             mWorldRenderer.attach(mViewports[i]);
+
+            // attach the renderer to the viewport
+            mViewports[i].attachWorldRenderer(&mWorldRenderer);
         }
     }
 }
