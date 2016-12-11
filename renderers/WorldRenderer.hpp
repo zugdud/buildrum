@@ -22,7 +22,6 @@ void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & de
 
 SDL_Renderer *mSDLRenderer;
 
-World mWorld;
 bool mAttached;
 
 };

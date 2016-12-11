@@ -18,7 +18,7 @@ void WorldManager::loadWorld(const std::string & worldId)
     mWorld = generateWorld.getWorld();
 }
 
-const World & WorldManager::getWorld()
+const World & WorldManager::getWorld() const
 {
     return mWorld;
 }

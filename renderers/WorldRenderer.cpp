@@ -18,9 +18,6 @@ const bool & WorldRenderer::isAttached()
 
 void WorldRenderer::attach(const Viewport &viewport)
 {
-
-    mWorld = WorldManager::Instance().getWorld();
-    Camera::Instance().configure(viewport, mWorld.getWorldProperties());
     mAttached = true;
     SDL_Log("WorldRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 }
@@ -35,7 +32,7 @@ void WorldRenderer::renderWorld()
 
     if (mAttached)
     {
-        const std::vector<Tile> & tiles = mWorld.getTiles();
+        const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
 
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {

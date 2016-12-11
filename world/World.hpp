@@ -10,8 +10,8 @@ void updateTileRects();
 void updateTileLabels();
 
 const Tile & getTile(const int & tileId);
-const std::vector<Tile> & getTiles();
-const WorldProperties & getWorldProperties();
+const std::vector<Tile> & getTiles() const;
+const WorldProperties & getWorldProperties() const;
 
 private:
 

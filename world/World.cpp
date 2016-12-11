@@ -45,12 +45,12 @@ const Tile & World::getTile(const int & tileId)
     return mTiles[tileId];
 }
 
-const std::vector<Tile> & World::getTiles()
+const std::vector<Tile> & World::getTiles() const
 {
     return mTiles;
 }
 
-const WorldProperties & World::getWorldProperties()
+const WorldProperties & World::getWorldProperties() const
 {
     return mWorldProperties;
 }
