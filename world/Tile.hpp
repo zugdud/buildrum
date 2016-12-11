@@ -5,14 +5,14 @@ public:
 Tile();
 ~Tile();
 
-void configure(const int & tileId);
+void configure(const TileProperties & tileProperties);
 
 void setSurface(const Surface & surface);
 const Surface & getSurface() const;
 
 private:
 
-int mTileId;
+TileProperties mTileProperties;
 Surface mSurface;
 
 };

@@ -10,3 +10,12 @@ struct WorldProperties
     int numTiles;
     int textureSize;
 };
+
+struct TileProperties
+{
+    int tileId;
+    bool drawBorder;
+    SDL_Color borderColor;
+    bool fillBackground;
+    SDL_Color backgroundColor;
+};

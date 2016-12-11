@@ -10,9 +10,9 @@ Tile::~Tile()
 
 }
 
-void Tile::configure(const int & tileId)
+void Tile::configure(const TileProperties & tileProperties)
 {
-    mTileId = tileId;
+    mTileProperties = tileProperties;
 }
 
 const Surface & Tile::getSurface() const

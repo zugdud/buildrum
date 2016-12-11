@@ -17,9 +17,9 @@ void TestWorldImpl::setWorldProperties()
     WorldProperties worldProperties;
 
     worldProperties.worldId = "testWorld";
-    worldProperties.rows = 16;
-    worldProperties.columns = 16;
-    worldProperties.numTiles = 256;
+    worldProperties.rows = 64;
+    worldProperties.columns = 64;
+    worldProperties.numTiles = 4096;
     worldProperties.textureSize = 32;
 
     mWorldProperties = worldProperties;
@@ -40,7 +40,18 @@ Tile TestWorldImpl::createTile(const int & tileId)
 {
     Tile tile = Tile();
 
-    tile.configure(tileId);
+    TileProperties tileProperties;
+
+    SDL_Color red = { 255, 0, 0, 255 };
+    SDL_Color blue = { 0, 0, 255, 255 };
+
+    tileProperties.tileId = tileId;
+    tileProperties.drawBorder = true;
+    tileProperties.borderColor = red;
+    tileProperties.fillBackground = true;
+    tileProperties.backgroundColor = blue;
+
+    tile.configure(tileProperties);
     tile.setSurface(createSurface());
 
     return tile;
@@ -50,13 +61,7 @@ Surface TestWorldImpl::createSurface()
 {
     Surface surface = Surface();
 
-    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_1");
-
-    //
-    // SDL_Log("TestWorldImpl::setSurface -- entityId: %s weight: %d \n",
-    //         surfaceProperties.entityProperties.entityId.c_str(),
-    //         surfaceProperties.weightValue);
-    surface.configure(surfaceProperties);
+    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("field_1"));
 
     return surface;
 }
