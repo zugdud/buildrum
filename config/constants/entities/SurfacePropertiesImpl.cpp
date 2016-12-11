@@ -24,6 +24,8 @@ void SurfacePropertiesImpl::loadSurfaces()
     addSurface("water_1", 80, "castle_1", 100);
     addSurface("water_2", 100, "castle_1", 100);
     addSurface("water_3", 120, "castle_1", 100);
+
+    SDL_Log("SurfacePropertiesImpl::loadSurfaces -- loaded surface count: %zu \n", mSurfaceProperties.size());
 }
 
 void SurfacePropertiesImpl::addSurface(const std::string & entityId,

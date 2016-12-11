@@ -29,22 +29,33 @@ void TestWorldImpl::setWorld(World & world)
 {
     for (int tileId = 0; tileId < mWorldProperties.numTiles; tileId++)
     {
-        Tile tile;
-        tile.configure(tileId);
-        setTile(tile);
-        mTiles.push_back(tile);
+        mTiles.push_back(createTile(tileId));
     }
 
     world.configure(mWorldProperties, mTiles);
 }
 
 
-void TestWorldImpl::setTile(Tile & tile)
+Tile TestWorldImpl::createTile(const int & tileId)
 {
-    tile.setSurface(Surface());
+    Tile tile = Tile();
+
+    tile.configure(tileId);
+    tile.setSurface(createSurface());
+
+    return tile;
 }
 
-void TestWorldImpl::setSurface(Surface & surface)
+Surface TestWorldImpl::createSurface()
 {
-    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("field_1"));
+    Surface suface = Surface();
+
+    SurfaceProperties surfaceProperties = mSurfacePropertiesImpl.getSurfaceProperties("field_1");
+
+    SDL_Log("TestWorldImpl::setSurface -- entityId: %s weight: %d \n",
+            surfaceProperties.entityProperties.entityId.c_str(),
+            surfaceProperties.weightValue);
+    surface.configure(surfaceProperties);
+
+    return surface;
 }

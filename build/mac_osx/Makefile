@@ -43,6 +43,7 @@ config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
+window/Camera.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
@@ -61,6 +62,7 @@ UI/elements/UIGridCell.cpp \
 UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
+renderers/WorldRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \
@@ -68,7 +70,7 @@ media/sprites/Sprite.cpp \
 media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
 world/entities/Entity.cpp \
-world/entities/Suface.cpp \
+world/entities/Surface.cpp \
 world/generator/impl/TestWorldImpl.cpp \
 world/generator/GenerateWorld.cpp \
 world/Tile.cpp \

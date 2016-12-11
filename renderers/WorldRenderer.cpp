@@ -82,6 +82,9 @@ void WorldRenderer::renderTile(const Tile & tile, const SDL_Rect & tileRect)
     // SDL_Log("WorldRenderer::renderTile -- entityProperties.numLayers: %d \n", entityProperties.numLayers);
     // for (int i = 0; i < entityProperties.numLayers; i++)
     // {
+
+    SDL_Log("WorldRenderer::spriteRect -- entityProperties.numLayers: %d \n", entityProperties.numLayers);
+
     SpriteProperties spriteProperties = entityProperties.spriteLayers[0].spriteUp;
 
     switch (entityOrientation)
@@ -100,7 +103,7 @@ void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, cons
 {
     SDL_Log("WorldRenderer::spriteRect -- spriteSheetId:  %s spriteId: %d \n", spriteProperties.spriteSheetId.c_str(), spriteProperties.spriteId);
 
-    const int center = 0;
+    SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
     // const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
     SpriteSheet spriteSheet = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId);
