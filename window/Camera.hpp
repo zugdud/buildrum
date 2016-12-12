@@ -18,7 +18,7 @@ void move(const PointDouble & pointDouble);
 void setZoomFactor(const double & zoomFactorAdjustment);
 
 void scrollEventCallback(SDL_Event scrollEvent);
-void zoomEventCallback(SDL_Event zoomEvent);
+void zoomEventCallback(const double & zoomAdjustment);
 
 const SDL_Rect & getRect();
 

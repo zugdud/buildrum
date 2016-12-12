@@ -108,7 +108,8 @@ void Camera::scrollEventCallback(SDL_Event scrollEvent)
 {
 
 }
-void Camera::zoomEventCallback(SDL_Event zoomEvent)
+void Camera::zoomEventCallback(const double & zoomAdjustment)
 {
-
+    SDL_Log("Camera::zoomEventCallback -- zoomAdjustment: [%f] \n", zoomAdjustment);
+    setZoomFactor(zoomAdjustment);
 }

@@ -65,6 +65,11 @@ void InputEventManager::pollEventQueue()
         {
             dispatchPointEvent(sdlEvent);
         }
+        // zoom event
+        else if (sdlEvent.type == SDL_MULTIGESTURE)
+        {
+            dispatchZoomEvent(sdlEvent);
+        }
         // quit event
         else if (sdlEvent.type == SDL_QUIT)
         {
@@ -76,6 +81,22 @@ void InputEventManager::pollEventQueue()
         else
         {
             // filtered
+        }
+    }
+}
+
+
+void InputEventManager::dispatchZoomEvent(const SDL_Event & sdlEvent)
+{
+    if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
+    {
+        // zoom
+        int scaleFactor = 10;
+        double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
+
+        for (size_t i = 0; i < mZoomEventObservers.size(); i++)
+        {
+            mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
         }
     }
 }

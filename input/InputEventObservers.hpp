@@ -27,6 +27,6 @@ class ZoomEventObserver
 {
 public:
 
-virtual void zoomEventCallback(SDL_Event zoomEvent) = 0;
+virtual void zoomEventCallback(const double & zoomAdjustment) = 0;
 
 };
