@@ -126,8 +126,8 @@ void BaseScene::attachWorldToWorldRenderer()
             // attach the renderer to the viewport
             mViewports[i].attachWorldRenderer(&mWorldRenderer);
 
-            // configure the Camera for the world
-            // Camera::Instance().updateWorld(mViewports[i], WorldManager::Instance().getWorld().getWorldProperties());
+            // set camera size for the viewport
+            Camera::Instance().updateSize(mViewports[i].getRect());
 
             // attach world to camera
             Camera::Instance().registerObserver(WorldManager::Instance().getWorldPtr());

@@ -7,7 +7,7 @@ CameraPropertiesImpl();
 
 void loadAll();
 
-const CameraProperties & getCameraProperties();
+const CameraProperties & getCameraProperties() const;
 
 private:
 

@@ -70,6 +70,7 @@ world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
 world/WorldManager.cpp \
+config/constants/actors/CameraPropertiesImpl.cpp \
 
 # define the C object files
 #

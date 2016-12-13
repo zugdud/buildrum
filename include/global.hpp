@@ -20,6 +20,7 @@
 
 #include "types/commonTypes.hpp"
 
+#include "types/actor_properties.hpp"
 #include "types/entity_properties.hpp"
 #include "types/media_properties.hpp"
 #include "types/misc_properties.hpp"
@@ -33,6 +34,7 @@
 
 #include "config/constants/entities/SurfacePropertiesImpl.hpp"
 
+#include "config/constants/actors/CameraPropertiesImpl.hpp"
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
 #include "config/constants/media/fonts/FontProfilesImpl.hpp"
 #include "config/constants/media/audio/AudioContentImpl.hpp"

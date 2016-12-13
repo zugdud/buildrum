@@ -1,8 +1,10 @@
 struct CameraProperties
 {
-    int initPositionX;
-    int initPositionY;
     double defaultZoomFactor;
     double maxZoomFactor;
     double minZoomFactor;
+    int initRectX;
+    int initRectY;
+    int initRectW;
+    int initRectH;
 };

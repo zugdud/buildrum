@@ -14,15 +14,26 @@ void Camera::configure(const CameraProperties & cameraProperties)
 {
     mCameraProperties = cameraProperties;
 
-    mCamera.x = mCameraProperties.initPositionX;
-    mCamera.y = mCameraProperties.initPositionY;
-    mCamera.w = viewport.getRect().w;
-    mCamera.h = viewport.getRect().h;
+    mCamera.x = mCameraProperties.initRectX;
+    mCamera.y = mCameraProperties.initRectY;
+    mCamera.w = mCameraProperties.initRectW;
+    mCamera.h = mCameraProperties.initRectH;
 
     mZoomFactor = mCameraProperties.defaultZoomFactor;
 
     SDL_Log("Camera::configure -- mZoomFactor: %f mCamera: [x: %d y: %d w: %d h: %d] \n",
             mZoomFactor,
+            mCamera.x,
+            mCamera.y,
+            mCamera.w,
+            mCamera.h);
+}
+
+void Camera::updateSize(const SDL_Rect & viewportRect)
+{
+    mCamera.w = viewportRect.w;
+    mCamera.h = viewportRect.h;
+    SDL_Log("Camera::updateSize --  mCamera: [x: %d y: %d w: %d h: %d] \n",
             mCamera.x,
             mCamera.y,
             mCamera.w,
@@ -61,9 +72,9 @@ bool Camera::isViewableArea(const SDL_Rect & rect)
 
 void Camera::move(const PointDouble & pointDouble)
 {
-    const int & textureSize = WorldManager::Instance().getWorld().getWindowProperties().textureSize;
-    const int & worldPixeWidth = textureSize * WorldManager::Instance().getWorld().getWindowProperties().columns;
-    const int & worldPixeHeight  = textureSize * WorldManager::Instance().getWorld().getWindowProperties().rows;
+    const int & textureSize = WorldManager::Instance().getWorld().getWorldProperties().textureSize;
+    const int & worldPixeWidth = textureSize * WorldManager::Instance().getWorld().getWorldProperties().columns;
+    const int & worldPixeHeight  = textureSize * WorldManager::Instance().getWorld().getWorldProperties().rows;
 
     mCamera.x += pointDouble.x;
     mCamera.y += pointDouble.y;

@@ -12,6 +12,7 @@ static Camera& Instance()
 
 void configure(const CameraProperties & cameraProperties);
 
+void updateSize(const SDL_Rect & viewportRect);
 void registerObserver(CameraObserver *CameraObserver);
 
 bool isViewableArea(const SDL_Rect & rect);

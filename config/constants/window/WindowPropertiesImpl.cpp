@@ -33,13 +33,11 @@ void WindowPropertiesImpl::setViewContexts()
     SDL_Color green = { 0, 255, 0, 255 };
     SDL_Color blue = { 0, 0, 255, 255 };
 
-
-
     // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red, cameraProperties };
-    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green, cameraProperties };
-    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue, cameraProperties };
-    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue, cameraProperties };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red };
+    ViewportProperties minimap = { "minimap", 0.8, 0.0, 0.2, 0.2, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
 
     // viewContextId, numViewports, viewports[]
     ViewContextProperties fullscreenContext;
