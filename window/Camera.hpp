@@ -16,7 +16,7 @@ void updateSize(const SDL_Rect & viewportRect);
 void registerObserver(CameraObserver *CameraObserver);
 
 bool isViewableArea(const SDL_Rect & rect);
-void move(const PointInt & pointMovement);
+void setPosition(const PointInt & pointMovement);
 void setZoomFactor(const double & zoomFactorAdjustment);
 
 void scrollEventCallback(const PointInt & pointMovement);
@@ -34,6 +34,7 @@ Camera& operator=(const Camera&);
 
 private:
 
+void dispatchPositionUpdate();
 void dispatchZoomFactorUpdate();
 
 CameraProperties mCameraProperties;

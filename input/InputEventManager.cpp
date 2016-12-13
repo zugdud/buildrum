@@ -106,13 +106,14 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
 
 void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
 {
-    if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
-    {
-        // zoom
-        int scaleFactor = 10;
-        double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
-        dispatchZoomEvent(zoomFactor);
-    }
+    // if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
+    // {
+    // zoom
+    int scaleFactor = 4;
+    double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
+
+    dispatchZoomEvent(zoomFactor);
+    // }
 }
 
 void InputEventManager::dispatchScrollEvent(const int & moveX, const int & moveY)

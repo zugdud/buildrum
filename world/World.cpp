@@ -21,6 +21,7 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
 void World::positionUpdate()
 {
     SDL_Log("World::positionUpdate \n");
+    updateTileRects();
 }
 
 void World::zoomFactorUpdate()

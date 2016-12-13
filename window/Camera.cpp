@@ -48,29 +48,23 @@ void Camera::registerObserver(CameraObserver *CameraObserver)
 
 bool Camera::isViewableArea(const SDL_Rect & rect)
 {
-    const int padPosX = (rect.x + rect.w);
-    const int padNegX = (rect.x - rect.w);
-    const int padPosY = (rect.y + rect.h);
-    const int padNegY = (rect.y - rect.h);
+    // const int padPosX = (rect.x + rect.w);
+    // const int padNegX = (rect.x - rect.w);
+    // const int padPosY = (rect.y + rect.h);
+    // const int padNegY = (rect.y - rect.h);
 
-    // const int cameraX = mCamera.x / mZoomFactor;
-    // const int cameraY = mCamera.y / mZoomFactor;
-    // const int cameraW = mCamera.w / mZoomFactor;
-    // const int cameraH = mCamera.h / mZoomFactor;
-
-    if (padPosX >= mCamera.x  && padNegX <= (mCamera.x + mCamera.w))
+    if (rect.x >= mCamera.x  && rect.x <= (mCamera.x + mCamera.w))
     {
-        if (padPosY >= mCamera.y && padNegY <= (mCamera.y + mCamera.h))
+        if (rect.y >= mCamera.y && rect.y <= (mCamera.y + mCamera.h))
         {
             return true;
         }
 
     }
-
     return false;
 }
 
-void Camera::move(const PointInt & pointMovement)
+void Camera::setPosition(const PointInt & pointMovement)
 {
     const int & textureSize = WorldManager::Instance().getWorld().getWorldProperties().textureSize;
     const int & worldPixeWidth = textureSize * WorldManager::Instance().getWorld().getWorldProperties().columns;
@@ -117,6 +111,14 @@ void Camera::setZoomFactor(const double & zoomFactorAdjustment)
     }
 }
 
+void Camera::dispatchPositionUpdate()
+{
+    for (size_t i = 0; i < mObservers.size(); i++)
+    {
+        mObservers[i]->positionUpdate();
+    }
+}
+
 void Camera::dispatchZoomFactorUpdate()
 {
     for (size_t i = 0; i < mObservers.size(); i++)
@@ -138,7 +140,8 @@ const double & Camera::getZoomFactor()
 void Camera::scrollEventCallback(const PointInt & pointMovement)
 {
     SDL_Log("Camera::scrollEventCallback -- pointMovement: [x: %d, y: %d] \n", pointMovement.x, pointMovement.y);
-    move(pointMovement);
+    setPosition(pointMovement);
+    dispatchPositionUpdate();
 }
 void Camera::zoomEventCallback(const double & zoomAdjustment)
 {
