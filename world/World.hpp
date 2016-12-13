@@ -6,7 +6,7 @@ World();
 ~World();
 
 void configure(const WorldProperties & worldProperties, const std::vector<Tile> & tiles);
-void updateTileRects();
+void updateTileRects(const double & zoomFactor);
 void updateTileLabels();
 
 

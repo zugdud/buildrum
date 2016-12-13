@@ -14,7 +14,7 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
 {
     mWorldProperties = worldProperties;
     mTiles = tiles;
-    updateTileRects();
+    updateTileRects(1.0); // TODO
     updateTileLabels();
 }
 
@@ -25,15 +25,16 @@ void World::positionUpdate(const SDL_Rect & cameraRect)
 
 void World::zoomFactorUpdate(const double & zoomFactor)
 {
-    SDL_Log("World::zoomFactorUpdate \n");
+    updateTileRects(zoomFactor);
+    updateTileLabels(); // updates based on new rect
 }
 
-void World::updateTileRects()
+void World::updateTileRects(const double & zoomFactor)
 {
-    SDL_Log("World::updateTileRects \n");
+    SDL_Log("World::updateTileRects -- zoomFactor: %f \n",  zoomFactor);
     for (size_t i = 0; i < mTiles.size(); i++)
     {
-        mTiles[i].updateRect(mWorldProperties);
+        mTiles[i].updateRect(mWorldProperties, zoomFactor);
     }
 }
 
