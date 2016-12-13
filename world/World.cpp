@@ -18,6 +18,16 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
     updateTileLabels();
 }
 
+void World::positionUpdate(const SDL_Rect & cameraRect)
+{
+    SDL_Log("World::positionUpdate \n");
+}
+
+void World::zoomFactorUpdate(const double & zoomFactor)
+{
+    SDL_Log("World::zoomFactorUpdate \n");
+}
+
 void World::updateTileRects()
 {
     SDL_Log("World::updateTileRects \n");

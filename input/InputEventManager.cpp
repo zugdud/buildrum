@@ -68,7 +68,12 @@ void InputEventManager::pollEventQueue()
         // zoom event
         else if (sdlEvent.type == SDL_MULTIGESTURE)
         {
-            dispatchZoomEvent(sdlEvent);
+            handleMultiTouch(sdlEvent);
+        }
+        // key event
+        else if (sdlEvent.type == SDL_KEYDOWN)
+        {
+            handleKeyEvents(sdlEvent);
         }
         // quit event
         else if (sdlEvent.type == SDL_QUIT)
@@ -85,19 +90,36 @@ void InputEventManager::pollEventQueue()
     }
 }
 
+void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
+{
+    switch ( sdlEvent.key.keysym.sym )
+    {
+        case SDLK_1: dispatchZoomEvent(0.2); break;
+        case SDLK_2: dispatchZoomEvent(-0.2); break;
+            // case SDLK_3: debugEvent(); break;
+            // case SDLK_UP: moveCamera(0.0, -20.00); break;
+            // case SDLK_DOWN: moveCamera(0.0, 20.00); break;
+            // case SDLK_LEFT: moveCamera(-20.00, 0.0); break;
+            // case SDLK_RIGHT: moveCamera(20.00, 0.0); break;
+    }
+}
 
-void InputEventManager::dispatchZoomEvent(const SDL_Event & sdlEvent)
+void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
 {
     if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
     {
         // zoom
         int scaleFactor = 10;
         double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
+        dispatchZoomEvent(zoomFactor);
+    }
+}
 
-        for (size_t i = 0; i < mZoomEventObservers.size(); i++)
-        {
-            mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
-        }
+void InputEventManager::dispatchZoomEvent(const double & zoomFactor)
+{
+    for (size_t i = 0; i < mZoomEventObservers.size(); i++)
+    {
+        mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
     }
 }
 

@@ -10,8 +10,9 @@ static Camera& Instance()
 }
 
 
-
 void configure(const Viewport & viewport, const WorldProperties & worldProperties);
+
+void registerObserver(CameraObserver *CameraObserver);
 
 bool isViewableArea(const SDL_Rect & rect);
 void move(const PointDouble & pointDouble);
@@ -32,6 +33,8 @@ Camera& operator=(const Camera&);
 
 private:
 
+void dispatchZoomFactorUpdate();
+
 CameraProperties mCameraProperties;
 
 SDL_Rect mCamera;
@@ -41,5 +44,7 @@ int mWorldPixelHeight;
 int mWorldPixeWidth;
 
 int mTextureSize;
+
+std::vector<CameraObserver *> mObservers;
 
 };

@@ -63,6 +63,8 @@
 
 #include "renderers/IRenderer.hpp"
 
+#include "window/CameraObserver.hpp"
+
 #include "window/Viewport.hpp"
 #include "window/Camera.hpp"
 #include "window/ViewContext.hpp"

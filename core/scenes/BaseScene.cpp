@@ -128,6 +128,9 @@ void BaseScene::attachWorldToWorldRenderer()
 
             // configure the Camera for the viewport
             Camera::Instance().configure(mViewports[i], WorldManager::Instance().getWorld().getWorldProperties());
+
+            // attach world to camera
+            Camera::Instance().registerObserver(WorldManager::Instance().getWorldPtr());
         }
     }
 }

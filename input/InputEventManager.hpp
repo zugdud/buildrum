@@ -26,7 +26,10 @@ InputEventManager& operator=(const InputEventManager *);
 
 private:
 
-void dispatchZoomEvent(const SDL_Event & sdlEvent);
+void handleKeyEvents(const SDL_Event & sdlEvent);
+void handleMultiTouch(const SDL_Event & sdlEvent);
+
+void dispatchZoomEvent(const double & zoomFactor);
 void dispatchPointEvent(const SDL_Event & sdlEvent);
 
 std::vector<QuitEventObserver *> mQuitEventObservers;

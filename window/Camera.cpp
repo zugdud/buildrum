@@ -36,6 +36,11 @@ void Camera::configure(const Viewport & viewport, const WorldProperties & worldP
             mCamera.h);
 }
 
+void Camera::registerObserver(CameraObserver *CameraObserver)
+{
+    mObservers.push_back(CameraObserver);
+    SDL_Log("Camera::registerObserver -- observer added, count: %zu \n", mObservers.size());
+}
 
 bool Camera::isViewableArea(const SDL_Rect & rect)
 {
@@ -96,6 +101,15 @@ void Camera::setZoomFactor(const double & zoomFactorAdjustment)
     else if (mZoomFactor < mCameraProperties.minZoomFactor)
     {
         mZoomFactor = mCameraProperties.minZoomFactor;
+    }
+    dispatchZoomFactorUpdate();
+}
+
+void Camera::dispatchZoomFactorUpdate()
+{
+    for (size_t i = 0; i < mObservers.size(); i++)
+    {
+        mObservers[i]->zoomFactorUpdate(mZoomFactor);
     }
 }
 

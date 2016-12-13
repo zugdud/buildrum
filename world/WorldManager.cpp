@@ -22,3 +22,8 @@ const World & WorldManager::getWorld() const
 {
     return mWorld;
 }
+
+World * WorldManager::getWorldPtr()
+{
+    return &mWorld;
+}
