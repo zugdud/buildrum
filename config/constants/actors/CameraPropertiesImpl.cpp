@@ -35,17 +35,17 @@ void CameraPropertiesImpl::setCameraProperties()
     // };
 
     #ifdef LINUX_BUILD_TARGET
-    CameraProperties linuxCameraProperties = { 1, 4.0, 1.0, 0, 0, 0, 0 };
+    CameraProperties linuxCameraProperties = { 1, 4.0, 1.0, 0, 0, 1280, 960 };
     mCameraProperties = linuxCameraProperties;
     #endif
 
     #ifdef MAC_BUILD_TARGET
-    CameraProperties macCameraProperties = { 1, 4.0, 1.0, 0, 0, 0, 0 };
+    CameraProperties macCameraProperties = { 1, 4.0, 1.0, 0, 0, 1024, 768 };
     mCameraProperties = macCameraProperties;
     #endif
 
     #ifdef ANDROID_BUILD_TARGET
-    CameraProperties androidCameraProperties = { 1, 4.0, 1.0, 0, 0, 0, 0 };
+    CameraProperties androidCameraProperties = { 1, 4.0, 1.0, 0, 0, 1440, 2560 };
     mCameraProperties = androidCameraProperties;
     #endif
 }

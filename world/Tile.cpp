@@ -2,19 +2,13 @@
 
 Tile::Tile()
 {
-
+    mViewableArea = true;
 }
 
 Tile::~Tile()
 {
 
 }
-
-// int scaledWidth = (spriteRect.w * zoomFactor) * entitySizeFactor; // scale size of the entity
-// int scaledHeight = (spriteRect.h * zoomFactor) * entitySizeFactor; // scale size of the entity
-// int scaledX = ((x - cameraRect.x) * zoomFactor); // offset scaled position by the cameras position
-// int scaledY = ((y - cameraRect.y) * zoomFactor); // offset scaled position by the cameras position
-
 
 void Tile::updateRect(const WorldProperties & worldProperties, const double & zoomFactor, const SDL_Rect & cameraRect)
 {

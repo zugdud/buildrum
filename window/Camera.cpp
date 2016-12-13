@@ -48,18 +48,12 @@ void Camera::registerObserver(CameraObserver *CameraObserver)
 
 bool Camera::isViewableArea(const SDL_Rect & rect)
 {
-    // const int padPosX = (rect.x + rect.w);
-    // const int padNegX = (rect.x - rect.w);
-    // const int padPosY = (rect.y + rect.h);
-    // const int padNegY = (rect.y - rect.h);
-
-    if (rect.x >= mCamera.x  && rect.x <= (mCamera.x + mCamera.w))
+    if ((rect.x + rect.w) >= 0  && (rect.x - rect.w) <= mCamera.w)
     {
-        if (rect.y >= mCamera.y && rect.y <= (mCamera.y + mCamera.h))
+        if ((rect.y + rect.h) >= 0 && (rect.y - rect.h) <= mCamera.h)
         {
             return true;
         }
-
     }
     return false;
 }
