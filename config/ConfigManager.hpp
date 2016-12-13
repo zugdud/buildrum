@@ -18,6 +18,7 @@ const WindowPropertiesImpl &getWindowPropertiesImpl();
 const AudioContentImpl & getAudioContentImpl();
 const SpriteSheetPropertiesImpl & getSpriteSheetPropertiesImpl();
 const SurfacePropertiesImpl & getSurfacePropertiesImpl();
+const CameraPropertiesImpl & getCameraPropertiesImpl();
 
 void reloadDynamicData();
 void loadConstants();
@@ -38,6 +39,8 @@ WindowPropertiesImpl mWindowPropertiesImpl;
 AudioContentImpl mAudioContentImpl;
 SpriteSheetPropertiesImpl mSpriteSheetPropertiesImpl;
 SurfacePropertiesImpl mSurfacePropertiesImpl;
+
+CameraPropertiesImpl mCameraPropertiesImpl;
 
 std::vector<std::string> mMenuIds;
 std::map<std::string, IMenuProperties *> mIMenuProperties; // menuId->MenuProperties

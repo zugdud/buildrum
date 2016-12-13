@@ -33,8 +33,7 @@ void WindowPropertiesImpl::setViewContexts()
     SDL_Color green = { 0, 255, 0, 255 };
     SDL_Color blue = { 0, 0, 255, 255 };
 
-    // CameraProperties - initPositionX, initPositionY, double defaultZoomFactor, double maxZoomFactor, double minZoomFactor;
-    CameraProperties cameraProperties = { 0, 0, 1, 3.0, 1.0 };
+
 
     // viewportId, xPadRatio, yPadRatio, windowWidthRatio, bgColor, worldRenderingProperties, minimapRenderingProperties, menuRenderingProperties
     ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.8, 0.2, red, cameraProperties };

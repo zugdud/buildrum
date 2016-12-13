@@ -21,6 +21,11 @@ ConfigManager * ConfigManager::getInstance()
     return mSingletonInstance;
 }
 
+const CameraPropertiesImpl & ConfigManager::getCameraPropertiesImpl()
+{
+    return mCameraPropertiesImpl;
+}
+
 const SurfacePropertiesImpl & ConfigManager::getSurfacePropertiesImpl()
 {
     return mSurfacePropertiesImpl;
@@ -76,6 +81,7 @@ void ConfigManager::loadConstants()
     mAudioContentImpl.loadAll();
     mSpriteSheetPropertiesImpl.loadAll();
     mSurfacePropertiesImpl.loadAll();
+    mCameraPropertiesImpl.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");

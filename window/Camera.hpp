@@ -10,7 +10,7 @@ static Camera& Instance()
 }
 
 
-void configure(const Viewport & viewport, const WorldProperties & worldProperties);
+void configure(const CameraProperties & cameraProperties);
 
 void registerObserver(CameraObserver *CameraObserver);
 
@@ -39,9 +39,6 @@ CameraProperties mCameraProperties;
 
 SDL_Rect mCamera;
 double mZoomFactor;
-
-int mWorldPixelHeight;
-int mWorldPixeWidth;
 
 int mTextureSize;
 

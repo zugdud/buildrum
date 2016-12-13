@@ -3,15 +3,6 @@
 // Window
 // ------------------------------------------------------------------------------
 
-struct CameraProperties
-{
-    int initPositionX;
-    int initPositionY;
-    double defaultZoomFactor;
-    double maxZoomFactor;
-    double minZoomFactor;
-};
-
 struct WindowProperties
 {
     std::string windowName;
@@ -28,7 +19,6 @@ struct ViewportProperties
     double windowWidthRatio;
     double windowHeightRatio;
     SDL_Color bgColor;
-    CameraProperties cameraProperties;
 };
 
 struct ViewContextProperties

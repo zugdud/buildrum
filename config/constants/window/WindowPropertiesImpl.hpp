@@ -15,8 +15,6 @@ private:
 void setViewContexts();
 void setWindowProfiles();
 
-std::string windowProfile;
-
 std::vector<ViewContextProperties> mViewContextProperties;
 WindowProperties mWindowProperties;
 std::vector<UIMenuProperties> mUIMenuProperties;
