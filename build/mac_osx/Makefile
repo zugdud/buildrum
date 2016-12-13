@@ -35,6 +35,7 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 # define the C source files
 SRCS = main.cpp \
 config/ConfigManager.cpp \
+config/constants/actors/CameraPropertiesImpl.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/entities/SurfacePropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
@@ -76,6 +77,7 @@ world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
 world/WorldManager.cpp \
+
 
 # define the C object files
 #

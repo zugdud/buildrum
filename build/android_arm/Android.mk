@@ -12,6 +12,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include /usr/include/SDL2/
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
 main.cpp \
 config/ConfigManager.cpp \
+config/constants/actors/CameraPropertiesImpl.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/entities/SurfacePropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
@@ -52,7 +53,7 @@ world/generator/impl/TestWorldImpl.cpp \
 world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
-world/WorldManager.cpp
+world/WorldManager.cpp \
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
