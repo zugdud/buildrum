@@ -15,19 +15,29 @@ void World::configure(const WorldProperties & worldProperties, const std::vector
     mWorldProperties = worldProperties;
     mTiles = tiles;
     updateTileRects();
+    checkViewableArea();
     // updateTileLabels();
 }
 
 void World::positionUpdate()
 {
-    SDL_Log("World::positionUpdate \n");
     updateTileRects();
+    checkViewableArea();
 }
 
 void World::zoomFactorUpdate()
 {
     updateTileRects();
+    checkViewableArea();
     //  updateTileLabels(); // updates based on new rect
+}
+
+void World::checkViewableArea()
+{
+    for (size_t i = 0; i < mTiles.size(); i++)
+    {
+        mTiles[i].setViewableArea();
+    }
 }
 
 void World::updateTileRects()

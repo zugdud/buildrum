@@ -6,18 +6,18 @@ Tile();
 ~Tile();
 
 void configure(const TileProperties & tileProperties);
-
 void updateRect(const WorldProperties & worldProperties, const double & zoomFactor, const SDL_Rect & cameraRect);
-
-const TileProperties & getTileProperties() const;
-
 void setSurface(const Surface & surface);
-const Surface & getSurface() const;
 
+void setViewableArea();
+void updateLabel();
+
+const Surface & getSurface() const;
+const TileProperties & getTileProperties() const;
 const SDL_Rect & getRect() const;
 const TextLabel & getTextLabel() const;
 
-void updateLabel();
+const bool & isViewableArea() const;
 
 private:
 
@@ -26,5 +26,5 @@ TileProperties mTileProperties;
 Surface mSurface;
 
 TextLabel mTextLabel;
-
+bool mViewableArea;
 };

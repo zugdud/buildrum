@@ -36,7 +36,7 @@ void WorldRenderer::renderWorld()
 
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
-            if (Camera::Instance().isViewableArea(tiles[tileId].getRect()))
+            if (tiles[tileId].isViewableArea())
             {
                 // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);

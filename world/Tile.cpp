@@ -61,6 +61,23 @@ const TextLabel & Tile::getTextLabel() const
     return mTextLabel;
 }
 
+const bool & Tile::isViewableArea() const
+{
+    return mViewableArea;
+}
+
+void Tile::setViewableArea()
+{
+    if (Camera::Instance().isViewableArea(mRect))
+    {
+        mViewableArea = true;
+    }
+    else
+    {
+        mViewableArea = false;
+    }
+}
+
 void Tile::updateLabel()
 {
     std::string tileIdString;

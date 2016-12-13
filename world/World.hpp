@@ -9,6 +9,7 @@ void configure(const WorldProperties & worldProperties, const std::vector<Tile> 
 void updateTileRects();
 void updateTileLabels();
 
+void checkViewableArea();
 
 void positionUpdate();
 void zoomFactorUpdate();
