@@ -70,14 +70,14 @@ bool Camera::isViewableArea(const SDL_Rect & rect)
     return false;
 }
 
-void Camera::move(const PointDouble & pointDouble)
+void Camera::move(const PointInt & pointMovement)
 {
     const int & textureSize = WorldManager::Instance().getWorld().getWorldProperties().textureSize;
     const int & worldPixeWidth = textureSize * WorldManager::Instance().getWorld().getWorldProperties().columns;
     const int & worldPixeHeight  = textureSize * WorldManager::Instance().getWorld().getWorldProperties().rows;
 
-    mCamera.x += pointDouble.x;
-    mCamera.y += pointDouble.y;
+    mCamera.x += pointMovement.x;
+    mCamera.y += pointMovement.y;
 
     // Keep the camera within the bounds of the level
     if ( mCamera.x < 0 )
@@ -96,6 +96,12 @@ void Camera::move(const PointDouble & pointDouble)
     {
         mCamera.y = worldPixeHeight - mCamera.h;
     }
+
+    SDL_Log("Camera::move --  mCamera: [x: %d y: %d w: %d h: %d] \n",
+            mCamera.x,
+            mCamera.y,
+            mCamera.w,
+            mCamera.h);
 }
 
 void Camera::setZoomFactor(const double & zoomFactorAdjustment)
@@ -109,7 +115,6 @@ void Camera::setZoomFactor(const double & zoomFactorAdjustment)
     {
         mZoomFactor = mCameraProperties.minZoomFactor;
     }
-    dispatchZoomFactorUpdate();
 }
 
 void Camera::dispatchZoomFactorUpdate()
@@ -130,12 +135,14 @@ const double & Camera::getZoomFactor()
     return mZoomFactor;
 }
 
-void Camera::scrollEventCallback(SDL_Event scrollEvent)
+void Camera::scrollEventCallback(const PointInt & pointMovement)
 {
-
+    SDL_Log("Camera::scrollEventCallback -- pointMovement: [x: %d, y: %d] \n", pointMovement.x, pointMovement.y);
+    move(pointMovement);
 }
 void Camera::zoomEventCallback(const double & zoomAdjustment)
 {
     SDL_Log("Camera::zoomEventCallback -- zoomAdjustment: [%f] \n", zoomAdjustment);
     setZoomFactor(zoomAdjustment);
+    dispatchZoomFactorUpdate();
 }

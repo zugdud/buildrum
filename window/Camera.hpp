@@ -16,10 +16,10 @@ void updateSize(const SDL_Rect & viewportRect);
 void registerObserver(CameraObserver *CameraObserver);
 
 bool isViewableArea(const SDL_Rect & rect);
-void move(const PointDouble & pointDouble);
+void move(const PointInt & pointMovement);
 void setZoomFactor(const double & zoomFactorAdjustment);
 
-void scrollEventCallback(SDL_Event scrollEvent);
+void scrollEventCallback(const PointInt & pointMovement);
 void zoomEventCallback(const double & zoomAdjustment);
 
 const SDL_Rect & getRect();

@@ -19,7 +19,7 @@ class ScrollEventObserver
 {
 public:
 
-virtual void scrollEventCallback(SDL_Event scrollEvent) = 0;
+virtual void scrollEventCallback(const PointInt & pointMovement) = 0;
 
 };
 

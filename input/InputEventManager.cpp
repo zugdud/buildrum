@@ -96,11 +96,11 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
     {
         case SDLK_1: dispatchZoomEvent(0.2); break;
         case SDLK_2: dispatchZoomEvent(-0.2); break;
-            // case SDLK_3: debugEvent(); break;
-            // case SDLK_UP: moveCamera(0.0, -20.00); break;
-            // case SDLK_DOWN: moveCamera(0.0, 20.00); break;
-            // case SDLK_LEFT: moveCamera(-20.00, 0.0); break;
-            // case SDLK_RIGHT: moveCamera(20.00, 0.0); break;
+        // case SDLK_3: debugEvent(); break;
+        case SDLK_UP: dispatchScrollEvent(0, -20); break;
+        case SDLK_DOWN: dispatchScrollEvent(0, 20); break;
+        case SDLK_LEFT: dispatchScrollEvent(-20, 0); break;
+        case SDLK_RIGHT: dispatchScrollEvent(20, 0); break;
     }
 }
 
@@ -112,6 +112,16 @@ void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
         int scaleFactor = 10;
         double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
         dispatchZoomEvent(zoomFactor);
+    }
+}
+
+void InputEventManager::dispatchScrollEvent(const int & moveX, const int & moveY)
+{
+    PointInt pointMovement = { moveX, moveY };
+
+    for (size_t i = 0; i < mScrollEventObservers.size(); i++)
+    {
+        mScrollEventObservers[i]->scrollEventCallback(pointMovement);
     }
 }
 
