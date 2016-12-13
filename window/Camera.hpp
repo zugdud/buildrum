@@ -21,6 +21,7 @@ void scrollEventCallback(SDL_Event scrollEvent);
 void zoomEventCallback(const double & zoomAdjustment);
 
 const SDL_Rect & getRect();
+const double & getZoomFactor();
 
 protected:
 
