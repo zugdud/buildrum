@@ -6,12 +6,12 @@ World();
 ~World();
 
 void configure(const WorldProperties & worldProperties, const std::vector<Tile> & tiles);
-void updateTileRects(const double & zoomFactor);
+void updateTileRects();
 void updateTileLabels();
 
 
-void positionUpdate(const SDL_Rect & cameraRect);
-void zoomFactorUpdate(const double & zoomFactor);
+void positionUpdate();
+void zoomFactorUpdate();
 
 const Tile & getTile(const int & tileId);
 const std::vector<Tile> & getTiles() const;

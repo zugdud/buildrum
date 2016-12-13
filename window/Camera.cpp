@@ -109,13 +109,18 @@ void Camera::dispatchZoomFactorUpdate()
 {
     for (size_t i = 0; i < mObservers.size(); i++)
     {
-        mObservers[i]->zoomFactorUpdate(mZoomFactor);
+        mObservers[i]->zoomFactorUpdate();
     }
 }
 
 const SDL_Rect & Camera::getRect()
 {
     return mCamera;
+}
+
+const double & Camera::getZoomFactor()
+{
+    return mZoomFactor;
 }
 
 void Camera::scrollEventCallback(SDL_Event scrollEvent)
