@@ -7,7 +7,7 @@ Tile();
 
 void configure(const TileProperties & tileProperties);
 
-void updateRect(const WorldProperties & worldProperties, const double & zoomFactor);
+void updateRect(const WorldProperties & worldProperties, const double & zoomFactor, const SDL_Rect & cameraRect);
 
 const TileProperties & getTileProperties() const;
 

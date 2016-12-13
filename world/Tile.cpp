@@ -16,10 +16,13 @@ Tile::~Tile()
 // int scaledY = ((y - cameraRect.y) * zoomFactor); // offset scaled position by the cameras position
 
 
-void Tile::updateRect(const WorldProperties & worldProperties, const double & zoomFactor)
+void Tile::updateRect(const WorldProperties & worldProperties, const double & zoomFactor, const SDL_Rect & cameraRect)
 {
-    const int x = (worldProperties.textureSize * (mTileProperties.tileId % worldProperties.columns)) * zoomFactor;
-    const int y = (worldProperties.textureSize * (mTileProperties.tileId / worldProperties.rows)) * zoomFactor;
+    const int basePosX = worldProperties.textureSize * (mTileProperties.tileId % worldProperties.columns);
+    const int basePosY = worldProperties.textureSize * (mTileProperties.tileId / worldProperties.rows);
+
+    const int x = (basePosX - cameraRect.x) * zoomFactor;
+    const int y = (basePosY - cameraRect.y) * zoomFactor;
     const int w = worldProperties.textureSize * zoomFactor;
     const int h = worldProperties.textureSize * zoomFactor;
 
