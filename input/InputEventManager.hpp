@@ -28,6 +28,7 @@ private:
 
 void handleKeyEvents(const SDL_Event & sdlEvent);
 void handleMultiTouch(const SDL_Event & sdlEvent);
+void handleFingerMotion(const SDL_Event & sdlEvent);
 
 void dispatchScrollEvent(const int & moveX, const int & moveY);
 void dispatchZoomEvent(const double & zoomFactor);

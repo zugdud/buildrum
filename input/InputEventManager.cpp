@@ -75,6 +75,11 @@ void InputEventManager::pollEventQueue()
         {
             handleKeyEvents(sdlEvent);
         }
+        // finger motion
+        else if (sdlEvent.type == SDL_FINGERMOTION)
+        {
+            handleFingerMotion(sdlEvent);
+        }
         // quit event
         else if (sdlEvent.type == SDL_QUIT)
         {
@@ -102,6 +107,15 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
         case SDLK_LEFT: dispatchScrollEvent(-20, 0); break;
         case SDLK_RIGHT: dispatchScrollEvent(20, 0); break;
     }
+}
+
+void InputEventManager::handleFingerMotion(const SDL_Event & sdlEvent)
+{
+    int scaleFactor = 1000;
+    double velX = -1 * (sdlEvent.tfinger.dx * scaleFactor);
+    double velY = -1 * (sdlEvent.tfinger.dy * scaleFactor);
+
+    dispatchScrollEvent(velX, velY);
 }
 
 void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
