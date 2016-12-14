@@ -60,37 +60,14 @@ void InputEventManager::pollEventQueue()
 
     while ( SDL_PollEvent(&sdlEvent) != 0 )
     {
-        // point event
-        if (sdlEvent.type == SDL_FINGERDOWN || sdlEvent.type == SDL_MOUSEBUTTONDOWN)
+        switch ( sdlEvent.type )
         {
-            dispatchPointEvent(sdlEvent);
-        }
-        // zoom event
-        else if (sdlEvent.type == SDL_MULTIGESTURE)
-        {
-            handleMultiTouch(sdlEvent);
-        }
-        // key event
-        else if (sdlEvent.type == SDL_KEYDOWN)
-        {
-            handleKeyEvents(sdlEvent);
-        }
-        // finger motion
-        else if (sdlEvent.type == SDL_FINGERMOTION)
-        {
-            handleFingerMotion(sdlEvent);
-        }
-        // quit event
-        else if (sdlEvent.type == SDL_QUIT)
-        {
-            for (size_t i = 0; i < mQuitEventObservers.size(); i++)
-            {
-                mQuitEventObservers[i]->quitEventCallback();
-            }
-        }
-        else
-        {
-            // filtered
+            case SDL_FINGERDOWN: dispatchPointEvent(sdlEvent); break;
+            case SDL_MOUSEBUTTONDOWN: dispatchPointEvent(sdlEvent); break;
+            case SDL_MULTIGESTURE: handleMultiTouch(sdlEvent); break;
+            case SDL_KEYDOWN:     handleKeyEvents(sdlEvent); break;
+            case SDL_FINGERMOTION:     handleFingerMotion(sdlEvent); break;
+            case SDL_QUIT:     dispatchQuitEvent(); break;
         }
     }
 }
@@ -101,7 +78,6 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
     {
         case SDLK_1: dispatchZoomEvent(0.2); break;
         case SDLK_2: dispatchZoomEvent(-0.2); break;
-        // case SDLK_3: debugEvent(); break;
         case SDLK_UP: dispatchScrollEvent(0, -20); break;
         case SDLK_DOWN: dispatchScrollEvent(0, 20); break;
         case SDLK_LEFT: dispatchScrollEvent(-20, 0); break;
@@ -122,12 +98,19 @@ void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
 {
     // if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
     // {
-    // zoom
     int scaleFactor = 4;
     double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
 
     dispatchZoomEvent(zoomFactor);
     // }
+}
+
+void InputEventManager::dispatchQuitEvent()
+{
+    for (size_t i = 0; i < mQuitEventObservers.size(); i++)
+    {
+        mQuitEventObservers[i]->quitEventCallback();
+    }
 }
 
 void InputEventManager::dispatchScrollEvent(const int & moveX, const int & moveY)
