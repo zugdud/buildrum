@@ -15,6 +15,8 @@ const bool & isAttached();
 
 private:
 
+void viewportBackground();
+
 void renderText(const Tile & tile);
 void drawTile(const Tile & tile);
 void renderLayers(const Tile & tile);

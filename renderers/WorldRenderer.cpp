@@ -32,7 +32,7 @@ void WorldRenderer::renderWorld()
     if (mAttached)
     {
         const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
-
+        viewportBackground();
         int renderCount = 0;
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
@@ -46,6 +46,15 @@ void WorldRenderer::renderWorld()
         }
         // SDL_Log("Render count: %d \n", renderCount);
     }
+}
+
+// TODO
+void WorldRenderer::viewportBackground()
+{
+    SDL_Rect bgRect = { 0, 0, 2000, 2000 };
+
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
+    SDL_RenderFillRect(mSDLRenderer, &bgRect);
 }
 
 void WorldRenderer::renderText(const Tile & tile)
