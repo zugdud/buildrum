@@ -18,6 +18,9 @@ void SurfacePropertiesImpl::loadAll()
 
 void SurfacePropertiesImpl::loadSurfaces()
 {
+    addSurface("brick_1", 24, "castle_1", 10);
+    addSurface("brick_2", 65, "castle_1", 10);
+
     addSurface("field_1", 195, "castle_1", 10);
     addSurface("field_2", 196, "castle_1", 10);
     addSurface("field_3", 213, "castle_1", 10);

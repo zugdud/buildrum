@@ -63,7 +63,7 @@ Surface TestWorldImpl::createSurface()
 {
     Surface surface = Surface();
 
-    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("field_1"));
+    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("brick_1"));
 
     return surface;
 }

@@ -17,8 +17,8 @@ void Tile::updateRect(const WorldProperties & worldProperties, const double & zo
 
     const int x = (basePosX - cameraRect.x) * zoomFactor;
     const int y = (basePosY - cameraRect.y) * zoomFactor;
-    const int w = worldProperties.textureSize * zoomFactor;
-    const int h = worldProperties.textureSize * zoomFactor;
+    const int w = ceil(worldProperties.textureSize * zoomFactor);
+    const int h = ceil(worldProperties.textureSize * zoomFactor);
 
     SDL_Rect rect = { x, y, w, h };
 

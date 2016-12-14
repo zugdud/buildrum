@@ -42,8 +42,6 @@ void World::checkViewableArea()
 
 void World::updateTileRects()
 {
-    SDL_Log("World::updateTileRects -- zoomFactor: %f \n",  Camera::Instance().getZoomFactor());
-
     for (size_t i = 0; i < mTiles.size(); i++)
     {
         mTiles[i].updateRect(mWorldProperties,

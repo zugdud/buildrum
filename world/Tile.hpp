@@ -12,7 +12,7 @@ void setSurface(const Surface & surface);
 void setViewableArea();
 void updateLabel();
 
-const Surface & getSurface() const;
+const Surface &getSurface() const;
 const TileProperties & getTileProperties() const;
 const SDL_Rect & getRect() const;
 const TextLabel & getTextLabel() const;

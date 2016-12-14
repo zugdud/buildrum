@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <math.h>
 
 #include <SDL.h>
 #include <SDL_image.h>

@@ -33,11 +33,6 @@ void Camera::updateSize(const SDL_Rect & viewportRect)
 {
     mCamera.w = viewportRect.w;
     mCamera.h = viewportRect.h;
-    SDL_Log("Camera::updateSize --  mCamera: [x: %d y: %d w: %d h: %d] \n",
-            mCamera.x,
-            mCamera.y,
-            mCamera.w,
-            mCamera.h);
 }
 
 void Camera::registerObserver(CameraObserver *CameraObserver)
@@ -84,12 +79,6 @@ void Camera::setPosition(const PointInt & pointMovement)
     {
         mCamera.y = worldPixeHeight - mCamera.h;
     }
-
-    SDL_Log("Camera::move --  mCamera: [x: %d y: %d w: %d h: %d] \n",
-            mCamera.x,
-            mCamera.y,
-            mCamera.w,
-            mCamera.h);
 }
 
 void Camera::setZoomFactor(const double & zoomFactorAdjustment)
@@ -133,13 +122,13 @@ const double & Camera::getZoomFactor()
 
 void Camera::scrollEventCallback(const PointInt & pointMovement)
 {
-    SDL_Log("Camera::scrollEventCallback -- pointMovement: [x: %d, y: %d] \n", pointMovement.x, pointMovement.y);
+    // SDL_Log("Camera::scrollEventCallback -- pointMovement: [x: %d, y: %d] \n", pointMovement.x, pointMovement.y);
     setPosition(pointMovement);
     dispatchPositionUpdate();
 }
 void Camera::zoomEventCallback(const double & zoomAdjustment)
 {
-    SDL_Log("Camera::zoomEventCallback -- zoomAdjustment: [%f] \n", zoomAdjustment);
+    // SDL_Log("Camera::zoomEventCallback -- zoomAdjustment: [%f] \n", zoomAdjustment);
     setZoomFactor(zoomAdjustment);
     dispatchZoomFactorUpdate();
 }
