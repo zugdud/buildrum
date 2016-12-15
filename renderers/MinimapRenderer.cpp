@@ -1,33 +1,33 @@
 #include "include/global.hpp"
 
-WorldRenderer::WorldRenderer()
+MinimapRenderer::MinimapRenderer()
 {
     mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
     mAttached = false;
 }
 
-WorldRenderer::~WorldRenderer()
+MinimapRenderer::~MinimapRenderer()
 {
 
 }
 
-const bool & WorldRenderer::isAttached()
+const bool & MinimapRenderer::isAttached()
 {
     return mAttached;
 }
 
-void WorldRenderer::attach(const Viewport &viewport)
+void MinimapRenderer::attach(const Viewport &viewport)
 {
     mAttached = true;
-    SDL_Log("WorldRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
+    SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 }
 
-void WorldRenderer::detatch()
+void MinimapRenderer::detatch()
 {
     mAttached = false;
 }
 
-void WorldRenderer::renderWorld()
+void MinimapRenderer::renderWorld()
 {
     if (mAttached)
     {
@@ -49,7 +49,7 @@ void WorldRenderer::renderWorld()
 }
 
 // TODO
-void WorldRenderer::viewportBackground()
+void MinimapRenderer::viewportBackground()
 {
     SDL_Rect bgRect = { 0, 0, 2000, 2000 };
 
@@ -57,7 +57,7 @@ void WorldRenderer::viewportBackground()
     SDL_RenderFillRect(mSDLRenderer, &bgRect);
 }
 
-void WorldRenderer::renderText(const Tile & tile)
+void MinimapRenderer::renderText(const Tile & tile)
 {
     SDL_Texture *labelTexture = tile.getTextLabel().labelTexture;
     const SDL_Rect & destRect = tile.getTextLabel().rect;
@@ -65,7 +65,7 @@ void WorldRenderer::renderText(const Tile & tile)
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
-void WorldRenderer::drawTile(const Tile & tile)
+void MinimapRenderer::drawTile(const Tile & tile)
 {
     const SDL_Rect & tileRect = tile.getRect();
     const TileProperties & tileProperties = tile.getTileProperties();
@@ -89,7 +89,7 @@ void WorldRenderer::drawTile(const Tile & tile)
     }
 }
 
-void WorldRenderer::renderLayers(const Tile & tile)
+void MinimapRenderer::renderLayers(const Tile & tile)
 {
     const std::vector<SpriteProperties> & spriteProperties = tile.getSurface().getSpriteProperties();
 
@@ -99,7 +99,7 @@ void WorldRenderer::renderLayers(const Tile & tile)
     }
 }
 
-void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
+void MinimapRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
     SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();

@@ -14,3 +14,11 @@ public:
 virtual void renderWorld() = 0;
 
 };
+
+class IMinimapRenderer
+{
+public:
+
+virtual void renderMinimap() = 0;
+
+};
