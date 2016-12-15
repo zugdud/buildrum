@@ -18,6 +18,9 @@ const bool & MinimapRenderer::isAttached()
 
 void MinimapRenderer::attach(const Viewport &viewport)
 {
+    SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
+
+    mBorderRect = borderRect;
     mAttached = true;
     SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 }
@@ -31,7 +34,6 @@ void MinimapRenderer::render()
 {
     if (mAttached)
     {
-        viewportBackground();
         const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
@@ -40,17 +42,15 @@ void MinimapRenderer::render()
                 renderLayers(tiles[tileId]);
             }
         }
-        // SDL_Log("Render count: %d \n", renderCount);
+        renderBorder();
     }
 }
 
 // TODO
-void MinimapRenderer::viewportBackground()
+void MinimapRenderer::renderBorder()
 {
-    SDL_Rect bgRect = { 0, 0, 2000, 2000 };
-
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
-    SDL_RenderFillRect(mSDLRenderer, &bgRect);
+    SDL_RenderDrawRect(mSDLRenderer, &mBorderRect);
 }
 
 void MinimapRenderer::renderLayers(const Tile & tile)

@@ -15,13 +15,14 @@ const bool & isAttached();
 
 private:
 
-void viewportBackground();
+void renderBorder();
 
 void renderLayers(const Tile & tile);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
 
+SDL_Rect mBorderRect;
 bool mAttached;
 
 };
