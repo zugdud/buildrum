@@ -12,6 +12,7 @@ GameSceneImpl::GameSceneImpl(const std::string & sceneId) : BaseScene(sceneId)
 
     // add world view
     mWorldRendererViewportId = "gameView";
+    mMinimapViewportId = "minimap";
 }
 
 GameSceneImpl::~GameSceneImpl()

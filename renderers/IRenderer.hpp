@@ -19,6 +19,6 @@ class IMinimapRenderer
 {
 public:
 
-virtual void renderMinimap() = 0;
+virtual void render() = 0;
 
 };

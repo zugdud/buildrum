@@ -132,6 +132,14 @@ void BaseScene::attachWorldToWorldRenderer()
             // attach world to camera
             Camera::Instance().registerObserver(WorldManager::Instance().getWorldPtr());
         }
+        else if (viewportProperties.viewportId == mMinimapViewportId)
+        {
+            // attach the renderer to viewport
+            mViewports[i].attachMinimapRenderer(&mMinimapRenderer);
+
+            // configure minimap for the viewport
+            mMinimapRenderer.attach(mViewports[i]);
+        }
     }
 }
 

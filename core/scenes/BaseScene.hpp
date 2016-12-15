@@ -33,8 +33,10 @@ std::vector<std::string> mMenuIds;
 
 MenuRenderer mMenuRenderer;
 WorldRenderer mWorldRenderer;
+MinimapRenderer mMinimapRenderer;
 
 std::string mWorldRendererViewportId;
+std::string mMinimapViewportId;
 
 private:
 

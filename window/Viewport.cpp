@@ -3,7 +3,7 @@
 Viewport::Viewport()
 {
     mWorldRenderer = NULL;
-    mWorldViewport = false;
+    mMinimapRenderer = NULL;
 }
 
 Viewport::~Viewport()
@@ -68,9 +68,13 @@ void Viewport::renderUpdate() const
     {
         mRenderers[i]->renderAllLayers();
     }
-    if (mWorldViewport)
+    if (mWorldRenderer != NULL)
     {
         mWorldRenderer->renderWorld();
+    }
+    else if (mMinimapRenderer != NULL)
+    {
+        mMinimapRenderer->render();
     }
 }
 
@@ -101,5 +105,9 @@ const ViewportProperties & Viewport::getViewportProperties() const
 void Viewport::attachWorldRenderer(IWorldRenderer *worldRenderer)
 {
     mWorldRenderer = worldRenderer;
-    mWorldViewport = true;
+}
+
+void Viewport::attachMinimapRenderer(IMinimapRenderer *minimapRenderer)
+{
+    mMinimapRenderer = minimapRenderer;
 }

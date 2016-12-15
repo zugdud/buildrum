@@ -27,21 +27,17 @@ void MinimapRenderer::detatch()
     mAttached = false;
 }
 
-void MinimapRenderer::renderWorld()
+void MinimapRenderer::render()
 {
     if (mAttached)
     {
-        const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
         viewportBackground();
-        int renderCount = 0;
+        const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             if (tiles[tileId].isViewableArea())
             {
-                // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);
-                renderCount++;
-                // renderText(tiles[tileId]);
             }
         }
         // SDL_Log("Render count: %d \n", renderCount);
@@ -55,38 +51,6 @@ void MinimapRenderer::viewportBackground()
 
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
     SDL_RenderFillRect(mSDLRenderer, &bgRect);
-}
-
-void MinimapRenderer::renderText(const Tile & tile)
-{
-    SDL_Texture *labelTexture = tile.getTextLabel().labelTexture;
-    const SDL_Rect & destRect = tile.getTextLabel().rect;
-
-    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
-}
-
-void MinimapRenderer::drawTile(const Tile & tile)
-{
-    const SDL_Rect & tileRect = tile.getRect();
-    const TileProperties & tileProperties = tile.getTileProperties();
-
-    if (tileProperties.fillBackground == true)
-    {
-        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.backgroundColor.r,
-                               tileProperties.backgroundColor.g,
-                               tileProperties.backgroundColor.b,
-                               tileProperties.backgroundColor.a);
-        SDL_RenderFillRect(mSDLRenderer, &tileRect);
-    }
-
-    if (tileProperties.drawBorder == true)
-    {
-        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.borderColor.r,
-                               tileProperties.borderColor.g,
-                               tileProperties.borderColor.b,
-                               tileProperties.borderColor.a);
-        SDL_RenderDrawRect(mSDLRenderer, &tileRect);
-    }
 }
 
 void MinimapRenderer::renderLayers(const Tile & tile)

@@ -16,6 +16,7 @@ void removeAllRenderers();
 void renderUpdate() const;
 
 void attachWorldRenderer(IWorldRenderer *worldRenderer);
+void attachMinimapRenderer(IMinimapRenderer *minimapRenderer);
 
 const SDL_Rect & getRect() const;
 
@@ -30,5 +31,6 @@ SDL_Renderer *mSDLRenderer;
 
 std::vector<IRenderer *> mRenderers;
 IWorldRenderer *mWorldRenderer;
-bool mWorldViewport;
+IMinimapRenderer *mMinimapRenderer;
+
 };

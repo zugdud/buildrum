@@ -58,6 +58,7 @@ UI/elements/UIMenu.cpp \
 UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 renderers/WorldRenderer.cpp \
+renderers/MinimapRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \
