@@ -69,8 +69,8 @@ void MinimapRenderer::render()
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             renderLayers(tiles[tileId], mMinimapRects[tileId]);
-            renderCamera();
         }
+        renderCamera();
         renderBorder();
     }
 }
@@ -86,11 +86,13 @@ void MinimapRenderer::renderCamera()
 {
     SDL_Rect scaledRect;
 
-    scaledRect.x = ceil(Camera::Instance().getRect().x * mScaleRatio);
-    scaledRect.y = ceil(Camera::Instance().getRect().y * mScaleRatio);
-    scaledRect.w = ceil(Camera::Instance().getRect().w * mScaleRatio);
-    scaledRect.h = ceil(Camera::Instance().getRect().h * mScaleRatio);
+    scaledRect.x = Camera::Instance().getRect().x * mScaleRatio;
+    scaledRect.y = Camera::Instance().getRect().y * mScaleRatio;
+    scaledRect.w = Camera::Instance().getRect().w * mScaleRatio;
+    scaledRect.h = Camera::Instance().getRect().h * mScaleRatio;
 
+    scaledRect.w = scaledRect.w / Camera::Instance().getZoomFactor();
+    scaledRect.h = scaledRect.h / Camera::Instance().getZoomFactor();
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 255, 255);
     SDL_RenderDrawRect(mSDLRenderer, &scaledRect);
 }
