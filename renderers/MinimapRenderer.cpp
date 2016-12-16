@@ -37,17 +37,13 @@ void MinimapRenderer::attach(const Viewport &viewport)
     SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
-    double viewportPixelSize = viewport.getRect().w * viewport.getRect().h;
-    double worldPixelSize = worldProperties.numTiles * (worldProperties.textureSize * worldProperties.textureSize);
-    double percentDecrease = (worldPixelSize - viewportPixelSize) / worldPixelSize * 100;
-    // double percentDecrease = (100 - percentIncrease) / 100;
-    double percentDecrease = 0.08;
+    const double tileSize = viewport.getRect().h / worldProperties.rows;
 
-    SDL_Log("MinimapRenderer::attach -- viewportPixelSize: %f worldPixelSize: %f percentIncrease: %f percentDecrease: %f  \n",
-            viewportPixelSize,
-            worldPixelSize,
-            percentIncrease,
-            percentDecrease);
+    double percentIncrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
+    double percentDecrease = (100 - percentIncrease) / 100;
+
+
+    SDL_Log("MinimapRenderer::attach -- percentDecrease: %f  \n", percentDecrease);
 
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
