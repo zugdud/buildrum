@@ -15,6 +15,7 @@ const bool & isAttached();
 
 private:
 
+void renderCamera();
 void renderBorder();
 
 void renderLayers(const Tile & tile, const SDL_Rect & rect);
@@ -27,5 +28,5 @@ bool mAttached;
 
 std::vector<SDL_Rect> mMinimapRects;
 
-
+double mScaleRatio;
 };

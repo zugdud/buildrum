@@ -4,6 +4,7 @@ MinimapRenderer::MinimapRenderer()
 {
     mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
     mAttached = false;
+    mScaleRatio = 1.0;
 }
 
 MinimapRenderer::~MinimapRenderer()
@@ -34,26 +35,23 @@ void MinimapRenderer::attach(const Viewport &viewport)
 
     mBorderRect = borderRect;
     mAttached = true;
-    SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s \n", viewport.getViewportProperties().viewportId.c_str());
 
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
     const double tileSize = viewport.getRect().h / worldProperties.rows;
+    const double percentDecrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
+    mScaleRatio = (100 - percentDecrease) / 100;
 
-    double percentIncrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
-    double percentDecrease = (100 - percentIncrease) / 100;
-
-
-    SDL_Log("MinimapRenderer::attach -- percentDecrease: %f  \n", percentDecrease);
+    SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s mScaleRatio: %f \n", viewport.getViewportProperties().viewportId.c_str(), mScaleRatio);
 
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
     {
         const SDL_Rect tileRect = tiles[tileId].getRect();
         SDL_Rect minimapRect;
-        minimapRect.x = ceil(tileRect.x * percentDecrease);
-        minimapRect.y = ceil(tileRect.y * percentDecrease);
-        minimapRect.w = ceil(tileRect.w * percentDecrease);
-        minimapRect.h = ceil(tileRect.h * percentDecrease);
+        minimapRect.x = ceil(tileRect.x * mScaleRatio);
+        minimapRect.y = ceil(tileRect.y * mScaleRatio);
+        minimapRect.w = ceil(tileRect.w * mScaleRatio);
+        minimapRect.h = ceil(tileRect.h * mScaleRatio);
         mMinimapRects.push_back(minimapRect);
     }
 }
@@ -71,6 +69,7 @@ void MinimapRenderer::render()
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             renderLayers(tiles[tileId], mMinimapRects[tileId]);
+            renderCamera();
         }
         renderBorder();
     }
@@ -81,6 +80,19 @@ void MinimapRenderer::renderBorder()
 {
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
     SDL_RenderDrawRect(mSDLRenderer, &mBorderRect);
+}
+
+void MinimapRenderer::renderCamera()
+{
+    SDL_Rect scaledRect;
+
+    scaledRect.x = ceil(Camera::Instance().getRect().x * mScaleRatio);
+    scaledRect.y = ceil(Camera::Instance().getRect().y * mScaleRatio);
+    scaledRect.w = ceil(Camera::Instance().getRect().w * mScaleRatio);
+    scaledRect.h = ceil(Camera::Instance().getRect().h * mScaleRatio);
+
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 255, 255);
+    SDL_RenderDrawRect(mSDLRenderer, &scaledRect);
 }
 
 void MinimapRenderer::renderLayers(const Tile & tile, const SDL_Rect & rect)
