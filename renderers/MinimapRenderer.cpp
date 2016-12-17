@@ -64,10 +64,22 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
         renderLayers(tiles[tileId], minimapRect);
     }
 
+    createBGTexture(viewport);
+    // std::string filePath = "testamundo.bmp";
+    // saveScreenshotBMP(filePath, WindowManager::getInstance()->getWindow().getSDLWindow(), mSDLRenderer);
 
-    std::string filePath = "testamundo.bmp";
-    saveScreenshotBMP(filePath, WindowManager::getInstance()->getWindow().getSDLWindow(), mSDLRenderer);
+}
 
+bool MinimapRenderer::createBGTexture(const Viewport &viewport)
+{
+    SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    int pitch = sshot->pitch;
+
+    SDL_Log("pitch: %d \n", pitch);
+    SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, pitch);
+    mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
+    //  SDL_SaveBMP(sshot, "testamundo.bmp");
+    // SDL_FreeSurface(sshot);
 }
 
 bool MinimapRenderer::saveScreenshotBMP(std::string filepath, SDL_Window *SDLWindow, SDL_Renderer *SDLRenderer)
@@ -78,7 +90,7 @@ bool MinimapRenderer::saveScreenshotBMP(std::string filepath, SDL_Window *SDLWin
     infoSurface = SDL_GetWindowSurface(SDLWindow);
     if (infoSurface == NULL)
     {
-        SDL_Log("MinimapRenderer::saveScreenshotBMP -- Failed to create info surface from window in saveScreenshotBMP(string), SDL_GetError(): %s \n", SDL_GetError());
+        SDL_Log("MinimapRenderer::saveScreenshotBMP -- Failed to create info surface from window, SDL_GetError(): %s \n", SDL_GetError());
     }
     else
     {
