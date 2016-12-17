@@ -71,13 +71,13 @@ void Camera::setPosition(const PointInt & pointMovement)
     {
         mCamera.y = 0;
     }
-    if ( mCamera.x > (worldPixeWidth - mCamera.w))
+    if ( mCamera.x > (worldPixeWidth - (mCamera.w / mZoomFactor)))
     {
-        mCamera.x = worldPixeWidth - mCamera.w;
+        mCamera.x = worldPixeWidth - (mCamera.w / mZoomFactor);
     }
-    if ( mCamera.y > (worldPixeHeight - mCamera.h))
+    if ( mCamera.y > (worldPixeHeight - (mCamera.h / mZoomFactor)))
     {
-        mCamera.y = worldPixeHeight - mCamera.h;
+        mCamera.y = worldPixeHeight - (mCamera.h / mZoomFactor);
     }
 }
 
@@ -92,6 +92,8 @@ void Camera::setZoomFactor(const double & zoomFactorAdjustment)
     {
         mZoomFactor = mCameraProperties.minZoomFactor;
     }
+    PointInt pointInt = { 0, 0 };
+    setPosition(pointInt);
 }
 
 void Camera::dispatchPositionUpdate()
