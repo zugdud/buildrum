@@ -17,7 +17,7 @@ private:
 
 void  createBackgroundTexture(const Viewport &viewport);
 
-bool createBGTexture(const Viewport &viewport);
+void createBGTexture(const Viewport &viewport);
 bool saveScreenshotBMP(std::string filepath, SDL_Window *SDLWindow, SDL_Renderer *SDLRenderer);
 void renderBackground();
 void renderCamera();
