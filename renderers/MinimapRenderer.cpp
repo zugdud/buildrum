@@ -30,20 +30,25 @@ const bool & MinimapRenderer::isAttached()
 void MinimapRenderer::attach(const Viewport &viewport)
 {
     mMinimapRects.clear();
-
     SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
-
     mBorderRect = borderRect;
     mAttached = true;
 
+    SDL_Log("MinimapRenderer::attached -- creating background texture ... \n");
+    createBackgroundTexture(viewport);
+
+}
+
+void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
+{
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
     const double tileSize = viewport.getRect().h / worldProperties.rows;
     const double percentDecrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
+
     mScaleRatio = (100 - percentDecrease) / 100;
 
-    SDL_Log("MinimapRenderer::attach -- attached to viewportId: %s mScaleRatio: %f \n", viewport.getViewportProperties().viewportId.c_str(), mScaleRatio);
-
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
+
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
     {
         const SDL_Rect tileRect = tiles[tileId].getRect();
@@ -54,6 +59,17 @@ void MinimapRenderer::attach(const Viewport &viewport)
         minimapRect.h = ceil(tileRect.h * mScaleRatio);
         mMinimapRects.push_back(minimapRect);
     }
+
+    for (size_t tileId = 0; tileId < tiles.size(); tileId++)
+    {
+        renderLayers(tiles[tileId], mMinimapRects[tileId]);
+    }
+
+    SDL_Surface *sshot = SDL_CreateRGBSurface(0, mBorderRect.w, mBorderRect.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
+    mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
+    SDL_SaveBMP(sshot, "screenshot.bmp");
+    SDL_FreeSurface(sshot);
 }
 
 void MinimapRenderer::detatch()
@@ -65,11 +81,7 @@ void MinimapRenderer::render()
 {
     if (mAttached)
     {
-        const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
-        for (size_t tileId = 0; tileId < tiles.size(); tileId++)
-        {
-            renderLayers(tiles[tileId], mMinimapRects[tileId]);
-        }
+        renderBackground();
         renderCamera();
         renderBorder();
     }
@@ -106,6 +118,12 @@ void MinimapRenderer::renderLayers(const Tile & tile, const SDL_Rect & rect)
         renderSprite(spriteProperties[i], rect);
     }
 }
+
+void MinimapRenderer::renderBackground()
+{
+    SDL_RenderCopy(mSDLRenderer, mBackgroundTexture, NULL, NULL);
+}
+
 
 void MinimapRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {

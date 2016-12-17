@@ -15,6 +15,9 @@ const bool & isAttached();
 
 private:
 
+void  createBackgroundTexture(const Viewport &viewport);
+
+void renderBackground();
 void renderCamera();
 void renderBorder();
 
@@ -22,6 +25,8 @@ void renderLayers(const Tile & tile, const SDL_Rect & rect);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
+
+SDL_Texture *mBackgroundTexture;
 
 SDL_Rect mBorderRect;
 bool mAttached;

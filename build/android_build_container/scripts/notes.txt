@@ -1,1 +1,3 @@
 docker run -it -v /tmp/out/:/tmp/out/ -v /home/jcreecy/code/game-assets/:/home/jcreecy/code/game-assets/ -v /home/jcreecy/code/buildrum/:/home/jcreecy/code/buildrum/ docker.io/zugdud/buildrum:latest
+
+docker run -it -v /tmp/out/:/tmp/out/ -v /Users/jcreecy/code/game-assets/:/home/jcreecy/code/game-assets/ -v /Users/jcreecy/code/buildrum/:/Users/jcreecy/code/buildrum/ docker.io/zugdud/buildrum:latest
