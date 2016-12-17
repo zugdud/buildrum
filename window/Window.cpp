@@ -35,6 +35,11 @@ bool Window::createWindow(const WindowProperties &windowProperties)
     }
 }
 
+SDL_Window * Window::getSDLWindow() const
+{
+    return mSDLWindow;
+}
+
 SDL_Renderer * Window::getSDLWindowRenderer()
 {
     return mSDLWindowRenderer;

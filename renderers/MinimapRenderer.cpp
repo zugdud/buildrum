@@ -64,13 +64,57 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
         renderLayers(tiles[tileId], minimapRect);
     }
 
-    SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-    SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
-    mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
-    SDL_SaveBMP(sshot, "minimap.bmp");
-    SDL_FreeSurface(sshot);
 
-    // SDL_Log("MinimapRenderer::createBackgroundTexture -- creating background texture ... \n");
+    std::string filePath = "testamundo.bmp";
+    saveScreenshotBMP(filePath, WindowManager::getInstance()->getWindow().getSDLWindow(), mSDLRenderer);
+
+}
+
+bool MinimapRenderer::saveScreenshotBMP(std::string filepath, SDL_Window *SDLWindow, SDL_Renderer *SDLRenderer)
+{
+    SDL_Surface *saveSurface = NULL;
+    SDL_Surface *infoSurface = NULL;
+
+    infoSurface = SDL_GetWindowSurface(SDLWindow);
+    if (infoSurface == NULL)
+    {
+        SDL_Log("MinimapRenderer::saveScreenshotBMP -- Failed to create info surface from window in saveScreenshotBMP(string), SDL_GetError(): %s \n", SDL_GetError());
+    }
+    else
+    {
+        unsigned char *pixels = new (std::nothrow) unsigned char[infoSurface->w * infoSurface->h * infoSurface->format->BytesPerPixel];
+        if (pixels == 0)
+        {
+            SDL_Log("MinimapRenderer::saveScreenshotBMP -- Unable to allocate memory for screenshot pixel data buffer! \n");
+            return false;
+        }
+        else
+        {
+            if (SDL_RenderReadPixels(SDLRenderer, &infoSurface->clip_rect, infoSurface->format->format, pixels, infoSurface->w * infoSurface->format->BytesPerPixel) != 0)
+            {
+                SDL_Log("MinimapRenderer::saveScreenshotBMP -- Failed to read pixel data from SDL_Renderer object. SDL_GetError(): %s \n", SDL_GetError());
+                pixels = NULL;
+                return false;
+            }
+            else
+            {
+                saveSurface = SDL_CreateRGBSurfaceFrom(pixels, infoSurface->w, infoSurface->h, infoSurface->format->BitsPerPixel, infoSurface->w * infoSurface->format->BytesPerPixel, infoSurface->format->Rmask, infoSurface->format->Gmask, infoSurface->format->Bmask, infoSurface->format->Amask);
+                if (saveSurface == NULL)
+                {
+                    SDL_Log("MinimapRenderer::saveScreenshotBMP -- Couldn't create SDL_Surface from renderer pixel data. SDL_GetError(): %s \n", SDL_GetError());
+                    return false;
+                }
+                mBackgroundTexture = SDL_CreateTextureFromSurface(SDLRenderer, saveSurface);
+                SDL_SaveBMP(saveSurface, filepath.c_str());
+                SDL_FreeSurface(saveSurface);
+                saveSurface = NULL;
+            }
+            delete[] pixels;
+        }
+        SDL_FreeSurface(infoSurface);
+        infoSurface = NULL;
+    }
+    return true;
 }
 
 void MinimapRenderer::detatch()

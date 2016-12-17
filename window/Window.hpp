@@ -10,7 +10,7 @@ SDL_Renderer * getSDLWindowRenderer();
 bool createWindow(const WindowProperties &windowProperties);
 void clearScreen() const;
 void updateScreen() const;
-
+SDL_Window * getSDLWindow() const;
 
 private:
 
