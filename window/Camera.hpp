@@ -9,7 +9,7 @@ static Camera& Instance()
     return instance;
 }
 
-
+void resetCamera();
 void configure(const CameraProperties & cameraProperties);
 
 void updateSize(const SDL_Rect & viewportRect);

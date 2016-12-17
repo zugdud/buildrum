@@ -15,8 +15,8 @@ void Tile::updateRect(const WorldProperties & worldProperties, const double & zo
     const int basePosX = worldProperties.textureSize * (mTileProperties.tileId % worldProperties.columns);
     const int basePosY = worldProperties.textureSize * (mTileProperties.tileId / worldProperties.rows);
 
-    const int x = (basePosX - cameraRect.x) * zoomFactor;
-    const int y = (basePosY - cameraRect.y) * zoomFactor;
+    const int x = ceil((basePosX - cameraRect.x) * zoomFactor);
+    const int y = ceil((basePosY - cameraRect.y) * zoomFactor);
     const int w = ceil(worldProperties.textureSize * zoomFactor);
     const int h = ceil(worldProperties.textureSize * zoomFactor);
 

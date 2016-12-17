@@ -27,6 +27,8 @@ void MinimapRenderer::attach(const Viewport &viewport)
 
 void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
 {
+    Camera::Instance().resetCamera();
+
     SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
 
     mBorderRect = borderRect;
@@ -47,16 +49,16 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
         minimapRect.w = ceil(tileRect.w * mScaleRatio);
         minimapRect.h = ceil(tileRect.h * mScaleRatio);
 
-        SDL_Log("MinimapRenderer::createBackgroundTexture -- tileRect: [x: %d y: %d w: %d h: %d] \n",
-                tileRect.x,
-                tileRect.y,
-                tileRect.w,
-                tileRect.h);
-        SDL_Log("MinimapRenderer::createBackgroundTexture -- minimapRect: [x: %d y: %d w: %d h: %d] \n",
-                minimapRect.x,
-                minimapRect.y,
-                minimapRect.w,
-                minimapRect.h);
+        // SDL_Log("MinimapRenderer::createBackgroundTexture -- tileRect: [x: %d y: %d w: %d h: %d] \n",
+        //         tileRect.x,
+        //         tileRect.y,
+        //         tileRect.w,
+        //         tileRect.h);
+        // SDL_Log("MinimapRenderer::createBackgroundTexture -- minimapRect: [x: %d y: %d w: %d h: %d] \n",
+        //         minimapRect.x,
+        //         minimapRect.y,
+        //         minimapRect.w,
+        //         minimapRect.h);
 
         renderLayers(tiles[tileId], minimapRect);
     }

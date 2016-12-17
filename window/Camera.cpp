@@ -29,6 +29,15 @@ void Camera::configure(const CameraProperties & cameraProperties)
             mCamera.h);
 }
 
+void Camera::resetCamera()
+{
+    mCamera.x = mCameraProperties.initRectX;
+    mCamera.y = mCameraProperties.initRectY;
+    mCamera.w = mCameraProperties.initRectW;
+    mCamera.h = mCameraProperties.initRectH;
+    mZoomFactor = mCameraProperties.defaultZoomFactor;
+}
+
 void Camera::updateSize(const SDL_Rect & viewportRect)
 {
     mCamera.w = viewportRect.w;

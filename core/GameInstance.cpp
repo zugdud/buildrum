@@ -54,6 +54,9 @@ bool GameInstance::init()
     // camera
     Camera::Instance().configure(ConfigManager::getInstance()->getCameraPropertiesImpl().getCameraProperties());
 
+    // world
+    // WorldManager::Instance();
+
     SDL_Log("==================================================== \n");
     return true;
 }
