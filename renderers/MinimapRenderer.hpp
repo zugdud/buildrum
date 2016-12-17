@@ -25,13 +25,11 @@ void renderLayers(const Tile & tile, const SDL_Rect & rect);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
-
 SDL_Texture *mBackgroundTexture;
-
 SDL_Rect mBorderRect;
-bool mAttached;
-
-std::vector<SDL_Rect> mMinimapRects;
 
 double mScaleRatio;
+bool mAttached;
+
+
 };

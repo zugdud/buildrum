@@ -17,30 +17,20 @@ const bool & MinimapRenderer::isAttached()
     return mAttached;
 }
 
-//
-// struct WorldProperties
-// {
-//     std::string worldId;
-//     int rows;
-//     int columns;
-//     int numTiles;
-//     int textureSize;
-// };
-
 void MinimapRenderer::attach(const Viewport &viewport)
 {
-    mMinimapRects.clear();
-    SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
-    mBorderRect = borderRect;
     mAttached = true;
 
     SDL_Log("MinimapRenderer::attached -- creating background texture ... \n");
     createBackgroundTexture(viewport);
-
 }
 
 void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
 {
+    SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
+
+    mBorderRect = borderRect;
+
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
     const double tileSize = viewport.getRect().h / worldProperties.rows;
     const double percentDecrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
@@ -48,7 +38,6 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
     mScaleRatio = (100 - percentDecrease) / 100;
 
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
-
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
     {
         const SDL_Rect tileRect = tiles[tileId].getRect();
@@ -57,12 +46,8 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
         minimapRect.y = ceil(tileRect.y * mScaleRatio);
         minimapRect.w = ceil(tileRect.w * mScaleRatio);
         minimapRect.h = ceil(tileRect.h * mScaleRatio);
-        mMinimapRects.push_back(minimapRect);
-    }
 
-    for (size_t tileId = 0; tileId < tiles.size(); tileId++)
-    {
-        renderLayers(tiles[tileId], mMinimapRects[tileId]);
+        renderLayers(tiles[tileId], minimapRect);
     }
 
     SDL_Surface *sshot = SDL_CreateRGBSurface(0, mBorderRect.w, mBorderRect.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
@@ -82,8 +67,8 @@ void MinimapRenderer::render()
     if (mAttached)
     {
         renderBackground();
-        renderCamera();
         renderBorder();
+        renderCamera();
     }
 }
 
