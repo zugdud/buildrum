@@ -5,6 +5,7 @@ MinimapRenderer::MinimapRenderer()
     mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
     mAttached = false;
     mScaleRatio = 1.0;
+    mBackgroundTexture = NULL;
 }
 
 MinimapRenderer::~MinimapRenderer()
@@ -66,7 +67,7 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
     SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
     SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
     mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
-    // SDL_SaveBMP(sshot, "minimap.bmp");
+    SDL_SaveBMP(sshot, "minimap.bmp");
     SDL_FreeSurface(sshot);
 
     // SDL_Log("MinimapRenderer::createBackgroundTexture -- creating background texture ... \n");
