@@ -149,7 +149,7 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
 
 void MinimapRenderer::createBGTexture(const Viewport &viewport)
 {
-    SDL_Surface *sshot = SDL_CreateRGBSurface(0, 1024, 768, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
     if (sshot != NULL)
     {
@@ -168,7 +168,7 @@ void MinimapRenderer::createBGTexture(const Viewport &viewport)
                     SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateTextureFromSurface error: %s  \n", SDL_GetError());
                 }
 
-                SDL_FreeSurface(saveSurface);
+                // SDL_FreeSurface(saveSurface);
             }
             else
             {
@@ -180,7 +180,7 @@ void MinimapRenderer::createBGTexture(const Viewport &viewport)
             SDL_Log("MinimapRenderer::createBGTexture -- SDL_RenderReadPixels error: %s \n", SDL_GetError());
         }
 
-        SDL_FreeSurface(sshot);
+        // SDL_FreeSurface(sshot);
     }
     else
     {
