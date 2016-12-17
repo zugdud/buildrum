@@ -47,14 +47,27 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
         minimapRect.w = ceil(tileRect.w * mScaleRatio);
         minimapRect.h = ceil(tileRect.h * mScaleRatio);
 
+        SDL_Log("MinimapRenderer::createBackgroundTexture -- tileRect: [x: %d y: %d w: %d h: %d] \n",
+                tileRect.x,
+                tileRect.y,
+                tileRect.w,
+                tileRect.h);
+        SDL_Log("MinimapRenderer::createBackgroundTexture -- minimapRect: [x: %d y: %d w: %d h: %d] \n",
+                minimapRect.x,
+                minimapRect.y,
+                minimapRect.w,
+                minimapRect.h);
+
         renderLayers(tiles[tileId], minimapRect);
     }
 
-    SDL_Surface *sshot = SDL_CreateRGBSurface(0, mBorderRect.w, mBorderRect.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
     SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
     mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
-    SDL_SaveBMP(sshot, "screenshot.bmp");
+    // SDL_SaveBMP(sshot, "minimap.bmp");
     SDL_FreeSurface(sshot);
+
+    // SDL_Log("MinimapRenderer::createBackgroundTexture -- creating background texture ... \n");
 }
 
 void MinimapRenderer::detatch()
@@ -83,10 +96,10 @@ void MinimapRenderer::renderCamera()
 {
     SDL_Rect scaledRect;
 
-    scaledRect.x = Camera::Instance().getRect().x * mScaleRatio;
-    scaledRect.y = Camera::Instance().getRect().y * mScaleRatio;
-    scaledRect.w = Camera::Instance().getRect().w * mScaleRatio;
-    scaledRect.h = Camera::Instance().getRect().h * mScaleRatio;
+    scaledRect.x = (Camera::Instance().getRect().x * mScaleRatio) + 2;
+    scaledRect.y = (Camera::Instance().getRect().y * mScaleRatio) + 2;
+    scaledRect.w = (Camera::Instance().getRect().w * mScaleRatio) - 2;
+    scaledRect.h = (Camera::Instance().getRect().h * mScaleRatio) - 2;
 
     scaledRect.w = scaledRect.w / Camera::Instance().getZoomFactor();
     scaledRect.h = scaledRect.h / Camera::Instance().getZoomFactor();
