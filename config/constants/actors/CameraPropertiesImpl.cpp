@@ -50,7 +50,7 @@ void CameraPropertiesImpl::setCameraProperties()
     #endif
 
     #ifdef SQUARE_TEST_TARGET
-    CameraProperties squareTestProperties = { 2, 3.0, 1.0, 0, 0, 1440, 1440 };
+    CameraProperties squareTestProperties = { 1, 3.0, 1.0, 0, 0, 1440, 1440 };
     mCameraProperties = squareTestProperties;
     #endif
 }

@@ -17,13 +17,14 @@ private:
 
 void  createBackgroundTexture(const Viewport &viewport);
 
-void createBGTexture(const Viewport &viewport);
+void createMinimapTexture(const Viewport &viewport);
 bool saveScreenshotBMP(std::string filepath, SDL_Window *SDLWindow, SDL_Renderer *SDLRenderer);
 void renderBackground();
 void renderCamera();
 void renderBorder();
 
-void renderLayers(const Tile & tile, const SDL_Rect & rect);
+void renderText(const Tile & tile);
+void renderLayers(const Tile & tile);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
@@ -31,6 +32,8 @@ SDL_Texture *mBackgroundTexture;
 SDL_Rect mBorderRect;
 
 double mScaleRatio;
+
+
 bool mAttached;
 
 
