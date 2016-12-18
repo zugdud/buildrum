@@ -12,7 +12,10 @@ private:
 void setWorldProperties();
 
 Tile createTile(const int & tileId);
-Surface createSurface();
+bool isEdge(const int & tileId);
+
+Surface edgeSurface();
+Surface defaultSurface();
 
 SurfacePropertiesImpl mSurfacePropertiesImpl;
 std::vector<Tile> mTiles;

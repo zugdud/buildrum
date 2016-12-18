@@ -23,6 +23,7 @@ void Tile::updateRect(const WorldProperties & worldProperties, const double & zo
     SDL_Rect rect = { x, y, w, h };
 
     mRect = rect;
+    updateLabel();
 }
 
 void Tile::configure(const TileProperties & tileProperties)

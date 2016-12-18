@@ -54,16 +54,45 @@ Tile TestWorldImpl::createTile(const int & tileId)
     tileProperties.fontProfileName = "Heading_3_OpenSansLight";
 
     tile.configure(tileProperties);
-    tile.setSurface(createSurface());
+
+    if (isEdge(tileId))
+    {
+        tile.setSurface(edgeSurface());
+    }
+    else
+    {
+        tile.setSurface(defaultSurface());
+    }
 
     return tile;
 }
 
-Surface TestWorldImpl::createSurface()
+Surface TestWorldImpl::defaultSurface()
 {
     Surface surface = Surface();
 
     surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("brick_1"));
 
     return surface;
+}
+
+Surface TestWorldImpl::edgeSurface()
+{
+    Surface surface = Surface();
+
+    surface.configure(mSurfacePropertiesImpl.getSurfaceProperties("water_1"));
+
+    return surface;
+}
+
+bool TestWorldImpl::isEdge(const int & tileId)
+{
+    int col = tileId % mWorldProperties.columns;
+    int row = tileId / mWorldProperties.rows;
+
+    if (col == 0)
+    {
+        return true;
+    }
+    return false;
 }

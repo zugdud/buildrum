@@ -33,18 +33,15 @@ void WorldRenderer::renderWorld()
     {
         const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
         viewportBackground();
-        int renderCount = 0;
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             if (tiles[tileId].isViewableArea())
             {
                 // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);
-                renderCount++;
-                // renderText(tiles[tileId]);
+                renderText(tiles[tileId]);
             }
         }
-        // SDL_Log("Render count: %d \n", renderCount);
     }
 }
 
