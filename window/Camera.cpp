@@ -71,10 +71,6 @@ void Camera::setPosition(const PointInt & pointMovement)
     mCamera.x += pointMovement.x;
     mCamera.y += pointMovement.y;
 
-    SDL_Log("Camera::setPosition PRE -- pointMovement: %d pointMovement: %d  \n",
-            pointMovement.x,
-            pointMovement.y);
-
     // Keep the camera within the bounds of the level
     if ( mCamera.x > (worldPixeWidth - (mCamera.w / mZoomFactor)))
     {
@@ -93,9 +89,9 @@ void Camera::setPosition(const PointInt & pointMovement)
         mCamera.y = 0;
     }
 
-    SDL_Log("Camera::setPosition POST-- worldPixeHeight: %d worldPixeHeight: %d mCamera: [x: %d y: %d w: %f h: %f] \n",
-            worldPixeWidth,
-            worldPixeHeight,
+    SDL_Log("Camera::setPosition POST-- edgeX: %f edgeY: %f mCamera: [x: %d y: %d w: %f h: %f] \n",
+            mCamera.x + (mCamera.w / mZoomFactor),
+            mCamera.y + (mCamera.h / mZoomFactor),
             mCamera.x,
             mCamera.y,
             mCamera.w / mZoomFactor,
