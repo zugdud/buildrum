@@ -66,121 +66,24 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
 
     createBGTexture(viewport);
 }
-//
-// void MinimapRenderer::glTexture(const Viewport &viewport)
-// {
-//     {
-//         SDL_Rect clip;
-//         void *pixels = nullptr;
-//
-//         SDL_Rect output_size; // width & height in pixels
-//
-//         if ( SDL_GetRendererOutputSize(this->renderer(), &output_size.w, &output_size.h) != 0 )
-//         {
-//             NOM_LOG_ERR(NOM, SDL_GetError() );
-//             return Size2i::null;
-//         }
-//
-// // In order to accurately capture our window, with respect to aspect ratio,
-// // such as the case of us using device independent scaling [1], we must
-// // calculate the true bounding dimensions of our rendering target.
-//         clip.x = 0;
-//         clip.y = 0;
-//         clip.w = output_size.w;
-//         clip.h = output_size.h;
-//
-//         pixels = static_cast<uint32 *> ( malloc(clip.w * clip.h * 4) );
-//
-//         if ( SDL_RenderReadPixels(this->renderer(),
-// // Use calculated bounding dimensions;
-// // Pass null to dump the pixels of the entire
-// // render target
-//                                   &clip,
-// // Use the most optimal pixel format;
-// // Pass zero here to obtain the pixel format of
-// // the render target
-// // Either use a filled RenderInfo struct to obtain
-// // optimal texture format,
-// // ...or... cheat! in the mean time and use this
-//                                   SDL_PIXELFORMAT_ARGB8888,
-// // Allocated pointer to be filled in with pixels
-// // from render target
-//                                   pixels,
-// // Pitch of our pixels pointer
-//                                   clip.w * 4) != 0 )
-//         {
-//             NOM_LOG_ERR(NOM, SDL_GetError() );
-//             return nullptr;
-//         }
-//
-//         int bpp = 0; // bits per pixel
-//         uint32 red_mask = 0;
-//         uint32 green_mask = 0;
-//         uint32 blue_mask = 0;
-//         uint32 alpha_mask = 0;
-//
-//         RendererInfo caps = this->caps(); // Pixel format
-//         Image screenshot; // SDL_Surface*
-//
-// // Width & height of target in pixels
-//         SDL_Rect render_size = output_size;
-//
-//         if ( SDL_BOOL(SDL_PixelFormatEnumToMasks(caps.optimal_texture_format(), &bpp, &red_mask, &green_mask, &blue_mask, &alpha_mask) ) != true )
-//         {
-//             NOM_LOG_ERR(NOM, SDL_GetError() );
-//             return false;
-//         }
-//
-//         screenshot.initialize(pixels, renderer_size.w, renderer_size.h, bpp, (renderer_size.w * 4), red_mask, green_mask, blue_mask, alpha_mask);
-//
-// // This is a C++ wrapper for ( pixels, width, height, bits_per_pixel, pitch, Rmask, Gmask, Bmask, Amask )
-//
-// // Note that you may also use SDL_SavePNG & friends here, too!
-//         if ( SDL_SaveBMP(screenshot(), "screenshot.bmp") != 0 )
-//         {
-// // Handle err
-//         }
-//
-// // Success!
-// // NOM_LOG_INFO( NOM, "The screen-shot file is saved at: ", filename );
-//     }
-//
-// }
 
+// TODO configs
 void MinimapRenderer::createBGTexture(const Viewport &viewport)
 {
     SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
     if (sshot != NULL)
     {
-        if (SDL_RenderReadPixels(mSDLRenderer, NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch) == 0)
+        SDL_Rect rendRect = { 0, 0, viewport.getRect().w, viewport.getRect().h };
+        if (SDL_RenderReadPixels(mSDLRenderer, &rendRect, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch) == 0)
         {
-            SDL_Surface *saveSurface = SDL_CreateRGBSurfaceFrom(sshot->pixels, viewport.getRect().w, viewport.getRect().h, 32, sshot->pitch, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-            if (saveSurface != NULL)
+            mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
+            if (mBackgroundTexture == NULL)
             {
-                mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, saveSurface);
-                if (mBackgroundTexture != NULL)
-                {
-                    SDL_SaveBMP(saveSurface, "winning.bmp");
-                }
-                else
-                {
-                    SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateTextureFromSurface error: %s  \n", SDL_GetError());
-                }
-
-                // SDL_FreeSurface(saveSurface);
-            }
-            else
-            {
-                SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateRGBSurfaceFrom error: %s \n", SDL_GetError());
+                SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateTextureFromSurface error: %s  \n", SDL_GetError());
             }
         }
-        else
-        {
-            SDL_Log("MinimapRenderer::createBGTexture -- SDL_RenderReadPixels error: %s \n", SDL_GetError());
-        }
-
-        // SDL_FreeSurface(sshot);
+        SDL_FreeSurface(sshot);
     }
     else
     {
@@ -203,7 +106,7 @@ void MinimapRenderer::render()
     }
 }
 
-// TODO
+// TODO configs
 void MinimapRenderer::renderBorder()
 {
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
