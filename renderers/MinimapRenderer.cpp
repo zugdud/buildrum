@@ -22,54 +22,73 @@ void MinimapRenderer::attach(const Viewport &viewport)
 {
     mAttached = true;
 
-    SDL_Log("MinimapRenderer::attached -- creating background texture ... \n");
-    createBackgroundTexture(viewport);
+    SDL_Rect borderRect = { 0, 0, viewport.getRect().w, viewport.getRect().h };
+    mBorder = borderRect;
+
+    Camera::Instance().resetCamera();
+    SDL_Log("----------------------------------------------------\n");
+    SDL_Log("MinimapRenderer::attached -- setting up ... \n");
+    calcScale();
+    buildAtlas();
+    SDL_Log("----------------------------------------------------\n");
 }
 
 // worldProperties.rows = 64;
 // worldProperties.columns = 64;
 // worldProperties.numTiles = 4096;
 // worldProperties.textureSize = 32;
-
-// minimap 144
-void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
+void MinimapRenderer::calcScale()
 {
-    Camera::Instance().resetCamera();
-
-    SDL_Rect borderRect =  { 0, 0, viewport.getRect().w, viewport.getRect().h };
-
-    mBorderRect = borderRect;
-
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
+    const int minimapRectSize = mBorder.w / worldProperties.columns;
 
-    const int minimapRectSize = viewport.getRect().w / worldProperties.columns;
-    const double minimapScaleRatio = (double) minimapRectSize / worldProperties.textureSize;
-    mScaleRatio = minimapScaleRatio;
+    mScaleRatio = (double) minimapRectSize / worldProperties.textureSize;
 
-    SDL_Log("MinimapRenderer::createBackgroundTexture -- minimapRectSize: %d minimapScaleRatio: %f Minimap: [w: %d h: %d] \n",
+    SDL_Log("MinimapRenderer::calcScale --  minimapRectSize: %d mScaleRatio: %f \n",
             minimapRectSize,
-            minimapScaleRatio,
-            mBorderRect.w,
-            mBorderRect.h);
+            mScaleRatio);
 
+    const int minimapSize = minimapRectSize * worldProperties.columns;
+    const int minimapPadX = (mBorder.w - minimapSize) / 2;
+    const int minimapPadY = (mBorder.h - minimapSize) / 2;
+
+    SDL_Rect borderRect =  { minimapPadX, minimapPadY, minimapSize, minimapSize };
+
+    mMinimap = borderRect;
+
+    SDL_Log("MinimapRenderer::calcScale --  Minimap Viewport: [x: %d y: %d w: %d h: %d]  Minimap Texture: [x: %d y: %d w: %d h: %d] \n",
+            mBorder.x,
+            mBorder.y,
+            mBorder.w,
+            mBorder.h,
+            mMinimap.x,
+            mMinimap.y,
+            mMinimap.w,
+            mMinimap.h);
+}
+
+// create atlas
+void MinimapRenderer::buildAtlas()
+{
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
+
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
     {
         renderLayers(tiles[tileId]);
         // renderText(tiles[tileId]);
     }
-
-    createMinimapTexture(viewport);
+    createAtlasTexture();
 }
 
+
 // TODO configs
-void MinimapRenderer::createMinimapTexture(const Viewport &viewport)
+void MinimapRenderer::createAtlasTexture()
 {
-    SDL_Surface *sshot = SDL_CreateRGBSurface(0, viewport.getRect().w, viewport.getRect().h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    SDL_Surface *sshot = SDL_CreateRGBSurface(0, mMinimap.w, mMinimap.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
     if (sshot != NULL)
     {
-        SDL_Rect rendRect = { 0, 0, viewport.getRect().w, viewport.getRect().h };
+        SDL_Rect rendRect = { 0, 0, mMinimap.w, mMinimap.h };
         if (SDL_RenderReadPixels(mSDLRenderer, &rendRect, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch) == 0)
         {
             mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
@@ -90,38 +109,6 @@ void MinimapRenderer::createMinimapTexture(const Viewport &viewport)
     }
 }
 
-// // TODO configs
-// void MinimapRenderer::createAtlas()
-// {
-//     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
-//     const int vpWidth = worldProperties.columns * worldProperties.textureSize;
-//     const int worldHeight = worldProperties.rows * worldProperties.textureSize;
-//
-//     SDL_Surface *sshot = SDL_CreateRGBSurface(0, worldWidth, worldHeight, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-//
-//     if (sshot != NULL)
-//     {
-//         SDL_Rect rendRect = { 0, 0, worldWidth, worldHeight };
-//         if (SDL_RenderReadPixels(mSDLRenderer, &rendRect, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch) == 0)
-//         {
-//             mBackgroundTexture = SDL_CreateTextureFromSurface(mSDLRenderer, sshot);
-//             if (mBackgroundTexture == NULL)
-//             {
-//                 SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateTextureFromSurface error: %s  \n", SDL_GetError());
-//             }
-//             else
-//             {
-//                 SDL_SaveBMP(sshot, "atlas.bmp");
-//             }
-//         }
-//         SDL_FreeSurface(sshot);
-//     }
-//     else
-//     {
-//         SDL_Log("MinimapRenderer::createBGTexture --  SDL_CreateRGBSurface error: %s \n", SDL_GetError());
-//     }
-// }
-
 void MinimapRenderer::detatch()
 {
     mAttached = false;
@@ -131,8 +118,8 @@ void MinimapRenderer::render()
 {
     if (mAttached)
     {
-        renderBackground();
         renderBorder();
+        renderBackground();
         renderCamera();
     }
 }
@@ -141,7 +128,7 @@ void MinimapRenderer::render()
 void MinimapRenderer::renderBorder()
 {
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
-    SDL_RenderDrawRect(mSDLRenderer, &mBorderRect);
+    SDL_RenderFillRect(mSDLRenderer, &mBorder);
 }
 
 void MinimapRenderer::renderCamera()
@@ -163,7 +150,9 @@ void MinimapRenderer::renderCamera()
 
 void MinimapRenderer::renderBackground()
 {
-    SDL_RenderCopy(mSDLRenderer, mBackgroundTexture, NULL, NULL);
+    SDL_Rect sourceRect = { 0, 0, mMinimap.w, mMinimap.h };
+
+    SDL_RenderCopy(mSDLRenderer, mBackgroundTexture, &sourceRect, &mMinimap);
 }
 
 void MinimapRenderer::renderText(const Tile & tile)
@@ -194,15 +183,6 @@ void MinimapRenderer::renderSprite(const SpriteProperties & spriteProperties, co
     minimapRect.y = floor(destRect.y * mScaleRatio);
     minimapRect.w = floor(destRect.w * mScaleRatio);
     minimapRect.h = floor(destRect.h * mScaleRatio);
-
-    if (minimapRect.x > 144)
-    {
-        SDL_Log(" minimapRect: [x: %d y: %d w: %d h: %d] \n",
-                minimapRect.x,
-                minimapRect.y,
-                minimapRect.w,
-                minimapRect.h);
-    }
 
     SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();

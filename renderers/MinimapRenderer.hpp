@@ -15,10 +15,10 @@ const bool & isAttached();
 
 private:
 
-void  createBackgroundTexture(const Viewport &viewport);
+void calcScale();
+void buildAtlas();
+void createAtlasTexture();
 
-void createMinimapTexture(const Viewport &viewport);
-bool saveScreenshotBMP(std::string filepath, SDL_Window *SDLWindow, SDL_Renderer *SDLRenderer);
 void renderBackground();
 void renderCamera();
 void renderBorder();
@@ -29,11 +29,11 @@ void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & de
 
 SDL_Renderer *mSDLRenderer;
 SDL_Texture *mBackgroundTexture;
-SDL_Rect mBorderRect;
+
+SDL_Rect mMinimap;
+SDL_Rect mBorder;
 
 double mScaleRatio;
-
-
 bool mAttached;
 
 
