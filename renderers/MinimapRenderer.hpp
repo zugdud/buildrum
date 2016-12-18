@@ -24,7 +24,7 @@ void renderCamera();
 void renderBorder();
 
 void renderText(const Tile & tile);
-void renderLayers(const Tile & tile);
+void renderAtlasSurface(const Tile & tile, const SDL_Rect & destRect);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
@@ -33,8 +33,8 @@ SDL_Texture *mBackgroundTexture;
 SDL_Rect mMinimap;
 SDL_Rect mBorder;
 
+int mMinimapTileSize;
 double mScaleRatio;
 bool mAttached;
-
 
 };

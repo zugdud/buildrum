@@ -6,6 +6,7 @@ MinimapRenderer::MinimapRenderer()
     mAttached = false;
     mScaleRatio = 1.0;
     mBackgroundTexture = NULL;
+    mMinimapTileSize = 0;
 }
 
 MinimapRenderer::~MinimapRenderer()
@@ -40,15 +41,16 @@ void MinimapRenderer::attach(const Viewport &viewport)
 void MinimapRenderer::calcScale()
 {
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
-    const int minimapRectSize = mBorder.w / worldProperties.columns;
 
-    mScaleRatio = (double) minimapRectSize / worldProperties.textureSize;
+    mMinimapTileSize = mBorder.w / worldProperties.columns;
 
-    SDL_Log("MinimapRenderer::calcScale --  minimapRectSize: %d mScaleRatio: %f \n",
-            minimapRectSize,
+    mScaleRatio = (double) mMinimapTileSize / worldProperties.textureSize;
+
+    SDL_Log("MinimapRenderer::calcScale --  mMinimapTileSize: %d mScaleRatio: %f \n",
+            mMinimapTileSize,
             mScaleRatio);
 
-    const int minimapSize = minimapRectSize * worldProperties.columns;
+    const int minimapSize = mMinimapTileSize * worldProperties.columns;
     const int minimapPadX = (mBorder.w - minimapSize) / 2;
     const int minimapPadY = (mBorder.h - minimapSize) / 2;
 
@@ -66,20 +68,6 @@ void MinimapRenderer::calcScale()
             mMinimap.w,
             mMinimap.h);
 }
-
-// create atlas
-void MinimapRenderer::buildAtlas()
-{
-    const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
-
-    for (size_t tileId = 0; tileId < tiles.size(); tileId++)
-    {
-        renderLayers(tiles[tileId]);
-        // renderText(tiles[tileId]);
-    }
-    createAtlasTexture();
-}
-
 
 // TODO configs
 void MinimapRenderer::createAtlasTexture()
@@ -138,8 +126,8 @@ void MinimapRenderer::renderCamera()
     // const double & zoomFactor = Camera::Instance().getZoomFactor();
     // const double & scaleFactor = mCameraScaleRatio / zoomFactor;
 
-    scaledRect.x = floor(Camera::Instance().getRect().x * mScaleRatio);
-    scaledRect.y = floor(Camera::Instance().getRect().y * mScaleRatio);
+    scaledRect.x = floor(Camera::Instance().getRect().x * mScaleRatio) + mMinimap.x;
+    scaledRect.y = floor(Camera::Instance().getRect().y * mScaleRatio) + mMinimap.y;
     scaledRect.w = floor(Camera::Instance().getRect().w * mScaleRatio);
     scaledRect.h = floor(Camera::Instance().getRect().h * mScaleRatio);
     //
@@ -163,27 +151,41 @@ void MinimapRenderer::renderText(const Tile & tile)
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
+// create atlas
+void MinimapRenderer::buildAtlas()
+{
+    const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
+    const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
 
-void MinimapRenderer::renderLayers(const Tile & tile)
+    for (size_t tileId = 0; tileId < tiles.size(); tileId++)
+    {
+        int col = tileId % worldProperties.columns;
+        int row = tileId / worldProperties.rows;
+
+        SDL_Rect destRect;
+        destRect.x = mMinimapTileSize * col;
+        destRect.y = mMinimapTileSize * row;
+        destRect.w = mMinimapTileSize;
+        destRect.h = mMinimapTileSize;
+
+        renderAtlasSurface(tiles[tileId], destRect);
+        // renderText(tiles[tileId]);
+    }
+    createAtlasTexture();
+}
+
+void MinimapRenderer::renderAtlasSurface(const Tile & tile, const SDL_Rect & destRect)
 {
     const std::vector<SpriteProperties> & spriteProperties = tile.getSurface().getSpriteProperties();
 
     for (size_t i = 0; i < spriteProperties.size(); i++)
     {
-        renderSprite(spriteProperties[i], tile.getRect());
+        renderSprite(spriteProperties[i], destRect);
     }
 }
 
 void MinimapRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
-
-    SDL_Rect minimapRect;
-
-    minimapRect.x = floor(destRect.x * mScaleRatio);
-    minimapRect.y = floor(destRect.y * mScaleRatio);
-    minimapRect.w = floor(destRect.w * mScaleRatio);
-    minimapRect.h = floor(destRect.h * mScaleRatio);
-
     SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
     const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
@@ -191,7 +193,7 @@ void MinimapRenderer::renderSprite(const SpriteProperties & spriteProperties, co
     SDL_RenderCopyEx(mSDLRenderer,
                      spriteSheetTexture,
                      &spriteRect,
-                     &minimapRect,
+                     &destRect,
                      spriteProperties.angle,
                      center,
                      spriteProperties.sdlRendererFlip);
