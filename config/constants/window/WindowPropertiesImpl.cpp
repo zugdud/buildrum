@@ -43,10 +43,33 @@ void WindowPropertiesImpl::setViewContexts()
     //     SDL_Color bgColor;
     // };
 
+    #ifdef LINUX_BUILD_TARGET
     ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.85, 0.2, red };
     ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.2, green };
     ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
+    #endif
+
+    #ifdef MAC_BUILD_TARGET
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.85, 0.2, red };
+    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.2, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
+    #endif
+
+    #ifdef ANDROID_BUILD_TARGET
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.85, 0.09295, red };
+    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.09295, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.09295, 1.0, 0.90705, blue };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
+    #endif
+
+    #ifdef SQUARE_TEST_TARGET
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.9, 0.1, red };
+    ViewportProperties minimap = { "minimap", 0.9, 0.0, 0.1, 0.1, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.1, 1.0, 0.9, blue };
+    ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
+    #endif
 
     // viewContextId, numViewports, viewports[]
     ViewContextProperties fullscreenContext;
@@ -85,6 +108,11 @@ void WindowPropertiesImpl::setWindowProfiles()
     #ifdef ANDROID_BUILD_TARGET
     WindowProperties androidProperties = { "Buildrum", white, 1440, 2560 };
     mWindowProperties = androidProperties;
+    #endif
+
+    #ifdef SQUARE_TEST_TARGET
+    WindowProperties squareTestProperties = { "Buildrum", white, 1440, 1440 };
+    mWindowProperties = squareTestProperties;
     #endif
 
 }

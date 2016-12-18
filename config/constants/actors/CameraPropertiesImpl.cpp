@@ -45,7 +45,12 @@ void CameraPropertiesImpl::setCameraProperties()
     #endif
 
     #ifdef ANDROID_BUILD_TARGET
-    CameraProperties androidCameraProperties = { 1, 4.0, 1.0, 0, 0, 1440, 2560 };
+    CameraProperties androidCameraProperties = { 2, 3.0, 1.0, 0, 0, 1440, 2560 };
     mCameraProperties = androidCameraProperties;
+    #endif
+
+    #ifdef SQUARE_TEST_TARGET
+    CameraProperties squareTestProperties = { 2, 3.0, 1.0, 0, 0, 1440, 1440 };
+    mCameraProperties = squareTestProperties;
     #endif
 }

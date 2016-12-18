@@ -39,6 +39,7 @@ void MinimapRenderer::createBackgroundTexture(const Viewport &viewport)
     const double percentDecrease = (worldProperties.textureSize - tileSize) / worldProperties.textureSize * 100;
 
     mScaleRatio = (100 - percentDecrease) / 100;
+    SDL_Log("MinimapRenderer::createBackgroundTexture -- mScaleRatio: %f \n", mScaleRatio);
 
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)
@@ -117,13 +118,11 @@ void MinimapRenderer::renderCamera()
 {
     SDL_Rect scaledRect;
 
-    scaledRect.x = (Camera::Instance().getRect().x * mScaleRatio) + 2;
-    scaledRect.y = (Camera::Instance().getRect().y * mScaleRatio) + 2;
-    scaledRect.w = (Camera::Instance().getRect().w * mScaleRatio) - 2;
-    scaledRect.h = (Camera::Instance().getRect().h * mScaleRatio) - 2;
+    scaledRect.x = (Camera::Instance().getRect().x * mScaleRatio);
+    scaledRect.y = (Camera::Instance().getRect().y * mScaleRatio);
+    scaledRect.w = ((Camera::Instance().getRect().w / Camera::Instance().getZoomFactor()) * mScaleRatio);
+    scaledRect.h = ((Camera::Instance().getRect().h / Camera::Instance().getZoomFactor()) * mScaleRatio);
 
-    scaledRect.w = scaledRect.w / Camera::Instance().getZoomFactor();
-    scaledRect.h = scaledRect.h / Camera::Instance().getZoomFactor();
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 255, 255);
     SDL_RenderDrawRect(mSDLRenderer, &scaledRect);
 }
