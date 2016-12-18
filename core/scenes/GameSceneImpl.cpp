@@ -8,7 +8,7 @@ GameSceneImpl::GameSceneImpl(const std::string & sceneId) : BaseScene(sceneId)
     mMusicTrackIds.push_back("GameScene3");
 
     // add  menus
-    // mMenuIds.push_back("MainMenu");
+    mMenuIds.push_back("ActionMenu");
 
     // add world view
     mWorldRendererViewportId = "gameView";
