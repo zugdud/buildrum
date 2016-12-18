@@ -25,6 +25,8 @@ void zoomEventCallback(const double & zoomAdjustment);
 const SDL_Rect & getRect();
 const double & getZoomFactor();
 
+const SDL_Rect & getBaseRect();
+
 protected:
 
 Camera();
@@ -39,6 +41,7 @@ void dispatchZoomFactorUpdate();
 
 CameraProperties mCameraProperties;
 
+SDL_Rect mViewportRect;
 SDL_Rect mCamera;
 double mZoomFactor;
 

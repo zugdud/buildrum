@@ -19,6 +19,9 @@ void Camera::configure(const CameraProperties & cameraProperties)
     mCamera.w = mCameraProperties.initRectW;
     mCamera.h = mCameraProperties.initRectH;
 
+    mViewportRect.w = mCameraProperties.initRectW;
+    mViewportRect.h = mCameraProperties.initRectH;
+
     mZoomFactor = mCameraProperties.defaultZoomFactor;
 
     SDL_Log("Camera::configure -- mZoomFactor: %f mCamera: [x: %d y: %d w: %d h: %d] \n",
@@ -27,6 +30,11 @@ void Camera::configure(const CameraProperties & cameraProperties)
             mCamera.y,
             mCamera.w,
             mCamera.h);
+}
+
+const SDL_Rect & Camera::getBaseRect()
+{
+    return mViewportRect;
 }
 
 void Camera::resetCamera()
@@ -40,8 +48,13 @@ void Camera::resetCamera()
 
 void Camera::updateSize(const SDL_Rect & viewportRect)
 {
-    mCamera.w = viewportRect.w;
-    mCamera.h = viewportRect.h;
+    mViewportRect = viewportRect;
+    mCamera.w = mViewportRect.w;
+    mCamera.h = mViewportRect.h;
+
+    SDL_Log("Camera::updateSize -- mViewportRect.w: %d mViewportRect.h: %d  \n",
+            mViewportRect.w,
+            mViewportRect.h);
 }
 
 void Camera::registerObserver(CameraObserver *CameraObserver)
@@ -52,9 +65,9 @@ void Camera::registerObserver(CameraObserver *CameraObserver)
 
 bool Camera::isViewableArea(const SDL_Rect & rect)
 {
-    if ((rect.x + rect.w) >= 0  && (rect.x - rect.w) <= mCamera.w)
+    if ((rect.x + rect.w) >= 0  && (rect.x - rect.w) <= mViewportRect.w)
     {
-        if ((rect.y + rect.h) >= 0 && (rect.y - rect.h) <= mCamera.h)
+        if ((rect.y + rect.h) >= 0 && (rect.y - rect.h) <= mViewportRect.h)
         {
             return true;
         }
@@ -70,15 +83,17 @@ void Camera::setPosition(const PointInt & pointMovement)
 
     mCamera.x += pointMovement.x;
     mCamera.y += pointMovement.y;
+    mCamera.w = mViewportRect.w / mZoomFactor;
+    mCamera.h = mViewportRect.h / mZoomFactor;
 
     // Keep the camera within the bounds of the level
-    if ( mCamera.x > (worldPixeWidth - (mCamera.w / mZoomFactor)))
+    if ( mCamera.x > (worldPixeWidth - mCamera.w))
     {
-        mCamera.x = worldPixeWidth - (mCamera.w / mZoomFactor);
+        mCamera.x = worldPixeWidth - mCamera.w;
     }
-    if ( mCamera.y > (worldPixeHeight - (mCamera.h / mZoomFactor)))
+    if ( mCamera.y > (worldPixeHeight - mCamera.h))
     {
-        mCamera.y = worldPixeHeight - (mCamera.h / mZoomFactor);
+        mCamera.y = worldPixeHeight - mCamera.h;
     }
     if ( mCamera.x < 0 )
     {
@@ -88,31 +103,15 @@ void Camera::setPosition(const PointInt & pointMovement)
     {
         mCamera.y = 0;
     }
-
-    SDL_Log("Camera::setPosition POST-- edgeX: %f edgeY: %f mCamera: [x: %d y: %d w: %f h: %f] \n",
-            mCamera.x + (mCamera.w / mZoomFactor),
-            mCamera.y + (mCamera.h / mZoomFactor),
-            mCamera.x,
-            mCamera.y,
-            mCamera.w / mZoomFactor,
-            mCamera.h / mZoomFactor);
+    //
+    // SDL_Log("Camera::setPosition -- edgeX: %d edgeY: %d mCamera: [x: %d y: %d w: %d h: %d] \n",
+    //         mCamera.x + mCamera.w,
+    //         mCamera.y + mCamera.h,
+    //         mCamera.x,
+    //         mCamera.y,
+    //         mCamera.w,
+    //         mCamera.h);
 }
-
-// void Camera::checkZoomBounds()
-// {
-//
-//     if ( mCamera.y > (worldPixeHeight - (mCamera.h / mZoomFactor)))
-//     {
-//
-//     }
-//     // SDL_Log("Camera::setPosition -- worldPixeHeight: %d worldPixeHeight: %d mCamera: [x: %d y: %d w: %d h: %d] \n",
-//     //         worldPixeWidth,
-//     //         worldPixeHeight,
-//     //         mCamera.x,
-//     //         mCamera.y,
-//     //         mCamera.w,
-//     //         mCamera.h);
-// }
 
 void Camera::setZoomFactor(const double & zoomFactorAdjustment)
 {

@@ -117,13 +117,22 @@ void MinimapRenderer::renderBorder()
 void MinimapRenderer::renderCamera()
 {
     SDL_Rect scaledRect;
-    const double & zoomFactor = Camera::Instance().getZoomFactor();
-    const double & scaleFactor = mScaleRatio / zoomFactor;
 
-    scaledRect.x = ceil(Camera::Instance().getRect().x * scaleFactor);
-    scaledRect.y = ceil(Camera::Instance().getRect().y * scaleFactor);
-    scaledRect.w = ceil(Camera::Instance().getRect().w * scaleFactor);
-    scaledRect.h = ceil(Camera::Instance().getRect().h * scaleFactor);
+    // const double & zoomFactor = Camera::Instance().getZoomFactor();
+    // const double & scaleFactor = mCameraScaleRatio / zoomFactor;
+
+    scaledRect.x = ceil(Camera::Instance().getRect().x * mScaleRatio);
+    scaledRect.y = ceil(Camera::Instance().getRect().y * mScaleRatio);
+    scaledRect.w = ceil(Camera::Instance().getRect().w * mScaleRatio);
+    scaledRect.h = ceil(Camera::Instance().getRect().h * mScaleRatio);
+    //
+    // SDL_Log("MinimapRenderer::renderCamera POST-- zoomFactor: %f mCameraScaleRatio: %f scaledRect: [x: %d y: %d w: %d h: %d] \n",
+    //         zoomFactor,
+    //         mCameraScaleRatio,
+    //         scaledRect.x,
+    //         scaledRect.y,
+    //         scaledRect.w,
+    //         scaledRect.h);
 
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 255, 255);
     SDL_RenderDrawRect(mSDLRenderer, &scaledRect);
