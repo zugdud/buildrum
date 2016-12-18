@@ -90,7 +90,11 @@ bool TestWorldImpl::isEdge(const int & tileId)
     int col = tileId % mWorldProperties.columns;
     int row = tileId / mWorldProperties.rows;
 
-    if (col == 0)
+    if (col == 0 || row == 0)
+    {
+        return true;
+    }
+    if (row == (mWorldProperties.rows - 1) || col == (mWorldProperties.columns - 1))
     {
         return true;
     }

@@ -39,7 +39,7 @@ void WorldRenderer::renderWorld()
             {
                 // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);
-                renderText(tiles[tileId]);
+                // renderText(tiles[tileId]);
             }
         }
     }
