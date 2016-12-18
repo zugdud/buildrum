@@ -23,7 +23,6 @@ void renderBackground();
 void renderCamera();
 void renderBorder();
 
-void renderText(const Tile & tile);
 void renderAtlasSurface(const Tile & tile, const SDL_Rect & destRect);
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 

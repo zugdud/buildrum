@@ -1,4 +1,4 @@
-#define SQUARE_TEST_TARGET
+#define LINUX_BUILD_TARGET
 
 #include <iostream>
 #include <fstream>

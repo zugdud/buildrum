@@ -86,7 +86,7 @@ void MinimapRenderer::createAtlasTexture()
             }
             else
             {
-                SDL_SaveBMP(sshot, "atlas.bmp");
+                // SDL_SaveBMP(sshot, "atlas.bmp");
             }
         }
         SDL_FreeSurface(sshot);
@@ -119,18 +119,15 @@ void MinimapRenderer::renderBorder()
     SDL_RenderFillRect(mSDLRenderer, &mBorder);
 }
 
+// TODO make event driven
 void MinimapRenderer::renderCamera()
 {
     SDL_Rect scaledRect;
-
-    // const double & zoomFactor = Camera::Instance().getZoomFactor();
-    // const double & scaleFactor = mCameraScaleRatio / zoomFactor;
 
     scaledRect.x = floor(Camera::Instance().getRect().x * mScaleRatio) + mMinimap.x;
     scaledRect.y = floor(Camera::Instance().getRect().y * mScaleRatio) + mMinimap.y;
     scaledRect.w = floor(Camera::Instance().getRect().w * mScaleRatio);
     scaledRect.h = floor(Camera::Instance().getRect().h * mScaleRatio);
-    //
 
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 255, 255);
     SDL_RenderDrawRect(mSDLRenderer, &scaledRect);
@@ -141,14 +138,6 @@ void MinimapRenderer::renderBackground()
     SDL_Rect sourceRect = { 0, 0, mMinimap.w, mMinimap.h };
 
     SDL_RenderCopy(mSDLRenderer, mBackgroundTexture, &sourceRect, &mMinimap);
-}
-
-void MinimapRenderer::renderText(const Tile & tile)
-{
-    SDL_Texture *labelTexture = tile.getTextLabel().labelTexture;
-    const SDL_Rect & destRect = tile.getTextLabel().rect;
-
-    SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
 // create atlas
@@ -169,7 +158,6 @@ void MinimapRenderer::buildAtlas()
         destRect.h = mMinimapTileSize;
 
         renderAtlasSurface(tiles[tileId], destRect);
-        // renderText(tiles[tileId]);
     }
     createAtlasTexture();
 }
