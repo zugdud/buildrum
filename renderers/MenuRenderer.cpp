@@ -37,11 +37,30 @@ void MenuRenderer::addLayer(UIMenu *uimenu)
     mLayers.push_back(uimenu);
 }
 
-void MenuRenderer::renderAllLayers()
+void MenuRenderer::renderAllLayers(const std::string & viewportId)
 {
     for (size_t i = 0; i < mLayers.size(); i++)
     {
-        renderLayer(mLayers[i]);
+        UIMenu *uiMenu = mLayers[i];
+        if (isMenuForThisViewport(uiMenu, viewportId))
+        {
+            renderLayer(uiMenu);
+        }
+    }
+}
+
+bool MenuRenderer::isMenuForThisViewport(UIMenu *uiMenu, const std::string & viewportId)
+{
+    if (uiMenu->getIMenuProperties()->getUIMenuProperties().viewportId == viewportId)
+    {
+        return true;
+    }
+    else
+    {
+        // SDL_Log("MenuRenderer::isMenuForThisViewport -- Not for this viewport: [viewportId: %s uiMenuId: %s] \n",
+        //         viewportId.c_str(),
+        //         uiMenu->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str());
+        return false;
     }
 }
 

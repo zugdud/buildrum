@@ -2,7 +2,7 @@ class IRenderer
 {
 public:
 
-virtual void renderAllLayers() = 0;
+virtual void renderAllLayers(const std::string & viewportId) = 0;
 virtual std::vector<UIMenu *> & getAllLayers() = 0;
 
 };

@@ -44,6 +44,7 @@ config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
+config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Camera.cpp \
 window/Window.cpp \
@@ -56,6 +57,7 @@ core/scenes/BaseScene.cpp \
 core/scenes/StartSceneImpl.cpp \
 core/scenes/GameSceneImpl.cpp \
 input/InputEventManager.cpp \
+input/InputMomentum.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \

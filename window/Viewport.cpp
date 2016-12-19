@@ -88,7 +88,7 @@ void Viewport::renderUpdate() const
     // draw menus
     for (size_t i = 0; i < mRenderers.size(); i++)
     {
-        mRenderers[i]->renderAllLayers();
+        mRenderers[i]->renderAllLayers(mViewportProperties.viewportId);
     }
 }
 
