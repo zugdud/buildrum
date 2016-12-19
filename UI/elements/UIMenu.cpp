@@ -17,6 +17,28 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
     mHidden = mIMenuProperties->getUIMenuProperties().hidden;
 }
 
+void UIMenu::eventRaised(const std::string & eventId)
+{
+    const std::string concatKey = "toggleHidden_" + mIMenuProperties->getUIMenuProperties().uiMenuId;
+
+    if (eventId == concatKey)
+    {
+        if (mHidden == true)
+        {
+            mHidden = false;
+        }
+        else
+        {
+            mHidden = true;
+        }
+    }
+}
+
+const std::string & UIMenu::getId()
+{
+    return mIMenuProperties->getUIMenuProperties().uiMenuId;
+}
+
 const bool & UIMenu::isHidden()
 {
     return mHidden;

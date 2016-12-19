@@ -1,10 +1,13 @@
-class UIMenu : public UIElement
+class UIMenu : public UIElement, public IEventObserver
 {
 
 public:
 
 UIMenu();
 ~UIMenu();
+
+void eventRaised(const std::string & eventId);
+const std::string & getId();
 
 std::vector<UIGridCell> & getGridCells();
 

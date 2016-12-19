@@ -62,7 +62,7 @@ void ActionMenuPropertiesImpl::setButtonProperties()
 {
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
     UIButtonProperties quitGame = { 1, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
-    UIButtonProperties buildMenu = { 2, "buildMenu", 20, 20, "buildMenu",  "buttonAvailable", false };
+    UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);

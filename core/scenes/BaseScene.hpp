@@ -53,4 +53,6 @@ void attachInputManagerToCamera();
 void attachWorld();
 void detatchWorld();
 
+void attachUIMenuAsEventObserver();
+void detatchUIMenuAsEventObserver();
 };
