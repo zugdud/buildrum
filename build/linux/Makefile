@@ -38,6 +38,7 @@ config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
+config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Camera.cpp \
 window/Window.cpp \

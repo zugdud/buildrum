@@ -44,6 +44,7 @@
 #include "config/constants/window/WindowPropertiesImpl.hpp"
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/constants/menus/impl/ActionMenuPropertiesImpl.hpp"
+#include "config/constants/menus/impl/BuildMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
 #include "input/InputEventObservers.hpp"

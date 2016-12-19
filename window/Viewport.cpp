@@ -75,10 +75,7 @@ void Viewport::removeAllRenderers()
 void Viewport::renderUpdate() const
 {
     setRenderedViewport();
-    for (size_t i = 0; i < mRenderers.size(); i++)
-    {
-        mRenderers[i]->renderAllLayers();
-    }
+
     if (mWorldRenderer != NULL)
     {
         mWorldRenderer->renderWorld();
@@ -86,6 +83,12 @@ void Viewport::renderUpdate() const
     else if (mMinimapRenderer != NULL)
     {
         mMinimapRenderer->render();
+    }
+
+    // draw menus
+    for (size_t i = 0; i < mRenderers.size(); i++)
+    {
+        mRenderers[i]->renderAllLayers();
     }
 }
 

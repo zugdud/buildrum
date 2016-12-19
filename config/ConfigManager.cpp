@@ -91,6 +91,7 @@ void ConfigManager::loadMenuConstants()
 {
     addMenu(new MainMenuPropertiesImpl());
     addMenu(new ActionMenuPropertiesImpl());
+    addMenu(new BuildMenuPropertiesImpl());
 }
 
 void ConfigManager::addMenu(IMenuProperties *menuProperties)
