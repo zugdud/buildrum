@@ -13,12 +13,29 @@ const std::vector<std::string> & getMenuIds();
 
 void update();
 
-void attach();
-void detatch();
+virtual void attach() = 0;
+virtual void detatch() = 0;
 
 protected:
 
 void handleMusicPlaylist();
+
+void detatchLayersFromMenuRenderer();
+void detatchSceneRenderersFromViewports();
+void detatchInputManagerFromUIElements();
+
+void attachLayersToMenuRenderer();
+void attachSceneRenderersToViewports();
+void attachInputManagerToUIElements();
+void attachUIElementsToEventManager();
+void attachInputManagerToCamera();
+
+void attachWorld();
+void detatchWorld();
+
+void attachUIMenuAsEventObserver();
+void detatchUIMenuAsEventObserver();
+
 
 std::string mSceneId;
 std::string mViewContextId;
@@ -40,19 +57,5 @@ std::string mMinimapViewportId;
 
 private:
 
-void detatchLayersFromMenuRenderer();
-void detatchSceneRenderersFromViewports();
-void detatchInputManagerFromUIElements();
 
-void attachLayersToMenuRenderer();
-void attachSceneRenderersToViewports();
-void attachInputManagerToUIElements();
-void attachUIElementsToEventManager();
-void attachInputManagerToCamera();
-
-void attachWorld();
-void detatchWorld();
-
-void attachUIMenuAsEventObserver();
-void detatchUIMenuAsEventObserver();
 };

@@ -6,6 +6,9 @@ public:
 StartSceneImpl(const std::string & sceneId);
 ~StartSceneImpl();
 
+void attach();
+void detatch();
+
 private:
 
 
