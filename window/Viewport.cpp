@@ -41,12 +41,23 @@ void Viewport::addRenderer(IRenderer *renderer)
     SDL_Log("Viewport::addRenderer -- adding renderer to viewportId: %s \n", mViewportProperties.viewportId.c_str());
     mRenderers.push_back(renderer);
 
-    // update envelopes
+    // update menu envelopes
     std::vector<UIMenu *> & layers = renderer->getAllLayers();
     for (size_t i = 0; i < layers.size(); i++)
     {
-        SDL_Log("Viewport::addRenderer -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
-        layers[i]->updateEnvelope(mViewport);
+        if (layers[i]->getIMenuProperties()->getUIMenuProperties().viewportId == mViewportProperties.viewportId)
+        {
+            SDL_Log("Viewport::addRenderer -- Updating Menu envelope to match assigned viewport. uiMenuId: %s viewportId: %s \n",
+                    layers[i]->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str(),
+                    mViewportProperties.viewportId.c_str());
+            layers[i]->updateEnvelope(mViewport);
+        }
+        else
+        {
+            SDL_Log("Viewport::addRenderer -- skipping menu not set for this viewport. uiMenuId: %s viewportId: %s \n",
+                    layers[i]->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str(),
+                    mViewportProperties.viewportId.c_str());
+        }
     }
 
     // update world renderer

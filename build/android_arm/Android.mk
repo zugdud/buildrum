@@ -20,6 +20,7 @@ config/constants/media/audio/AudioContentImpl.cpp \
 config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
+config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Camera.cpp \
 window/Window.cpp \
