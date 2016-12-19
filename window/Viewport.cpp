@@ -113,12 +113,26 @@ const ViewportProperties & Viewport::getViewportProperties() const
     return mViewportProperties;
 }
 
+void Viewport::detatchWorldRenderer()
+{
+    mWorldRenderer = NULL;
+    SDL_Log("Viewport::detatchWorldRenderer -- detatched from world renderer (no longer invoking render) \n");
+}
+
+void Viewport::detatchMinimapRenderer()
+{
+    mMinimapRenderer = NULL;
+    SDL_Log("Viewport::detatchMinimapRenderer -- detatched from minimap renderer (no longer invoking render) \n");
+}
+
 void Viewport::attachWorldRenderer(IWorldRenderer *worldRenderer)
 {
     mWorldRenderer = worldRenderer;
+    SDL_Log("Viewport::attachWorldRenderer -- attached to worldRenderer. \n");
 }
 
 void Viewport::attachMinimapRenderer(IMinimapRenderer *minimapRenderer)
 {
     mMinimapRenderer = minimapRenderer;
+    SDL_Log("Viewport::attachMinimapRenderer -- attached to minimapRenderer. \n");
 }

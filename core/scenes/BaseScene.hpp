@@ -48,7 +48,9 @@ void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();
 void attachInputManagerToUIElements();
 void attachUIElementsToEventManager();
-void attachWorldToWorldRenderer();
 void attachInputManagerToCamera();
+
+void attachWorld();
+void detatchWorld();
 
 };

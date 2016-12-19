@@ -100,6 +100,7 @@ void MinimapRenderer::createAtlasTexture()
 void MinimapRenderer::detatch()
 {
     mAttached = false;
+    SDL_Log("MinimapRenderer::detatch -- detatched, rendering stopped. \n");
 }
 
 void MinimapRenderer::render()
@@ -144,6 +145,7 @@ void MinimapRenderer::renderBackground()
 void MinimapRenderer::buildAtlas()
 {
     const WorldProperties & worldProperties =  WorldManager::Instance().getWorld().getWorldProperties();
+
     const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
 
     for (size_t tileId = 0; tileId < tiles.size(); tileId++)

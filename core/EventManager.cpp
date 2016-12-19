@@ -36,6 +36,11 @@ void EventManager::uiEventRaised(const std::string & eventId)
         AudioManager::Instance().stopMusic();
         SceneManager::getInstance()->setActiveScene("GameScene");
     }
+    if (eventId == "quitGame")
+    {
+        AudioManager::Instance().stopMusic();
+        SceneManager::getInstance()->setActiveScene("MainMenu");
+    }
 }
 
 // play music

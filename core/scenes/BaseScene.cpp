@@ -59,7 +59,7 @@ void BaseScene::attach()
     attachInputManagerToUIElements();
     attachInputManagerToCamera(); // only needed once
     attachUIElementsToEventManager();     // only needed once
-    attachWorldToWorldRenderer();
+    attachWorld();
     SDL_Log("----------------------------------------------------");
 }
 
@@ -70,6 +70,7 @@ void BaseScene::detatch()
     detatchLayersFromMenuRenderer();
     detatchSceneRenderersFromViewports();
     detatchInputManagerFromUIElements();
+    detatchWorld();
     // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
     SDL_Log("----------------------------------------------------");
 }
@@ -113,11 +114,38 @@ void BaseScene::attachInputManagerToCamera()
     mInputEventManager->registerZoomEventObserver(&Camera::Instance());
 }
 
-void BaseScene::attachWorldToWorldRenderer()
+void BaseScene::detatchWorld()
 {
     for (size_t i = 0; i < mViewports.size(); i++)
     {
         const ViewportProperties & viewportProperties = mViewports[i].getViewportProperties();
+        SDL_Log("BaseScene::detatchWorld -- viewportId: %s \n", viewportProperties.viewportId.c_str());
+        if (viewportProperties.viewportId == mWorldRendererViewportId)
+        {
+            // detatch, stop rendering, remains configured to viewport
+            mWorldRenderer.detatch();
+
+            // detatch the renderer from viewport, viewport will no longer invoke render calls
+            mViewports[i].detatchWorldRenderer();
+
+        }
+        else if (viewportProperties.viewportId == mMinimapViewportId)
+        {
+            // detatch the renderer from viewport, viewport will no longer invoke render calls
+            mViewports[i].detatchMinimapRenderer();
+
+            // detatch, stop rendering, remains configured to viewport
+            mMinimapRenderer.detatch();
+        }
+    }
+}
+
+void BaseScene::attachWorld()
+{
+    for (size_t i = 0; i < mViewports.size(); i++)
+    {
+        const ViewportProperties & viewportProperties = mViewports[i].getViewportProperties();
+        SDL_Log("BaseScene::attachWorld -- viewportId: %s \n", viewportProperties.viewportId.c_str());
         if (viewportProperties.viewportId == mWorldRendererViewportId)
         {
             // configure renderer for the viewport

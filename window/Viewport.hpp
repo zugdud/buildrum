@@ -15,6 +15,9 @@ void addRenderer(IRenderer *renderer);
 void removeAllRenderers();
 void renderUpdate() const;
 
+void detatchWorldRenderer();
+void detatchMinimapRenderer();
+
 void attachWorldRenderer(IWorldRenderer *worldRenderer);
 void attachMinimapRenderer(IMinimapRenderer *minimapRenderer);
 

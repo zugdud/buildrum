@@ -49,9 +49,9 @@ void ActionMenuPropertiesImpl::setUIMenuProperties()
     uiMenuProperties.uiMenuId = "ActionMenu";
     uiMenuProperties.viewportId = "actionMenu";
     uiMenuProperties.rows = 1;
-    uiMenuProperties.columns = 4;
-    uiMenuProperties.xPadding = 20;
-    uiMenuProperties.yPadding = 20;
+    uiMenuProperties.columns = 2;
+    uiMenuProperties.xPadding = 0;
+    uiMenuProperties.yPadding = 0;
     uiMenuProperties.uiRenderCellDetails = gridCD;
 
     mUIMenuProperties = uiMenuProperties;
@@ -60,15 +60,11 @@ void ActionMenuPropertiesImpl::setUIMenuProperties()
 void ActionMenuPropertiesImpl::setButtonProperties()
 {
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
-    UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", "buttonAvailable", true };
-    UIButtonProperties newGame = { 1, "newGame", 20, 20, "newGame",  "buttonAvailable", false };
-    UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
-    UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
+    UIButtonProperties quitGame = { 1, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
+    UIButtonProperties buildMenu = { 2, "buildMenu", 20, 20, "buildMenu",  "buttonAvailable", false };
 
-    mUIButtonProperties.push_back(spacer);
-    mUIButtonProperties.push_back(newGame);
-    mUIButtonProperties.push_back(resumeGame);
     mUIButtonProperties.push_back(quitGame);
+    mUIButtonProperties.push_back(buildMenu);
 }
 
 void ActionMenuPropertiesImpl::setUIButtonStateProperties()
@@ -100,13 +96,9 @@ void ActionMenuPropertiesImpl::setUIButtonStateProperties()
 void ActionMenuPropertiesImpl::setUILabelProperties()
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
-    UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties newGame = { 1, "New Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
-    UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
-    UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
+    UILabelProperties quitGame = { 0, "Quit Game", "Heading_1_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties buildMenu = { 1, "Build Menu", "Heading_1_OpenSansLight", 20, 20, false, "center" };
 
-    mUILabelProperties.push_back(mainMenuLabel);
-    mUILabelProperties.push_back(newGame);
-    mUILabelProperties.push_back(resumeGame);
     mUILabelProperties.push_back(quitGame);
+    mUILabelProperties.push_back(buildMenu);
 }

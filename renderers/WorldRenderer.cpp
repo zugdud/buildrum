@@ -25,6 +25,7 @@ void WorldRenderer::attach(const Viewport &viewport)
 void WorldRenderer::detatch()
 {
     mAttached = false;
+    SDL_Log("WorldRenderer::detatch -- detatched, rendering stopped. \n");
 }
 
 void WorldRenderer::renderWorld()
