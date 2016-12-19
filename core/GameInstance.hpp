@@ -13,6 +13,7 @@ virtual const std::string & getId();
 
 private:
 
+void shutdown();
 void quitEventCallback();
 
 bool mRunning;

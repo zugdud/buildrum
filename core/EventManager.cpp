@@ -67,6 +67,10 @@ void EventManager::uiEventRaised(const std::string & eventId)
         AudioManager::Instance().stopMusic();
         SceneManager::getInstance()->setActiveScene("MainMenu");
     }
+    if (eventId == "exitGame")
+    {
+        AudioManager::Instance().stopMusic();
+    }
     dispatchEvent(eventId);
 }
 

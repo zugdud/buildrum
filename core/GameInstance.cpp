@@ -72,6 +72,17 @@ void GameInstance::run()
         InputEventManager::getInstance()->pollEventQueue();
         SceneManager::getInstance()->updateActiveScene();
     }
+    shutdown();
+}
+
+void GameInstance::shutdown()
+{
+    SDL_Log("==================================================== \n");
+    SDL_Log("GameInstance::shutdown -- shutting down... \n");
+    SDL_Quit();
+    SDL_Log("GameInstance::shutdown -- shutdown complete, exiting... \n");
+    SDL_Log("==================================================== \n");
+    std::exit(0);
 }
 
 void GameInstance::eventRaised(const std::string & eventId)
