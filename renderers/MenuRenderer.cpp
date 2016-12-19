@@ -42,26 +42,35 @@ void MenuRenderer::renderAllLayers(const std::string & viewportId)
     for (size_t i = 0; i < mLayers.size(); i++)
     {
         UIMenu *uiMenu = mLayers[i];
-        if (isMenuForThisViewport(uiMenu, viewportId))
+        if (checkMenuStatus(uiMenu, viewportId))
         {
             renderLayer(uiMenu);
         }
     }
 }
 
-bool MenuRenderer::isMenuForThisViewport(UIMenu *uiMenu, const std::string & viewportId)
+bool MenuRenderer::checkMenuStatus(UIMenu *uiMenu, const std::string & viewportId)
 {
     if (uiMenu->getIMenuProperties()->getUIMenuProperties().viewportId == viewportId)
     {
-        return true;
+        if (uiMenu->isHidden())
+        {
+            // SDL_Log("MenuRenderer::isMenuForThisViewport -- Menu Hidden: [viewportId: %s uiMenuId: %s] \n",
+            //         viewportId.c_str(),
+            //         uiMenu->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str());
+        }
+        else
+        {
+            return true;
+        }
     }
     else
     {
         // SDL_Log("MenuRenderer::isMenuForThisViewport -- Not for this viewport: [viewportId: %s uiMenuId: %s] \n",
         //         viewportId.c_str(),
         //         uiMenu->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str());
-        return false;
     }
+    return false;
 }
 
 void MenuRenderer::renderLayer(UIMenu *uiMenu)

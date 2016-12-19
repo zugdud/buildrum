@@ -53,6 +53,7 @@ void BuildMenuPropertiesImpl::setUIMenuProperties()
     uiMenuProperties.xPadding = 50;
     uiMenuProperties.yPadding = 50;
     uiMenuProperties.uiRenderCellDetails = gridCD;
+    uiMenuProperties.hidden = true;
 
     mUIMenuProperties = uiMenuProperties;
 }

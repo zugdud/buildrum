@@ -18,7 +18,7 @@ void renderLayer(UIMenu *uiMenu);
 void renderButton(UIButton *uiButton);
 void renderLabel(UILabel *uiLabel);
 
-bool isMenuForThisViewport(UIMenu *uiMenu, const std::string & viewportId);
+bool checkMenuStatus(UIMenu *uiMenu, const std::string & viewportId);
 
 void renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect);
 

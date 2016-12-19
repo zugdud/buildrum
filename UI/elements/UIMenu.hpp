@@ -13,6 +13,8 @@ void updateEnvelope(const SDL_Rect & envelope);
 IMenuProperties * getIMenuProperties() const;
 void configure(IMenuProperties *IMenuProperties);
 
+const bool & isHidden();
+
 private:
 
 bool checkConfig();
@@ -27,5 +29,7 @@ SDL_Rect calculateRect(const int & linearIndex, const int & gridCellWidth, const
 
 IMenuProperties *mIMenuProperties;
 std::vector<UIGridCell> mUIGridCells;
+
+bool mHidden;
 
 };

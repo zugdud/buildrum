@@ -52,4 +52,5 @@ struct UIMenuProperties
     int xPadding;
     int yPadding;
     UIRenderCellDetails uiRenderCellDetails;
+    bool hidden;
 };

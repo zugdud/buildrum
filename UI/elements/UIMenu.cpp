@@ -10,6 +10,17 @@ UIMenu::~UIMenu()
 
 }
 
+void UIMenu::configure(IMenuProperties *IMenuProperties)
+{
+    mIMenuProperties = IMenuProperties;
+    createGridCells();
+    mHidden = mIMenuProperties->getUIMenuProperties().hidden;
+}
+
+const bool & UIMenu::isHidden()
+{
+    return mHidden;
+}
 
 std::vector<UIGridCell> & UIMenu::getGridCells()
 {
@@ -21,12 +32,6 @@ IMenuProperties * UIMenu::getIMenuProperties() const
     return mIMenuProperties;
 }
 
-void UIMenu::configure(IMenuProperties *IMenuProperties)
-{
-    mIMenuProperties = IMenuProperties;
-    createGridCells();
-}
-
 void UIMenu::updateEnvelope(const SDL_Rect & envelope)
 {
     UIElement::setRect(mIMenuProperties->getUIMenuProperties().xPadding,
@@ -36,9 +41,10 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
     std::string uiMenuId = mIMenuProperties->getUIMenuProperties().uiMenuId;
     std::string viewportId = mIMenuProperties->getUIMenuProperties().viewportId;
     SDL_Log("---------------------------------------------------- \n");
-    SDL_Log("UIMenu::resetPosition -- checking menu configuration for [uiMenuId: %s] [viewportId: %s]... \n",
+    SDL_Log("UIMenu::resetPosition -- checking menu configuration for [uiMenuId: %s] [viewportId: %s] [hidden: %d]... \n",
             uiMenuId.c_str(),
-            viewportId.c_str());
+            viewportId.c_str(),
+            mHidden);
     if (checkConfig())
     {
         UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
