@@ -2,7 +2,7 @@
 
 GameInstance::GameInstance()
 {
-
+    mObserverId = "GameInstance";
 }
 
 GameInstance::~GameInstance()
@@ -63,6 +63,7 @@ bool GameInstance::init()
 
 void GameInstance::run()
 {
+    EventManager::getInstance()->registerObserver(this);
     InputEventManager::getInstance()->registerQuitEventObserver(this);
     mRunning  = true;
 
@@ -73,7 +74,22 @@ void GameInstance::run()
     }
 }
 
+void GameInstance::eventRaised(const std::string & eventId)
+{
+    SDL_Log("GameInstance::eventRaised -- eventId: %s \n", eventId.c_str());
+    if (eventId == "exitGame")
+    {
+        mRunning = false;
+    }
+}
+
+const std::string & GameInstance::getId()
+{
+    return mObserverId;
+}
+
 void GameInstance::quitEventCallback()
 {
+    SDL_Log("GameInstance::quitEventCallback \n");
     mRunning = false;
 }

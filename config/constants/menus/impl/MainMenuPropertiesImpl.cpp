@@ -63,12 +63,12 @@ void MainMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties spacer = { 0, "spacer", 20, 20, "spacer", "buttonAvailable", true };
     UIButtonProperties newGame = { 1, "newGame", 20, 20, "newGame",  "buttonAvailable", false };
     UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
-    UIButtonProperties quitGame = { 3, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
+    UIButtonProperties exitGame = { 3, "exitGame", 20, 20, "exitGame",  "buttonAvailable", false };
 
     mUIButtonProperties.push_back(spacer);
     mUIButtonProperties.push_back(newGame);
     mUIButtonProperties.push_back(resumeGame);
-    mUIButtonProperties.push_back(quitGame);
+    mUIButtonProperties.push_back(exitGame);
 }
 
 void MainMenuPropertiesImpl::setUIButtonStateProperties()
@@ -103,10 +103,10 @@ void MainMenuPropertiesImpl::setUILabelProperties()
     UILabelProperties mainMenuLabel = { 0, "Main Menu", "Heading_1_OpenSansLight", 10, 10, false, "center" };
     UILabelProperties newGame = { 1, "New Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
     UILabelProperties resumeGame = { 2, "Resume Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
-    UILabelProperties quitGame = { 3, "Quit Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
+    UILabelProperties exitGame = { 3, "Exit Game", "Heading_1_OpenSansLight", 20, 20, false, "left" };
 
     mUILabelProperties.push_back(mainMenuLabel);
     mUILabelProperties.push_back(newGame);
     mUILabelProperties.push_back(resumeGame);
-    mUILabelProperties.push_back(quitGame);
+    mUILabelProperties.push_back(exitGame);
 }

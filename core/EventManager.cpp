@@ -21,6 +21,32 @@ EventManager * EventManager::getInstance()
     return mSingletonInstance;
 }
 
+void EventManager::registerObserver(IEventObserver *eventObserver)
+{
+    SDL_Log("EventManager::registerObserver -- registering observer id: %s \n", eventObserver->getId().c_str());
+    mEventObservers.push_back(eventObserver);
+}
+
+void EventManager::removeObserver(const std::string & id)
+{
+    for (size_t i = 0; i < mEventObservers.size(); i++)
+    {
+        if (mEventObservers[i]->getId() == id)
+        {
+            SDL_Log("EventManager::removeObserver -- removing observer id: %s \n", id.c_str());
+            mEventObservers.erase(mEventObservers.begin() + i);
+        }
+    }
+}
+
+void EventManager::dispatchEvent(const std::string & eventId)
+{
+    for (size_t i = 0; i < mEventObservers.size(); i++)
+    {
+        mEventObservers[i]->eventRaised(eventId);
+    }
+}
+
 void EventManager::configure(AudioManager *audioManager)
 {
     SDL_Log("EventManager::configure -- configuring... \n");
@@ -41,6 +67,7 @@ void EventManager::uiEventRaised(const std::string & eventId)
         AudioManager::Instance().stopMusic();
         SceneManager::getInstance()->setActiveScene("MainMenu");
     }
+    dispatchEvent(eventId);
 }
 
 // play music
