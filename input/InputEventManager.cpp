@@ -54,7 +54,7 @@ void InputEventManager::registerQuitEventObserver(QuitEventObserver *quitEventOb
     mQuitEventObservers.push_back(quitEventObserver);
 }
 
-void InputEventManager::pollEventQueue()
+void InputEventManager::update()
 {
     SDL_Event sdlEvent;
 
@@ -70,7 +70,11 @@ void InputEventManager::pollEventQueue()
             case SDL_QUIT:     dispatchQuitEvent(); break;
         }
     }
+
+    // process momentum
+    dispatchScrollEvent(mInputMomentum.decay());
 }
+
 
 void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
 {
@@ -78,20 +82,20 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
     {
         case SDLK_1: dispatchZoomEvent(0.2); break;
         case SDLK_2: dispatchZoomEvent(-0.2); break;
-        case SDLK_UP: dispatchScrollEvent(0, -20); break;
-        case SDLK_DOWN: dispatchScrollEvent(0, 20); break;
-        case SDLK_LEFT: dispatchScrollEvent(-20, 0); break;
-        case SDLK_RIGHT: dispatchScrollEvent(20, 0); break;
+        case SDLK_UP: mInputMomentum.update(0, -20); break;
+        case SDLK_DOWN: mInputMomentum.update(0, 20); break;
+        case SDLK_LEFT: mInputMomentum.update(-20, 0); break;
+        case SDLK_RIGHT: mInputMomentum.update(20, 0); break;
     }
 }
 
 void InputEventManager::handleFingerMotion(const SDL_Event & sdlEvent)
 {
     int scaleFactor = 1000;
-    double velX = -1 * (sdlEvent.tfinger.dx * scaleFactor);
-    double velY = -1 * (sdlEvent.tfinger.dy * scaleFactor);
+    int velX = -1 * (sdlEvent.tfinger.dx * scaleFactor);
+    int velY = -1 * (sdlEvent.tfinger.dy * scaleFactor);
 
-    dispatchScrollEvent(velX, velY);
+    mInputMomentum.update(velX, velY);
 }
 
 void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
@@ -113,13 +117,11 @@ void InputEventManager::dispatchQuitEvent()
     }
 }
 
-void InputEventManager::dispatchScrollEvent(const int & moveX, const int & moveY)
+void InputEventManager::dispatchScrollEvent(const PointInt & momentum)
 {
-    PointInt pointMovement = { moveX, moveY };
-
     for (size_t i = 0; i < mScrollEventObservers.size(); i++)
     {
-        mScrollEventObservers[i]->scrollEventCallback(pointMovement);
+        mScrollEventObservers[i]->scrollEventCallback(momentum);
     }
 }
 

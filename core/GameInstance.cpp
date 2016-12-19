@@ -69,7 +69,7 @@ void GameInstance::run()
 
     while ( mRunning )
     {
-        InputEventManager::getInstance()->pollEventQueue();
+        InputEventManager::getInstance()->update();
         SceneManager::getInstance()->updateActiveScene();
     }
     shutdown();

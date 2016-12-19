@@ -15,7 +15,7 @@ void registerZoomEventObserver(ZoomEventObserver *zoomEventObserver);
 void removePointEventObserver(const std::string & id);
 
 
-void pollEventQueue();
+void update();
 
 protected:
 
@@ -31,7 +31,7 @@ void handleMultiTouch(const SDL_Event & sdlEvent);
 void handleFingerMotion(const SDL_Event & sdlEvent);
 
 void dispatchQuitEvent();
-void dispatchScrollEvent(const int & moveX, const int & moveY);
+void dispatchScrollEvent(const PointInt & momentum);
 void dispatchZoomEvent(const double & zoomFactor);
 void dispatchPointEvent(const SDL_Event & sdlEvent);
 
@@ -40,4 +40,7 @@ std::vector<PointEventObserver *> mPointEventObserver;
 
 std::vector<ScrollEventObserver *> mScrollEventObservers;
 std::vector<ZoomEventObserver *> mZoomEventObservers;
+
+InputMomentum mInputMomentum;
+
 };

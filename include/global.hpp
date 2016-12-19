@@ -47,6 +47,7 @@
 #include "config/ConfigManager.hpp"
 
 #include "input/InputEventObservers.hpp"
+#include "input/InputMomentum.hpp"
 #include "input/InputEventManager.hpp"
 
 #include "media/fonts/FontTextures.hpp"

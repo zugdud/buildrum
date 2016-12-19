@@ -50,6 +50,7 @@ core/scenes/BaseScene.cpp \
 core/scenes/StartSceneImpl.cpp \
 core/scenes/GameSceneImpl.cpp \
 input/InputEventManager.cpp \
+input/InputMomentum.cpp \
 UI/elements/UIElement.cpp \
 UI/elements/UIButtonState.cpp \
 UI/elements/UIButton.cpp \
