@@ -22,11 +22,9 @@ void handleMusicPlaylist();
 
 void detatchLayersFromMenuRenderer();
 void detatchSceneRenderersFromViewports();
-void detatchInputManagerFromUIElements();
 
 void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();
-void attachInputManagerToUIElements();
 void attachUIElementsToEventManager();
 void attachInputManagerToCamera();
 
@@ -35,6 +33,9 @@ void detatchWorld();
 
 void attachUIMenuAsEventObserver();
 void detatchUIMenuAsEventObserver();
+
+void attachInputToUIMenus();
+void detatchInputFromUIMenus();
 
 
 std::string mSceneId;

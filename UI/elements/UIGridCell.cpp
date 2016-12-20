@@ -28,3 +28,13 @@ UILabel * UIGridCell::getUILabel()
 {
     return mUILabel;
 }
+
+void UIGridCell::attachInput()
+{
+    InputEventManager::getInstance()->registerPointEventObserver(mUIButton);
+}
+
+void UIGridCell::detatchInput()
+{
+    InputEventManager::getInstance()->removePointEventObserver(mUIButton->getId());
+}

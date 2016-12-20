@@ -23,14 +23,40 @@ void UIMenu::eventRaised(const std::string & eventId)
 
     if (eventId == concatKey)
     {
-        if (mHidden == true)
+        toggleHidden();
+    }
+}
+
+void UIMenu::toggleHidden()
+{
+    if (mHidden == true)
+    {
+        mHidden = false;
+        attach();
+    }
+    else
+    {
+        mHidden = true;
+        detatch();
+    }
+}
+
+void UIMenu::attach()
+{
+    if (!mHidden)
+    {
+        for (size_t i = 0; i < mUIGridCells.size(); i++)
         {
-            mHidden = false;
+            mUIGridCells[i].attachInput();
         }
-        else
-        {
-            mHidden = true;
-        }
+    }
+}
+
+void UIMenu::detatch()
+{
+    for (size_t i = 0; i < mUIGridCells.size(); i++)
+    {
+        mUIGridCells[i].detatchInput();
     }
 }
 

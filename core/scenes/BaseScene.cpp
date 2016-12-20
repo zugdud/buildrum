@@ -65,19 +65,6 @@ void BaseScene::detatchSceneRenderersFromViewports()
     }
 }
 
-void BaseScene::detatchInputManagerFromUIElements()
-{
-    // each menu
-    for (size_t i = 0; i < mMenuIds.size(); i++)
-    {
-        // detatch input handler to ui elements
-        std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
-        for (size_t i = 0; i < uiGridCells.size(); i++)
-        {
-            mInputEventManager->removePointEventObserver(uiGridCells[i].getUIButton()->getId());
-        }
-    }
-}
 
 void BaseScene::attachInputManagerToCamera()
 {
@@ -160,19 +147,22 @@ void BaseScene::attachSceneRenderersToViewports()
     }
 }
 
-void BaseScene::attachInputManagerToUIElements()
+void BaseScene::attachInputToUIMenus()
 {
-    // each menu
     for (size_t i = 0; i < mMenuIds.size(); i++)
     {
-        // attach input handler to ui elements
-        std::vector<UIGridCell> & uiGridCells = MenuManager::Instance().getUIMenu(mMenuIds[i])->getGridCells();
-        for (size_t i = 0; i < uiGridCells.size(); i++)
-        {
-            mInputEventManager->registerPointEventObserver(uiGridCells[i].getUIButton());
-        }
+        MenuManager::Instance().getUIMenu(mMenuIds[i])->attach();
     }
 }
+
+void BaseScene::detatchInputFromUIMenus()
+{
+    for (size_t i = 0; i < mMenuIds.size(); i++)
+    {
+        MenuManager::Instance().getUIMenu(mMenuIds[i])->detatch();
+    }
+}
+
 void BaseScene::detatchUIMenuAsEventObserver()
 {
     SDL_Log("BaseScene::detatchUIMenuAsEventObserver -- Detatching UI Menus from event manager");

@@ -18,6 +18,10 @@ void configure(IMenuProperties *IMenuProperties);
 
 const bool & isHidden();
 
+void toggleHidden();
+void attach();
+void detatch();
+
 private:
 
 bool checkConfig();

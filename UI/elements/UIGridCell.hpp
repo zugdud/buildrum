@@ -8,6 +8,9 @@ UIGridCell(UIButton *uiButton, UILabel *uiLabel);
 UIButton * getUIButton();
 UILabel * getUILabel();
 
+void attachInput();
+void detatchInput();
+
 void updateEnvelope(const SDL_Rect &envelope);
 
 private:

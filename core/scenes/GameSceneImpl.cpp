@@ -29,7 +29,7 @@ void GameSceneImpl::attach()
     SDL_Log("GameSceneImpl::attach -- attaching handlers to sceneId: %s \n", mSceneId.c_str());
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
-    attachInputManagerToUIElements();
+    attachInputToUIMenus();
     attachInputManagerToCamera(); // only needed once
     attachUIElementsToEventManager();     // only needed once
     attachWorld();
@@ -43,7 +43,7 @@ void GameSceneImpl::detatch()
     SDL_Log("GameSceneImpl::detatch -- removing handlers from sceneId: %s \n", mSceneId.c_str());
     detatchLayersFromMenuRenderer();
     detatchSceneRenderersFromViewports();
-    detatchInputManagerFromUIElements();
+    detatchInputFromUIMenus();
     detatchWorld();
     detatchUIMenuAsEventObserver();
     // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
