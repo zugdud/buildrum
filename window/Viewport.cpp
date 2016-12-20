@@ -47,10 +47,11 @@ void Viewport::addRenderer(IRenderer *renderer)
     {
         if (layers[i]->getIMenuProperties()->getUIMenuProperties().viewportId == mViewportProperties.viewportId)
         {
+            const SDL_Rect envelopeRect = { 0, 0, mViewport.w, mViewport.h };
             SDL_Log("Viewport::addRenderer -- Updating Menu envelope to match assigned viewport. uiMenuId: %s viewportId: %s \n",
                     layers[i]->getIMenuProperties()->getUIMenuProperties().uiMenuId.c_str(),
                     mViewportProperties.viewportId.c_str());
-            layers[i]->updateEnvelope(mViewport);
+            layers[i]->updateEnvelope(envelopeRect);
         }
         else
         {

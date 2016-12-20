@@ -146,7 +146,17 @@ void MenuRenderer::renderGridCells(UIMenu *uiMenu)
 
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
-        renderCell(gridCellDetails, uiGridCells[i].getRect());
+        const SDL_Rect & cellRect = uiGridCells[i].getRect();
+        // if (uiMenu->getIMenuProperties()->getUIMenuProperties().uiMenuId == "BuildMenu")
+        // {
+        //     SDL_Log("MenuRenderer::renderGridCells -- cellRect: [x: %d y: %d w: %d h: %d] \n",
+        //             cellRect.x,
+        //             cellRect.y,
+        //             cellRect.w,
+        //             cellRect.h);
+        // }
+
+        renderCell(gridCellDetails, cellRect);
     }
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
