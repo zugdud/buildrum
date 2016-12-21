@@ -11,6 +11,8 @@ const std::string & getViewContextId();
 const std::vector<std::string> & getMusicTrackIds();
 const std::vector<std::string> & getMenuIds();
 
+const std::vector<Viewport> & getViewports() const;
+
 void update();
 
 virtual void attach() = 0;

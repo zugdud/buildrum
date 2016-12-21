@@ -85,9 +85,6 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
     // seperate the viewport offset
     SDL_Rect renderRect = { 0, 0, envelope.w, envelope.h };
 
-    mViewportOffset.x = envelope.x;
-    mViewportOffset.y = envelope.y;
-
     UIElement::setRect(mIMenuProperties->getUIMenuProperties().xPadding,
                        mIMenuProperties->getUIMenuProperties().yPadding,
                        renderRect);
@@ -103,7 +100,6 @@ void UIMenu::updateEnvelope(const SDL_Rect & envelope)
     {
         UIElement::logRectDimensions("UIMenu", "Envelope", envelope);
         UIElement::logRectDimensions("UIMenu", uiMenuId, UIElement::getRect());
-        UIElement::logRectDimensions("UIMenu", "ViewportOffset", mViewportOffset);
         repositionGridCells();
         SDL_Log("UIMenu::resetPosition -- resetPosition Success! \n");
     }

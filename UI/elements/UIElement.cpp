@@ -4,7 +4,6 @@ UIElement::UIElement()
 {
     SDL_Rect initRect = { 0, 0, 0, 0 };
 
-    mViewportOffset = initRect;
     mRect = initRect;
 }
 
@@ -42,13 +41,9 @@ void UIElement::logRectDimensions(const std::string & elementType, const std::st
 //
 bool UIElement::isPointInRect(const PointInt & pointInt)
 {
-    const int offsetX = mRect.x + mViewportOffset.x;
-    const int offsetY = mRect.y + mViewportOffset.y;
-
-    // SDL_Log("UIElement::isPointInRect -- offsetX: %d offsetY: %d \n", offsetX, offsetY);
-    if (pointInt.x >= offsetX && pointInt.x <= (offsetX + mRect.w) )
+    if (pointInt.x >= mRect.x && pointInt.x <= (mRect.x + mRect.w) )
     {
-        if (pointInt.y >= offsetY && pointInt.y <= (offsetY + mRect.h) )
+        if (pointInt.y >= mRect.y && pointInt.y <= (mRect.y + mRect.h) )
         {
             return true;
         }

@@ -136,14 +136,20 @@ void InputEventManager::dispatchZoomEvent(const double & zoomFactor)
 void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
 {
     PointInt pointInt = { 0, 0 };
+    PointInt viewportOffset =  SceneManager::getInstance()->getViewportOffset(pointInt);
 
-    pointInt.x = sdlEvent.button.x;
-    pointInt.y = sdlEvent.button.y;
+    pointInt.x = sdlEvent.button.x - viewportOffset.x;
+    pointInt.y = sdlEvent.button.y - viewportOffset.y;
 
     // pointInt.x = sdlEvent.tfinger.dx;
     // pointInt.y = sdlEvent.tfinger.dy;
 
-    SDL_Log("[x: %d y: %d] \n", pointInt.x, pointInt.y);
+    SDL_Log("InputEventManager::dispatchPointEvent -- viewportOffset: [x: %d y: %d] adjustedEvent: [x: %d y: %d] \n",
+            viewportOffset.x,
+            viewportOffset.y,
+            pointInt.x,
+            pointInt.y);
+
 
     for (size_t i = 0; i < mPointEventObserver.size(); i++)
     {

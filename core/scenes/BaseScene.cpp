@@ -22,6 +22,11 @@ BaseScene::~BaseScene()
 
 }
 
+const std::vector<Viewport> & BaseScene::getViewports() const
+{
+    return mViewports;
+}
+
 void BaseScene::update()
 {
     mWindow.clearScreen();
