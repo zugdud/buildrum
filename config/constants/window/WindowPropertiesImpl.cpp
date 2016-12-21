@@ -44,7 +44,9 @@ void WindowPropertiesImpl::setViewContexts()
     // };
 
     #ifdef LINUX_BUILD_TARGET
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.85, 0.2, red };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.45, 0.2, red };
+    ViewportProperties selectedAction = { "selectedAction", 0.0, 0.0, 0.15, 0.2, red };
+    ViewportProperties statusMenu = { "statusMenu", 0.0, 0.0, 0.15, 0.2, red };
     ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.2, green };
     ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
@@ -80,10 +82,12 @@ void WindowPropertiesImpl::setViewContexts()
 
     ViewContextProperties gameplayContext;
     gameplayContext.viewContextId = "GameScene";
-    gameplayContext.numViewports = 3;
+    gameplayContext.numViewports = 5;
     gameplayContext.viewports[0] = actionMenu;
-    gameplayContext.viewports[1] = gameView;
-    gameplayContext.viewports[2] = minimap;
+    gameplayContext.viewports[1] = selectedAction;
+    gameplayContext.viewports[2] = statusMenu;
+    gameplayContext.viewports[3] = gameView;
+    gameplayContext.viewports[4] = minimap;
 
     mViewContextProperties.push_back(fullscreenContext);
     mViewContextProperties.push_back(gameplayContext);

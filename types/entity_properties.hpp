@@ -32,8 +32,21 @@ struct ObstacleProperties
     bool isDestructable;
 };
 
+struct HealthProperties
+{
+    bool isDestructable;
+    int maxHealth;
+    double healthRegenerationRate;
+};
+
 struct SurfaceProperties
 {
     EntityProperties entityProperties;
     int weightValue;
+};
+
+struct InanimateObjectProperties
+{
+    EntityProperties entityProperties;
+    HealthProperties healthProperties;
 };
