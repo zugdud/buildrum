@@ -2,6 +2,7 @@
 
 Viewport::Viewport()
 {
+    SDL_Log("Viewport::Viewport -- New Viewport \n");
     mWorldRenderer = NULL;
     mMinimapRenderer = NULL;
 }
