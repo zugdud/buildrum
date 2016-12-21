@@ -1,15 +1,23 @@
 #include "include/global.hpp"
 
-UIButton::UIButton(const UIButtonProperties &uiButtonProperties, const std::vector<UIButtonStateProperties> &uiButtonStateProperties)
+UIButton::UIButton(const UIButtonProperties &uiButtonProperties,
+                   const std::vector<UIButtonStateProperties> &uiButtonStateProperties,
+                   const UIMenuProperties & uiMenuProperties)
 {
     mUIButtonProperties = uiButtonProperties;
     addUIButtonStates(uiButtonStateProperties);
     setDefaultButtonState();
+    mParent_UIMenuProperties = uiMenuProperties;
 }
 
 UIButton::~UIButton()
 {
 
+}
+
+const UIMenuProperties & UIButton::getUIMenuProperties()
+{
+    return mParent_UIMenuProperties;
 }
 
 const std::string & UIButton::getId()

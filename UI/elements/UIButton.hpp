@@ -2,7 +2,9 @@ class UIButton : public UIElement, public PointEventObserver
 {
 public:
 
-UIButton(const UIButtonProperties &uiButtonProperties, const std::vector<UIButtonStateProperties> &uiButtonStateProperties);
+UIButton(const UIButtonProperties &uiButtonProperties,
+         const std::vector<UIButtonStateProperties> &uiButtonStateProperties,
+         const UIMenuProperties & uiMenuProperties);
 ~UIButton();
 
 const UIButtonProperties & getUIButtonProperties() const;
@@ -14,11 +16,14 @@ void pointEventCallback(PointInt pointInt);
 void setUIEventConnector(UIEventConnector *uiEventConnector);
 
 const std::string & getId();
+const UIMenuProperties & getUIMenuProperties();
 
 private:
 
 bool setDefaultButtonState();
 void addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties);
+
+UIMenuProperties mParent_UIMenuProperties;
 
 UIButtonProperties mUIButtonProperties;
 UIEventConnector *mUIEventConnector;

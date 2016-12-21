@@ -21,28 +21,25 @@ SceneManager * SceneManager::getInstance()
     return mSingletonInstance;
 }
 
-PointInt SceneManager::getViewportOffset(const PointInt & pointEvent)
+SelectedPoint SceneManager::getViewportOffset(const PointInt & pointEvent)
 {
-    SDL_Log("SceneManager::getViewportOffset -- pointEvent [x: %d y: %d] \n", pointEvent.x, pointEvent.y);
+    SelectedPoint selectedPoint;
 
-    PointInt viewportOffset = { 0, 0 };
+    selectedPoint.viewportOffset.x = 0;
+    selectedPoint.viewportOffset.y = 0;
+    selectedPoint.viewportId = "";
+
     const std::vector<Viewport> & viewports = mScenes[mActiveSceneId]->getViewports();
     for (size_t i = 0; i < viewports.size(); i++)
     {
         if (isPointInViewport(pointEvent, viewports[i].getRect()))
         {
-            SDL_Log("SceneManager::getViewportOffset -- clicked Viewport: [x: %d y: %d w: %d h: %d] id: %s \n",
-                    viewports[i].getRect().x,
-                    viewports[i].getRect().y,
-                    viewports[i].getRect().w,
-                    viewports[i].getRect().h,
-                    viewports[i].getViewportProperties().viewportId.c_str());
-            viewportOffset.x = viewports[i].getRect().x;
-            viewportOffset.y = viewports[i].getRect().y;
+            selectedPoint.viewportOffset.x = viewports[i].getRect().x;
+            selectedPoint.viewportOffset.y = viewports[i].getRect().y;
+            selectedPoint.viewportId = viewports[i].getViewportProperties().viewportId.c_str();
         }
     }
-
-    return viewportOffset;
+    return selectedPoint;
 }
 
 // TODO

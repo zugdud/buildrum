@@ -24,3 +24,9 @@ struct TextLabel
     SDL_Texture *labelTexture;
     SDL_Rect rect;
 };
+
+struct SelectedPoint
+{
+    SDL_Point viewportOffset;
+    std::string viewportId;
+};

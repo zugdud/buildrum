@@ -11,7 +11,7 @@ void setActiveScene(const std::string & activeSceneId);
 void updateActiveScene();
 void init();
 
-PointInt getViewportOffset(const PointInt & pointEvent);
+SelectedPoint getViewportOffset(const PointInt & pointEvent);
 
 protected:
 

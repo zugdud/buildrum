@@ -140,24 +140,34 @@ void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
     pointInt.x = sdlEvent.button.x;
     pointInt.y = sdlEvent.button.y;
 
-    PointInt viewportOffset =  SceneManager::getInstance()->getViewportOffset(pointInt);
+    SelectedPoint selectedPoint =  SceneManager::getInstance()->getViewportOffset(pointInt);
 
-    pointInt.x -= viewportOffset.x;
-    pointInt.y -= viewportOffset.y;
+    pointInt.x -= selectedPoint.viewportOffset.x;
+    pointInt.y -= selectedPoint.viewportOffset.y;
     // pointInt.x = sdlEvent.tfinger.dx;
     // pointInt.y = sdlEvent.tfinger.dy;
 
-    SDL_Log("InputEventManager::dispatchPointEvent -- click: [x: %d y: %d] viewportOffset: [x: %d y: %d] adjustedEvent: [x: %d y: %d] \n",
-            sdlEvent.button.x,
-            sdlEvent.button.y,
-            viewportOffset.x,
-            viewportOffset.y,
-            pointInt.x,
-            pointInt.y);
-
+    // SDL_Log("InputEventManager::dispatchPointEvent -- click: [x: %d y: %d] viewportOffset: [x: %d y: %d id: %s] adjustedEvent: [x: %d y: %d] \n",
+    //         sdlEvent.button.x,
+    //         sdlEvent.button.y,
+    //         selectedPoint.viewportOffset.x,
+    //         selectedPoint.viewportOffset.y,
+    //         selectedPoint.viewportId.c_str(),
+    //         pointInt.x,
+    //         pointInt.y);
 
     for (size_t i = 0; i < mPointEventObserver.size(); i++)
     {
-        mPointEventObserver[i]->pointEventCallback(pointInt);
+        if (mPointEventObserver[i]->getUIMenuProperties().viewportId == selectedPoint.viewportId)
+        {
+            mPointEventObserver[i]->pointEventCallback(pointInt);
+        }
+        else
+        {
+            // SDL_Log("InputEventManager::dispatchPointEvent -- filtering observer as it on a different viewportId. ObserverId: %s Observer ViewportId: %s clicked ViewportId: %s \n",
+            //         mPointEventObserver[i]->getId().c_str(),
+            //         mPointEventObserver[i]->getUIMenuProperties().viewportId.c_str(),
+            //         selectedPoint.viewportId.c_str());
+        }
     }
 }

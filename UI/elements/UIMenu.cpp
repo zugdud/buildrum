@@ -181,7 +181,7 @@ void UIMenu::createButtons(std::vector<UIButton *> & uiButtons)
 
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
-        uiButtons.push_back(new UIButton(uiButtonProperties[i], uiButtonStateProperties));
+        uiButtons.push_back(new UIButton(uiButtonProperties[i], uiButtonStateProperties, mIMenuProperties->getUIMenuProperties()));
     }
 }
 
