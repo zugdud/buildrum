@@ -143,6 +143,8 @@ void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
     // pointInt.x = sdlEvent.tfinger.dx;
     // pointInt.y = sdlEvent.tfinger.dy;
 
+    SDL_Log("[x: %d y: %d] \n", pointInt.x, pointInt.y);
+
     for (size_t i = 0; i < mPointEventObserver.size(); i++)
     {
         mPointEventObserver[i]->pointEventCallback(pointInt);

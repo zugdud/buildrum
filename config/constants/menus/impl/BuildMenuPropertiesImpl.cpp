@@ -50,8 +50,8 @@ void BuildMenuPropertiesImpl::setUIMenuProperties()
     uiMenuProperties.viewportId = "gameView";
     uiMenuProperties.rows = 4;
     uiMenuProperties.columns = 4;
-    uiMenuProperties.xPadding = 50;
-    uiMenuProperties.yPadding = 50;
+    uiMenuProperties.xPadding = 20;
+    uiMenuProperties.yPadding = 20;
     uiMenuProperties.uiRenderCellDetails = gridCD;
     uiMenuProperties.hidden = true;
 
@@ -62,22 +62,22 @@ void BuildMenuPropertiesImpl::setButtonProperties()
 {
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
 
-    UIButtonProperties build1 = { 0, "build1", 20, 20, "build1", "buttonAvailable", false };
-    UIButtonProperties build2 = { 1, "build2", 20, 20, "build2", "buttonAvailable", false };
-    UIButtonProperties build3 = { 2, "build3", 20, 20, "build3", "buttonAvailable", false };
-    UIButtonProperties build4 = { 3, "build4", 20, 20, "build4", "buttonAvailable", false };
-    UIButtonProperties build5 = { 4, "build5", 20, 20, "build5", "buttonAvailable", false };
-    UIButtonProperties build6 = { 5, "build6", 20, 20, "build6", "buttonAvailable", false };
-    UIButtonProperties build7 = { 6, "build7", 20, 20, "build7", "buttonAvailable", false };
-    UIButtonProperties build8 = { 7, "build8", 20, 20, "build8", "buttonAvailable", false };
-    UIButtonProperties build9 = { 8, "build9", 20, 20, "build9", "buttonAvailable", false };
-    UIButtonProperties build10 = { 9, "build10", 20, 20, "build10", "buttonAvailable", false };
-    UIButtonProperties build11 = { 10, "build11", 20, 20, "build11", "buttonAvailable", false };
-    UIButtonProperties build12 = { 11, "build12", 20, 20, "build12", "buttonAvailable", false };
-    UIButtonProperties build13 = { 12, "build13", 20, 20, "build13", "buttonAvailable", false };
-    UIButtonProperties build14 = { 13, "build14", 20, 20, "build14", "buttonAvailable", false };
-    UIButtonProperties build15 = { 14, "build15", 20, 20, "build15", "buttonAvailable", false };
-    UIButtonProperties build16 = { 15, "build16", 20, 20, "build16", "buttonAvailable", false };
+    UIButtonProperties build1 = { 1, "build1", 20, 20, "build1", "buttonAvailable", false };
+    UIButtonProperties build2 = { 2, "build2", 20, 20, "build2", "buttonAvailable", false };
+    UIButtonProperties build3 = { 3, "build3", 20, 20, "build3", "buttonAvailable", false };
+    UIButtonProperties build4 = { 4, "build4", 20, 20, "build4", "buttonAvailable", false };
+    UIButtonProperties build5 = { 5, "build5", 20, 20, "build5", "buttonAvailable", false };
+    UIButtonProperties build6 = { 6, "build6", 20, 20, "build6", "buttonAvailable", false };
+    UIButtonProperties build7 = { 7, "build7", 20, 20, "build7", "buttonAvailable", false };
+    UIButtonProperties build8 = { 8, "build8", 20, 20, "build8", "buttonAvailable", false };
+    UIButtonProperties build9 = { 9, "build9", 20, 20, "build9", "buttonAvailable", false };
+    UIButtonProperties build10 = { 10, "build10", 20, 20, "build10", "buttonAvailable", false };
+    UIButtonProperties build11 = { 11, "build11", 20, 20, "build11", "buttonAvailable", false };
+    UIButtonProperties build12 = { 12, "build12", 20, 20, "build12", "buttonAvailable", false };
+    UIButtonProperties build13 = { 13, "build13", 20, 20, "build13", "buttonAvailable", false };
+    UIButtonProperties build14 = { 14, "build14", 20, 20, "build14", "buttonAvailable", false };
+    UIButtonProperties build15 = { 15, "build15", 20, 20, "build15", "buttonAvailable", false };
+    UIButtonProperties build16 = { 16, "build16", 20, 20, "build16", "buttonAvailable", false };
 
     mUIButtonProperties.push_back(build1);
     mUIButtonProperties.push_back(build2);
@@ -126,22 +126,22 @@ void BuildMenuPropertiesImpl::setUIButtonStateProperties()
 void BuildMenuPropertiesImpl::setUILabelProperties()
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
-    UILabelProperties build1 = { 0, "Build 1", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build2 = { 0, "Build 2", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build3 = { 0, "Build 3", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build4 = { 0, "Build 4", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build5 = { 0, "Build 5", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build6 = { 0, "Build 6", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build7 = { 0, "Build 7", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build8 = { 0, "Build 8", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build9 = { 0, "Build 9", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build10 = { 0, "Build 10", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build11 = { 0, "Build 11", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build12 = { 0, "Build 12", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build13 = { 0, "Build 13", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build14 = { 0, "Build 14", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build15 = { 0, "Build 15", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build16 = { 0, "Build 16", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build1 = { 1, "Build 1", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build2 = { 2, "Build 2", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build3 = { 3, "Build 3", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build4 = { 4, "Build 4", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build5 = { 5, "Build 5", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build6 = { 6, "Build 6", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build7 = { 7, "Build 7", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build8 = { 8, "Build 8", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build9 = { 9, "Build 9", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build10 = { 10, "Build 10", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build11 = { 11, "Build 11", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build12 = { 12, "Build 12", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build13 = { 13, "Build 13", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build14 = { 14, "Build 14", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build15 = { 15, "Build 15", "Heading_3_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties build16 = { 16, "Build 16", "Heading_3_OpenSansLight", 10, 10, false, "center" };
 
     mUILabelProperties.push_back(build1);
     mUILabelProperties.push_back(build2);
