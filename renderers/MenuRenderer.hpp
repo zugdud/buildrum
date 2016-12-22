@@ -13,6 +13,8 @@ std::vector<UIMenu *> & getAllLayers();
 
 private:
 
+void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
+
 void renderGridCells(UIMenu *uiMenu);
 void renderLayer(UIMenu *uiMenu);
 void renderButton(UIButton *uiButton);

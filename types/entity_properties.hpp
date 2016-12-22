@@ -3,22 +3,6 @@
 // Entities
 // ------------------------------------------------------------------------------
 
-struct SpriteProperties
-{
-    int spriteId;
-    std::string spriteSheetId;
-    SDL_RendererFlip sdlRendererFlip;
-    double angle;
-};
-
-struct SpriteLayer
-{
-    SpriteProperties spriteUp;
-    SpriteProperties spriteDown;
-    SpriteProperties spriteLeft;
-    SpriteProperties spriteRight;
-};
-
 struct EntityProperties
 {
     std::string entityId;

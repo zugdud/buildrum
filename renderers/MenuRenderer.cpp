@@ -25,7 +25,6 @@ void MenuRenderer::removeLayer(const std::string & uiMenuId)
                     uiMenuId.c_str());
             mLayers.erase(mLayers.begin() + i);
         }
-
     }
 }
 
@@ -78,6 +77,12 @@ void MenuRenderer::renderLayer(UIMenu *uiMenu)
     renderGridCells(uiMenu);
 }
 
+// SDL_Color backgroundColor;
+// SDL_Color outlineColor;
+// bool showBorderColor;
+// bool showBackgroundColor;
+// SpriteProperties spriteProperties;
+// bool showbackgroundSprite;
 void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
 {
     if (uiCd.showBackgroundColor)
@@ -105,6 +110,10 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
         SDL_RenderDrawRect(mSDLRenderer, &cellRect);
     }
 
+    if (uiCd.showbackgroundSprite)
+    {
+        renderSprite(uiCd.spriteProperties, cellRect);
+    }
 }
 
 void MenuRenderer::renderLabel(UILabel *uiLabel)
@@ -118,7 +127,6 @@ void MenuRenderer::renderLabel(UILabel *uiLabel)
 
         SDL_Texture *labelTexture = fontTextures.getTexture(uiLP.labelText);
         const SDL_Rect & textureSize = fontTextures.getRect(uiLP.labelText);
-
 
         SDL_Rect renderRect = { cellRect.x, cellRect.y, textureSize.w, textureSize.h };
         const int heightPadding = (cellRect.h - textureSize.h) / 2;
@@ -147,15 +155,6 @@ void MenuRenderer::renderGridCells(UIMenu *uiMenu)
     for (size_t i = 0; i < uiGridCells.size(); i++)
     {
         const SDL_Rect & cellRect = uiGridCells[i].getRect();
-        // if (uiMenu->getIMenuProperties()->getUIMenuProperties().uiMenuId == "BuildMenu")
-        // {
-        //     SDL_Log("MenuRenderer::renderGridCells -- cellRect: [x: %d y: %d w: %d h: %d] \n",
-        //             cellRect.x,
-        //             cellRect.y,
-        //             cellRect.w,
-        //             cellRect.h);
-        // }
-
         renderCell(gridCellDetails, cellRect);
     }
     for (size_t i = 0; i < uiGridCells.size(); i++)
@@ -175,4 +174,19 @@ void MenuRenderer::renderButton(UIButton *uiButton)
         renderCell(uiButton->getCurrentUIButtonState().getUIButtonStateProperties().uiRenderCellDetails,
                    uiButton->getRect());
     }
+}
+
+void MenuRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
+{
+    SDL_Point *center = NULL;
+    SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
+    const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
+
+    SDL_RenderCopyEx(mSDLRenderer,
+                     spriteSheetTexture,
+                     &spriteRect,
+                     &destRect,
+                     spriteProperties.angle,
+                     center,
+                     spriteProperties.sdlRendererFlip);
 }
