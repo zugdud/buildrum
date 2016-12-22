@@ -26,6 +26,7 @@ struct UIRenderCellDetails
 
 struct UIButtonStateProperties
 {
+    std::string buttonId;
     std::string buttonStateId;
     int spriteId;
     std::string soundEffectId;

@@ -16,7 +16,6 @@ void ActionMenuPropertiesImpl::setProperties()
     setUIMenuProperties();
     setButtonProperties();
     setUILabelProperties();
-    setUIButtonStateProperties();
 }
 
 const UIMenuProperties & ActionMenuPropertiesImpl::getUIMenuProperties() const
@@ -65,30 +64,34 @@ void ActionMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties quitGame = { 1, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
+    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
+
+    setUIButtonStateProperties("quitGame", spriteProperties);
+    setUIButtonStateProperties("toggleHidden_BuildMenu", spriteProperties);
+
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);
 }
 
-void ActionMenuPropertiesImpl::setUIButtonStateProperties()
+void ActionMenuPropertiesImpl::setUIButtonStateProperties(const std::string & buttonId, const SpriteProperties & spriteProperties)
 {
     SDL_Color black = { 0, 0, 0, 255 };
     SDL_Color red = { 255, 0, 0, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
     // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
     // UIButtonStateProperties: buttonState, spriteId, soundEffectId, uiRenderCellDetails
     UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, spriteProperties, false  };
-    UIButtonStateProperties buttonSelected = { "buttonSelected", 0, "buttonSelected", buttonSelectedCD };
+    UIButtonStateProperties buttonSelected = { buttonId, "buttonSelected", 0, "buttonSelected", buttonSelectedCD };
 
     UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, spriteProperties, false  };
-    UIButtonStateProperties buttonAvailable = { "buttonAvailable", 1, "", buttonAvailableCD };
+    UIButtonStateProperties buttonAvailable = { buttonId, "buttonAvailable", 1, "", buttonAvailableCD };
 
     UIRenderCellDetails buttonCooldownCD = {  black, red, true, true, spriteProperties, false  };
-    UIButtonStateProperties buttonCooldown = { "buttonCooldown", 2, "", buttonCooldownCD };
+    UIButtonStateProperties buttonCooldown = { buttonId, "buttonCooldown", 2, "", buttonCooldownCD };
 
     UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, spriteProperties, false  };
-    UIButtonStateProperties buttonUnavailable = { "buttonUnavailable", 3, "", buttonUnavailableCD };
+    UIButtonStateProperties buttonUnavailable = { buttonId, "buttonUnavailable", 3, "", buttonUnavailableCD };
 
     mUIButtonStateProperties.push_back(buttonSelected);
     mUIButtonStateProperties.push_back(buttonAvailable);

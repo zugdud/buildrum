@@ -17,7 +17,8 @@ private:
 void setUIMenuProperties();
 void setButtonProperties();
 void setUILabelProperties();
-void setUIButtonStateProperties();
+
+void setUIButtonStateProperties(const std::string & buttonId, const SpriteProperties & spriteProperties);
 
 UIMenuProperties mUIMenuProperties;
 std::vector<UIButtonProperties> mUIButtonProperties;
