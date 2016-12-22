@@ -39,6 +39,7 @@ WindowPropertiesImpl mWindowPropertiesImpl;
 AudioContentImpl mAudioContentImpl;
 SpriteSheetPropertiesImpl mSpriteSheetPropertiesImpl;
 SurfacePropertiesImpl mSurfacePropertiesImpl;
+InanimateObjectPropertiesImpl mInanimateObjectPropertiesImpl;
 
 CameraPropertiesImpl mCameraPropertiesImpl;
 

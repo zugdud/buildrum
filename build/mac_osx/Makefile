@@ -38,6 +38,7 @@ config/ConfigManager.cpp \
 config/constants/actors/CameraPropertiesImpl.cpp \
 config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
 config/constants/entities/SurfacePropertiesImpl.cpp \
+config/constants/entities/InanimateObjectPropertiesImpl.cpp \
 config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
 config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \

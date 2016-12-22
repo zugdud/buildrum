@@ -1,21 +1,25 @@
-class PlayerPaletteImpl
+class InanimateObjectPropertiesImpl
 {
 public:
 
-PlayerPaletteImpl();
-~PlayerPaletteImpl();
+InanimateObjectPropertiesImpl();
+~InanimateObjectPropertiesImpl();
 
 void loadAll();
 
-const SurfaceProperties & getSurfaceProperties(const std::string entityId);
+const InanimateObjectProperties & getInanimateObjectProperties(const std::string entityId);
 
 private:
 
 void loadSurfaces();
-void addSurface(const std::string & entityId,
-                const int & spriteId,
-                const std::string & spriteSheetId,
-                const int & weightValue);
+void addInanimateObjectProperties(const std::string & entityId,
+                                  const int & spriteId,
+                                  const std::string & spriteSheetId,
+                                  const int & maxHealth);
+
+HealthProperties buildHealthProperties(const bool & isDestructable,
+                                       const int & maxHealth,
+                                       double & healthRegenerationRate);
 
 SpriteProperties buildSpriteProperties(const int & spriteId,
                                        const std::string spriteSheetId);

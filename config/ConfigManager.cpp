@@ -82,6 +82,7 @@ void ConfigManager::loadConstants()
     mSpriteSheetPropertiesImpl.loadAll();
     mSurfacePropertiesImpl.loadAll();
     mCameraPropertiesImpl.loadAll();
+    mInanimateObjectPropertiesImpl.loadAll();
     loadMenuConstants();
     SDL_Log("ConfigManager::loadConstants -- all contants loaded!\n");
     SDL_Log("----------------------------------------------------\n");

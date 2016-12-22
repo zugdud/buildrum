@@ -34,6 +34,7 @@
 #include "config/constants/menus/IMenuProperties.hpp"
 
 #include "config/constants/entities/SurfacePropertiesImpl.hpp"
+#include "config/constants/entities/InanimateObjectPropertiesImpl.hpp"
 
 #include "config/constants/actors/CameraPropertiesImpl.hpp"
 #include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
