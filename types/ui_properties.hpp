@@ -20,7 +20,7 @@ struct UIRenderCellDetails
     SDL_Color outlineColor;
     bool showBorderColor;
     bool showBackgroundColor;
-    int backgroundSpriteId;
+    std::string entityId;
     bool showbackgroundSprite;
 };
 

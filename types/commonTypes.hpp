@@ -10,7 +10,6 @@ struct PointDouble
     double y;
 };
 
-
 enum EntityOrientation
 {
     UP,

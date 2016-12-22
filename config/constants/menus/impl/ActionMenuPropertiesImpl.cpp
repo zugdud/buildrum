@@ -42,7 +42,7 @@ void ActionMenuPropertiesImpl::setUIMenuProperties()
     SDL_Color green = { 0, 255, 0, 255 };
 
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { blue, green, true, true, 0, false };
+    UIRenderCellDetails gridCD = { blue, green, true, true, "brick_1", false };
 
     UIMenuProperties uiMenuProperties;
 
