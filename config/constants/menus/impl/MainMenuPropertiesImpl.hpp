@@ -7,11 +7,6 @@ MainMenuPropertiesImpl();
 
 void setProperties();
 
-const UIMenuProperties & getUIMenuProperties() const;
-const std::vector<UIButtonProperties> & getUIButtonProperties();
-
-const std::vector<UILabelProperties> & getUILabelProperties();
-
 private:
 
 void setUIMenuProperties();

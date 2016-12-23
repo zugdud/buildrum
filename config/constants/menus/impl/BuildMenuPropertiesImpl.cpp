@@ -18,20 +18,6 @@ void BuildMenuPropertiesImpl::setProperties()
     setUILabelProperties();
 }
 
-const UIMenuProperties & BuildMenuPropertiesImpl::getUIMenuProperties() const
-{
-    return mUIMenuProperties;
-}
-const std::vector<UIButtonProperties> & BuildMenuPropertiesImpl::getUIButtonProperties()
-{
-    return mUIButtonProperties;
-}
-
-const std::vector<UILabelProperties> & BuildMenuPropertiesImpl::getUILabelProperties()
-{
-    return mUILabelProperties;
-}
-
 void BuildMenuPropertiesImpl::setUIMenuProperties()
 {
     SDL_Color blue = { 0, 0, 255, 255 };
