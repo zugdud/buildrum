@@ -177,10 +177,10 @@ void UIMenu::createGridCells()
 void UIMenu::createButtons(std::vector<UIButton *> & uiButtons)
 {
     const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties->getUIButtonProperties();
-    const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties->getUIButtonStateProperties();
 
     for (size_t i = 0; i < uiButtonProperties.size(); i++)
     {
+        const std::vector<UIButtonStateProperties> & uiButtonStateProperties = mIMenuProperties->getUIButtonStateProperties(uiButtonProperties[i].buttonId);
         uiButtons.push_back(new UIButton(uiButtonProperties[i], uiButtonStateProperties, mIMenuProperties->getUIMenuProperties()));
     }
 }

@@ -43,6 +43,7 @@
 #include "config/constants/media/sprites/SpriteSheetPropertiesImpl.hpp"
 
 #include "config/constants/window/WindowPropertiesImpl.hpp"
+#include "config/constants/menus/BaseMenuProperties.hpp"
 #include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
 #include "config/constants/menus/impl/ActionMenuPropertiesImpl.hpp"
 #include "config/constants/menus/impl/BuildMenuPropertiesImpl.hpp"

@@ -26,10 +26,7 @@ const std::vector<UIButtonProperties> & BuildMenuPropertiesImpl::getUIButtonProp
 {
     return mUIButtonProperties;
 }
-const std::vector<UIButtonStateProperties> & BuildMenuPropertiesImpl::getUIButtonStateProperties()
-{
-    return mUIButtonStateProperties;
-}
+
 const std::vector<UILabelProperties> & BuildMenuPropertiesImpl::getUILabelProperties()
 {
     return mUILabelProperties;
@@ -79,22 +76,22 @@ void BuildMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties build15 = { 15, "build15", 20, 20, "build15", "buttonAvailable", false };
     UIButtonProperties build16 = { 16, "build16", 20, 20, "build16", "buttonAvailable", false };
 
-    setUIButtonStateProperties("build1", 96, "castle_2");
-    setUIButtonStateProperties("build2", 112, "castle_2");
-    setUIButtonStateProperties("build3", 99, "castle_2");
-    setUIButtonStateProperties("build4", 115, "castle_2");
-    setUIButtonStateProperties("build5", 128, "castle_2");
-    setUIButtonStateProperties("build6", 146, "castle_2");
-    setUIButtonStateProperties("build7", 133, "castle_1");
-    setUIButtonStateProperties("build8", 149, "castle_1");
-    setUIButtonStateProperties("build9", 100, "castle_1");
-    setUIButtonStateProperties("build10", 116, "castle_1");
-    setUIButtonStateProperties("build11", 129, "castle_1");
-    setUIButtonStateProperties("build12", 131, "castle_1");
-    setUIButtonStateProperties("build13", 134, "castle_1");
-    setUIButtonStateProperties("build14", 150, "castle_1");
-    setUIButtonStateProperties("build15", 234, "castle_1");
-    setUIButtonStateProperties("build16", 233, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build1", 96, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build2", 112, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build3", 99, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build4", 115, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build5", 128, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build6", 146, "castle_2");
+    BaseMenuProperties::setUIButtonStateProperties("build7", 133, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build8", 149, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build9", 100, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build10", 116, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build11", 129, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build12", 131, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build13", 134, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build14", 150, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build15", 234, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build16", 233, "castle_1");
 
     mUIButtonProperties.push_back(build1);
     mUIButtonProperties.push_back(build2);
@@ -112,33 +109,6 @@ void BuildMenuPropertiesImpl::setButtonProperties()
     mUIButtonProperties.push_back(build14);
     mUIButtonProperties.push_back(build15);
     mUIButtonProperties.push_back(build16);
-}
-
-void BuildMenuPropertiesImpl::setUIButtonStateProperties(const std::string & buttonId, const int & spriteId, const std::string & spriteSheetId)
-{
-    SDL_Color black = { 0, 0, 0, 255 };
-    SDL_Color red = { 255, 0, 0, 255 };
-    SDL_Color green = { 0, 255, 0, 255 };
-
-    SpriteProperties spriteProperties = { spriteId, spriteSheetId, SDL_FLIP_NONE, 0.0 };
-    // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    // UIButtonStateProperties: buttonState, spriteId, soundEffectId, uiRenderCellDetails
-    UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, spriteProperties, true  };
-    UIButtonStateProperties buttonSelected = { buttonId, "buttonSelected", 0, "buttonSelected", buttonSelectedCD };
-
-    UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, spriteProperties, true  };
-    UIButtonStateProperties buttonAvailable = { buttonId, "buttonAvailable", 1, "", buttonAvailableCD };
-
-    UIRenderCellDetails buttonCooldownCD = {  black, red, true, true, spriteProperties, true  };
-    UIButtonStateProperties buttonCooldown = { buttonId, "buttonCooldown", 2, "", buttonCooldownCD };
-
-    UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, spriteProperties, true  };
-    UIButtonStateProperties buttonUnavailable = { buttonId, "buttonUnavailable", 3, "", buttonUnavailableCD };
-
-    mUIButtonStateProperties.push_back(buttonSelected);
-    mUIButtonStateProperties.push_back(buttonAvailable);
-    mUIButtonStateProperties.push_back(buttonCooldown);
-    mUIButtonStateProperties.push_back(buttonUnavailable);
 }
 
 void BuildMenuPropertiesImpl::setUILabelProperties()

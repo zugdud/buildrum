@@ -43,6 +43,7 @@ config/constants/media/fonts/FontProfilesImpl.cpp \
 config/constants/media/audio/AudioContentImpl.cpp \
 config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
 config/constants/window/WindowPropertiesImpl.cpp \
+config/constants/menus/BaseMenuProperties.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
 config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
