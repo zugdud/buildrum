@@ -13,18 +13,14 @@ private:
 
 void loadSurfaces();
 void addInanimateObjectProperties(const std::string & entityId,
-                                  const int & spriteId,
-                                  const std::string & spriteSheetId,
+                                  const std::string & spriteName,
                                   const int & maxHealth);
 
 HealthProperties buildHealthProperties(const bool & isDestructable,
                                        const int & maxHealth,
                                        double & healthRegenerationRate);
 
-SpriteProperties buildSpriteProperties(const int & spriteId,
-                                       const std::string spriteSheetId);
-
-SpriteLayer buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties);
+SpriteLayer buildSpriteLayer(const std::vector<std::string>& spriteProperties);
 
 EntityProperties buildEntity(const std::string & entityId,
                              const std::vector<SpriteLayer> & spriteLayers);

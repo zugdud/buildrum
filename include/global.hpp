@@ -41,6 +41,7 @@
 #include "config/constants/media/fonts/FontProfilesImpl.hpp"
 #include "config/constants/media/audio/AudioContentImpl.hpp"
 #include "config/constants/media/sprites/SpriteSheetPropertiesImpl.hpp"
+#include "config/constants/media/sprites/SpritePropertiesImpl.hpp"
 
 #include "config/constants/window/WindowPropertiesImpl.hpp"
 #include "config/constants/menus/BaseMenuProperties.hpp"

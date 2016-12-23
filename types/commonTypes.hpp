@@ -40,8 +40,8 @@ struct SpriteProperties
 
 struct SpriteLayer
 {
-    SpriteProperties spriteUp;
-    SpriteProperties spriteDown;
-    SpriteProperties spriteLeft;
-    SpriteProperties spriteRight;
+    std::string spriteName_Up;
+    std::string spriteName_Down;
+    std::string spriteName_Left;
+    std::string spriteName_Right;
 };

@@ -46,16 +46,16 @@ void InanimateObjectPropertiesImpl::loadSurfaces()
 }
 
 void InanimateObjectPropertiesImpl::addInanimateObjectProperties(const std::string & entityId,
-                                                                 const int & spriteId,
-                                                                 const std::string & spriteSheetId,
+                                                                 const std::string & spriteName,
                                                                  const int & maxHealth)
 {
 
     std::vector<SpriteProperties> spriteProperties;
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
+    std::vector<std::string> spriteNames;
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
 
     std::vector<SpriteLayer> spriteLayers;
     spriteLayers.push_back(buildSpriteLayer(spriteProperties));
@@ -70,15 +70,7 @@ void InanimateObjectPropertiesImpl::addInanimateObjectProperties(const std::stri
     mInanimateObjectProperties[entityId] = inanimateObjectProperties;
 }
 
-SpriteProperties InanimateObjectPropertiesImpl::buildSpriteProperties(const int & spriteId,
-                                                                      const std::string spriteSheetId)
-{
-    SpriteProperties spriteProperties = { spriteId, spriteSheetId, SDL_FLIP_NONE, 0 };
-
-    return spriteProperties;
-}
-
-SpriteLayer InanimateObjectPropertiesImpl::buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties)
+SpriteLayer InanimateObjectPropertiesImpl::buildSpriteLayer(const std::vector<std::string> & spriteProperties)
 {
     SpriteLayer spriteLayer;
 
@@ -89,10 +81,10 @@ SpriteLayer InanimateObjectPropertiesImpl::buildSpriteLayer(const std::vector<Sp
         SpriteProperties left = spriteProperties[2];
         SpriteProperties right = spriteProperties[3];
 
-        spriteLayer.spriteUp = up;
-        spriteLayer.spriteDown = down;
-        spriteLayer.spriteLeft = left;
-        spriteLayer.spriteRight = right;
+        spriteLayer.spriteName_Up = up;
+        spriteLayer.spriteName_Down = down;
+        spriteLayer.spriteName_Left = left;
+        spriteLayer.spriteName_Right = right;
 
     }
     else

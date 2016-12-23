@@ -12,15 +12,12 @@ const SurfaceProperties & getSurfaceProperties(const std::string entityId);
 private:
 
 void loadSurfaces();
+
 void addSurface(const std::string & entityId,
-                const int & spriteId,
-                const std::string & spriteSheetId,
+                const std::string & spriteName
                 const int & weightValue);
 
-SpriteProperties buildSpriteProperties(const int & spriteId,
-                                       const std::string spriteSheetId);
-
-SpriteLayer buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties);
+SpriteLayer buildSpriteLayer(const std::vector<std::string> & spriteProperties);
 
 EntityProperties buildEntity(const std::string & entityId,
                              const std::vector<SpriteLayer> & spriteLayers);

@@ -38,6 +38,7 @@ FontProfileImpl mFontProfileImpl;
 WindowPropertiesImpl mWindowPropertiesImpl;
 AudioContentImpl mAudioContentImpl;
 SpriteSheetPropertiesImpl mSpriteSheetPropertiesImpl;
+SpritePropertiesImpl mSpritePropertiesImpl;
 SurfacePropertiesImpl mSurfacePropertiesImpl;
 InanimateObjectPropertiesImpl mInanimateObjectPropertiesImpl;
 

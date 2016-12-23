@@ -18,28 +18,27 @@ void SurfacePropertiesImpl::loadAll()
 
 void SurfacePropertiesImpl::loadSurfaces()
 {
-    addSurface("brick_1", 24, "castle_1", 10);
-    addSurface("brick_2", 65, "castle_1", 10);
+    addSurface("brick_1", "brick_1", 10);
+    addSurface("brick_2", "brick_2", 10);
 
-    addSurface("field_1", 195, "castle_1", 10);
-    addSurface("field_2", 196, "castle_1", 10);
-    addSurface("field_3", 213, "castle_1", 10);
-    addSurface("water_1", 192, "castle_2", 100);
+    addSurface("field_1", "field_1", 10);
+    addSurface("field_2", "field_2", 10);
+    addSurface("field_3", "field_3" 10);
+    addSurface("water_1", "water_1", 100);
 
     SDL_Log("SurfacePropertiesImpl::loadSurfaces -- loaded surface count: %zu \n", mSurfaceProperties.size());
 }
 
 void SurfacePropertiesImpl::addSurface(const std::string & entityId,
-                                       const int & spriteId,
-                                       const std::string & spriteSheetId,
+                                       const std::string & spriteName
                                        const int & weightValue)
 {
 
-    std::vector<SpriteProperties> spriteProperties;
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
-    spriteProperties.push_back(buildSpriteProperties(spriteId, spriteSheetId));
+    std::vector<std::string> spriteNames;
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
+    spriteProperties.push_back(spriteName);
 
     std::vector<SpriteLayer> spriteLayers;
     spriteLayers.push_back(buildSpriteLayer(spriteProperties));
@@ -48,15 +47,7 @@ void SurfacePropertiesImpl::addSurface(const std::string & entityId,
     mSurfaceProperties[entityId] = surfaceProperties;
 }
 
-SpriteProperties SurfacePropertiesImpl::buildSpriteProperties(const int & spriteId,
-                                                              const std::string spriteSheetId)
-{
-    SpriteProperties spriteProperties = { spriteId, spriteSheetId, SDL_FLIP_NONE, 0 };
-
-    return spriteProperties;
-}
-
-SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProperties> & spriteProperties)
+SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<std::string> & spriteProperties)
 {
     SpriteLayer spriteLayer;
 
@@ -67,10 +58,10 @@ SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<SpriteProp
         SpriteProperties left = spriteProperties[2];
         SpriteProperties right = spriteProperties[3];
 
-        spriteLayer.spriteUp = up;
-        spriteLayer.spriteDown = down;
-        spriteLayer.spriteLeft = left;
-        spriteLayer.spriteRight = right;
+        spriteLayer.spriteName_Up = up;
+        spriteLayer.spriteName_Down = down;
+        spriteLayer.spriteName_Left = left;
+        spriteLayer.spriteName_Right = right;
 
     }
     else
