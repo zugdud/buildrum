@@ -63,11 +63,13 @@ void MainMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
     UIButtonProperties exitGame = { 3, "exitGame", 20, 20, "exitGame",  "buttonAvailable", false };
 
+    const int defaultSpriteId = 195;
+    const std::string defaultSpriteSheetId = "castle_1";
 
-    BaseMenuProperties::setUIButtonStateProperties("spacer", 195, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("newGame", 195, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("resumeGame", 195, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("exitGame", 195, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("spacer", defaultSpriteId, defaultSpriteSheetId, false);
+    BaseMenuProperties::setUIButtonStateProperties("newGame", defaultSpriteId, defaultSpriteSheetId, false);
+    BaseMenuProperties::setUIButtonStateProperties("resumeGame", defaultSpriteId, defaultSpriteSheetId, false);
+    BaseMenuProperties::setUIButtonStateProperties("exitGame", defaultSpriteId, defaultSpriteSheetId, false);
 
     mUIButtonProperties.push_back(spacer);
     mUIButtonProperties.push_back(newGame);

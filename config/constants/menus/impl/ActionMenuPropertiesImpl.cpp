@@ -47,8 +47,8 @@ void ActionMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties quitGame = { 1, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("quitGame", 195, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", 195, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("quitGame", 195, "castle_1", false);
+    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", 195, "castle_1", false);
 
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);

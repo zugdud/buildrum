@@ -76,22 +76,22 @@ void BuildMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties build15 = { 15, "build15", 20, 20, "build15", "buttonAvailable", false };
     UIButtonProperties build16 = { 16, "build16", 20, 20, "build16", "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("build1", 96, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build2", 112, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build3", 99, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build4", 115, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build5", 128, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build6", 146, "castle_2");
-    BaseMenuProperties::setUIButtonStateProperties("build7", 133, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build8", 149, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build9", 100, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build10", 116, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build11", 129, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build12", 131, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build13", 134, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build14", 150, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build15", 234, "castle_1");
-    BaseMenuProperties::setUIButtonStateProperties("build16", 233, "castle_1");
+    BaseMenuProperties::setUIButtonStateProperties("build1", 96, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build2", 112, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build3", 99, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build4", 115, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build5", 128, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build6", 146, "castle_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build7", 133, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build8", 149, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build9", 100, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build10", 116, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build11", 129, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build12", 131, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build13", 134, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build14", 150, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build15", 234, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build16", 233, "castle_1", true);
 
     mUIButtonProperties.push_back(build1);
     mUIButtonProperties.push_back(build2);
