@@ -45,8 +45,8 @@ void WindowPropertiesImpl::setViewContexts()
 
     #ifdef LINUX_BUILD_TARGET
     ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.45, 0.2, red };
-    ViewportProperties selectedAction = { "selectedAction", 0.0, 0.0, 0.15, 0.2, red };
-    ViewportProperties statusMenu = { "statusMenu", 0.0, 0.0, 0.15, 0.2, red };
+    ViewportProperties selectedAction = { "selectedAction", 0.45, 0.0, 0.20, 0.2, red };
+    ViewportProperties statusMenu = { "statusMenu", 0.65, 0.0, 0.20, 0.2, red };
     ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.2, green };
     ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
