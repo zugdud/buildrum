@@ -41,6 +41,8 @@ config/constants/menus/BaseMenuProperties.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
 config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
+config/constants/menus/impl/SelectedActionMenuPropertiesImpl.cpp \
+config/constants/menus/impl/StatusMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Camera.cpp \
 window/Window.cpp \
