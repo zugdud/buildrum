@@ -23,9 +23,8 @@ void ActionMenuPropertiesImpl::setUIMenuProperties()
     SDL_Color blue = { 0, 0, 255, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { blue, green, true, true, spriteProperties, false };
+    UIRenderCellDetails gridCD = { blue, green, true, true, "brick_2", false };
 
     UIMenuProperties uiMenuProperties;
 
@@ -47,8 +46,8 @@ void ActionMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties quitGame = { 1, "quitGame", 20, 20, "quitGame",  "buttonAvailable", false };
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("quitGame", 195, "castle_1", false);
-    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", 195, "castle_1", false);
+    BaseMenuProperties::setUIButtonStateProperties("quitGame", "brick_2", false);
+    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "brick_2", false);
 
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);

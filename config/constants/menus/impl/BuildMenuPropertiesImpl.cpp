@@ -23,9 +23,8 @@ void BuildMenuPropertiesImpl::setUIMenuProperties()
     SDL_Color blue = { 0, 0, 255, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { blue, green, true, true, spriteProperties, false };
+    UIRenderCellDetails gridCD = { blue, green, true, true, "brick_2", false };
 
     UIMenuProperties uiMenuProperties;
 
@@ -62,22 +61,22 @@ void BuildMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties build15 = { 15, "build15", 20, 20, "build15", "buttonAvailable", false };
     UIButtonProperties build16 = { 16, "build16", 20, 20, "build16", "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("build1", 96, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build2", 112, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build3", 99, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build4", 115, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build5", 128, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build6", 146, "castle_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build7", 133, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build8", 149, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build9", 100, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build10", 116, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build11", 129, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build12", 131, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build13", 134, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build14", 150, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build15", 234, "castle_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build16", 233, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build1", "banner_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build2", "banner_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build3", "emblem_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build4", "emblem_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build5", "spire_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build6",  "ladder_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build7", "anvil_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build8",  "anvil_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build9",  "latern_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build10",  "latern_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build11",  "crate_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("build12",  "crate_2", true);
+    BaseMenuProperties::setUIButtonStateProperties("build13",  "crate_3", true);
+    BaseMenuProperties::setUIButtonStateProperties("build14",  "crate_4", true);
+    BaseMenuProperties::setUIButtonStateProperties("build15",  "crate_5", true);
+    BaseMenuProperties::setUIButtonStateProperties("build16",  "barrel_1", true);
 
     mUIButtonProperties.push_back(build1);
     mUIButtonProperties.push_back(build2);

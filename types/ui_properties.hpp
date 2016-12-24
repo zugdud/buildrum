@@ -20,7 +20,7 @@ struct UIRenderCellDetails
     SDL_Color outlineColor;
     bool showBorderColor;
     bool showBackgroundColor;
-    SpriteProperties spriteProperties;
+    std::string spriteName;
     bool showbackgroundSprite;
 };
 

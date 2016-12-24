@@ -12,7 +12,7 @@ const std::vector<UILabelProperties> & getUILabelProperties();
 
 protected:
 
-void setUIButtonStateProperties(const std::string & buttonId, const int & spriteId, const std::string & spriteSheetIds, const bool & showBgSprite);
+void setUIButtonStateProperties(const std::string & buttonId, const std::string & spriteName, const bool & showBgSprite);
 
 UIMenuProperties mUIMenuProperties;
 std::vector<UIButtonProperties> mUIButtonProperties;

@@ -23,9 +23,8 @@ void SelectedActionMenuPropertiesImpl::setUIMenuProperties()
     SDL_Color blue = { 0, 0, 255, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { blue, green, true, true, spriteProperties, false };
+    UIRenderCellDetails gridCD = { blue, green, true, true, "brick_2", false };
 
     UIMenuProperties uiMenuProperties;
 
@@ -46,7 +45,7 @@ void SelectedActionMenuPropertiesImpl::setButtonProperties()
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
     UIButtonProperties selectedAction = { 1, "selectedAction", 20, 20, "selectedAction",  "buttonAvailable", true };
 
-    BaseMenuProperties::setUIButtonStateProperties("selectedAction", 195, "castle_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("selectedAction", "brick_2", true);
 
     mUIButtonProperties.push_back(selectedAction);
 }

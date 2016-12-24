@@ -27,25 +27,22 @@ const std::vector<UILabelProperties> & BaseMenuProperties::getUILabelProperties(
     return mUILabelProperties;
 }
 
-void BaseMenuProperties::setUIButtonStateProperties(const std::string & buttonId, const int & spriteId, const std::string & spriteSheetIds, const bool & showBgSprite)
+void BaseMenuProperties::setUIButtonStateProperties(const std::string & buttonId, const std::string & spriteName, const bool & showBgSprite)
 {
     SDL_Color black = { 0, 0, 0, 255 };
     SDL_Color red = { 255, 0, 0, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { spriteId, spriteSheetIds, SDL_FLIP_NONE, 0 };
-    // UIRenderCellDetails: isSpacer, backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    // UIButtonStateProperties: buttonState, spriteId, soundEffectId, uiRenderCellDetails
-    UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, spriteProperties, showBgSprite  };
+    UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, spriteName, showBgSprite  };
     UIButtonStateProperties buttonSelected = { buttonId, "buttonSelected", "buttonSelected", buttonSelectedCD };
 
-    UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, spriteProperties, showBgSprite  };
+    UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, spriteName, showBgSprite  };
     UIButtonStateProperties buttonAvailable = { buttonId, "buttonAvailable", "", buttonAvailableCD };
 
-    UIRenderCellDetails buttonCooldownCD = {  black, red, true, true, spriteProperties, showBgSprite  };
+    UIRenderCellDetails buttonCooldownCD = {  black, red, true, true, spriteName, showBgSprite  };
     UIButtonStateProperties buttonCooldown = { buttonId, "buttonCooldown",  "", buttonCooldownCD };
 
-    UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, spriteProperties, showBgSprite  };
+    UIRenderCellDetails buttonUnavailableCD = { black, red, true, true, spriteName, showBgSprite  };
     UIButtonStateProperties buttonUnavailable = { buttonId, "buttonUnavailable", "", buttonUnavailableCD };
 
     mUIButtonStateProperties[buttonId].push_back(buttonSelected);

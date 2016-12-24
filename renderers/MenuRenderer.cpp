@@ -112,7 +112,7 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
 
     if (uiCd.showbackgroundSprite)
     {
-        renderSprite(uiCd.spriteProperties, cellRect);
+        renderSprite(ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(uiCd.spriteName), cellRect);
     }
 }
 

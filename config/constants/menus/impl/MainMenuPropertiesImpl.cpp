@@ -23,9 +23,8 @@ void MainMenuPropertiesImpl::setUIMenuProperties()
     SDL_Color blue = { 0, 0, 255, 255 };
     SDL_Color green = { 0, 255, 0, 255 };
 
-    SpriteProperties spriteProperties = { 195, "castle_1", SDL_FLIP_NONE, 0 };
     // UIRenderCellDetails: backgroundColor, outlineColor, showBorderColor, showBackgroundColor, backgroundSpriteId, showbackgroundSprite
-    UIRenderCellDetails gridCD = { blue, green, true, true, spriteProperties, false };
+    UIRenderCellDetails gridCD = { blue, green, true, true, "brick_2", false };
 
     UIMenuProperties uiMenuProperties;
 
@@ -49,13 +48,10 @@ void MainMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties resumeGame = { 2, "resumeGame", 20, 20, "resumeGame",  "buttonAvailable", false };
     UIButtonProperties exitGame = { 3, "exitGame", 20, 20, "exitGame",  "buttonAvailable", false };
 
-    const int defaultSpriteId = 195;
-    const std::string defaultSpriteSheetId = "castle_1";
-
-    BaseMenuProperties::setUIButtonStateProperties("spacer", defaultSpriteId, defaultSpriteSheetId, false);
-    BaseMenuProperties::setUIButtonStateProperties("newGame", defaultSpriteId, defaultSpriteSheetId, false);
-    BaseMenuProperties::setUIButtonStateProperties("resumeGame", defaultSpriteId, defaultSpriteSheetId, false);
-    BaseMenuProperties::setUIButtonStateProperties("exitGame", defaultSpriteId, defaultSpriteSheetId, false);
+    BaseMenuProperties::setUIButtonStateProperties("spacer", "brick_2", false);
+    BaseMenuProperties::setUIButtonStateProperties("newGame", "brick_2", false);
+    BaseMenuProperties::setUIButtonStateProperties("resumeGame", "brick_2", false);
+    BaseMenuProperties::setUIButtonStateProperties("exitGame", "brick_2", false);
 
     mUIButtonProperties.push_back(spacer);
     mUIButtonProperties.push_back(newGame);
