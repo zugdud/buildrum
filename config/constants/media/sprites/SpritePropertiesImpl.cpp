@@ -67,5 +67,5 @@ SpriteProperties SpritePropertiesImpl::getSpriteProperties(
 
 const SpriteProperties & SpritePropertiesImpl::getSpriteProperties(const std::string & spriteName) const
 {
-    return mSpriteProperties.at(spriteName);
+    return mSpriteProperties.find(spriteName)->second;
 }

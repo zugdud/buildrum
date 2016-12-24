@@ -60,9 +60,11 @@ void WindowPropertiesImpl::setViewContexts()
     #endif
 
     #ifdef ANDROID_BUILD_TARGET
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.85, 0.09295, red };
-    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.09295, green };
-    ViewportProperties gameView = { "gameView", 0.0, 0.09295, 1.0, 0.90705, blue };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.45, 0.1, red };
+    ViewportProperties selectedAction = { "selectedAction", 0.45, 0.0, 0.20, 0.1, red };
+    ViewportProperties statusMenu = { "statusMenu", 0.65, 0.0, 0.20, 0.1, red };
+    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.1, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.1, 1.0, 0.90705, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
     #endif
 

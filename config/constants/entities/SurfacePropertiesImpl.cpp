@@ -93,7 +93,8 @@ SurfaceProperties SurfacePropertiesImpl::buildSurface(const EntityProperties & e
     return surfaceProperties;
 }
 
-const SurfaceProperties &  SurfacePropertiesImpl::getSurfaceProperties(const std::string & entityId) const
+const SurfaceProperties & SurfacePropertiesImpl::getSurfaceProperties(const std::string & entityId) const
 {
-    return mSurfaceProperties.at(entityId);
+    // return mSurfaceProperties.at(entityId);
+    return mSurfaceProperties.find(entityId)->second;
 }
