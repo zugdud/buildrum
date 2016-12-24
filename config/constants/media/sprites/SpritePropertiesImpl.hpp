@@ -6,7 +6,7 @@ SpritePropertiesImpl();
 ~SpritePropertiesImpl();
 
 void loadAll();
-const SpriteProperties & SpritePropertiesImpl::getSpriteProperties(const std::string & spriteName);
+const SpriteProperties & getSpriteProperties(const std::string & spriteName) const;
 
 private:
 
@@ -17,8 +17,7 @@ SpriteProperties getSpriteProperties(
     const int & spriteId,
     const std::string & spriteSheetId,
     const SDL_RendererFlip & sdlRendererFlip,
-    const double & angle,
-    );
+    const double & angle);
 
 std::map<std::string, SpriteProperties> mSpriteProperties;
 

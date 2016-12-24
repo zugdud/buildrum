@@ -23,25 +23,25 @@ void SurfacePropertiesImpl::loadSurfaces()
 
     addSurface("field_1", "field_1", 10);
     addSurface("field_2", "field_2", 10);
-    addSurface("field_3", "field_3" 10);
+    addSurface("field_3", "field_3", 10);
     addSurface("water_1", "water_1", 100);
 
     SDL_Log("SurfacePropertiesImpl::loadSurfaces -- loaded surface count: %zu \n", mSurfaceProperties.size());
 }
 
 void SurfacePropertiesImpl::addSurface(const std::string & entityId,
-                                       const std::string & spriteName
+                                       const std::string & spriteName,
                                        const int & weightValue)
 {
 
     std::vector<std::string> spriteNames;
-    spriteProperties.push_back(spriteName);
-    spriteProperties.push_back(spriteName);
-    spriteProperties.push_back(spriteName);
-    spriteProperties.push_back(spriteName);
+    spriteNames.push_back(spriteName);
+    spriteNames.push_back(spriteName);
+    spriteNames.push_back(spriteName);
+    spriteNames.push_back(spriteName);
 
     std::vector<SpriteLayer> spriteLayers;
-    spriteLayers.push_back(buildSpriteLayer(spriteProperties));
+    spriteLayers.push_back(buildSpriteLayer(spriteNames));
     EntityProperties entityProperties = buildEntity(entityId, spriteLayers);
     SurfaceProperties surfaceProperties = buildSurface(entityProperties, weightValue);
     mSurfaceProperties[entityId] = surfaceProperties;
@@ -53,16 +53,10 @@ SpriteLayer SurfacePropertiesImpl::buildSpriteLayer(const std::vector<std::strin
 
     if (spriteProperties.size() == 4)
     {
-        SpriteProperties up = spriteProperties[0];
-        SpriteProperties down = spriteProperties[1];
-        SpriteProperties left = spriteProperties[2];
-        SpriteProperties right = spriteProperties[3];
-
-        spriteLayer.spriteName_Up = up;
-        spriteLayer.spriteName_Down = down;
-        spriteLayer.spriteName_Left = left;
-        spriteLayer.spriteName_Right = right;
-
+        spriteLayer.spriteName_Up = spriteProperties[0];
+        spriteLayer.spriteName_Down = spriteProperties[1];
+        spriteLayer.spriteName_Left  = spriteProperties[2];
+        spriteLayer.spriteName_Right = spriteProperties[3];
     }
     else
     {
@@ -99,7 +93,7 @@ SurfaceProperties SurfacePropertiesImpl::buildSurface(const EntityProperties & e
     return surfaceProperties;
 }
 
-const SurfaceProperties &  SurfacePropertiesImpl::getSurfaceProperties(const std::string entityId)
+const SurfaceProperties &  SurfacePropertiesImpl::getSurfaceProperties(const std::string & entityId) const
 {
-    return mSurfaceProperties[entityId];
+    return mSurfaceProperties.at(entityId);
 }

@@ -21,6 +21,11 @@ ConfigManager * ConfigManager::getInstance()
     return mSingletonInstance;
 }
 
+const SpritePropertiesImpl & ConfigManager::getSpritePropertiesImpl() const
+{
+    return mSpritePropertiesImpl;
+}
+
 const CameraPropertiesImpl & ConfigManager::getCameraPropertiesImpl()
 {
     return mCameraPropertiesImpl;

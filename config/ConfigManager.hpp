@@ -19,6 +19,7 @@ const AudioContentImpl & getAudioContentImpl();
 const SpriteSheetPropertiesImpl & getSpriteSheetPropertiesImpl();
 const SurfacePropertiesImpl & getSurfacePropertiesImpl();
 const CameraPropertiesImpl & getCameraPropertiesImpl();
+const SpritePropertiesImpl & getSpritePropertiesImpl() const;
 
 void reloadDynamicData();
 void loadConstants();

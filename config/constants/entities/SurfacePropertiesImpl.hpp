@@ -7,14 +7,14 @@ SurfacePropertiesImpl();
 
 void loadAll();
 
-const SurfaceProperties & getSurfaceProperties(const std::string entityId);
+const SurfaceProperties & getSurfaceProperties(const std::string & entityId) const;
 
 private:
 
 void loadSurfaces();
 
 void addSurface(const std::string & entityId,
-                const std::string & spriteName
+                const std::string & spriteName,
                 const int & weightValue);
 
 SpriteLayer buildSpriteLayer(const std::vector<std::string> & spriteProperties);

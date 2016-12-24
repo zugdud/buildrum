@@ -25,14 +25,19 @@ const SurfaceProperties & Surface::getSurfaceProperties() const
 
 void Surface::setOrientation(const EntityOrientation & orientation)
 {
+    mSpriteProperties.clear();
+
     for (int i = 0; i < mSurfaceProperties.entityProperties.numLayers; i++)
     {
+        std::string spriteName;
         switch (orientation)
         {
-            case UP: mSpriteProperties.push_back(mSurfaceProperties.entityProperties.spriteLayers[i].spriteUp); break;
-            case DOWN: mSpriteProperties.push_back(mSurfaceProperties.entityProperties.spriteLayers[i].spriteDown); break;
-            case LEFT: mSpriteProperties.push_back(mSurfaceProperties.entityProperties.spriteLayers[i].spriteLeft); break;
-            case RIGHT: mSpriteProperties.push_back(mSurfaceProperties.entityProperties.spriteLayers[i].spriteRight); break;
+            case UP: spriteName = mSurfaceProperties.entityProperties.spriteLayers[i].spriteName_Up; break;
+            case DOWN: spriteName = mSurfaceProperties.entityProperties.spriteLayers[i].spriteName_Down; break;
+            case LEFT: spriteName = mSurfaceProperties.entityProperties.spriteLayers[i].spriteName_Left; break;
+            case RIGHT: spriteName = mSurfaceProperties.entityProperties.spriteLayers[i].spriteName_Right; break;
         }
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
+        mSpriteProperties.push_back(spriteProperties);
     }
 }
