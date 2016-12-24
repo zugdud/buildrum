@@ -4,7 +4,9 @@ EventManager *EventManager::mSingletonInstance = 0;
 
 EventManager::EventManager()
 {
-
+    mEventHandlers["newGame"] = new HandleNewGame("newGame");
+    mEventHandlers["mainMenu"] = new HandleMainMenu("mainMenu");
+    mEventHandlers["exitGame"] = new HandleExitGame("exitGame");
 }
 
 EventManager::~EventManager()
@@ -57,20 +59,15 @@ void EventManager::uiEventRaised(const std::string & eventId)
 {
     SDL_Log("EventManager::uiEventRaised -- eventId: %s \n", eventId.c_str());
     mAudioManager->playSound("pop_1");
-    if (eventId == "newGame")
+    if (mEventHandlers.count(eventId) == 1)
     {
-        AudioManager::Instance().stopMusic();
-        SceneManager::getInstance()->setActiveScene("GameScene");
+        mEventHandlers[eventId]->handleEvent();
     }
-    if (eventId == "quitGame")
+    else
     {
-        AudioManager::Instance().stopMusic();
-        SceneManager::getInstance()->setActiveScene("MainMenu");
+        SDL_Log("EventManager::uiEventRaised -- ERROR - no handler for eventId: %s \n", eventId.c_str());
     }
-    if (eventId == "exitGame")
-    {
-        AudioManager::Instance().stopMusic();
-    }
+
     dispatchEvent(eventId);
 }
 

@@ -21,6 +21,8 @@ EventManager& operator=(const EventManager *);
 
 private:
 
+std::map<std::string, IHandleEvent *> mEventHandlers;
+
 void dispatchEvent(const std::string & eventId);
 std::vector<IEventObserver *> mEventObservers;
 

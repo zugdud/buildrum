@@ -1,4 +1,4 @@
-#define ANDROID_BUILD_TARGET
+#define LINUX_BUILD_TARGET
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@
 #include "types/window_properties.hpp"
 #include "types/world_properties.hpp"
 
-#include "core/IEventManager.hpp"
+#include "events/IEventManager.hpp"
 
 #include "config/constants/menus/IMenuProperties.hpp"
 
@@ -99,6 +99,10 @@
 #include "core/scenes/StartSceneImpl.hpp"
 #include "core/scenes/GameSceneImpl.hpp"
 
+#include "events/handlers/HandleNewGame.hpp"
+#include "events/handlers/HandleMainMenu.hpp"
+#include "events/handlers/HandleExitGame.hpp"
+#include "events/EventManager.hpp"
+
 #include "core/SceneManager.hpp"
-#include "core/EventManager.hpp"
 #include "core/GameInstance.hpp"

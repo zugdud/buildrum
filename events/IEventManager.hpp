@@ -15,3 +15,11 @@ public:
 virtual void uiEventRaised(const std::string & eventId) = 0;
 
 };
+
+class IHandleEvent
+{
+public:
+
+virtual void handleEvent() = 0;
+
+};
