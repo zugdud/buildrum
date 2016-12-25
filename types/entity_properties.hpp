@@ -29,7 +29,7 @@ struct SurfaceProperties
     int weightValue;
 };
 
-struct InanimateObjectProperties
+struct BuildableObjectProperties
 {
     EntityProperties entityProperties;
     HealthProperties healthProperties;
