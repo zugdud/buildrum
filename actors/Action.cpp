@@ -1,11 +1,11 @@
 #include "include/global.hpp"
 
-Player::Player()
+Action::Action()
 {
 
 }
 
-Player::~Player()
+Action::~Action()
 {
 
 }

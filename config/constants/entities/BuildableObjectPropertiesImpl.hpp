@@ -7,7 +7,7 @@ BuildableObjectPropertiesImpl();
 
 void loadAll();
 
-const BuildableObjectProperties & getBuildableObjectProperties(const std::string entityId);
+const BuildableObjectProperties & getBuildableObjectProperties(const std::string & entityId);
 
 private:
 

@@ -124,7 +124,7 @@ BuildableObjectProperties BuildableObjectPropertiesImpl::buildInanimateObject(co
     return inanimateObjectProperties;
 }
 
-const BuildableObjectProperties & BuildableObjectPropertiesImpl::getBuildableObjectProperties(const std::string entityId)
+const BuildableObjectProperties & BuildableObjectPropertiesImpl::getBuildableObjectProperties(const std::string & entityId)
 {
     return mBuildableObjectProperties[entityId];
 }
