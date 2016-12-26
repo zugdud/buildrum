@@ -19,6 +19,7 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
 
 void UIMenu::eventRaised(const std::string & eventId)
 {
+    SDL_Log("UIMenu::eventRaised -- eventId: %s \n", eventId.c_str());
     const std::string concatKey = "toggleHidden_" + mIMenuProperties->getUIMenuProperties().uiMenuId;
 
     if (eventId == concatKey)
@@ -29,10 +30,17 @@ void UIMenu::eventRaised(const std::string & eventId)
     std::size_t found = eventId.find("build");
     if (found != std::string::npos)
     {
-        SDL_Log("UIMenu got build event \n");
+        SDL_Log("UIMenu::eventRaised -- has build %s \n", eventId.c_str());
+        std::string subStr = eventId.substr(6, eventId.length());
+        SDL_Log("UIMenu substr %s \n", subStr.c_str());
     }
 
 }
+
+// void UIMenu::updateSpacerBgSprite()
+// {
+//
+// }
 
 void UIMenu::toggleHidden()
 {

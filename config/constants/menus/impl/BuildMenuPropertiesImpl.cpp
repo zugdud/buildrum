@@ -14,8 +14,31 @@ void BuildMenuPropertiesImpl::setProperties()
 {
     SDL_Log("BuildMenuPropertiesImpl::loadAll -- loading configuration ...\n");
     setUIMenuProperties();
-    setButtonProperties();
-    setUILabelProperties();
+
+    std::vector<std::string> spriteNames;
+    setSpriteNames(spriteNames);
+    setButtonProperties(spriteNames);
+    setUILabelProperties(spriteNames);
+}
+
+void BuildMenuPropertiesImpl::setSpriteNames(std::vector<std::string> & spriteNames)
+{
+    spriteNames.push_back("banner_1");
+    spriteNames.push_back("banner_2");
+    spriteNames.push_back("emblem_2");
+    spriteNames.push_back("spire_1");
+    spriteNames.push_back("ladder_1");
+    spriteNames.push_back("anvil_1");
+    spriteNames.push_back("anvil_2");
+    spriteNames.push_back("latern_1");
+    spriteNames.push_back("latern_1");
+    spriteNames.push_back("crate_1");
+    spriteNames.push_back("crate_2");
+    spriteNames.push_back("crate_3");
+    spriteNames.push_back("crate_4");
+    spriteNames.push_back("crate_5");
+    spriteNames.push_back("barrel_1");
+    spriteNames.push_back("barrel_1");
 }
 
 void BuildMenuPropertiesImpl::setUIMenuProperties()
@@ -40,96 +63,22 @@ void BuildMenuPropertiesImpl::setUIMenuProperties()
     mUIMenuProperties = uiMenuProperties;
 }
 
-void BuildMenuPropertiesImpl::setButtonProperties()
+void BuildMenuPropertiesImpl::setButtonProperties(std::vector<std::string> & spriteNames)
 {
-    // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
-
-    UIButtonProperties build1 = { 1, "build1", 20, 20, "build1", "buttonAvailable", false };
-    UIButtonProperties build2 = { 2, "build2", 20, 20, "build2", "buttonAvailable", false };
-    UIButtonProperties build3 = { 3, "build3", 20, 20, "build3", "buttonAvailable", false };
-    UIButtonProperties build4 = { 4, "build4", 20, 20, "build4", "buttonAvailable", false };
-    UIButtonProperties build5 = { 5, "build5", 20, 20, "build5", "buttonAvailable", false };
-    UIButtonProperties build6 = { 6, "build6", 20, 20, "build6", "buttonAvailable", false };
-    UIButtonProperties build7 = { 7, "build7", 20, 20, "build7", "buttonAvailable", false };
-    UIButtonProperties build8 = { 8, "build8", 20, 20, "build8", "buttonAvailable", false };
-    UIButtonProperties build9 = { 9, "build9", 20, 20, "build9", "buttonAvailable", false };
-    UIButtonProperties build10 = { 10, "build10", 20, 20, "build10", "buttonAvailable", false };
-    UIButtonProperties build11 = { 11, "build11", 20, 20, "build11", "buttonAvailable", false };
-    UIButtonProperties build12 = { 12, "build12", 20, 20, "build12", "buttonAvailable", false };
-    UIButtonProperties build13 = { 13, "build13", 20, 20, "build13", "buttonAvailable", false };
-    UIButtonProperties build14 = { 14, "build14", 20, 20, "build14", "buttonAvailable", false };
-    UIButtonProperties build15 = { 15, "build15", 20, 20, "build15", "buttonAvailable", false };
-    UIButtonProperties build16 = { 16, "build16", 20, 20, "build16", "buttonAvailable", false };
-
-    BaseMenuProperties::setUIButtonStateProperties("build1", "banner_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build2", "banner_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build3", "emblem_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build4", "emblem_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build5", "spire_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build6",  "ladder_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build7", "anvil_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build8",  "anvil_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build9",  "latern_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build10",  "latern_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build11",  "crate_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("build12",  "crate_2", true);
-    BaseMenuProperties::setUIButtonStateProperties("build13",  "crate_3", true);
-    BaseMenuProperties::setUIButtonStateProperties("build14",  "crate_4", true);
-    BaseMenuProperties::setUIButtonStateProperties("build15",  "crate_5", true);
-    BaseMenuProperties::setUIButtonStateProperties("build16",  "barrel_1", true);
-
-    mUIButtonProperties.push_back(build1);
-    mUIButtonProperties.push_back(build2);
-    mUIButtonProperties.push_back(build3);
-    mUIButtonProperties.push_back(build4);
-    mUIButtonProperties.push_back(build5);
-    mUIButtonProperties.push_back(build6);
-    mUIButtonProperties.push_back(build7);
-    mUIButtonProperties.push_back(build8);
-    mUIButtonProperties.push_back(build9);
-    mUIButtonProperties.push_back(build10);
-    mUIButtonProperties.push_back(build11);
-    mUIButtonProperties.push_back(build12);
-    mUIButtonProperties.push_back(build13);
-    mUIButtonProperties.push_back(build14);
-    mUIButtonProperties.push_back(build15);
-    mUIButtonProperties.push_back(build16);
+    for (size_t i = 0; i < spriteNames.size(); i++)
+    {
+        const std::string eventId = "build_" + spriteNames[i];
+        UIButtonProperties uiButtonProperties = { i, eventId, 20, 20, eventId, "buttonAvailable", false };
+        mUIButtonProperties.push_back(uiButtonProperties);
+        BaseMenuProperties::setUIButtonStateProperties(eventId, spriteNames[i], true);
+    }
 }
 
-void BuildMenuPropertiesImpl::setUILabelProperties()
+void BuildMenuPropertiesImpl::setUILabelProperties(std::vector<std::string> & spriteNames)
 {
-    // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
-    UILabelProperties build1 = { 1, "Build 1", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build2 = { 2, "Build 2", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build3 = { 3, "Build 3", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build4 = { 4, "Build 4", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build5 = { 5, "Build 5", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build6 = { 6, "Build 6", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build7 = { 7, "Build 7", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build8 = { 8, "Build 8", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build9 = { 9, "Build 9", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build10 = { 10, "Build 10", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build11 = { 11, "Build 11", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build12 = { 12, "Build 12", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build13 = { 13, "Build 13", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build14 = { 14, "Build 14", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build15 = { 15, "Build 15", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties build16 = { 16, "Build 16", "Heading_3_OpenSansLight", 10, 10, false, "center" };
-
-    mUILabelProperties.push_back(build1);
-    mUILabelProperties.push_back(build2);
-    mUILabelProperties.push_back(build3);
-    mUILabelProperties.push_back(build4);
-    mUILabelProperties.push_back(build5);
-    mUILabelProperties.push_back(build6);
-    mUILabelProperties.push_back(build7);
-    mUILabelProperties.push_back(build8);
-    mUILabelProperties.push_back(build9);
-    mUILabelProperties.push_back(build10);
-    mUILabelProperties.push_back(build11);
-    mUILabelProperties.push_back(build12);
-    mUILabelProperties.push_back(build13);
-    mUILabelProperties.push_back(build14);
-    mUILabelProperties.push_back(build15);
-    mUILabelProperties.push_back(build16);
+    for (size_t i = 0; i < spriteNames.size(); i++)
+    {
+        UILabelProperties uiLabelProperties = { i, spriteNames[i], "Heading_3_OpenSansLight", 10, 10, false, "center" };
+        mUILabelProperties.push_back(uiLabelProperties);
+    }
 }
