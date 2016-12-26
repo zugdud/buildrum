@@ -9,13 +9,13 @@ GameSceneImpl::GameSceneImpl(const std::string & sceneId) : BaseScene(sceneId)
 
     // add  menus
     mMenuIds.push_back("ActionMenu");
-    mMenuIds.push_back("SelectedActionMenu");
     mMenuIds.push_back("StatusMenu");
     mMenuIds.push_back("BuildMenu");
 
     // add world view
     mWorldRendererViewportId = "gameView";
     mMinimapViewportId = "minimap";
+    mSelectedActionViewportId = "selectedAction";
 }
 
 GameSceneImpl::~GameSceneImpl()

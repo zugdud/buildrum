@@ -22,3 +22,11 @@ public:
 virtual void render() = 0;
 
 };
+
+class IRendererSelectedAction
+{
+public:
+
+virtual void render() = 0;
+
+};

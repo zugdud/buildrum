@@ -17,9 +17,11 @@ void renderUpdate() const;
 
 void detatchWorldRenderer();
 void detatchMinimapRenderer();
+void detatchSelectedActionRenderer();
 
 void attachWorldRenderer(IWorldRenderer *worldRenderer);
 void attachMinimapRenderer(IMinimapRenderer *minimapRenderer);
+void attachSelectedActionMenuRenderer(IRendererSelectedAction *selectedActionRenderer);
 
 const SDL_Rect & getRect() const;
 
@@ -35,5 +37,6 @@ SDL_Renderer *mSDLRenderer;
 std::vector<IRenderer *> mRenderers;
 IWorldRenderer *mWorldRenderer;
 IMinimapRenderer *mMinimapRenderer;
+IRendererSelectedAction *mSelectedActionMenuRenderer;
 
 };

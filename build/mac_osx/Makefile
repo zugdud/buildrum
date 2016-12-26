@@ -76,6 +76,7 @@ UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 renderers/WorldRenderer.cpp \
 renderers/MinimapRenderer.cpp \
+renderers/SelectedActionMenuRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \

@@ -5,6 +5,7 @@ Viewport::Viewport()
     SDL_Log("Viewport::Viewport -- New Viewport \n");
     mWorldRenderer = NULL;
     mMinimapRenderer = NULL;
+    mSelectedActionMenuRenderer = NULL;
 }
 
 Viewport::~Viewport()
@@ -86,6 +87,10 @@ void Viewport::renderUpdate() const
     {
         mMinimapRenderer->render();
     }
+    else if (mSelectedActionMenuRenderer != NULL)
+    {
+        mSelectedActionMenuRenderer->render();
+    }
 
     // draw menus
     for (size_t i = 0; i < mRenderers.size(); i++)
@@ -130,6 +135,12 @@ void Viewport::detatchMinimapRenderer()
     SDL_Log("Viewport::detatchMinimapRenderer -- detatched from minimap renderer (no longer invoking render) \n");
 }
 
+void Viewport::detatchSelectedActionRenderer()
+{
+    mSelectedActionMenuRenderer = NULL;
+    SDL_Log("Viewport::detatchSelectedActionRenderer -- detatched from minimap renderer (no longer invoking render) \n");
+}
+
 void Viewport::attachWorldRenderer(IWorldRenderer *worldRenderer)
 {
     mWorldRenderer = worldRenderer;
@@ -140,4 +151,10 @@ void Viewport::attachMinimapRenderer(IMinimapRenderer *minimapRenderer)
 {
     mMinimapRenderer = minimapRenderer;
     SDL_Log("Viewport::attachMinimapRenderer -- attached to minimapRenderer. \n");
+}
+
+void Viewport::attachSelectedActionMenuRenderer(IRendererSelectedAction *selectedActionRenderer)
+{
+    mSelectedActionMenuRenderer = selectedActionRenderer;
+    SDL_Log("Viewport::attachSelectedActionMenuRenderer -- attached to selectedActionRenderer. \n");
 }

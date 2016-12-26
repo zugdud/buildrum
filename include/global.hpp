@@ -93,6 +93,7 @@
 #include "renderers/MenuRenderer.hpp"
 #include "renderers/WorldRenderer.hpp"
 #include "renderers/MinimapRenderer.hpp"
+#include "renderers/SelectedActionMenuRenderer.hpp"
 
 #include "core/scenes/IScene.hpp"
 #include "core/scenes/BaseScene.hpp"
