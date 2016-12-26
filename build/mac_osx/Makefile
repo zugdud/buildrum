@@ -55,7 +55,10 @@ window/Camera.cpp \
 window/Window.cpp \
 window/WindowManager.cpp \
 window/ViewContext.cpp \
-core/EventManager.cpp \
+events/EventManager.cpp \
+events/handlers/HandleNewGame.cpp \
+events/handlers/HandleMainMenu.cpp \
+events/handlers/HandleExitGame.cpp \
 core/GameInstance.cpp \
 core/SceneManager.cpp \
 core/scenes/BaseScene.cpp \

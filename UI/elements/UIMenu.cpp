@@ -25,6 +25,13 @@ void UIMenu::eventRaised(const std::string & eventId)
     {
         toggleHidden();
     }
+
+    std::size_t found = eventId.find("build");
+    if (found != std::string::npos)
+    {
+        SDL_Log("UIMenu got build event \n");
+    }
+
 }
 
 void UIMenu::toggleHidden()

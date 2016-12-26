@@ -23,6 +23,14 @@ struct HealthProperties
     double healthRegenerationRate;
 };
 
+struct CombatProperties
+{
+    bool isAttacker;
+    int range;
+    int damage;
+    int apCost;
+};
+
 struct SurfaceProperties
 {
     EntityProperties entityProperties;
@@ -33,4 +41,6 @@ struct BuildableObjectProperties
 {
     EntityProperties entityProperties;
     HealthProperties healthProperties;
+    CombatProperties combatProperties;
+    int creditCost;
 };

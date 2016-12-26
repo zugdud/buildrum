@@ -57,10 +57,13 @@ void BuildableObjectPropertiesImpl::addBuildableObjectProperties(const std::stri
 
     bool isDestructable = true;
     double healthRegenerationRate = 0.0;
+    CombatProperties combatProperties = buildCombatProperties(false, 2, 10, 10);
     HealthProperties healthProperties = buildHealthProperties(isDestructable, maxHealth, healthRegenerationRate);
-    BuildableObjectProperties inanimateObjectProperties = buildInanimateObject(entityProperties, healthProperties);
+    BuildableObjectProperties buildableObjectProperties = buildBuildableObject(entityProperties,
+                                                                               healthProperties,
+                                                                               combatProperties);
 
-    mBuildableObjectProperties[entityId] = inanimateObjectProperties;
+    mBuildableObjectProperties[entityId] = buildableObjectProperties;
 }
 
 SpriteLayer BuildableObjectPropertiesImpl::buildSpriteLayer(const std::vector<std::string> & spriteProperties)
@@ -99,6 +102,21 @@ EntityProperties BuildableObjectPropertiesImpl::buildEntity(const std::string & 
     return entityProperties;
 }
 
+CombatProperties BuildableObjectPropertiesImpl::buildCombatProperties(const bool & isAttacker,
+                                                                      const int & range,
+                                                                      const int & damage,
+                                                                      const int & apCost)
+{
+    CombatProperties combatProperties;
+
+    combatProperties.isAttacker = isAttacker;
+    combatProperties.range = range;
+    combatProperties.damage = damage;
+    combatProperties.apCost = apCost;
+
+    return combatProperties;
+}
+
 HealthProperties BuildableObjectPropertiesImpl::buildHealthProperties(const bool & isDestructable,
                                                                       const int & maxHealth,
                                                                       double & healthRegenerationRate)
@@ -113,15 +131,17 @@ HealthProperties BuildableObjectPropertiesImpl::buildHealthProperties(const bool
     return healthProperties;
 }
 
-BuildableObjectProperties BuildableObjectPropertiesImpl::buildInanimateObject(const EntityProperties & entityProperties,
-                                                                              const HealthProperties & healthProperties)
+BuildableObjectProperties BuildableObjectPropertiesImpl::buildBuildableObject(const EntityProperties & entityProperties,
+                                                                              const HealthProperties & healthProperties,
+                                                                              const CombatProperties & combatProperties)
 {
-    BuildableObjectProperties inanimateObjectProperties;
+    BuildableObjectProperties buildableObjectProperties;
 
-    inanimateObjectProperties.entityProperties = entityProperties;
-    inanimateObjectProperties.healthProperties = healthProperties;
+    buildableObjectProperties.entityProperties = entityProperties;
+    buildableObjectProperties.healthProperties = healthProperties;
+    buildableObjectProperties.combatProperties = combatProperties;
 
-    return inanimateObjectProperties;
+    return buildableObjectProperties;
 }
 
 const BuildableObjectProperties & BuildableObjectPropertiesImpl::getBuildableObjectProperties(const std::string & entityId)
