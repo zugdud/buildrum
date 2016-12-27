@@ -1,21 +1,21 @@
 #include "include/global.hpp"
 
-SelectedActionMenuRenderer::SelectedActionMenuRenderer()
+StatusMenuRenderer::StatusMenuRenderer()
 {
     mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
 }
 
-SelectedActionMenuRenderer::~SelectedActionMenuRenderer()
+StatusMenuRenderer::~StatusMenuRenderer()
 {
 
 }
 
-const bool & SelectedActionMenuRenderer::isAttached()
+const bool & StatusMenuRenderer::isAttached()
 {
     return mAttached;
 }
 
-void SelectedActionMenuRenderer::attach(const Viewport &viewport)
+void StatusMenuRenderer::attach(const Viewport &viewport)
 {
     mAttached = true;
 
@@ -23,17 +23,17 @@ void SelectedActionMenuRenderer::attach(const Viewport &viewport)
     mBorder = borderRect;
 
     SDL_Log("----------------------------------------------------\n");
-    SDL_Log("SelectedActionMenuRenderer::attached -- setting up ... \n");
+    SDL_Log("StatusMenuRenderer::attached -- setting up ... \n");
     SDL_Log("----------------------------------------------------\n");
 }
 
-void SelectedActionMenuRenderer::detatch()
+void StatusMenuRenderer::detatch()
 {
     mAttached = false;
-    SDL_Log("SelectedActionMenuRenderer::detatch -- detatched, rendering stopped. \n");
+    SDL_Log("StatusMenuRenderer::detatch -- detatched, rendering stopped. \n");
 }
 
-void SelectedActionMenuRenderer::render()
+void StatusMenuRenderer::render()
 {
     if (mAttached)
     {
@@ -43,19 +43,19 @@ void SelectedActionMenuRenderer::render()
 }
 
 // TODO configs
-void SelectedActionMenuRenderer::renderBorder()
+void StatusMenuRenderer::renderBorder()
 {
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
     SDL_RenderDrawRect(mSDLRenderer, &mBorder);
 }
 
-void SelectedActionMenuRenderer::renderBackground()
+void StatusMenuRenderer::renderBackground()
 {
-    SDL_SetRenderDrawColor(mSDLRenderer, 100, 0, 150, 255);
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
     SDL_RenderFillRect(mSDLRenderer, &mBorder);
 }
 
-void SelectedActionMenuRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
+void StatusMenuRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
     SDL_Point *center = NULL;
     SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();

@@ -106,8 +106,16 @@ void BaseScene::detatchWorld()
             // attach the renderer to viewport
             mViewports[i].detatchSelectedActionRenderer();
 
-            // configure minimap for the viewport
+            // configure detatchSelectedActionRenderer for the viewport
             mSelectedActionMenuRenderer.detatch();
+        }
+        else if (viewportProperties.viewportId == mStatusMenuViewportId)
+        {
+            // attach the renderer to viewport
+            mViewports[i].detatchStatusMenuRenderer();
+
+            // configure detatchStatusMenuRenderer for the viewport
+            mStatusMenuRenderer.detatch();
         }
     }
 }
@@ -145,8 +153,16 @@ void BaseScene::attachWorld()
             // attach the renderer to viewport
             mViewports[i].attachSelectedActionMenuRenderer(&mSelectedActionMenuRenderer);
 
-            // configure minimap for the viewport
+            // configure attachSelectedActionMenuRenderer for the viewport
             mSelectedActionMenuRenderer.attach(mViewports[i]);
+        }
+        else if (viewportProperties.viewportId == mStatusMenuViewportId)
+        {
+            // attach the renderer to viewport
+            mViewports[i].attachStatusMenuRenderer(&mStatusMenuRenderer);
+
+            // configure attachStatusMenuRenderer for the viewport
+            mStatusMenuRenderer.attach(mViewports[i]);
         }
     }
 }

@@ -30,3 +30,11 @@ public:
 virtual void render() = 0;
 
 };
+
+class IStatusMenuRenderer
+{
+public:
+
+virtual void render() = 0;
+
+};
