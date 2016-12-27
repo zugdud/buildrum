@@ -27,14 +27,6 @@ void UIMenu::eventRaised(const std::string & eventId)
         toggleHidden();
     }
 
-    std::size_t found = eventId.find("build");
-    if (found != std::string::npos)
-    {
-        SDL_Log("UIMenu::eventRaised -- has build %s \n", eventId.c_str());
-        std::string subStr = eventId.substr(6, eventId.length());
-        SDL_Log("UIMenu substr %s \n", subStr.c_str());
-    }
-
 }
 
 // void UIMenu::updateSpacerBgSprite()

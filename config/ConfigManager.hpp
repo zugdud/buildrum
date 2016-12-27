@@ -20,6 +20,7 @@ const SpriteSheetPropertiesImpl & getSpriteSheetPropertiesImpl();
 const SurfacePropertiesImpl & getSurfacePropertiesImpl();
 const CameraPropertiesImpl & getCameraPropertiesImpl();
 const SpritePropertiesImpl & getSpritePropertiesImpl() const;
+const BuildableObjectPropertiesImpl & getBuildableObjectPropertiesImpl() const;
 
 void reloadDynamicData();
 void loadConstants();

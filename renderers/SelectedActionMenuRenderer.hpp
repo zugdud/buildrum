@@ -16,6 +16,7 @@ private:
 
 void renderBackground();
 void renderBorder();
+void renderSelectedAction();
 
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 

@@ -39,8 +39,20 @@ void SelectedActionMenuRenderer::render()
     {
         renderBackground();
         renderBorder();
+        renderSelectedAction();
     }
 }
+
+void SelectedActionMenuRenderer::renderSelectedAction()
+{
+    if (Player::Instance().isSelected())
+    {
+        const std::string & spriteName =  Player::Instance().getSelectedBuildableObjectProperties().entityProperties.spriteLayers[0].spriteName_Up;
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
+        renderSprite(spriteProperties, mBorder);
+    }
+}
+
 
 // TODO configs
 void SelectedActionMenuRenderer::renderBorder()

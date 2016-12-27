@@ -57,6 +57,7 @@ events/EventManager.cpp \
 events/handlers/HandleNewGame.cpp \
 events/handlers/HandleMainMenu.cpp \
 events/handlers/HandleExitGame.cpp \
+events/handlers/HandleBuildEvent.cpp \
 core/GameInstance.cpp \
 core/SceneManager.cpp \
 core/scenes/BaseScene.cpp \
@@ -89,6 +90,7 @@ world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
 world/WorldManager.cpp \
+actors/player.cpp
 
 
 # define the C object files

@@ -144,7 +144,7 @@ BuildableObjectProperties BuildableObjectPropertiesImpl::buildBuildableObject(co
     return buildableObjectProperties;
 }
 
-const BuildableObjectProperties & BuildableObjectPropertiesImpl::getBuildableObjectProperties(const std::string & entityId)
+const BuildableObjectProperties & BuildableObjectPropertiesImpl::getBuildableObjectProperties(const std::string & entityId) const
 {
-    return mBuildableObjectProperties[entityId];
+    return mBuildableObjectProperties.find(entityId)->second;
 }

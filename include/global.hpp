@@ -50,6 +50,8 @@
 #include "config/constants/menus/impl/BuildMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
+#include "actors/player.hpp"
+
 #include "input/InputEventObservers.hpp"
 #include "input/InputMomentum.hpp"
 #include "input/InputEventManager.hpp"
@@ -102,6 +104,7 @@
 #include "events/handlers/HandleNewGame.hpp"
 #include "events/handlers/HandleMainMenu.hpp"
 #include "events/handlers/HandleExitGame.hpp"
+#include "events/handlers/HandleBuildEvent.hpp"
 #include "events/EventManager.hpp"
 
 #include "core/SceneManager.hpp"

@@ -20,6 +20,10 @@ ConfigManager * ConfigManager::getInstance()
     }
     return mSingletonInstance;
 }
+const BuildableObjectPropertiesImpl & ConfigManager::getBuildableObjectPropertiesImpl() const
+{
+    return mBuildableObjectPropertiesImpl;
+}
 
 const SpritePropertiesImpl & ConfigManager::getSpritePropertiesImpl() const
 {
