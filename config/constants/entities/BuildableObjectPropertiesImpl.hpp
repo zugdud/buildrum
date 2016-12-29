@@ -14,7 +14,8 @@ private:
 void loadSurfaces();
 void addBuildableObjectProperties(const std::string & entityId,
                                   const std::string & spriteName,
-                                  const int & maxHealth);
+                                  const int & maxHealth,
+                                  const int & creditCost);
 
 CombatProperties buildCombatProperties(const bool & isAttacker,
                                        const int & range,
@@ -32,7 +33,8 @@ EntityProperties buildEntity(const std::string & entityId,
 
 BuildableObjectProperties buildBuildableObject(const EntityProperties & entityProperties,
                                                const HealthProperties & healthProperties,
-                                               const CombatProperties & combatProperties);
+                                               const CombatProperties & combatProperties,
+                                               const int & creditCost);
 
 std::map<std::string, BuildableObjectProperties> mBuildableObjectProperties;
 

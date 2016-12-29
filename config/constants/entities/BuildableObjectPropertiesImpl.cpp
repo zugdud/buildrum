@@ -18,29 +18,30 @@ void BuildableObjectPropertiesImpl::loadAll()
 
 void BuildableObjectPropertiesImpl::loadSurfaces()
 {
-    addBuildableObjectProperties("banner_1", "banner_1", 100);
-    addBuildableObjectProperties("banner_2", "banner_2", 100);
-    addBuildableObjectProperties("emblem_1", "emblem_1", 100);
-    addBuildableObjectProperties("emblem_2", "emblem_2", 100);
-    addBuildableObjectProperties("spire_1", "spire_1", 100);
-    addBuildableObjectProperties("ladder_1", "ladder_1", 100);
-    addBuildableObjectProperties("anvil_1", "anvil_1", 100);
-    addBuildableObjectProperties("anvil_2", "anvil_2", 100);
-    addBuildableObjectProperties("latern_1", "latern_1", 100);
-    addBuildableObjectProperties("latern_1", "latern_1", 100);
-    addBuildableObjectProperties("crate_1", "crate_1", 100);
-    addBuildableObjectProperties("crate_2", "crate_2", 100);
-    addBuildableObjectProperties("crate_3", "crate_3", 100);
-    addBuildableObjectProperties("crate_4", "crate_4", 100);
-    addBuildableObjectProperties("crate_5", "crate_5", 100);
-    addBuildableObjectProperties("barrel_1", "barrel_1", 100);
+    addBuildableObjectProperties("banner_1", "banner_1", 100, 10);
+    addBuildableObjectProperties("banner_2", "banner_2", 100, 20);
+    addBuildableObjectProperties("emblem_1", "emblem_1", 100, 30);
+    addBuildableObjectProperties("emblem_2", "emblem_2", 100, 40);
+    addBuildableObjectProperties("spire_1", "spire_1", 100, 50);
+    addBuildableObjectProperties("ladder_1", "ladder_1", 100, 60);
+    addBuildableObjectProperties("anvil_1", "anvil_1", 100, 70);
+    addBuildableObjectProperties("anvil_2", "anvil_2", 100, 80);
+    addBuildableObjectProperties("latern_1", "latern_1", 100, 90);
+    addBuildableObjectProperties("latern_1", "latern_1", 100, 100);
+    addBuildableObjectProperties("crate_1", "crate_1", 100, 110);
+    addBuildableObjectProperties("crate_2", "crate_2", 100, 120);
+    addBuildableObjectProperties("crate_3", "crate_3", 100, 130);
+    addBuildableObjectProperties("crate_4", "crate_4", 100, 140);
+    addBuildableObjectProperties("crate_5", "crate_5", 100, 150);
+    addBuildableObjectProperties("barrel_1", "barrel_1", 100, 160);
 
     SDL_Log("BuildableObjectPropertiesImpl::loadInanmiateObjects -- loaded surface count: %zu \n", mBuildableObjectProperties.size());
 }
 
 void BuildableObjectPropertiesImpl::addBuildableObjectProperties(const std::string & entityId,
                                                                  const std::string & spriteName,
-                                                                 const int & maxHealth)
+                                                                 const int & maxHealth,
+                                                                 const int & creditCost)
 {
 
     std::vector<SpriteProperties> spriteProperties;
@@ -61,7 +62,8 @@ void BuildableObjectPropertiesImpl::addBuildableObjectProperties(const std::stri
     HealthProperties healthProperties = buildHealthProperties(isDestructable, maxHealth, healthRegenerationRate);
     BuildableObjectProperties buildableObjectProperties = buildBuildableObject(entityProperties,
                                                                                healthProperties,
-                                                                               combatProperties);
+                                                                               combatProperties,
+                                                                               creditCost);
 
     mBuildableObjectProperties[entityId] = buildableObjectProperties;
 }
@@ -133,14 +135,15 @@ HealthProperties BuildableObjectPropertiesImpl::buildHealthProperties(const bool
 
 BuildableObjectProperties BuildableObjectPropertiesImpl::buildBuildableObject(const EntityProperties & entityProperties,
                                                                               const HealthProperties & healthProperties,
-                                                                              const CombatProperties & combatProperties)
+                                                                              const CombatProperties & combatProperties,
+                                                                              const int & creditCost)
 {
     BuildableObjectProperties buildableObjectProperties;
 
     buildableObjectProperties.entityProperties = entityProperties;
     buildableObjectProperties.healthProperties = healthProperties;
     buildableObjectProperties.combatProperties = combatProperties;
-
+    buildableObjectProperties.creditCost = creditCost;
     return buildableObjectProperties;
 }
 

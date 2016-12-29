@@ -39,23 +39,45 @@ void SelectedActionMenuRenderer::render()
 {
     if (mAttached)
     {
-        for (size_t i = 0; i < mLayout.size(); i++)
-        {
-
-            renderBackground(mLayout[i]);
-            renderBorder(mLayout[i]);
-            if (i == 0)
-            {
-                renderSelectedAction(mLayout[i]);
-            }
-            renderText("test: " + intToStr(i), mLayout[i]);
-        }
+        drawBorders();
+        renderText("Build Object", mHeading);
+        renderSelectedAction(mIcon);
+        renderObjectName(mName);
+        renderResourceCost(mCost);
     }
 }
 
+void SelectedActionMenuRenderer::drawBorders()
+{
+    renderBackground(mHeading);
+    renderBorder(mHeading);
+    renderBackground(mIcon);
+    renderBorder(mIcon);
+    renderBackground(mName);
+    renderBorder(mName);
+    renderBackground(mCost);
+    renderBorder(mCost);
+}
+
+void SelectedActionMenuRenderer::renderObjectName(const SDL_Rect & cellRect)
+{
+    const std::string name = "Name: " + Player::Instance().getSelectedBuildableObjectProperties().entityProperties.entityId;
+
+    renderText(name, cellRect);
+}
+
+
+void SelectedActionMenuRenderer::renderResourceCost(const SDL_Rect & cellRect)
+{
+    const std::string cost = "Cost: " + intToStr(Player::Instance().getSelectedBuildableObjectProperties().creditCost);
+
+    renderText(cost, cellRect);
+}
+
+
 void SelectedActionMenuRenderer::renderSelectedAction(const SDL_Rect & cellRect)
 {
-    const std::string & spriteName =  Player::Instance().getSelectedBuildableObjectProperties().entityProperties.spriteLayers[0].spriteName_Up;
+    const std::string & spriteName = Player::Instance().getSelectedBuildableObjectProperties().entityProperties.spriteLayers[0].spriteName_Up;
     const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
 
     renderSprite(spriteProperties, cellRect);
@@ -63,15 +85,10 @@ void SelectedActionMenuRenderer::renderSelectedAction(const SDL_Rect & cellRect)
 
 void SelectedActionMenuRenderer::setLayout()
 {
-    mLayout.clear();
-
-    SDL_Rect icon = getCellRect(0, 0, 0.60);
-    SDL_Rect name = getCellRect(0, icon.y + icon.h, 0.20);
-    SDL_Rect cost = getCellRect(0, name.y + name.h, 0.20);
-
-    mLayout.push_back(icon);
-    mLayout.push_back(name);
-    mLayout.push_back(cost);
+    mHeading = getCellRect(0, 0, 0.20);
+    mIcon = getCellRect(0, mHeading.y + mHeading.h, 0.40);
+    mName = getCellRect(0, mIcon.y + mIcon.h, 0.20);
+    mCost = getCellRect(0, mName.y + mName.h, 0.20);
 }
 
 SDL_Rect SelectedActionMenuRenderer::getCellRect(const int & offsetX, const int & offsetY, const double & scale)

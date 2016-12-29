@@ -24,12 +24,20 @@ void renderBackground(const SDL_Rect & cellRect);
 void renderBorder(const SDL_Rect & cellRect);
 void renderSelectedAction(const SDL_Rect & cellRect);
 
+void drawBorders();
+void renderResourceCost(const SDL_Rect & cellRect);
+void renderObjectName(const SDL_Rect & cellRect);
+
+
 void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
 SDL_Renderer *mSDLRenderer;
 SDL_Rect mBorder;
 
-std::vector<SDL_Rect> mLayout;
+SDL_Rect mHeading;
+SDL_Rect mIcon;
+SDL_Rect mName;
+SDL_Rect mCost;
 
 bool mAttached;
 std::string mLabelTextProfile;
