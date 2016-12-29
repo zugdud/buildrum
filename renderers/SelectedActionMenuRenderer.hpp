@@ -18,6 +18,7 @@ private:
 void setLayout();
 SDL_Rect getCellRect(const int & offsetX, const int & offsetY, const double & scale);
 
+std::string intToStr(const int & value);
 void renderText(const std::string & text, const SDL_Rect & cellRect);
 void renderBackground(const SDL_Rect & cellRect);
 void renderBorder(const SDL_Rect & cellRect);

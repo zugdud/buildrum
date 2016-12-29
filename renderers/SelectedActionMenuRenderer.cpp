@@ -48,7 +48,7 @@ void SelectedActionMenuRenderer::render()
             {
                 renderSelectedAction(mLayout[i]);
             }
-            renderText("test", mLayout[i]);
+            renderText("test: " + intToStr(i), mLayout[i]);
         }
     }
 }
@@ -76,8 +76,8 @@ void SelectedActionMenuRenderer::setLayout()
 
 SDL_Rect SelectedActionMenuRenderer::getCellRect(const int & offsetX, const int & offsetY, const double & scale)
 {
-    const int xPadding = 10;
-    const int yPadding = 10;
+    const int xPadding = 4;
+    const int yPadding = 4;
 
     SDL_Rect rect;
 
@@ -93,6 +93,15 @@ SDL_Rect SelectedActionMenuRenderer::getCellRect(const int & offsetX, const int 
             rect.h);
 
     return rect;
+}
+
+std::string SelectedActionMenuRenderer::intToStr(const int & value)
+{
+    std::string result;
+    std::ostringstream convert;
+    convert << value;
+    result = convert.str();
+    return result;
 }
 
 void SelectedActionMenuRenderer::renderBorder(const SDL_Rect & cellRect)
