@@ -10,8 +10,8 @@ static Player& Instance()
     return instance;
 }
 
+const int & getCredits();
 const BuildableObjectProperties & getSelectedBuildableObjectProperties();
-const bool & isSelected();
 
 void setBuildableAction(const std::string & entityId);
 void configure();
@@ -23,10 +23,10 @@ Player(const Player&);
 Player& operator=(const Player&);
 ~Player();
 
-
 private:
 
 bool mSelected;
+int mCredits;
 BuildableObjectProperties mSelectedBuildableActionProperties;
 
 };

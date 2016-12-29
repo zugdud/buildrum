@@ -2,8 +2,7 @@
 
 Player::Player()
 {
-    mSelected = false;
-    // TODO Default selected item
+    configure();
 }
 
 Player::~Player()
@@ -14,11 +13,18 @@ Player::~Player()
 void Player::configure()
 {
     SDL_Log("Player::configure -- \n");
+    // TODO config
+    const std::string defaultBuildableObjectId = "banner_1";
+
+    mSelectedBuildableActionProperties = ConfigManager::getInstance()->getBuildableObjectPropertiesImpl().getBuildableObjectProperties(defaultBuildableObjectId);
+    mCredits = 100;
+    mSelected = false;
+    // TODO Default selected item
 }
 
-const bool & Player::isSelected()
+const int & Player::getCredits()
 {
-    return mSelected;
+    return mCredits;
 }
 
 const BuildableObjectProperties & Player::getSelectedBuildableObjectProperties()
