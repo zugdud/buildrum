@@ -9,6 +9,7 @@ struct WorldProperties
     int columns;
     int numTiles;
     int textureSize;
+    std::string viewportId;
 };
 
 struct TileProperties

@@ -80,3 +80,8 @@ void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & ui
         mUIButtonStates.insert(std::pair<std::string, UIButtonState>(uiButtonState.getUIButtonStateProperties().buttonStateId, uiButtonState) );
     }
 }
+
+const std::string & UIButton::getViewportId() const
+{
+    return mParent_UIMenuProperties.viewportId;
+}

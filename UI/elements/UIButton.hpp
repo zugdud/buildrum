@@ -16,6 +16,8 @@ void pointEventCallback(PointInt pointInt);
 void setUIEventConnector(UIEventConnector *uiEventConnector);
 
 const std::string & getId();
+
+const std::string & getViewportId() const;
 const UIMenuProperties & getUIMenuProperties();
 
 private:

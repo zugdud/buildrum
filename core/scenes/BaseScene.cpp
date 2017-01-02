@@ -8,7 +8,6 @@ BaseScene::BaseScene(const std::string & sceneId)
     mCurrentMusicTrackIdsIndex = 0;
     mWindow = WindowManager::getInstance()->getWindow();
     mViewports = WindowManager::getInstance()->getViewContext(mViewContextId).getViewports();
-    mInputEventManager = InputEventManager::getInstance();
 
     SDL_Log("BaseScene::init -- creating mSceneId: %s mViewContextId: %s mMusicTrackIdsCount: %zu mMenuIdsCount: %zu \n",
             mSceneId.c_str(),
@@ -74,8 +73,8 @@ void BaseScene::detatchSceneRenderersFromViewports()
 void BaseScene::attachInputManagerToCamera()
 {
     SDL_Log("BaseScene::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
-    mInputEventManager->registerScrollEventObserver(&Camera::Instance());
-    mInputEventManager->registerZoomEventObserver(&Camera::Instance());
+    InputEventManager::getInstance()->registerScrollEventObserver(&Camera::Instance());
+    InputEventManager::getInstance()->registerZoomEventObserver(&Camera::Instance());
 }
 
 void BaseScene::detatchWorld()
@@ -91,6 +90,9 @@ void BaseScene::detatchWorld()
 
             // detatch the renderer from viewport, viewport will no longer invoke render calls
             mViewports[i].detatchWorldRenderer();
+
+            // remove world as observer of input events
+            WorldManager::Instance().getWorldPtr()->detatchInput();
 
         }
         else if (viewportProperties.viewportId == mMinimapViewportId)
@@ -139,6 +141,9 @@ void BaseScene::attachWorld()
 
             // attach world to camera
             Camera::Instance().registerObserver(WorldManager::Instance().getWorldPtr());
+
+            // attach world to Observer input events
+            WorldManager::Instance().getWorldPtr()->attachInput();
         }
         else if (viewportProperties.viewportId == mMinimapViewportId)
         {

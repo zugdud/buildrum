@@ -17,6 +17,7 @@ void TestWorldImpl::setWorldProperties()
     WorldProperties worldProperties;
 
     worldProperties.worldId = "testWorld";
+    worldProperties.viewportId = "gameView";
     worldProperties.rows = 64;
     worldProperties.columns = 64;
     worldProperties.numTiles = 4096;

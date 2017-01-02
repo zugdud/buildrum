@@ -1,4 +1,4 @@
-class World : public CameraObserver
+class World : public CameraObserver, public PointEventObserver
 {
 public:
 
@@ -9,6 +9,7 @@ void configure(const WorldProperties & worldProperties, const std::vector<Tile> 
 void updateTileRects();
 void updateTileLabels();
 
+void eventRaised(const std::string & eventId);
 void checkViewableArea();
 
 void positionUpdate();
@@ -17,6 +18,13 @@ void zoomFactorUpdate();
 const Tile & getTile(const int & tileId);
 const std::vector<Tile> & getTiles() const;
 const WorldProperties & getWorldProperties() const;
+
+void pointEventCallback(PointInt pointInt);
+const std::string & getViewportId() const;
+const std::string & getId();
+
+void attachInput();
+void detatchInput();
 
 private:
 

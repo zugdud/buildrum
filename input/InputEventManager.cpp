@@ -152,7 +152,7 @@ void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
     {
         for (size_t i = 0; i < mPointEventObserver.size(); i++)
         {
-            if (mPointEventObserver[i]->getUIMenuProperties().viewportId == selectedPoint.viewportId)
+            if (mPointEventObserver[i]->getViewportId() == selectedPoint.viewportId)
             {
                 mPointEventObserver[i]->pointEventCallback(pointInt);
             }

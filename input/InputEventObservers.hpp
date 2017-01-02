@@ -11,7 +11,7 @@ class PointEventObserver
 public:
 
 virtual void pointEventCallback(PointInt pointInt) = 0;
-virtual const UIMenuProperties & getUIMenuProperties() = 0;
+virtual const std::string & getViewportId() const = 0;
 virtual const std::string & getId() = 0;
 
 };

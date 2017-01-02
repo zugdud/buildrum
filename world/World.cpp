@@ -32,6 +32,11 @@ void World::zoomFactorUpdate()
     //  updateTileLabels(); // updates based on new rect
 }
 
+void World::eventRaised(const std::string & eventId)
+{
+    SDL_Log("World::eventRaised -- eventId: %s \n", eventId.c_str());
+}
+
 void World::checkViewableArea()
 {
     for (size_t i = 0; i < mTiles.size(); i++)
@@ -76,4 +81,31 @@ const std::vector<Tile> & World::getTiles() const
 const WorldProperties & World::getWorldProperties() const
 {
     return mWorldProperties;
+}
+
+void World::pointEventCallback(PointInt pointInt)
+{
+    SDL_Log("World::pointEventCallback -- [x: %d y: %d] \n", pointInt.x, pointInt.y);
+}
+
+const std::string & World::getViewportId() const
+{
+    return mWorldProperties.viewportId;
+}
+
+const std::string &  World::getId()
+{
+    return mWorldProperties.worldId;
+}
+
+void World::attachInput()
+{
+    SDL_Log("World::attachInput -- attaching world to input manager \n");
+    InputEventManager::getInstance()->registerPointEventObserver(this);
+}
+
+void World::detatchInput()
+{
+    SDL_Log("World::detatchInput -- removing world from input manager \n");
+    InputEventManager::getInstance()->removePointEventObserver(mWorldProperties.worldId);
 }
