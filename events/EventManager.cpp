@@ -77,7 +77,7 @@ void EventManager::uiEventRaised(const std::string & eventId)
     mAudioManager->playSound("pop_1");
     if (mEventHandlers.count(eventId) == 1)
     {
-        mEventHandlers[eventId]->handleEvent();
+        mEventHandlers[eventId]->handleEvent(this);
     }
     else
     {

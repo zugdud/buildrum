@@ -19,11 +19,12 @@ HandleBuildEvent::~HandleBuildEvent()
 
 }
 
-void HandleBuildEvent::handleEvent()
+void HandleBuildEvent::handleEvent(IEventDispatch *eventManager)
 {
     if (mEntityId != "")
     {
         Player::Instance().setBuildableAction(mEntityId);
+        eventManager->dispatchEvent("toggleHidden_BuildMenu");
     }
     else
     {

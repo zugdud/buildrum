@@ -1,4 +1,4 @@
-class EventManager : public UIEventConnector
+class EventManager : public UIEventConnector, public IEventDispatch
 {
 
 static EventManager *mSingletonInstance;

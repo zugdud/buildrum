@@ -10,7 +10,7 @@ HandleMainMenu::~HandleMainMenu()
 
 }
 
-void HandleMainMenu::handleEvent()
+void HandleMainMenu::handleEvent(IEventDispatch *eventManager)
 {
     AudioManager::Instance().stopMusic();
     SceneManager::getInstance()->setActiveScene("MainMenu");

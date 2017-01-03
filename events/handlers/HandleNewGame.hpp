@@ -6,7 +6,7 @@ public:
 HandleNewGame(const std::string & eventId);
 ~HandleNewGame();
 
-void handleEvent();
+void handleEvent(IEventDispatch *eventManager);
 
 private:
 

@@ -29,6 +29,7 @@
 #include "types/window_properties.hpp"
 #include "types/world_properties.hpp"
 
+#include "events/IEventDispatch.hpp"
 #include "events/IEventManager.hpp"
 
 #include "config/constants/menus/IMenuProperties.hpp"

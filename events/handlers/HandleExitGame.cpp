@@ -10,7 +10,7 @@ HandleExitGame::~HandleExitGame()
 
 }
 
-void HandleExitGame::handleEvent()
+void HandleExitGame::handleEvent(IEventDispatch *eventManager)
 {
     AudioManager::Instance().stopMusic();
 }

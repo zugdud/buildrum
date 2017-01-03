@@ -10,7 +10,7 @@ HandleNewGame::~HandleNewGame()
 
 }
 
-void HandleNewGame::handleEvent()
+void HandleNewGame::handleEvent(IEventDispatch *eventManager)
 {
     AudioManager::Instance().stopMusic();
     SceneManager::getInstance()->setActiveScene("GameScene");

@@ -6,7 +6,7 @@ public:
 HandleBuildEvent(const std::string & eventId);
 ~HandleBuildEvent();
 
-void handleEvent();
+void handleEvent(IEventDispatch *eventManager);
 
 private:
 

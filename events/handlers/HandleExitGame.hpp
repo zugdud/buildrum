@@ -6,7 +6,7 @@ public:
 HandleExitGame(const std::string & eventId);
 ~HandleExitGame();
 
-void handleEvent();
+void handleEvent(IEventDispatch *eventManager);
 
 private:
 

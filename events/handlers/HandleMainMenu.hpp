@@ -6,7 +6,7 @@ public:
 HandleMainMenu(const std::string & eventId);
 ~HandleMainMenu();
 
-void handleEvent();
+void handleEvent(IEventDispatch *eventManager);
 
 private:
 

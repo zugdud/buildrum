@@ -20,6 +20,6 @@ class IHandleEvent
 {
 public:
 
-virtual void handleEvent() = 0;
+virtual void handleEvent(IEventDispatch *eventManager) = 0;
 
 };
