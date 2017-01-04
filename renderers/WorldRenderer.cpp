@@ -95,6 +95,13 @@ void WorldRenderer::renderLayers(const Tile & tile)
     {
         renderSprite(spriteProperties[i], tile.getRect());
     }
+
+    const std::vector<SpriteProperties> & buildableObjectSprites = tile.getBuildableObject().getSpriteProperties();
+
+    for (size_t i = 0; i < buildableObjectSprites.size(); i++)
+    {
+        renderSprite(buildableObjectSprites[i], tile.getRect());
+    }
 }
 
 void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)

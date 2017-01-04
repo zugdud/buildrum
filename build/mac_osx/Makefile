@@ -85,6 +85,7 @@ media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
 world/entities/Entity.cpp \
 world/entities/Surface.cpp \
+world/entities/BuildableObject.cpp \
 world/generator/impl/TestWorldImpl.cpp \
 world/generator/GenerateWorld.cpp \
 world/Tile.cpp \

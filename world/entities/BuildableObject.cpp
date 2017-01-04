@@ -1,15 +1,15 @@
 #include "include/global.hpp"
 
-InanimateObject::InanimateObject()
+BuildableObject::BuildableObject()
 {
 }
 
-InanimateObject::~InanimateObject()
+BuildableObject::~BuildableObject()
 {
 
 }
 
-void InanimateObject::configure(const BuildableObjectProperties & surfaceProperties)
+void BuildableObject::configure(const BuildableObjectProperties & surfaceProperties)
 {
 
     mBuildableObjectProperties =  surfaceProperties;
@@ -18,21 +18,26 @@ void InanimateObject::configure(const BuildableObjectProperties & surfacePropert
     setOrientation(mEntityOrientation);
 }
 
-const BuildableObjectProperties & InanimateObject::getBuildableObjectProperties() const
+const BuildableObjectProperties & BuildableObject::getBuildableObjectProperties() const
 {
     return mBuildableObjectProperties;
 }
 
-void InanimateObject::setOrientation(const EntityOrientation & orientation)
+void BuildableObject::setOrientation(const EntityOrientation & orientation)
 {
+    mSpriteProperties.clear();
+
     for (int i = 0; i < mBuildableObjectProperties.entityProperties.numLayers; i++)
     {
+        std::string spriteName;
         switch (orientation)
         {
-            case UP: mSpriteProperties.push_back(mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteUp); break;
-            case DOWN: mSpriteProperties.push_back(mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteDown); break;
-            case LEFT: mSpriteProperties.push_back(mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteLeft); break;
-            case RIGHT: mSpriteProperties.push_back(mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteRight); break;
+            case UP: spriteName = mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteName_Up; break;
+            case DOWN: spriteName = mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteName_Down; break;
+            case LEFT: spriteName = mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteName_Left; break;
+            case RIGHT: spriteName = mBuildableObjectProperties.entityProperties.spriteLayers[i].spriteName_Right; break;
         }
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
+        mSpriteProperties.push_back(spriteProperties);
     }
 }

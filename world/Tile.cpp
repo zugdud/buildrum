@@ -73,6 +73,16 @@ void Tile::setViewableArea()
     }
 }
 
+const BuildableObject& Tile::getBuildableObject() const
+{
+    return mBuildableObject;
+}
+
+void Tile::setBuildableObject(const BuildableObject & buildableObject)
+{
+    mBuildableObject = buildableObject;
+}
+
 void Tile::updateLabel()
 {
     std::string tileIdString;

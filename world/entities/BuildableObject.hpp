@@ -1,9 +1,9 @@
-class InanimateObject : public Entity
+class BuildableObject : public Entity
 {
 public:
 
-InanimateObject();
-~InanimateObject();
+BuildableObject();
+~BuildableObject();
 
 void configure(const BuildableObjectProperties & surfaceProperties);
 const BuildableObjectProperties & getBuildableObjectProperties() const;

@@ -66,7 +66,7 @@ void World::updateTileLabels()
 
 const Tile & World::getTile(const int & tileId)
 {
-    if (tileId > (mWorldProperties.numTiles - 1))
+    if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
     {
         SDL_Log("World::getTile -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
     }
@@ -85,7 +85,51 @@ const WorldProperties & World::getWorldProperties() const
 
 void World::pointEventCallback(PointInt pointInt)
 {
-    SDL_Log("World::pointEventCallback -- [x: %d y: %d] \n", pointInt.x, pointInt.y);
+    const SDL_Rect & cameraRect = Camera::Instance().getRect();
+    const int worldPosX = pointInt.x + cameraRect.x;
+    const int worldPosY = pointInt.y + cameraRect.y;
+
+    const int tileX = worldPosX / mWorldProperties.textureSize;
+    const int tileY = worldPosY / mWorldProperties.textureSize;
+
+    const int tileId = mWorldProperties.numTiles * tileX + tileY;
+
+    SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d \n",
+            pointInt.x,
+            pointInt.y,
+            cameraRect.x,
+            cameraRect.y,
+            worldPosX,
+            worldPosY,
+            tileX,
+            tileY,
+            tileId);
+
+
+    buildObject(tileId);
+}
+
+void World::buildObject(const int & tileId)
+{
+    if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
+    {
+        SDL_Log("World::buildObject -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
+
+    }
+    else
+    {
+        const BuildableObjectProperties & buildableObjectProperties = Player::Instance().getSelectedBuildableObjectProperties();
+
+        BuildableObject buildableObject;
+
+        buildableObject.configure(buildableObjectProperties);
+
+        Tile tile = mTiles[tileId];
+
+        tile.setBuildableObject(buildableObject);
+
+        mTiles[tileId] = tile;
+    }
 }
 
 const std::string & World::getViewportId() const

@@ -28,6 +28,7 @@ void detatchInput();
 
 private:
 
+void buildObject(const int & tileId);
 WorldProperties mWorldProperties;
 std::vector<Tile> mTiles;
 
