@@ -51,7 +51,7 @@
 #include "config/constants/menus/impl/BuildMenuPropertiesImpl.hpp"
 #include "config/ConfigManager.hpp"
 
-#include "actors/player.hpp"
+#include "actors/Player.hpp"
 
 #include "input/InputEventObservers.hpp"
 #include "input/InputMomentum.hpp"

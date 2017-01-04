@@ -92,7 +92,7 @@ void World::pointEventCallback(PointInt pointInt)
     const int tileX = worldPosX / mWorldProperties.textureSize;
     const int tileY = worldPosY / mWorldProperties.textureSize;
 
-    const int tileId = mWorldProperties.numTiles * tileX + tileY;
+    const int tileId = (mWorldProperties.rows * tileY) + tileX;
 
     SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d \n",
             pointInt.x,

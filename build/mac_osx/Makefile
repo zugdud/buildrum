@@ -91,7 +91,7 @@ world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
 world/WorldManager.cpp \
-actors/player.cpp
+actors/Player.cpp
 
 
 # define the C object files

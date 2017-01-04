@@ -42,8 +42,6 @@ config/constants/menus/BaseMenuProperties.cpp \
 config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
 config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
 config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
-config/constants/menus/impl/SelectedActionMenuPropertiesImpl.cpp \
-config/constants/menus/impl/StatusMenuPropertiesImpl.cpp \
 window/Viewport.cpp \
 window/Camera.cpp \
 window/Window.cpp \
@@ -53,6 +51,7 @@ events/EventManager.cpp \
 events/handlers/HandleNewGame.cpp \
 events/handlers/HandleMainMenu.cpp \
 events/handlers/HandleExitGame.cpp \
+events/handlers/HandleBuildEvent.cpp \
 core/GameInstance.cpp \
 core/SceneManager.cpp \
 core/scenes/BaseScene.cpp \
@@ -70,6 +69,8 @@ UI/MenuManager.cpp \
 renderers/MenuRenderer.cpp \
 renderers/WorldRenderer.cpp \
 renderers/MinimapRenderer.cpp \
+renderers/SelectedActionMenuRenderer.cpp \
+renderers/StatusMenuRenderer.cpp \
 media/fonts/FontManager.cpp \
 media/fonts/FontTextures.cpp \
 media/audio/AudioManager.cpp \
@@ -78,11 +79,13 @@ media/sprites/SpriteSheet.cpp \
 media/sprites/SpriteSheetManager.cpp \
 world/entities/Entity.cpp \
 world/entities/Surface.cpp \
+world/entities/BuildableObject.cpp \
 world/generator/impl/TestWorldImpl.cpp \
 world/generator/GenerateWorld.cpp \
 world/Tile.cpp \
 world/World.cpp \
 world/WorldManager.cpp \
+actors/Player.cpp
 
 # define the C object files
 #
