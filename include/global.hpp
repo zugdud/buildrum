@@ -19,95 +19,91 @@
 #include <SDL_thread.h>
 #include <SDL_timer.h>
 
-#include "types/commonTypes.hpp"
+#include <commonTypes.hpp>
+#include <actor_properties.hpp>
+#include <entity_properties.hpp>
+#include <media_properties.hpp>
+#include <misc_properties.hpp>
+#include <ui_properties.hpp>
+#include <window_properties.hpp>
+#include <world_properties.hpp>
 
-#include "types/actor_properties.hpp"
-#include "types/entity_properties.hpp"
-#include "types/media_properties.hpp"
-#include "types/misc_properties.hpp"
-#include "types/ui_properties.hpp"
-#include "types/window_properties.hpp"
-#include "types/world_properties.hpp"
+#include <IEventDispatch.hpp>
+#include <IEventManager.hpp>
+#include <IMenuProperties.hpp>
+#include <SurfacePropertiesImpl.hpp>
+#include <BuildableObjectPropertiesImpl.hpp>
+#include <CameraPropertiesImpl.hpp>
+#include <EnvironmentMediaPropertiesImpl.hpp>
 
-#include "events/IEventDispatch.hpp"
-#include "events/IEventManager.hpp"
+#include <FontProfilesImpl.hpp>
+#include <AudioContentImpl.hpp>
+#include <SpriteSheetPropertiesImpl.hpp>
+#include <SpritePropertiesImpl.hpp>
 
-#include "config/constants/menus/IMenuProperties.hpp"
+#include <WindowPropertiesImpl.hpp>
+#include <BaseMenuProperties.hpp>
+#include <MainMenuPropertiesImpl.hpp>
+#include <ActionMenuPropertiesImpl.hpp>
+#include <BuildMenuPropertiesImpl.hpp>
+#include <ConfigManager.hpp>
+#include <actors/Player.hpp>
 
-#include "config/constants/entities/SurfacePropertiesImpl.hpp"
-#include "config/constants/entities/BuildableObjectPropertiesImpl.hpp"
+#include <InputEventObservers.hpp>
+#include <InputMomentum.hpp>
+#include <InputEventManager.hpp>
 
-#include "config/constants/actors/CameraPropertiesImpl.hpp"
-#include "config/constants/media/environment/EnvironmentMediaPropertiesImpl.hpp"
-#include "config/constants/media/fonts/FontProfilesImpl.hpp"
-#include "config/constants/media/audio/AudioContentImpl.hpp"
-#include "config/constants/media/sprites/SpriteSheetPropertiesImpl.hpp"
-#include "config/constants/media/sprites/SpritePropertiesImpl.hpp"
+#include <FontTextures.hpp>
+#include <FontManager.hpp>
+#include <AudioManager.hpp>
 
-#include "config/constants/window/WindowPropertiesImpl.hpp"
-#include "config/constants/menus/BaseMenuProperties.hpp"
-#include "config/constants/menus/impl/MainMenuPropertiesImpl.hpp"
-#include "config/constants/menus/impl/ActionMenuPropertiesImpl.hpp"
-#include "config/constants/menus/impl/BuildMenuPropertiesImpl.hpp"
-#include "config/ConfigManager.hpp"
+#include <Sprite.hpp>
+#include <SpriteSheet.hpp>
+#include <SpriteSheetManager.hpp>
 
-#include "actors/Player.hpp"
+#include <UIElement.hpp>
+#include <UIButtonState.hpp>
+#include <UIButton.hpp>
+#include <UILabel.hpp>
+#include <UIGridCell.hpp>
+#include <UIMenu.hpp>
+#include <MenuManager.hpp>
 
-#include "input/InputEventObservers.hpp"
-#include "input/InputMomentum.hpp"
-#include "input/InputEventManager.hpp"
+#include <IRenderer.hpp>
 
-#include "media/fonts/FontTextures.hpp"
-#include "media/fonts/FontManager.hpp"
-#include "media/audio/AudioManager.hpp"
+#include <CameraObserver.hpp>
 
-#include "media/sprites/Sprite.hpp"
-#include "media/sprites/SpriteSheet.hpp"
-#include "media/sprites/SpriteSheetManager.hpp"
+#include <Viewport.hpp>
+#include <Camera.hpp>
+#include <ViewContext.hpp>
+#include <Window.hpp>
+#include <WindowManager.hpp>
 
-#include "UI/elements/UIElement.hpp"
-#include "UI/elements/UIButtonState.hpp"
-#include "UI/elements/UIButton.hpp"
-#include "UI/elements/UILabel.hpp"
-#include "UI/elements/UIGridCell.hpp"
-#include "UI/elements/UIMenu.hpp"
-#include "UI/MenuManager.hpp"
+#include <Entity.hpp>
+#include <Surface.hpp>
+#include <BuildableObject.hpp>
+#include <Tile.hpp>
+#include <World.hpp>
+#include <TestWorldImpl.hpp>
+#include <GenerateWorld.hpp>
+#include <WorldManager.hpp>
 
-#include "renderers/IRenderer.hpp"
+#include <MenuRenderer.hpp>
+#include <WorldRenderer.hpp>
+#include <MinimapRenderer.hpp>
+#include <SelectedActionMenuRenderer.hpp>
+#include <StatusMenuRenderer.hpp>
 
-#include "window/CameraObserver.hpp"
+#include <IScene.hpp>
+#include <BaseScene.hpp>
+#include <StartSceneImpl.hpp>
+#include <GameSceneImpl.hpp>
 
-#include "window/Viewport.hpp"
-#include "window/Camera.hpp"
-#include "window/ViewContext.hpp"
-#include "window/Window.hpp"
-#include "window/WindowManager.hpp"
+#include <HandleNewGame.hpp>
+#include <HandleMainMenu.hpp>
+#include <HandleExitGame.hpp>
+#include <HandleBuildEvent.hpp>
+#include <EventManager.hpp>
 
-#include "world/entities/Entity.hpp"
-#include "world/entities/Surface.hpp"
-#include "world/entities/BuildableObject.hpp"
-#include "world/Tile.hpp"
-#include "world/World.hpp"
-#include "world/generator/impl/TestWorldImpl.hpp"
-#include "world/generator/GenerateWorld.hpp"
-#include "world/WorldManager.hpp"
-
-#include "renderers/MenuRenderer.hpp"
-#include "renderers/WorldRenderer.hpp"
-#include "renderers/MinimapRenderer.hpp"
-#include "renderers/SelectedActionMenuRenderer.hpp"
-#include "renderers/StatusMenuRenderer.hpp"
-
-#include "core/scenes/IScene.hpp"
-#include "core/scenes/BaseScene.hpp"
-#include "core/scenes/StartSceneImpl.hpp"
-#include "core/scenes/GameSceneImpl.hpp"
-
-#include "events/handlers/HandleNewGame.hpp"
-#include "events/handlers/HandleMainMenu.hpp"
-#include "events/handlers/HandleExitGame.hpp"
-#include "events/handlers/HandleBuildEvent.hpp"
-#include "events/EventManager.hpp"
-
-#include "core/SceneManager.hpp"
-#include "core/GameInstance.hpp"
+#include <SceneManager.hpp>
+#include <GameInstance.hpp>

@@ -14,13 +14,75 @@ CFLAGS = -Wall -g
 CURRENTDIR=`pwd`
 # define any directories containing header files other than /usr/include
 #
+
+CONFIG_DIR=config
+CONSTANTS_ACTORS_DIR=config/constants/actors
+CONSTANTS_MEDIA_ENVIRONMENT_DIR=config/constants/media/environment
+CONSTANTS_ENTITIES_DIR=config/constants/entities
+CONSTANTS_MEDIA_FONTS_DIR=config/constants/media/fonts
+CONSTANTS_MEDIA_AUDIO_DIR=config/constants/media/audio
+CONSTANTS_MEDIA_SPRITES_DIR=config/constants/media/sprites
+CONSTANTS_WINDOW_DIR=config/constants/window
+CONSTANTS_MENUS_DIR=config/constants/menus
+CONSTANTS_MENUS_IMPL_DIR=config/constants/menus/impl
+WINDOW_DIR=window
+EVENTS_DIR=events
+EVENTS_HANDLERS_DIR=events/handlers
+CORE_DIR=core
+CORE_SCENES_DIR=core/scenes
+INPUT_DIR=input
+UI_DIR=UI
+UI_ELEMENTS=UI/elements
+RENDERERS_DIR=renderers
+MEDIA_FONTS_DIR=media/fonts/
+MEDIA_AUDIO_DIR=media/audio
+MEDIA_SPRITES_DIR=media/sprites
+WORLD_ENTITIES_DIR=world/entities
+WORLD_GENERATOR_IMPL_DIR=world/generator/impl
+WORLD_GENERATOR_DIR=world/generator
+WORLD_TILE_DIR=world/tile
+WORLD_DIR=world
+TYPES_DIR=types
+ACTORS_DIR=actors
+
 INCLUDES =-I/usr/include/SDL2/ \
  -I /Library/Frameworks/SDL2.framework/Headers \
  -I /Library/Frameworks/SDL2_image.framework/Headers \
  -I /Library/Frameworks/SDL2_ttf.framework/Headers \
  -I /Library/Frameworks/SDL2_mixer.framework/Headers \
  -I /Users/jcreecy/code/buildrum \
- -F/Library/Frameworks
+ -F/Library/Frameworks \
+ -I $(CONFIG_DIR) \
+ -I $(CONSTANTS_ACTORS_DIR) \
+ -I $(CONSTANTS_MEDIA_ENVIRONMENT_DIR) \
+ -I $(CONSTANTS_ENTITIES_DIR) \
+ -I $(CONSTANTS_MEDIA_FONTS_DIR) \
+ -I $(CONSTANTS_MEDIA_AUDIO_DIR) \
+ -I $(CONSTANTS_MEDIA_SPRITES_DIR) \
+ -I $(CONSTANTS_WINDOW_DIR) \
+ -I $(CONSTANTS_MENUS_DIR) \
+ -I $(CONSTANTS_MENUS_IMPL_DIR) \
+ -I $(WINDOW_DIR) \
+ -I $(EVENTS_DIR) \
+ -I $(EVENTS_HANDLERS_DIR) \
+ -I $(CORE_DIR) \
+ -I $(CORE_SCENES_DIR) \
+ -I $(INPUT_DIR) \
+ -I $(UI_DIR) \
+ -I $(UI_ELEMENTS) \
+ -I $(RENDERERS_DIR) \
+ -I $(MEDIA_FONTS_DIR) \
+ -I $(MEDIA_AUDIO_DIR) \
+ -I $(MEDIA_SPRITES_DIR) \
+ -I $(WORLD_ENTITIES_DIR) \
+ -I $(WORLD_GENERATOR_IMPL_DIR) \
+ -I $(WORLD_GENERATOR_DIR) \
+ -I $(WORLD_TILE_DIR) \
+ -I $(WORLD_DIR) \
+ -I $(ACTORS_DIR) \
+ -I $(EVENTS_HANDLERS_DIR) \
+ -I $(EVENTS_HANDLERS_DIR) \
+ -I $(TYPES_DIR) \
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -34,65 +96,64 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 
 # define the C source files
 SRCS = main.cpp \
-config/ConfigManager.cpp \
-config/constants/actors/CameraPropertiesImpl.cpp \
-config/constants/media/environment/EnvironmentMediaPropertiesImpl.cpp \
-config/constants/entities/SurfacePropertiesImpl.cpp \
-config/constants/entities/BuildableObjectPropertiesImpl.cpp \
-config/constants/media/fonts/FontProfilesImpl.cpp \
-config/constants/media/audio/AudioContentImpl.cpp \
-config/constants/media/sprites/SpriteSheetPropertiesImpl.cpp \
-config/constants/media/sprites/SpritePropertiesImpl.cpp \
-config/constants/window/WindowPropertiesImpl.cpp \
-config/constants/menus/BaseMenuProperties.cpp \
-config/constants/menus/impl/MainMenuPropertiesImpl.cpp \
-config/constants/menus/impl/ActionMenuPropertiesImpl.cpp \
-config/constants/menus/impl/BuildMenuPropertiesImpl.cpp \
-window/Viewport.cpp \
-window/Camera.cpp \
-window/Window.cpp \
-window/WindowManager.cpp \
-window/ViewContext.cpp \
-events/EventManager.cpp \
-events/handlers/HandleNewGame.cpp \
-events/handlers/HandleMainMenu.cpp \
-events/handlers/HandleExitGame.cpp \
-events/handlers/HandleBuildEvent.cpp \
-core/GameInstance.cpp \
-core/SceneManager.cpp \
-core/scenes/BaseScene.cpp \
-core/scenes/StartSceneImpl.cpp \
-core/scenes/GameSceneImpl.cpp \
-input/InputEventManager.cpp \
-input/InputMomentum.cpp \
-UI/elements/UIElement.cpp \
-UI/elements/UIButtonState.cpp \
-UI/elements/UIButton.cpp \
-UI/elements/UILabel.cpp \
-UI/elements/UIGridCell.cpp \
-UI/elements/UIMenu.cpp \
-UI/MenuManager.cpp \
-renderers/MenuRenderer.cpp \
-renderers/WorldRenderer.cpp \
-renderers/MinimapRenderer.cpp \
-renderers/SelectedActionMenuRenderer.cpp \
-renderers/StatusMenuRenderer.cpp \
-media/fonts/FontManager.cpp \
-media/fonts/FontTextures.cpp \
-media/audio/AudioManager.cpp \
-media/sprites/Sprite.cpp \
-media/sprites/SpriteSheet.cpp \
-media/sprites/SpriteSheetManager.cpp \
-world/entities/Entity.cpp \
-world/entities/Surface.cpp \
-world/entities/BuildableObject.cpp \
-world/generator/impl/TestWorldImpl.cpp \
-world/generator/GenerateWorld.cpp \
-world/Tile.cpp \
-world/World.cpp \
-world/WorldManager.cpp \
-actors/Player.cpp
-
+$(CONFIG_DIR)/ConfigManager.cpp \
+$(CONSTANTS_ACTORS_DIR)/CameraPropertiesImpl.cpp \
+$(CONSTANTS_MEDIA_ENVIRONMENT_DIR)/EnvironmentMediaPropertiesImpl.cpp \
+$(CONSTANTS_ENTITIES_DIR)/SurfacePropertiesImpl.cpp \
+$(CONSTANTS_ENTITIES_DIR)/BuildableObjectPropertiesImpl.cpp \
+$(CONSTANTS_MEDIA_FONTS_DIR)/FontProfilesImpl.cpp \
+$(CONSTANTS_MEDIA_AUDIO_DIR)/AudioContentImpl.cpp \
+$(CONSTANTS_MEDIA_SPRITES_DIR)/SpriteSheetPropertiesImpl.cpp \
+$(CONSTANTS_MEDIA_SPRITES_DIR)/SpritePropertiesImpl.cpp \
+$(CONSTANTS_WINDOW_DIR)/WindowPropertiesImpl.cpp \
+$(CONSTANTS_MENUS_DIR)/BaseMenuProperties.cpp \
+$(CONSTANTS_MENUS_IMPL_DIR)/MainMenuPropertiesImpl.cpp \
+$(CONSTANTS_MENUS_IMPL_DIR)/ActionMenuPropertiesImpl.cpp \
+$(CONSTANTS_MENUS_IMPL_DIR)/BuildMenuPropertiesImpl.cpp \
+$(WINDOW_DIR)/Viewport.cpp \
+$(WINDOW_DIR)/Camera.cpp \
+$(WINDOW_DIR)/Window.cpp \
+$(WINDOW_DIR)/WindowManager.cpp \
+$(WINDOW_DIR)/ViewContext.cpp \
+$(EVENTS_DIR)/EventManager.cpp \
+$(EVENTS_HANDLERS_DIR)/HandleNewGame.cpp \
+$(EVENTS_HANDLERS_DIR)/HandleMainMenu.cpp \
+$(EVENTS_HANDLERS_DIR)/HandleExitGame.cpp \
+$(EVENTS_HANDLERS_DIR)/HandleBuildEvent.cpp \
+$(CORE_DIR)/GameInstance.cpp \
+$(CORE_DIR)/SceneManager.cpp \
+$(CORE_SCENES_DIR)/BaseScene.cpp \
+$(CORE_SCENES_DIR)/StartSceneImpl.cpp \
+$(CORE_SCENES_DIR)/GameSceneImpl.cpp \
+$(INPUT_DIR)/InputEventManager.cpp \
+$(INPUT_DIR)/InputMomentum.cpp \
+$(UI_ELEMENTS)/UIElement.cpp \
+$(UI_ELEMENTS)/UIButtonState.cpp \
+$(UI_ELEMENTS)/UIButton.cpp \
+$(UI_ELEMENTS)/UILabel.cpp \
+$(UI_ELEMENTS)/UIGridCell.cpp \
+$(UI_ELEMENTS)/UIMenu.cpp \
+$(UI_DIR)/MenuManager.cpp \
+$(RENDERERS_DIR)/MenuRenderer.cpp \
+$(RENDERERS_DIR)/WorldRenderer.cpp \
+$(RENDERERS_DIR)/MinimapRenderer.cpp \
+$(RENDERERS_DIR)/SelectedActionMenuRenderer.cpp \
+$(RENDERERS_DIR)/StatusMenuRenderer.cpp \
+$(MEDIA_FONTS_DIR)/FontManager.cpp \
+$(MEDIA_FONTS_DIR)/FontTextures.cpp \
+$(MEDIA_AUDIO_DIR)/AudioManager.cpp \
+$(MEDIA_SPRITES_DIR)/Sprite.cpp \
+$(MEDIA_SPRITES_DIR)/SpriteSheet.cpp \
+$(MEDIA_SPRITES_DIR)/SpriteSheetManager.cpp \
+$(WORLD_ENTITIES_DIR)/Entity.cpp \
+$(WORLD_ENTITIES_DIR)/Surface.cpp \
+$(WORLD_ENTITIES_DIR)/BuildableObject.cpp \
+$(WORLD_GENERATOR_IMPL_DIR)/TestWorldImpl.cpp \
+$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
+$(WORLD_DIR)/Tile.cpp \
+$(WORLD_DIR)/World.cpp \
+$(WORLD_DIR)/WorldManager.cpp \
+$(ACTORS_DIR)/Player.cpp
 
 # define the C object files
 #
