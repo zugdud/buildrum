@@ -79,7 +79,7 @@ INCLUDES =-I/usr/include/SDL2/ \
  -I $(WORLD_GENERATOR_DIR) \
  -I $(WORLD_TILE_DIR) \
  -I $(WORLD_DIR) \
- -I $(ACTORS_DIR) \
+ -I headers/$(ACTORS_DIR) \
  -I $(EVENTS_HANDLERS_DIR) \
  -I $(EVENTS_HANDLERS_DIR) \
  -I $(TYPES_DIR) \
@@ -153,7 +153,7 @@ $(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
 $(WORLD_DIR)/Tile.cpp \
 $(WORLD_DIR)/World.cpp \
 $(WORLD_DIR)/WorldManager.cpp \
-$(ACTORS_DIR)/Player.cpp
+src/$(ACTORS_DIR)/Player.cpp
 
 # define the C object files
 #

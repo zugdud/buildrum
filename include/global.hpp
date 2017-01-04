@@ -47,7 +47,7 @@
 #include <ActionMenuPropertiesImpl.hpp>
 #include <BuildMenuPropertiesImpl.hpp>
 #include <ConfigManager.hpp>
-#include <actors/Player.hpp>
+#include <Player.hpp>
 
 #include <InputEventObservers.hpp>
 #include <InputMomentum.hpp>
