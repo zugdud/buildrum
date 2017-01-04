@@ -15,6 +15,9 @@ CURRENTDIR=`pwd`
 # define any directories containing header files other than /usr/include
 #
 
+HEADER_DIR=headers
+SRC_DIR=src
+
 CONFIG_DIR=config
 CONSTANTS_ACTORS_DIR=config/constants/actors
 CONSTANTS_MEDIA_ENVIRONMENT_DIR=config/constants/media/environment
@@ -52,37 +55,37 @@ INCLUDES =-I/usr/include/SDL2/ \
  -I /Library/Frameworks/SDL2_mixer.framework/Headers \
  -I /Users/jcreecy/code/buildrum \
  -F/Library/Frameworks \
- -I $(CONFIG_DIR) \
- -I $(CONSTANTS_ACTORS_DIR) \
- -I $(CONSTANTS_MEDIA_ENVIRONMENT_DIR) \
- -I $(CONSTANTS_ENTITIES_DIR) \
- -I $(CONSTANTS_MEDIA_FONTS_DIR) \
- -I $(CONSTANTS_MEDIA_AUDIO_DIR) \
- -I $(CONSTANTS_MEDIA_SPRITES_DIR) \
- -I $(CONSTANTS_WINDOW_DIR) \
- -I $(CONSTANTS_MENUS_DIR) \
- -I $(CONSTANTS_MENUS_IMPL_DIR) \
- -I $(WINDOW_DIR) \
- -I $(EVENTS_DIR) \
- -I $(EVENTS_HANDLERS_DIR) \
- -I $(CORE_DIR) \
- -I $(CORE_SCENES_DIR) \
- -I $(INPUT_DIR) \
- -I $(UI_DIR) \
- -I $(UI_ELEMENTS) \
- -I $(RENDERERS_DIR) \
- -I $(MEDIA_FONTS_DIR) \
- -I $(MEDIA_AUDIO_DIR) \
- -I $(MEDIA_SPRITES_DIR) \
- -I $(WORLD_ENTITIES_DIR) \
- -I $(WORLD_GENERATOR_IMPL_DIR) \
- -I $(WORLD_GENERATOR_DIR) \
- -I $(WORLD_TILE_DIR) \
- -I $(WORLD_DIR) \
- -I headers/$(ACTORS_DIR) \
- -I $(EVENTS_HANDLERS_DIR) \
- -I $(EVENTS_HANDLERS_DIR) \
- -I $(TYPES_DIR) \
+ -I $(HEADER_DIR)/$(CONFIG_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_ACTORS_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MEDIA_ENVIRONMENT_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_ENTITIES_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MEDIA_FONTS_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MEDIA_AUDIO_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MEDIA_SPRITES_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_WINDOW_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MENUS_DIR) \
+ -I $(HEADER_DIR)/$(CONSTANTS_MENUS_IMPL_DIR) \
+ -I $(HEADER_DIR)/$(WINDOW_DIR) \
+ -I $(HEADER_DIR)/$(EVENTS_DIR) \
+ -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+ -I $(HEADER_DIR)/$(CORE_DIR) \
+ -I $(HEADER_DIR)/$(CORE_SCENES_DIR) \
+ -I $(HEADER_DIR)/$(INPUT_DIR) \
+ -I $(HEADER_DIR)/$(UI_DIR) \
+ -I $(HEADER_DIR)/$(UI_ELEMENTS) \
+ -I $(HEADER_DIR)/$(RENDERERS_DIR) \
+ -I $(HEADER_DIR)/$(MEDIA_FONTS_DIR) \
+ -I $(HEADER_DIR)/$(MEDIA_AUDIO_DIR) \
+ -I $(HEADER_DIR)/$(MEDIA_SPRITES_DIR) \
+ -I $(HEADER_DIR)/$(WORLD_ENTITIES_DIR) \
+ -I $(HEADER_DIR)/$(WORLD_GENERATOR_IMPL_DIR) \
+ -I $(HEADER_DIR)/$(WORLD_GENERATOR_DIR) \
+ -I $(HEADER_DIR)/$(WORLD_TILE_DIR) \
+ -I $(HEADER_DIR)/$(WORLD_DIR) \
+ -I $(HEADER_DIR)/$(ACTORS_DIR) \
+ -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+ -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+ -I $(HEADER_DIR)/$(TYPES_DIR) \
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -96,64 +99,64 @@ LIBS = -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SD
 
 # define the C source files
 SRCS = main.cpp \
-$(CONFIG_DIR)/ConfigManager.cpp \
-$(CONSTANTS_ACTORS_DIR)/CameraPropertiesImpl.cpp \
-$(CONSTANTS_MEDIA_ENVIRONMENT_DIR)/EnvironmentMediaPropertiesImpl.cpp \
-$(CONSTANTS_ENTITIES_DIR)/SurfacePropertiesImpl.cpp \
-$(CONSTANTS_ENTITIES_DIR)/BuildableObjectPropertiesImpl.cpp \
-$(CONSTANTS_MEDIA_FONTS_DIR)/FontProfilesImpl.cpp \
-$(CONSTANTS_MEDIA_AUDIO_DIR)/AudioContentImpl.cpp \
-$(CONSTANTS_MEDIA_SPRITES_DIR)/SpriteSheetPropertiesImpl.cpp \
-$(CONSTANTS_MEDIA_SPRITES_DIR)/SpritePropertiesImpl.cpp \
-$(CONSTANTS_WINDOW_DIR)/WindowPropertiesImpl.cpp \
-$(CONSTANTS_MENUS_DIR)/BaseMenuProperties.cpp \
-$(CONSTANTS_MENUS_IMPL_DIR)/MainMenuPropertiesImpl.cpp \
-$(CONSTANTS_MENUS_IMPL_DIR)/ActionMenuPropertiesImpl.cpp \
-$(CONSTANTS_MENUS_IMPL_DIR)/BuildMenuPropertiesImpl.cpp \
-$(WINDOW_DIR)/Viewport.cpp \
-$(WINDOW_DIR)/Camera.cpp \
-$(WINDOW_DIR)/Window.cpp \
-$(WINDOW_DIR)/WindowManager.cpp \
-$(WINDOW_DIR)/ViewContext.cpp \
-$(EVENTS_DIR)/EventManager.cpp \
-$(EVENTS_HANDLERS_DIR)/HandleNewGame.cpp \
-$(EVENTS_HANDLERS_DIR)/HandleMainMenu.cpp \
-$(EVENTS_HANDLERS_DIR)/HandleExitGame.cpp \
-$(EVENTS_HANDLERS_DIR)/HandleBuildEvent.cpp \
-$(CORE_DIR)/GameInstance.cpp \
-$(CORE_DIR)/SceneManager.cpp \
-$(CORE_SCENES_DIR)/BaseScene.cpp \
-$(CORE_SCENES_DIR)/StartSceneImpl.cpp \
-$(CORE_SCENES_DIR)/GameSceneImpl.cpp \
-$(INPUT_DIR)/InputEventManager.cpp \
-$(INPUT_DIR)/InputMomentum.cpp \
-$(UI_ELEMENTS)/UIElement.cpp \
-$(UI_ELEMENTS)/UIButtonState.cpp \
-$(UI_ELEMENTS)/UIButton.cpp \
-$(UI_ELEMENTS)/UILabel.cpp \
-$(UI_ELEMENTS)/UIGridCell.cpp \
-$(UI_ELEMENTS)/UIMenu.cpp \
-$(UI_DIR)/MenuManager.cpp \
-$(RENDERERS_DIR)/MenuRenderer.cpp \
-$(RENDERERS_DIR)/WorldRenderer.cpp \
-$(RENDERERS_DIR)/MinimapRenderer.cpp \
-$(RENDERERS_DIR)/SelectedActionMenuRenderer.cpp \
-$(RENDERERS_DIR)/StatusMenuRenderer.cpp \
-$(MEDIA_FONTS_DIR)/FontManager.cpp \
-$(MEDIA_FONTS_DIR)/FontTextures.cpp \
-$(MEDIA_AUDIO_DIR)/AudioManager.cpp \
-$(MEDIA_SPRITES_DIR)/Sprite.cpp \
-$(MEDIA_SPRITES_DIR)/SpriteSheet.cpp \
-$(MEDIA_SPRITES_DIR)/SpriteSheetManager.cpp \
-$(WORLD_ENTITIES_DIR)/Entity.cpp \
-$(WORLD_ENTITIES_DIR)/Surface.cpp \
-$(WORLD_ENTITIES_DIR)/BuildableObject.cpp \
-$(WORLD_GENERATOR_IMPL_DIR)/TestWorldImpl.cpp \
-$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
-$(WORLD_DIR)/Tile.cpp \
-$(WORLD_DIR)/World.cpp \
-$(WORLD_DIR)/WorldManager.cpp \
-src/$(ACTORS_DIR)/Player.cpp
+$(SRC_DIR)/$(CONFIG_DIR)/ConfigManager.cpp \
+$(SRC_DIR)/$(CONSTANTS_ACTORS_DIR)/CameraPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MEDIA_ENVIRONMENT_DIR)/EnvironmentMediaPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_ENTITIES_DIR)/SurfacePropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_ENTITIES_DIR)/BuildableObjectPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MEDIA_FONTS_DIR)/FontProfilesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MEDIA_AUDIO_DIR)/AudioContentImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MEDIA_SPRITES_DIR)/SpriteSheetPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MEDIA_SPRITES_DIR)/SpritePropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_WINDOW_DIR)/WindowPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MENUS_DIR)/BaseMenuProperties.cpp \
+$(SRC_DIR)/$(CONSTANTS_MENUS_IMPL_DIR)/MainMenuPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MENUS_IMPL_DIR)/ActionMenuPropertiesImpl.cpp \
+$(SRC_DIR)/$(CONSTANTS_MENUS_IMPL_DIR)/BuildMenuPropertiesImpl.cpp \
+$(SRC_DIR)/$(WINDOW_DIR)/Viewport.cpp \
+$(SRC_DIR)/$(WINDOW_DIR)/Camera.cpp \
+$(SRC_DIR)/$(WINDOW_DIR)/Window.cpp \
+$(SRC_DIR)/$(WINDOW_DIR)/WindowManager.cpp \
+$(SRC_DIR)/$(WINDOW_DIR)/ViewContext.cpp \
+$(SRC_DIR)/$(EVENTS_DIR)/EventManager.cpp \
+$(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleNewGame.cpp \
+$(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleMainMenu.cpp \
+$(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleExitGame.cpp \
+$(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleBuildEvent.cpp \
+$(SRC_DIR)/$(CORE_DIR)/GameInstance.cpp \
+$(SRC_DIR)/$(CORE_DIR)/SceneManager.cpp \
+$(SRC_DIR)/$(CORE_SCENES_DIR)/BaseScene.cpp \
+$(SRC_DIR)/$(CORE_SCENES_DIR)/StartSceneImpl.cpp \
+$(SRC_DIR)/$(CORE_SCENES_DIR)/GameSceneImpl.cpp \
+$(SRC_DIR)/$(INPUT_DIR)/InputEventManager.cpp \
+$(SRC_DIR)/$(INPUT_DIR)/InputMomentum.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UIElement.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UIButtonState.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UIButton.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UILabel.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UIGridCell.cpp \
+$(SRC_DIR)/$(UI_ELEMENTS)/UIMenu.cpp \
+$(SRC_DIR)/$(UI_DIR)/MenuManager.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/MenuRenderer.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/WorldRenderer.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/MinimapRenderer.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/SelectedActionMenuRenderer.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/StatusMenuRenderer.cpp \
+$(SRC_DIR)/$(MEDIA_FONTS_DIR)/FontManager.cpp \
+$(SRC_DIR)/$(MEDIA_FONTS_DIR)/FontTextures.cpp \
+$(SRC_DIR)/$(MEDIA_AUDIO_DIR)/AudioManager.cpp \
+$(SRC_DIR)/$(MEDIA_SPRITES_DIR)/Sprite.cpp \
+$(SRC_DIR)/$(MEDIA_SPRITES_DIR)/SpriteSheet.cpp \
+$(SRC_DIR)/$(MEDIA_SPRITES_DIR)/SpriteSheetManager.cpp \
+$(SRC_DIR)/$(WORLD_ENTITIES_DIR)/Entity.cpp \
+$(SRC_DIR)/$(WORLD_ENTITIES_DIR)/Surface.cpp \
+$(SRC_DIR)/$(WORLD_ENTITIES_DIR)/BuildableObject.cpp \
+$(SRC_DIR)/$(WORLD_GENERATOR_IMPL_DIR)/TestWorldImpl.cpp \
+$(SRC_DIR)/$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
+$(SRC_DIR)/$(WORLD_DIR)/Tile.cpp \
+$(SRC_DIR)/$(WORLD_DIR)/World.cpp \
+$(SRC_DIR)/$(WORLD_DIR)/WorldManager.cpp \
+$(SRC_DIR)/$(ACTORS_DIR)/Player.cpp
 
 # define the C object files
 #
