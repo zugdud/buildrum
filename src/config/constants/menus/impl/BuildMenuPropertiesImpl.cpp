@@ -68,7 +68,7 @@ void BuildMenuPropertiesImpl::setButtonProperties(std::vector<std::string> & spr
     for (size_t i = 0; i < spriteNames.size(); i++)
     {
         const std::string eventId = "build_" + spriteNames[i];
-        UIButtonProperties uiButtonProperties = { i, eventId, 20, 20, eventId, "buttonAvailable", false };
+        UIButtonProperties uiButtonProperties = { (int) i, eventId, 20, 20, eventId, "buttonAvailable", false };
         mUIButtonProperties.push_back(uiButtonProperties);
         BaseMenuProperties::setUIButtonStateProperties(eventId, spriteNames[i], true);
     }
@@ -78,7 +78,7 @@ void BuildMenuPropertiesImpl::setUILabelProperties(std::vector<std::string> & sp
 {
     for (size_t i = 0; i < spriteNames.size(); i++)
     {
-        UILabelProperties uiLabelProperties = { i, spriteNames[i], "Heading_3_OpenSansLight", 10, 10, false, "center" };
+        UILabelProperties uiLabelProperties = { (int) i, spriteNames[i], "Heading_3_OpenSansLight", 10, 10, false, "center" };
         mUILabelProperties.push_back(uiLabelProperties);
     }
 }
