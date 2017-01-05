@@ -131,6 +131,7 @@ $(SRC_DIR)/$(UI_ELEMENTS)/UILabel.cpp \
 $(SRC_DIR)/$(UI_ELEMENTS)/UIGridCell.cpp \
 $(SRC_DIR)/$(UI_ELEMENTS)/UIMenu.cpp \
 $(SRC_DIR)/$(UI_DIR)/MenuManager.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/BaseRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/MenuRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/WorldRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/MinimapRenderer.cpp \

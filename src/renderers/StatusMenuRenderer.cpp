@@ -2,7 +2,6 @@
 
 StatusMenuRenderer::StatusMenuRenderer()
 {
-    mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
     mLabelTextProfile = "Heading_3_OpenSansLight";
 }
 
@@ -128,24 +127,4 @@ void StatusMenuRenderer::renderText(const std::string & text, const SDL_Rect & c
     renderRect.x = cellRect.x + textPadding;
 
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &renderRect);
-}
-
-void StatusMenuRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
-{
-    SDL_Point *center = NULL;
-    SpriteSheet *spriteSheet = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId);
-
-    if (spriteSheet != NULL)
-    {
-        SDL_Texture *spriteSheetTexture = spriteSheet->getTexture();
-        const SDL_Rect & spriteRect = spriteSheet->getSprite(spriteProperties.spriteId).getRect();
-
-        SDL_RenderCopyEx(mSDLRenderer,
-                         spriteSheetTexture,
-                         &spriteRect,
-                         &destRect,
-                         spriteProperties.angle,
-                         center,
-                         spriteProperties.sdlRendererFlip);
-    }
 }

@@ -1,4 +1,4 @@
-class MinimapRenderer : public IMinimapRenderer
+class MinimapRenderer : public IMinimapRenderer, public BaseRenderer
 {
 public:
 
@@ -24,9 +24,7 @@ void renderCamera();
 void renderBorder();
 
 void renderAtlasSurface(const Tile & tile, const SDL_Rect & destRect);
-void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
-SDL_Renderer *mSDLRenderer;
 SDL_Texture *mBackgroundTexture;
 
 SDL_Rect mMinimap;

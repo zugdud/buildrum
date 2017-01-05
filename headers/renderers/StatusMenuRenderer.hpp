@@ -1,4 +1,4 @@
-class StatusMenuRenderer : public IStatusMenuRenderer
+class StatusMenuRenderer : public IStatusMenuRenderer, public BaseRenderer
 {
 public:
 
@@ -25,9 +25,7 @@ std::string intToStr(const int & value);
 void renderBorder(const SDL_Rect & cellRect);
 void renderBackground(const SDL_Rect & cellRect);
 void renderText(const std::string & text, const SDL_Rect & cellRect);
-void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
 
-SDL_Renderer *mSDLRenderer;
 SDL_Rect mBorder;
 SDL_Rect mHeading;
 SDL_Rect mCreditsRemain;

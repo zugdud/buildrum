@@ -88,6 +88,7 @@
 #include <GenerateWorld.hpp>
 #include <WorldManager.hpp>
 
+#include <BaseRenderer.hpp>
 #include <MenuRenderer.hpp>
 #include <WorldRenderer.hpp>
 #include <MinimapRenderer.hpp>

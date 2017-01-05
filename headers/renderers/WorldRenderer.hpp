@@ -1,4 +1,4 @@
-class WorldRenderer : public IWorldRenderer
+class WorldRenderer : public IWorldRenderer, public BaseRenderer
 {
 public:
 
@@ -20,9 +20,6 @@ void viewportBackground();
 void renderText(const Tile & tile);
 void drawTile(const Tile & tile);
 void renderLayers(const Tile & tile);
-void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
-
-SDL_Renderer *mSDLRenderer;
 
 bool mAttached;
 

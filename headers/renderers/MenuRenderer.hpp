@@ -1,4 +1,4 @@
-class MenuRenderer : public IRenderer
+class MenuRenderer : public IRenderer, public BaseRenderer
 {
 public:
 
@@ -13,8 +13,6 @@ std::vector<UIMenu *> & getAllLayers();
 
 private:
 
-void renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect);
-
 void renderGridCells(UIMenu *uiMenu);
 void renderLayer(UIMenu *uiMenu);
 void renderButton(UIButton *uiButton);
@@ -24,7 +22,6 @@ bool checkMenuStatus(UIMenu *uiMenu, const std::string & viewportId);
 
 void renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect);
 
-SDL_Renderer *mSDLRenderer;
 std::vector<UIMenu *> mLayers;
 
 };

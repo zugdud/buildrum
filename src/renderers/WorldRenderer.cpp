@@ -2,7 +2,6 @@
 
 WorldRenderer::WorldRenderer()
 {
-    mSDLRenderer = WindowManager::getInstance()->getSDLRenderer();
     mAttached = false;
 }
 
@@ -101,25 +100,5 @@ void WorldRenderer::renderLayers(const Tile & tile)
     for (size_t i = 0; i < buildableObjectSprites.size(); i++)
     {
         renderSprite(buildableObjectSprites[i], tile.getRect());
-    }
-}
-
-void WorldRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
-{
-    SDL_Point *center = NULL;
-    SpriteSheet *spriteSheet = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId);
-
-    if (spriteSheet != NULL)
-    {
-        SDL_Texture *spriteSheetTexture = spriteSheet->getTexture();
-        const SDL_Rect & spriteRect = spriteSheet->getSprite(spriteProperties.spriteId).getRect();
-
-        SDL_RenderCopyEx(mSDLRenderer,
-                         spriteSheetTexture,
-                         &spriteRect,
-                         &destRect,
-                         spriteProperties.angle,
-                         center,
-                         spriteProperties.sdlRendererFlip);
     }
 }
