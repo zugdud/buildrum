@@ -92,6 +92,7 @@ std::string StatusMenuRenderer::intToStr(const int & value)
 {
     std::string result;
     std::ostringstream convert;
+
     convert << value;
     result = convert.str();
     return result;
@@ -132,14 +133,19 @@ void StatusMenuRenderer::renderText(const std::string & text, const SDL_Rect & c
 void StatusMenuRenderer::renderSprite(const SpriteProperties & spriteProperties, const SDL_Rect & destRect)
 {
     SDL_Point *center = NULL;
-    SDL_Texture *spriteSheetTexture = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getTexture();
-    const SDL_Rect & spriteRect = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId).getSprite(spriteProperties.spriteId).getRect();
+    SpriteSheet *spriteSheet = SpriteSheetManager::Instance().getSpriteSheet(spriteProperties.spriteSheetId);
 
-    SDL_RenderCopyEx(mSDLRenderer,
-                     spriteSheetTexture,
-                     &spriteRect,
-                     &destRect,
-                     spriteProperties.angle,
-                     center,
-                     spriteProperties.sdlRendererFlip);
+    if (spriteSheet != NULL)
+    {
+        SDL_Texture *spriteSheetTexture = spriteSheet->getTexture();
+        const SDL_Rect & spriteRect = spriteSheet->getSprite(spriteProperties.spriteId).getRect();
+
+        SDL_RenderCopyEx(mSDLRenderer,
+                         spriteSheetTexture,
+                         &spriteRect,
+                         &destRect,
+                         spriteProperties.angle,
+                         center,
+                         spriteProperties.sdlRendererFlip);
+    }
 }

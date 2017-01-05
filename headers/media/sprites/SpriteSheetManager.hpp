@@ -14,7 +14,7 @@ static SpriteSheetManager& Instance()
 bool configure(const EnvironmentMediaPropertiesImpl &environmentMediaPropertiesImpl,
                const SpriteSheetPropertiesImpl &spriteSheetPropertiesImpl);
 
-const SpriteSheet & getSpriteSheet(const std::string & spriteSheetId);
+SpriteSheet * getSpriteSheet(const std::string & spriteSheetId);
 
 protected:
 

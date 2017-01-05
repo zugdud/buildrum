@@ -24,9 +24,17 @@ bool SpriteSheetManager::configure(const EnvironmentMediaPropertiesImpl &environ
     return success;
 }
 
-const SpriteSheet & SpriteSheetManager::getSpriteSheet(const std::string & spriteSheetId)
+SpriteSheet * SpriteSheetManager::getSpriteSheet(const std::string & spriteSheetId)
 {
-    return *mSpriteSheets[spriteSheetId];
+    if (mSpriteSheets.count(spriteSheetId) == 1)
+    {
+        return mSpriteSheets[spriteSheetId];
+    }
+    else
+    {
+        SDL_Log("SpriteSheetManager::getSpriteSheet -- ERROR spriteSheetId not found: %s  \n", spriteSheetId.c_str());
+        return NULL;
+    }
 }
 
 bool SpriteSheetManager::loadSpriteSheets()
