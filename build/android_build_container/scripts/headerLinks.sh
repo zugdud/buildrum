@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ROOT_DIR=/opt/sdl_android/SDL2-2.0.4/android-project/jni/src
-INCLUDE_DIR=/tmp/include/
+INCLUDE_DIR=/opt/include/
 
+rm -rf $INCLUDE_DIR
 mkdir -p $INCLUDE_DIR
 cd $INCLUDE_DIR
 
@@ -16,6 +17,7 @@ addLink()
   done
 }
 
+addLink config
 addLink config/constants/actors
 addLink config/constants/media/environment
 addLink config/constants/entities

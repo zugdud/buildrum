@@ -43,7 +43,7 @@ ACTORS_DIR=actors
 # includes
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 /usr/include/SDL2/ \
-/tmp/include/
+/opt/include/
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
