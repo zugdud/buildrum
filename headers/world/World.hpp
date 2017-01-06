@@ -26,7 +26,7 @@ const std::string & getId();
 void attachInput();
 void detatchInput();
 
-void setPath(const std::string & tileId,
+void setPath(const int & tileId,
              const std::string & aiStrategy,
              const int & destTileId);
 

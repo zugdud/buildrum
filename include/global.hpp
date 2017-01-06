@@ -1,4 +1,4 @@
-#define LINUX_BUILD_TARGET
+#define ANDROID_BUILD_TARGET
 
 #include <iostream>
 #include <fstream>

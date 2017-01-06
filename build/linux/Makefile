@@ -12,51 +12,6 @@ CC = g++
 CFLAGS = -Wall -g
 
 CURRENTDIR=`pwd`
-# define any directories containing header files other than /usr/include
-#
-INCLUDES =-I/usr/include/SDL2/ \
--I/home/jcreecy/code/buildrum/ \
--I $(HEADER_DIR)/$(CONFIG_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_ACTORS_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MEDIA_ENVIRONMENT_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_ENTITIES_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MEDIA_FONTS_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MEDIA_AUDIO_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MEDIA_SPRITES_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_WINDOW_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MENUS_DIR) \
--I $(HEADER_DIR)/$(CONSTANTS_MENUS_IMPL_DIR) \
--I $(HEADER_DIR)/$(WINDOW_DIR) \
--I $(HEADER_DIR)/$(EVENTS_DIR) \
--I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
--I $(HEADER_DIR)/$(CORE_DIR) \
--I $(HEADER_DIR)/$(CORE_SCENES_DIR) \
--I $(HEADER_DIR)/$(INPUT_DIR) \
--I $(HEADER_DIR)/$(UI_DIR) \
--I $(HEADER_DIR)/$(UI_ELEMENTS) \
--I $(HEADER_DIR)/$(RENDERERS_DIR) \
--I $(HEADER_DIR)/$(MEDIA_FONTS_DIR) \
--I $(HEADER_DIR)/$(MEDIA_AUDIO_DIR) \
--I $(HEADER_DIR)/$(MEDIA_SPRITES_DIR) \
--I $(HEADER_DIR)/$(WORLD_ENTITIES_DIR) \
--I $(HEADER_DIR)/$(WORLD_GENERATOR_IMPL_DIR) \
--I $(HEADER_DIR)/$(WORLD_GENERATOR_DIR) \
--I $(HEADER_DIR)/$(WORLD_TILE_DIR) \
--I $(HEADER_DIR)/$(WORLD_DIR) \
--I $(HEADER_DIR)/$(ACTORS_DIR) \
--I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
--I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
--I $(HEADER_DIR)/$(TYPES_DIR) \
-
-# define library paths in addition to /usr/lib
-#   if I wanted to include libraries not in /usr/lib I'd specify
-#   their path using -Lpath, something like:
-LFLAGS =
-
-# define any libraries to link into executable:
-#   if I want to link in libraries (libx.so or libx.a) I use the -llibname
-#   option, something like (this will link in libmylib.so and libm.so:
-LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 HEADER_DIR=headers
 SRC_DIR=src
@@ -88,8 +43,57 @@ WORLD_GENERATOR_IMPL_DIR=world/generator/impl
 WORLD_GENERATOR_DIR=world/generator
 WORLD_TILE_DIR=world/tile
 WORLD_DIR=world
+AI_DIR=AI
 TYPES_DIR=types
 ACTORS_DIR=actors
+
+
+# define any directories containing header files other than /usr/include
+#
+INCLUDES =-I/usr/include/SDL2/ \
+-I/home/jcreecy/code/buildrum/ \
+-I $(HEADER_DIR)/$(CONFIG_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_ACTORS_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MEDIA_ENVIRONMENT_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_ENTITIES_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MEDIA_FONTS_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MEDIA_AUDIO_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MEDIA_SPRITES_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_WINDOW_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MENUS_DIR) \
+-I $(HEADER_DIR)/$(CONSTANTS_MENUS_IMPL_DIR) \
+-I $(HEADER_DIR)/$(WINDOW_DIR) \
+-I $(HEADER_DIR)/$(EVENTS_DIR) \
+-I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+-I $(HEADER_DIR)/$(CORE_DIR) \
+-I $(HEADER_DIR)/$(CORE_SCENES_DIR) \
+-I $(HEADER_DIR)/$(INPUT_DIR) \
+-I $(HEADER_DIR)/$(UI_DIR) \
+-I $(HEADER_DIR)/$(UI_ELEMENTS) \
+-I $(HEADER_DIR)/$(RENDERERS_DIR) \
+-I $(HEADER_DIR)/$(MEDIA_FONTS_DIR) \
+-I $(HEADER_DIR)/$(MEDIA_AUDIO_DIR) \
+-I $(HEADER_DIR)/$(MEDIA_SPRITES_DIR) \
+-I $(HEADER_DIR)/$(WORLD_ENTITIES_DIR) \
+-I $(HEADER_DIR)/$(WORLD_GENERATOR_IMPL_DIR) \
+-I $(HEADER_DIR)/$(WORLD_GENERATOR_DIR) \
+-I $(HEADER_DIR)/$(WORLD_TILE_DIR) \
+-I $(HEADER_DIR)/$(WORLD_DIR) \
+-I $(HEADER_DIR)/$(AI_DIR) \
+-I $(HEADER_DIR)/$(ACTORS_DIR) \
+-I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+-I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
+-I $(HEADER_DIR)/$(TYPES_DIR) \
+
+# define library paths in addition to /usr/lib
+#   if I wanted to include libraries not in /usr/lib I'd specify
+#   their path using -Lpath, something like:
+LFLAGS =
+
+# define any libraries to link into executable:
+#   if I want to link in libraries (libx.so or libx.a) I use the -llibname
+#   option, something like (this will link in libmylib.so and libm.so:
+LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # define the C source files
 SRCS = main.cpp \

@@ -1,0 +1,1 @@
+/opt/sdl_android/SDL2-2.0.4/android-project/jni/src/headers/config/ConfigManager.hpp
