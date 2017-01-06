@@ -45,6 +45,7 @@ WORLD_GENERATOR_IMPL_DIR=world/generator/impl
 WORLD_GENERATOR_DIR=world/generator
 WORLD_TILE_DIR=world/tile
 WORLD_DIR=world
+AI_DIR=AI
 TYPES_DIR=types
 ACTORS_DIR=actors
 
@@ -82,6 +83,7 @@ INCLUDES =-I/usr/include/SDL2/ \
  -I $(HEADER_DIR)/$(WORLD_GENERATOR_DIR) \
  -I $(HEADER_DIR)/$(WORLD_TILE_DIR) \
  -I $(HEADER_DIR)/$(WORLD_DIR) \
+ -I $(HEADER_DIR)/$(AI_DIR) \
  -I $(HEADER_DIR)/$(ACTORS_DIR) \
  -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
  -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
@@ -137,6 +139,7 @@ $(SRC_DIR)/$(UI_ELEMENTS)/UILabel.cpp \
 $(SRC_DIR)/$(UI_ELEMENTS)/UIGridCell.cpp \
 $(SRC_DIR)/$(UI_ELEMENTS)/UIMenu.cpp \
 $(SRC_DIR)/$(UI_DIR)/MenuManager.cpp \
+$(SRC_DIR)/$(RENDERERS_DIR)/BaseRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/MenuRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/WorldRenderer.cpp \
 $(SRC_DIR)/$(RENDERERS_DIR)/MinimapRenderer.cpp \
@@ -156,6 +159,7 @@ $(SRC_DIR)/$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/Tile.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/World.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/WorldManager.cpp \
+$(SRC_DIR)/$(AI_DIR)/PathFinding.cpp \
 $(SRC_DIR)/$(ACTORS_DIR)/Player.cpp
 
 # define the C object files

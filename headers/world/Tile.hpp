@@ -22,6 +22,8 @@ const TextLabel & getTextLabel() const;
 
 const bool & isViewableArea() const;
 
+void setPath(const std::string & aiStrategy, const int & destTileId);
+
 private:
 
 SDL_Rect mRect;
@@ -32,4 +34,6 @@ Surface mSurface;
 
 TextLabel mTextLabel;
 bool mViewableArea;
+
+std::map<std::string, int> mPaths;
 };

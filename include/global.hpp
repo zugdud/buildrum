@@ -27,6 +27,7 @@
 #include <ui_properties.hpp>
 #include <window_properties.hpp>
 #include <world_properties.hpp>
+#include <WeightedQueue.hpp>
 
 #include <IEventDispatch.hpp>
 #include <IEventManager.hpp>
@@ -87,6 +88,8 @@
 #include <TestWorldImpl.hpp>
 #include <GenerateWorld.hpp>
 #include <WorldManager.hpp>
+
+#include <Pathfinding.hpp>
 
 #include <BaseRenderer.hpp>
 #include <MenuRenderer.hpp>

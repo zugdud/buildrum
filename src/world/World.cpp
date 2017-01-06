@@ -153,3 +153,11 @@ void World::detatchInput()
     SDL_Log("World::detatchInput -- removing world from input manager \n");
     InputEventManager::getInstance()->removePointEventObserver(mWorldProperties.worldId);
 }
+
+void World::setPath(const std::string & tileId,
+                    const std::string & aiStrategy,
+                    const int & destTileId)
+{
+    // SDL_Log("World::setPath -- setting path: [tileId: %s aiStrategy: %s] \n", tileId.c_str(), aiStrategy.c_str());
+    mTiles[tileId].setPath(aiStrategy, orientation);
+}

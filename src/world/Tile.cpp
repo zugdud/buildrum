@@ -104,3 +104,11 @@ void Tile::updateLabel()
     mTextLabel.rect.w = textureSize.w;
     mTextLabel.rect.h = textureSize.h;
 }
+
+
+void Tile::setPath(const std::string & aiStrategy,
+                   const int & destTileId)
+{
+    // SDL_Log("Tile::setPath -- setting path: [tileId: %s aiStrategy: %s] \n", tileId.c_str(), aiStrategy.c_str());
+    mPaths[aiStrategy] = destTileId;
+}
