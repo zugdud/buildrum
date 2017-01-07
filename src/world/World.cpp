@@ -121,6 +121,7 @@ void World::buildObject(const int & tileId)
     }
     else
     {
+
         const BuildableObjectProperties & buildableObjectProperties = Player::Instance().getSelectedBuildableObjectProperties();
 
         BuildableObject buildableObject;

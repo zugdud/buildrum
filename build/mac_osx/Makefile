@@ -159,7 +159,6 @@ $(SRC_DIR)/$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/Tile.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/World.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/WorldManager.cpp \
-$(SRC_DIR)/$(AI_DIR)/PathFinding.cpp \
 $(SRC_DIR)/$(ACTORS_DIR)/Player.cpp
 
 # define the C object files

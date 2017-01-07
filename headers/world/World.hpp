@@ -33,6 +33,7 @@ void setPath(const int & tileId,
 private:
 
 void buildObject(const int & tileId);
+
 WorldProperties mWorldProperties;
 std::vector<Tile> mTiles;
 
