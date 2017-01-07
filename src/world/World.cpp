@@ -86,15 +86,17 @@ const WorldProperties & World::getWorldProperties() const
 void World::pointEventCallback(PointInt pointInt)
 {
     const SDL_Rect & cameraRect = Camera::Instance().getRect();
-    const int worldPosX = pointInt.x + cameraRect.x;
-    const int worldPosY = pointInt.y + cameraRect.y;
+    const double & zoomFactor = Camera::Instance().getZoomFactor();
 
-    const int tileX = worldPosX / mWorldProperties.textureSize;
-    const int tileY = worldPosY / mWorldProperties.textureSize;
+    const int worldPosX = ceil((pointInt.x + cameraRect.x) / zoomFactor);
+    const int worldPosY = ceil((pointInt.y + cameraRect.y) / zoomFactor);
+
+    const int tileX = (worldPosX / mWorldProperties.textureSize);
+    const int tileY = (worldPosY / mWorldProperties.textureSize);
 
     const int tileId = (mWorldProperties.rows * tileY) + tileX;
 
-    SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d \n",
+    SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d zoomFactor: %f\n",
             pointInt.x,
             pointInt.y,
             cameraRect.x,
@@ -103,7 +105,8 @@ void World::pointEventCallback(PointInt pointInt)
             worldPosY,
             tileX,
             tileY,
-            tileId);
+            tileId,
+            zoomFactor);
 
 
     buildObject(tileId);
