@@ -1,4 +1,4 @@
-class World : public CameraObserver, public PointEventObserver
+class World : public CameraObserver, public PointEventObserver, public ITimerObserver
 {
 public:
 
@@ -20,8 +20,8 @@ const std::vector<Tile> & getTiles() const;
 const WorldProperties & getWorldProperties() const;
 
 void pointEventCallback(PointInt pointInt);
-const std::string & getViewportId() const;
-const std::string & getId();
+
+
 
 void attachInput();
 void detatchInput();
@@ -30,9 +30,12 @@ void setPath(const int & tileId,
              const std::string & aiStrategy,
              const int & destTileId);
 
-private:
+const std::string & getViewportId() const;
+const std::string & getId();
 
-void buildObject(const int & tileId);
+void buildTimerComplete(const int & tileId);
+
+private:
 
 WorldProperties mWorldProperties;
 std::vector<Tile> mTiles;

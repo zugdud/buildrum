@@ -94,6 +94,9 @@ void BaseScene::detatchWorld()
             // remove world as observer of input events
             WorldManager::Instance().getWorldPtr()->detatchInput();
 
+            // register world with TimerManager
+            TimerManager::Instance().removeBuildTimerObserver(WorldManager::Instance().getWorld().getWorldProperties().worldId);
+
         }
         else if (viewportProperties.viewportId == mMinimapViewportId)
         {
@@ -144,6 +147,9 @@ void BaseScene::attachWorld()
 
             // attach world to Observer input events
             WorldManager::Instance().getWorldPtr()->attachInput();
+
+            // register world with TimerManager
+            TimerManager::Instance().registerBuildTimerObserver(WorldManager::Instance().getWorldPtr());
         }
         else if (viewportProperties.viewportId == mMinimapViewportId)
         {

@@ -48,6 +48,7 @@ WORLD_DIR=world
 AI_DIR=AI
 TYPES_DIR=types
 ACTORS_DIR=actors
+UTIL_DIR=util
 
 INCLUDES =-I/usr/include/SDL2/ \
  -I /Library/Frameworks/SDL2.framework/Headers \
@@ -88,6 +89,7 @@ INCLUDES =-I/usr/include/SDL2/ \
  -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
  -I $(HEADER_DIR)/$(EVENTS_HANDLERS_DIR) \
  -I $(HEADER_DIR)/$(TYPES_DIR) \
+ -I $(HEADER_DIR)/$(UTIL_DIR) \
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -159,7 +161,9 @@ $(SRC_DIR)/$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/Tile.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/World.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/WorldManager.cpp \
-$(SRC_DIR)/$(ACTORS_DIR)/Player.cpp
+$(SRC_DIR)/$(ACTORS_DIR)/Player.cpp \
+$(SRC_DIR)/$(UTIL_DIR)/Timer.cpp \
+$(SRC_DIR)/$(UTIL_DIR)/TimerManager.cpp
 
 # define the C object files
 #

@@ -10,7 +10,10 @@ static TimerManager& Instance()
 }
 
 void registerBuildTimerObserver(ITimerObserver *buildTimerObserver);
+void removeBuildTimerObserver(const std::string & id);
+
 void checkTimers();
+void startBuildTimer(const int & tileId);
 
 protected:
 
@@ -21,8 +24,14 @@ TimerManager& operator=(const TimerManager&);
 
 private:
 
+void notifyBuildTimerObservers();
+
 Timer mBuildTimer;
-std::vector<ITimerObserver *> mTimerObservers;
+int mBuildTileId;
+
+int mBuildTimerDuration;
+
+std::vector<ITimerObserver *> mBuildTimerObservers;
 
 
 };

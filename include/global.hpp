@@ -80,6 +80,10 @@
 #include <Window.hpp>
 #include <WindowManager.hpp>
 
+#include <ITimerObserver.hpp>
+#include <Timer.hpp>
+#include <TimerManager.hpp>
+
 #include <Entity.hpp>
 #include <Surface.hpp>
 #include <BuildableObject.hpp>

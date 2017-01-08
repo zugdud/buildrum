@@ -109,31 +109,7 @@ void World::pointEventCallback(PointInt pointInt)
             zoomFactor);
 
 
-    buildObject(tileId);
-}
-
-void World::buildObject(const int & tileId)
-{
-    if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
-    {
-        SDL_Log("World::buildObject -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
-
-    }
-    else
-    {
-
-        const BuildableObjectProperties & buildableObjectProperties = Player::Instance().getSelectedBuildableObjectProperties();
-
-        BuildableObject buildableObject;
-
-        buildableObject.configure(buildableObjectProperties);
-
-        Tile tile = mTiles[tileId];
-
-        tile.setBuildableObject(buildableObject);
-
-        mTiles[tileId] = tile;
-    }
+    TimerManager::Instance().startBuildTimer(tileId);
 }
 
 const std::string & World::getViewportId() const
@@ -164,4 +140,30 @@ void World::setPath(const int & tileId,
 {
     // SDL_Log("World::setPath -- setting path: [tileId: %s aiStrategy: %s] \n", tileId.c_str(), aiStrategy.c_str());
     mTiles[tileId].setPath(aiStrategy, destTileId);
+}
+
+void World::buildTimerComplete(const int & tileId)
+{
+    SDL_Log("World::buildTimerComplete -- tileId: %d \n", tileId);
+
+    if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
+    {
+        SDL_Log("World::buildObject -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
+
+    }
+    else
+    {
+
+        const BuildableObjectProperties & buildableObjectProperties = Player::Instance().getSelectedBuildableObjectProperties();
+
+        BuildableObject buildableObject;
+
+        buildableObject.configure(buildableObjectProperties);
+
+        Tile tile = mTiles[tileId];
+
+        tile.setBuildableObject(buildableObject);
+
+        mTiles[tileId] = tile;
+    }
 }
