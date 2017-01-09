@@ -15,13 +15,16 @@ const bool & isAttached();
 
 private:
 
-void renderActionBar(const Tile & tile, const int & tileId);
 void viewportBackground();
 
+void cycleColor(unsigned char & color, const int & step);
+void highlightTileBorder(const Tile & tile);
+void renderActionBar(const Tile & tile);
+
 void renderText(const Tile & tile);
-void drawTile(const Tile & tile);
 void renderLayers(const Tile & tile);
 
 bool mAttached;
+SDL_Color mBorderColor;
 
 };

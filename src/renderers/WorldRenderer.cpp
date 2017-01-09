@@ -3,6 +3,10 @@
 WorldRenderer::WorldRenderer()
 {
     mAttached = false;
+    mBorderColor.r = 0;
+    mBorderColor.g = 0;
+    mBorderColor.b = 0;
+    mBorderColor.a = 255;
 }
 
 WorldRenderer::~WorldRenderer()
@@ -33,14 +37,31 @@ void WorldRenderer::renderWorld()
     {
         const std::vector<Tile> & tiles = WorldManager::Instance().getWorld().getTiles();
         viewportBackground();
+
+        // sprites
         for (size_t tileId = 0; tileId < tiles.size(); tileId++)
         {
             if (tiles[tileId].isViewableArea())
             {
-                // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);
-                renderActionBar(tiles[tileId], (int) tileId);
+                if (TimerManager::Instance().isBuilding() &&
+                    TimerManager::Instance().getBuildTileId() == tileId)
+                {
+                    renderActionBar(tiles[tileId]);
+                    highlightTileBorder(tiles[tileId]);
+                }
                 // renderText(tiles[tileId]);
+            }
+        }
+
+        // Overlays
+        for (size_t tileId = 0; tileId < tiles.size(); tileId++)
+        {
+            if (TimerManager::Instance().isBuilding() &&
+                TimerManager::Instance().getBuildTileId() == tileId)
+            {
+                renderActionBar(tiles[tileId]);
+                highlightTileBorder(tiles[tileId]);
             }
         }
 
@@ -49,35 +70,27 @@ void WorldRenderer::renderWorld()
     }
 }
 
-void WorldRenderer::renderActionBar(const Tile & tile, const int & tileId)
+void WorldRenderer::renderActionBar(const Tile & tile)
 {
+    const SDL_Rect & tileRect = tile.getRect();
+    int hbX = tileRect.x;
+    int hbY = tileRect.y;
+    int hbW = tileRect.w;
+    int hbH = tileRect.h * 0.20;
 
-    if (TimerManager::Instance().isBuilding())
-    {
-        // SDL_Log("getBuildTileId: %d i: %u icast: %d \n", TimerManager::Instance().getBuildTileId(), i, (int) i);
-        if (TimerManager::Instance().getBuildTileId() == tileId)
-        {
-            const SDL_Rect & tileRect = tile.getRect();
-            int hbX = tileRect.x;
-            int hbY = tileRect.y;
-            int hbW = tileRect.w;
-            int hbH = tileRect.h * 0.20;
+    int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
 
-            int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
+    // x,y,w,h
+    SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
+    SDL_Rect outlineRect = { hbX, hbY, hbW, hbH };
 
-            // x,y,w,h
-            SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
-            SDL_Rect outlineRect = { hbX, hbY, hbW, hbH };
+    // fill
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
+    SDL_RenderFillRect(mSDLRenderer, &fillRect);
 
-            // fill
-            SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
-            SDL_RenderFillRect(mSDLRenderer, &fillRect);
-
-            // outline
-            SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
-            SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
-        }
-    }
+    // outline
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
+    SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
 
 }
 
@@ -96,28 +109,30 @@ void WorldRenderer::renderText(const Tile & tile)
     SDL_RenderCopy(mSDLRenderer, labelTexture, NULL, &destRect);
 }
 
-void WorldRenderer::drawTile(const Tile & tile)
+
+void WorldRenderer::cycleColor(unsigned char & color, const int & step)
+{
+    color += step;
+    if (color > 255)
+    {
+        color = 0;
+    }
+}
+
+void WorldRenderer::highlightTileBorder(const Tile & tile)
 {
     const SDL_Rect & tileRect = tile.getRect();
-    const TileProperties & tileProperties = tile.getTileProperties();
 
-    if (tileProperties.fillBackground == true)
-    {
-        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.backgroundColor.r,
-                               tileProperties.backgroundColor.g,
-                               tileProperties.backgroundColor.b,
-                               tileProperties.backgroundColor.a);
-        SDL_RenderFillRect(mSDLRenderer, &tileRect);
-    }
+    cycleColor(mBorderColor.r, 1);
+    cycleColor(mBorderColor.g, 2);
+    cycleColor(mBorderColor.b, 3);
+    SDL_SetRenderDrawColor(mSDLRenderer,
+                           mBorderColor.r,
+                           mBorderColor.g,
+                           mBorderColor.b,
+                           mBorderColor.a);
+    SDL_RenderDrawRect(mSDLRenderer, &tileRect);
 
-    if (tileProperties.drawBorder == true)
-    {
-        SDL_SetRenderDrawColor(mSDLRenderer, tileProperties.borderColor.r,
-                               tileProperties.borderColor.g,
-                               tileProperties.borderColor.b,
-                               tileProperties.borderColor.a);
-        SDL_RenderDrawRect(mSDLRenderer, &tileRect);
-    }
 }
 
 void WorldRenderer::renderLayers(const Tile & tile)
