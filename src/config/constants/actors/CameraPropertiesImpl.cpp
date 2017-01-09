@@ -35,7 +35,7 @@ void CameraPropertiesImpl::setCameraProperties()
     // };
 
     #ifdef LINUX_BUILD_TARGET
-    CameraProperties linuxCameraProperties = { 1, 4.0, 1.0, 0, 0, 1280, 960 };
+    CameraProperties linuxCameraProperties = { 1, 8.0, 1.0, 0, 0, 1280, 960 };
     mCameraProperties = linuxCameraProperties;
     #endif
 

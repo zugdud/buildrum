@@ -60,6 +60,11 @@ const bool & TimerManager::isBuilding()
     return mBuildTimer.isRunning();
 }
 
+const int & TimerManager::getBuildTileId()
+{
+    return mBuildTileId;
+}
+
 void TimerManager::checkTimers()
 {
     if (mBuildTimer.isRunning())

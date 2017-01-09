@@ -100,7 +100,7 @@ MusicPlayerState AudioManager::getMusicPlayerState()
 void AudioManager::playMusic()
 {
     SDL_Log("AudioManager::playMusic -- mSelectedMusicTrackId: %s \n", mSelectedMusicTrackId.c_str());
-    // Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], 0);
+    Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], 0);
 }
 
 void AudioManager::stopMusic()

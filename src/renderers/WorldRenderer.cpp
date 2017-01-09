@@ -39,39 +39,46 @@ void WorldRenderer::renderWorld()
             {
                 // drawTile(tiles[tileId]);
                 renderLayers(tiles[tileId]);
+                renderActionBar(tiles[tileId], (int) tileId);
                 // renderText(tiles[tileId]);
             }
         }
 
         // TODO move
         TimerManager::Instance().checkTimers();
-        if (TimerManager::Instance().isBuilding())
-        {
-            renderActionBar();
-        }
     }
 }
 
-void WorldRenderer::renderActionBar()
+void WorldRenderer::renderActionBar(const Tile & tile, const int & tileId)
 {
-    int hbX = 40;
-    int hbY = 40;
-    int hbW = 400;
-    int hbH = 40;
 
-    int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
+    if (TimerManager::Instance().isBuilding())
+    {
+        // SDL_Log("getBuildTileId: %d i: %u icast: %d \n", TimerManager::Instance().getBuildTileId(), i, (int) i);
+        if (TimerManager::Instance().getBuildTileId() == tileId)
+        {
+            const SDL_Rect & tileRect = tile.getRect();
+            int hbX = tileRect.x;
+            int hbY = tileRect.y;
+            int hbW = tileRect.w;
+            int hbH = tileRect.h * 0.20;
 
-    // x,y,w,h
-    SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
-    SDL_Rect outlineRect = { hbX, hbY, hbW, hbH };
+            int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
 
-    // fill
-    SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
-    SDL_RenderFillRect(mSDLRenderer, &fillRect);
+            // x,y,w,h
+            SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
+            SDL_Rect outlineRect = { hbX, hbY, hbW, hbH };
 
-    // outline
-    SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
-    SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
+            // fill
+            SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
+            SDL_RenderFillRect(mSDLRenderer, &fillRect);
+
+            // outline
+            SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
+            SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
+        }
+    }
+
 }
 
 // TODO

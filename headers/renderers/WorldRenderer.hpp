@@ -15,7 +15,7 @@ const bool & isAttached();
 
 private:
 
-void renderActionBar();
+void renderActionBar(const Tile & tile, const int & tileId);
 void viewportBackground();
 
 void renderText(const Tile & tile);
