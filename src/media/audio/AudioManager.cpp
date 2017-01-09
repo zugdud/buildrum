@@ -56,6 +56,15 @@ bool AudioManager::init()
     return initSuccess;
 }
 
+void AudioManager::playStaticChannelSound(int channelId, std::string soundEffectId)
+{
+    Mix_PlayChannel(channelId, mSoundEffectMap[soundEffectId], 0);
+}
+
+void AudioManager::stopStaticChannelSound(int channelId)
+{
+    Mix_HaltChannel(channelId);
+}
 
 void AudioManager::playSound(std::string soundEffectId)
 {
@@ -91,7 +100,7 @@ MusicPlayerState AudioManager::getMusicPlayerState()
 void AudioManager::playMusic()
 {
     SDL_Log("AudioManager::playMusic -- mSelectedMusicTrackId: %s \n", mSelectedMusicTrackId.c_str());
-    Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], 0);
+    // Mix_PlayMusic(mMusicTrackMap[mSelectedMusicTrackId], 0);
 }
 
 void AudioManager::stopMusic()

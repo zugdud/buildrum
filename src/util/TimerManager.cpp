@@ -38,12 +38,13 @@ void TimerManager::notifyBuildTimerObservers()
 
 void TimerManager::stopBuildTimer()
 {
+    AudioManager::Instance().stopStaticChannelSound(2);
     mBuildTimer.stop();
 }
 
 void TimerManager::startBuildTimer(const int & tileId)
 {
-    AudioManager::Instance().playSound("building_1");
+    AudioManager::Instance().playStaticChannelSound(2, "building_1");
     mBuildTileId = tileId;
     SDL_Log("TimerManager::startBuildTimer -- mBuildTileId: %d \n", mBuildTileId);
     mBuildTimer.start(mBuildTimerDuration);
@@ -65,6 +66,7 @@ void TimerManager::checkTimers()
     {
         if (mBuildTimer.isDone())
         {
+            AudioManager::Instance().stopStaticChannelSound(2);
             AudioManager::Instance().playSound("build_complete_1");
             notifyBuildTimerObservers();
         }

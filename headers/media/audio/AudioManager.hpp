@@ -29,6 +29,9 @@ void pauseMusic();
 void resumeMusic();
 MusicPlayerState getMusicPlayerState();
 
+void playStaticChannelSound(int channelId, std::string soundEffectId);
+void stopStaticChannelSound(int channelId);
+
 protected:
 
 AudioManager();
