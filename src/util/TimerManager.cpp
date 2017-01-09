@@ -3,7 +3,7 @@
 TimerManager::TimerManager()
 {
     mBuildTileId = 0;
-    mBuildTimerDuration = 5000;
+    mBuildTimerDuration = 2000;
 }
 TimerManager::~TimerManager()
 {
@@ -36,11 +36,27 @@ void TimerManager::notifyBuildTimerObservers()
     }
 }
 
+void TimerManager::stopBuildTimer()
+{
+    mBuildTimer.stop();
+}
+
 void TimerManager::startBuildTimer(const int & tileId)
 {
+    AudioManager::Instance().playSound("building_1");
     mBuildTileId = tileId;
     SDL_Log("TimerManager::startBuildTimer -- mBuildTileId: %d \n", mBuildTileId);
     mBuildTimer.start(mBuildTimerDuration);
+}
+
+double TimerManager::getBuildTimerPercent()
+{
+    return mBuildTimer.getTimerPercent();
+}
+
+const bool & TimerManager::isBuilding()
+{
+    return mBuildTimer.isRunning();
 }
 
 void TimerManager::checkTimers()
@@ -49,6 +65,7 @@ void TimerManager::checkTimers()
     {
         if (mBuildTimer.isDone())
         {
+            AudioManager::Instance().playSound("build_complete_1");
             notifyBuildTimerObservers();
         }
     }

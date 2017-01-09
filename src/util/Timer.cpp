@@ -19,9 +19,28 @@ void Timer::start(const int & durationMs)
     mRunning = true;
 }
 
+void Timer::stop()
+{
+    mRunning = false;
+}
+
 const bool & Timer::isRunning()
 {
     return mRunning;
+}
+
+double Timer::getTimerPercent()
+{
+    if (mDuration > 0)
+    {
+        const double remaining = SDL_GetTicks() - mStartTime;
+        double percent = ((double) mDuration - remaining) / (double) mDuration;
+        return percent;
+    }
+    else
+    {
+        return 0.0;
+    }
 }
 
 bool Timer::isDone()

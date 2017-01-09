@@ -80,9 +80,6 @@ void Viewport::renderUpdate() const
 {
     setRenderedViewport();
 
-    // TODO move
-    TimerManager::Instance().checkTimers();
-
     if (mWorldRenderer != NULL)
     {
         mWorldRenderer->renderWorld();

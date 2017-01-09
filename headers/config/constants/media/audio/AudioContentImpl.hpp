@@ -13,6 +13,7 @@ const AudioPlayerProperties & getAudioPlayerProperties();
 
 private:
 
+void addSoundEffect(const std::string & fileName);
 void setSoundEffects();
 void setMusicTracks();
 

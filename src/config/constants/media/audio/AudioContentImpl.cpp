@@ -42,24 +42,25 @@ const std::vector<MusicTrackProperties> & AudioContentImpl::getMusicTracks()
 
 void AudioContentImpl::setSoundEffects()
 {
-    SoundEffectProperties effect1;
-    SoundEffectProperties effect2;
-    SoundEffectProperties effect3;
-
-    effect1.soundEffectId = "pop_1";
-    effect1.fileName = "pop_1.wav";
-
-    effect2.soundEffectId = "punch_1";
-    effect2.fileName = "punch_1.wav";
-
-    effect3.soundEffectId = "woosh_1";
-    effect3.fileName = "woosh_1.wav";
-
-    mSoundEffects.push_back(effect1);
-    mSoundEffects.push_back(effect2);
-    mSoundEffects.push_back(effect3);
-
+    addSoundEffect("pop_1.wav");
+    addSoundEffect("punch_1.wav");
+    addSoundEffect("woosh_1.wav");
+    addSoundEffect("building_1.wav");
+    addSoundEffect("build_complete_1.wav");
 }
+
+void AudioContentImpl::addSoundEffect(const std::string & fileName)
+{
+    // trim .wav for the id string
+    const std::string soundEffectId = fileName.substr(0, fileName.length() - 4);
+
+    SoundEffectProperties effect;
+
+    effect.soundEffectId = soundEffectId;
+    effect.fileName = fileName;
+    mSoundEffects.push_back(effect);
+}
+
 void AudioContentImpl::setMusicTracks()
 {
     MusicTrackProperties track1;

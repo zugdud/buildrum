@@ -63,9 +63,9 @@ void InputEventManager::update()
         switch ( sdlEvent.type )
         {
             case SDL_FINGERDOWN: dispatchPointEvent(sdlEvent); break;
-            case SDL_FINGERUP: SDL_Log("finger up \n"); break;
+            case SDL_FINGERUP: TimerManager::Instance().stopBuildTimer(); break;
             case SDL_MOUSEBUTTONDOWN: dispatchPointEvent(sdlEvent); break;
-            case SDL_MOUSEBUTTONUP: SDL_Log("finger up \n"); break;
+            case SDL_MOUSEBUTTONUP: TimerManager::Instance().stopBuildTimer(); break;
             case SDL_MULTIGESTURE: handleMultiTouch(sdlEvent); break;
             case SDL_KEYDOWN:     handleKeyEvents(sdlEvent); break;
             case SDL_FINGERMOTION:     handleFingerMotion(sdlEvent); break;

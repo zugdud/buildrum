@@ -10,6 +10,8 @@ void start(const int & durationMs);
 
 const bool & isRunning();
 bool isDone();
+double getTimerPercent();
+void stop();
 
 private:
 

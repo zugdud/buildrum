@@ -15,6 +15,10 @@ void removeBuildTimerObserver(const std::string & id);
 void checkTimers();
 void startBuildTimer(const int & tileId);
 
+const bool & isBuilding();
+double getBuildTimerPercent();
+void stopBuildTimer();
+
 protected:
 
 TimerManager();

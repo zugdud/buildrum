@@ -42,16 +42,43 @@ void WorldRenderer::renderWorld()
                 // renderText(tiles[tileId]);
             }
         }
+
+        // TODO move
+        TimerManager::Instance().checkTimers();
+        if (TimerManager::Instance().isBuilding())
+        {
+            renderActionBar();
+        }
     }
+}
+
+void WorldRenderer::renderActionBar()
+{
+    int hbX = 40;
+    int hbY = 40;
+    int hbW = 400;
+    int hbH = 40;
+
+    int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
+
+    // x,y,w,h
+    SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
+    SDL_Rect outlineRect = { hbX, hbY, hbW, hbH };
+
+    // fill
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
+    SDL_RenderFillRect(mSDLRenderer, &fillRect);
+
+    // outline
+    SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
+    SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
 }
 
 // TODO
 void WorldRenderer::viewportBackground()
 {
-    SDL_Rect bgRect = { 0, 0, 2000, 2000 };
-
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 255, 0, 255);
-    SDL_RenderFillRect(mSDLRenderer, &bgRect);
+    SDL_RenderFillRect(mSDLRenderer, &Camera::Instance().getRect());
 }
 
 void WorldRenderer::renderText(const Tile & tile)
