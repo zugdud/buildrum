@@ -47,3 +47,4 @@ addLink world
 addLink AI
 addLink types
 addLink actors
+addLink util

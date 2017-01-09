@@ -39,6 +39,7 @@ WORLD_DIR=world
 AI_DIR=AI
 TYPES_DIR=types
 ACTORS_DIR=actors
+UTIL_DIR=util
 
 # includes
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
@@ -106,7 +107,9 @@ $(SRC_DIR)/$(WORLD_GENERATOR_DIR)/GenerateWorld.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/Tile.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/World.cpp \
 $(SRC_DIR)/$(WORLD_DIR)/WorldManager.cpp \
-$(SRC_DIR)/$(ACTORS_DIR)/Player.cpp
+$(SRC_DIR)/$(ACTORS_DIR)/Player.cpp \
+$(SRC_DIR)/$(UTIL_DIR)/Timer.cpp \
+$(SRC_DIR)/$(UTIL_DIR)/TimerManager.cpp
 
 LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer SDL2_ttf
 
