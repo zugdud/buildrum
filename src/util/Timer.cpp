@@ -12,7 +12,7 @@ Timer::~Timer()
 
 }
 
-void Timer::start(const uint32_t & durationMs)
+void Timer::start(const int & durationMs)
 {
     mStartTime = SDL_GetTicks();
     mDuration = durationMs;
@@ -27,7 +27,7 @@ const bool & Timer::isRunning()
 bool Timer::isDone()
 {
     const uint32_t currentTime = SDL_GetTicks();
-    const int remaining =  currentTime - mStartTime;
+    const int remaining = currentTime - mStartTime;
 
     // SDL_Log("Timer::isDone -- mStartTime: %u currentTime: %u mDuration: %u remaining: %d \n",
     //         mStartTime,
