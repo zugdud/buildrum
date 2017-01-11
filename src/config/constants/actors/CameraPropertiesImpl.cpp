@@ -40,12 +40,12 @@ void CameraPropertiesImpl::setCameraProperties()
     #endif
 
     #ifdef MAC_BUILD_TARGET
-    CameraProperties macCameraProperties = { 1, 4.0, 1.0, 0, 0, 1024, 768 };
+    CameraProperties macCameraProperties = { 1, 8.0, 1.0, 0, 0, 1024, 768 };
     mCameraProperties = macCameraProperties;
     #endif
 
     #ifdef ANDROID_BUILD_TARGET
-    CameraProperties androidCameraProperties = { 2, 3.0, 1.0, 0, 0, 1440, 2560 };
+    CameraProperties androidCameraProperties = { 3, 8.0, 3.0, 0, 0, 1440, 2560 };
     mCameraProperties = androidCameraProperties;
     #endif
 

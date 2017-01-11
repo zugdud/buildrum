@@ -39,7 +39,7 @@ void WorldRenderer::renderWorld()
         viewportBackground();
 
         // sprites
-        for (size_t tileId = 0; tileId < tiles.size(); tileId++)
+        for (int tileId = 0; tileId < (int) tiles.size(); tileId++)
         {
             if (tiles[tileId].isViewableArea())
             {
@@ -55,7 +55,7 @@ void WorldRenderer::renderWorld()
         }
 
         // Overlays
-        for (size_t tileId = 0; tileId < tiles.size(); tileId++)
+        for (int tileId = 0; tileId < (int) tiles.size(); tileId++)
         {
             if (TimerManager::Instance().isBuilding() &&
                 TimerManager::Instance().getBuildTileId() == tileId)
@@ -72,13 +72,18 @@ void WorldRenderer::renderWorld()
 
 void WorldRenderer::renderActionBar(const Tile & tile)
 {
-    const SDL_Rect & tileRect = tile.getRect();
-    int hbX = tileRect.x;
-    int hbY = tileRect.y;
-    int hbW = tileRect.w;
-    int hbH = tileRect.h * 0.20;
+    const SDL_Rect & cameraRect = Camera::Instance().getRect();
+    const double & zoomFactor = Camera::Instance().getZoomFactor();
+    const int padding = 40;
+    const double heightRatio = 0.20;
 
-    int healthBarFillWidth = hbW * TimerManager::Instance().getBuildTimerPercent();
+    int hbX = padding;
+    int hbY = padding;
+    int hbW = (cameraRect.w * zoomFactor) - (padding * 2);
+    int hbH = (cameraRect.h * zoomFactor) * heightRatio;
+
+    // fill the bar
+    int healthBarFillWidth = hbW * (1.0 - TimerManager::Instance().getBuildTimerPercent());
 
     // x,y,w,h
     SDL_Rect fillRect = { hbX, hbY, healthBarFillWidth, hbH };
@@ -92,6 +97,8 @@ void WorldRenderer::renderActionBar(const Tile & tile)
     SDL_SetRenderDrawColor(mSDLRenderer, 0, 0, 0, 255);
     SDL_RenderDrawRect(mSDLRenderer, &outlineRect);
 
+    // text
+    BaseRenderer::renderString("Building", "Heading_1_OpenSansBold", outlineRect);
 }
 
 // TODO
@@ -131,7 +138,7 @@ void WorldRenderer::highlightTileBorder(const Tile & tile)
                            mBorderColor.g,
                            mBorderColor.b,
                            mBorderColor.a);
-    SDL_RenderDrawRect(mSDLRenderer, &tileRect);
+    SDL_RenderFillRect(mSDLRenderer, &tileRect);
 
 }
 
