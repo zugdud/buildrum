@@ -7,6 +7,7 @@ EventManager::EventManager()
     mEventHandlers["newGame"] = new HandleNewGame("newGame");
     mEventHandlers["mainMenu"] = new HandleMainMenu("mainMenu");
     mEventHandlers["exitGame"] = new HandleExitGame("exitGame");
+    mEventHandlers["moveCamera"] = new HandleMoveCamera("moveCamera");
 
     mEventHandlers["build_banner_1"] = new HandleBuildEvent("build_banner_1");
     mEventHandlers["build_banner_2"] = new HandleBuildEvent("build_banner_2");

@@ -12,6 +12,7 @@ private:
 
 void setCastle_1();
 void setCastle_2();
+void setIcons_1();
 
 SpriteProperties getSpriteProperties(
     const int & spriteId,

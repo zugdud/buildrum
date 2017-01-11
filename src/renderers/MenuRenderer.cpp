@@ -77,14 +77,9 @@ void MenuRenderer::renderLayer(UIMenu *uiMenu)
     renderGridCells(uiMenu);
 }
 
-// SDL_Color backgroundColor;
-// SDL_Color outlineColor;
-// bool showBorderColor;
-// bool showBackgroundColor;
-// SpriteProperties spriteProperties;
-// bool showbackgroundSprite;
 void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect & cellRect)
 {
+    // background fill
     if (uiCd.showBackgroundColor)
     {
         SDL_SetRenderDrawColor(mSDLRenderer,
@@ -95,11 +90,7 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
         SDL_RenderFillRect(mSDLRenderer, &cellRect);
     }
 
-    if (uiCd.showbackgroundSprite)
-    {
-        // TODO backgroundSpriteId, cellRect
-    }
-
+    // background border
     if (uiCd.showBorderColor)
     {
         SDL_SetRenderDrawColor(mSDLRenderer,
@@ -110,6 +101,7 @@ void MenuRenderer::renderCell(const UIRenderCellDetails & uiCd, const SDL_Rect &
         SDL_RenderDrawRect(mSDLRenderer, &cellRect);
     }
 
+    // background sprite
     if (uiCd.showbackgroundSprite)
     {
         renderSprite(ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(uiCd.spriteName), cellRect);

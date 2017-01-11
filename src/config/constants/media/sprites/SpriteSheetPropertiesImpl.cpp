@@ -48,12 +48,12 @@ void SpriteSheetPropertiesImpl::setSpriteSheetProperties()
 
     icons_1.spriteSheetId = "icons_1";
     icons_1.fileName = "icons_1.png";
-    icons_1.rows = 3;
-    icons_1.columns = 4;
-    icons_1.spriteSize = 140;
-    icons_1.spriteCount = 12;
-    icons_1.sheetPixelWidth = 560;
-    icons_1.sheetPixelHeight = 480;
+    icons_1.rows = 1;
+    icons_1.columns = 2;
+    icons_1.spriteSize = 104;
+    icons_1.spriteCount = 2;
+    icons_1.sheetPixelWidth = 208;
+    icons_1.sheetPixelHeight = 104;
     icons_1.colorKey = transparent;
 
     mSpriteSheetProperties.push_back(castle_1);

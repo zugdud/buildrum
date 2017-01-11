@@ -1,3 +1,9 @@
+enum PlayerActionState
+{
+    MOVE_ACTION,
+    BUILD_ACTION
+};
+
 class Player
 {
 
@@ -16,6 +22,9 @@ const BuildableObjectProperties & getSelectedBuildableObjectProperties();
 void setBuildableAction(const std::string & entityId);
 void configure();
 
+const PlayerActionState & getAction();
+void setAction(const PlayerActionState & playerActionState);
+
 protected:
 
 Player();
@@ -25,7 +34,8 @@ Player& operator=(const Player&);
 
 private:
 
-bool mSelected;
+PlayerActionState mPlayerActionState;
+
 int mCredits;
 BuildableObjectProperties mSelectedBuildableActionProperties;
 

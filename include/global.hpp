@@ -1,4 +1,4 @@
-#define ANDROID_BUILD_TARGET
+#define LINUX_BUILD_TARGET
 
 #include <iostream>
 #include <fstream>
@@ -111,6 +111,7 @@
 #include <HandleMainMenu.hpp>
 #include <HandleExitGame.hpp>
 #include <HandleBuildEvent.hpp>
+#include <HandleMoveCamera.hpp>
 #include <EventManager.hpp>
 
 #include <SceneManager.hpp>

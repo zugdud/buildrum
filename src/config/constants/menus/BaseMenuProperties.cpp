@@ -31,9 +31,8 @@ void BaseMenuProperties::setUIButtonStateProperties(const std::string & buttonId
 {
     SDL_Color black = { 0, 0, 0, 255 };
     SDL_Color red = { 255, 0, 0, 255 };
-    SDL_Color green = { 0, 255, 0, 255 };
 
-    UIRenderCellDetails buttonSelectedCD = {  green, red, true, true, spriteName, showBgSprite  };
+    UIRenderCellDetails buttonSelectedCD = {  black, red, true, true, spriteName, showBgSprite  };
     UIButtonStateProperties buttonSelected = { buttonId, "buttonSelected", "buttonSelected", buttonSelectedCD };
 
     UIRenderCellDetails buttonAvailableCD = {  black, red, true, true, spriteName, showBgSprite  };

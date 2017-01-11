@@ -15,6 +15,7 @@ void SpritePropertiesImpl::loadAll()
     SDL_Log("SpritePropertiesImpl::loadAll -- loading configuration ...\n");
     setCastle_1();
     setCastle_2();
+    setIcons_1();
 }
 
 void SpritePropertiesImpl::setCastle_2()
@@ -46,6 +47,11 @@ void SpritePropertiesImpl::setCastle_1()
     mSpriteProperties["crate_4"] = getSpriteProperties(150, "castle_1", SDL_FLIP_NONE, 0);
     mSpriteProperties["crate_5"] = getSpriteProperties(234, "castle_1", SDL_FLIP_NONE, 0);
     mSpriteProperties["barrel_1"] = getSpriteProperties(233, "castle_1", SDL_FLIP_NONE, 0);
+}
+
+void SpritePropertiesImpl::setIcons_1()
+{
+    mSpriteProperties["multiarrows_1"] = getSpriteProperties(1, "icons_1", SDL_FLIP_NONE, 0);
 }
 
 SpriteProperties SpritePropertiesImpl::getSpriteProperties(

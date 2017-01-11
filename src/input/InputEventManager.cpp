@@ -102,13 +102,13 @@ void InputEventManager::handleFingerMotion(const SDL_Event & sdlEvent)
 
 void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
 {
-    // if ( fabs(sdlEvent.mgesture.dDist) > 0.002 )
-    // {
-    int scaleFactor = 4;
-    double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
+    if (Player::Instance().getAction() == MOVE_ACTION)
+    {
+        int scaleFactor = 4;
+        double zoomFactor = sdlEvent.mgesture.dDist * scaleFactor;
 
-    dispatchZoomEvent(zoomFactor);
-    // }
+        dispatchZoomEvent(zoomFactor);
+    }
 }
 
 void InputEventManager::dispatchQuitEvent()
@@ -121,17 +121,23 @@ void InputEventManager::dispatchQuitEvent()
 
 void InputEventManager::dispatchScrollEvent(const PointInt & momentum)
 {
-    for (size_t i = 0; i < mScrollEventObservers.size(); i++)
+    if (Player::Instance().getAction() == MOVE_ACTION)
     {
-        mScrollEventObservers[i]->scrollEventCallback(momentum);
+        for (size_t i = 0; i < mScrollEventObservers.size(); i++)
+        {
+            mScrollEventObservers[i]->scrollEventCallback(momentum);
+        }
     }
 }
 
 void InputEventManager::dispatchZoomEvent(const double & zoomFactor)
 {
-    for (size_t i = 0; i < mZoomEventObservers.size(); i++)
+    if (Player::Instance().getAction() == MOVE_ACTION)
     {
-        mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
+        for (size_t i = 0; i < mZoomEventObservers.size(); i++)
+        {
+            mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
+        }
     }
 }
 

@@ -19,7 +19,7 @@ void Player::configure()
 
     mSelectedBuildableActionProperties = ConfigManager::getInstance()->getBuildableObjectPropertiesImpl().getBuildableObjectProperties(defaultBuildableObjectId);
     mCredits = 100;
-    mSelected = false;
+    mPlayerActionState = MOVE_ACTION;
     mCameraControll = true;
     // TODO Default selected item
 }
@@ -27,6 +27,16 @@ void Player::configure()
 const int & Player::getCredits()
 {
     return mCredits;
+}
+
+void Player::setAction(const PlayerActionState & playerActionState)
+{
+    mPlayerActionState = playerActionState;
+}
+
+const PlayerActionState & Player::getAction()
+{
+    return mPlayerActionState;
 }
 
 const BuildableObjectProperties & Player::getSelectedBuildableObjectProperties()
@@ -38,5 +48,5 @@ void Player::setBuildableAction(const std::string & entityId)
 {
     SDL_Log("Player::setBuildableAction -- entityId: %s \n", entityId.c_str());
     mSelectedBuildableActionProperties = ConfigManager::getInstance()->getBuildableObjectPropertiesImpl().getBuildableObjectProperties(entityId);
-    mSelected = true;
+    mPlayerActionState = BUILD_ACTION;
 }

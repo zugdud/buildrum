@@ -43,11 +43,11 @@ void ActionMenuPropertiesImpl::setUIMenuProperties()
 void ActionMenuPropertiesImpl::setButtonProperties()
 {
     // orderId, buttonId, xPadding, yPadding, actionId, defaultButtonState, isSpacer
-    UIButtonProperties quitGame = { 1, "mainMenu", 20, 20, "mainMenu",  "buttonAvailable", false };
+    UIButtonProperties quitGame = { 1, "moveCamera", 20, 20, "mainMenu",  "buttonAvailable", false };
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("quitGame", "brick_2", false);
-    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "brick_2", false);
+    BaseMenuProperties::setUIButtonStateProperties("moveCamera", "multiarrows_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "multiarrows_1", false);
 
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);
@@ -56,8 +56,8 @@ void ActionMenuPropertiesImpl::setButtonProperties()
 void ActionMenuPropertiesImpl::setUILabelProperties()
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
-    UILabelProperties quitGame = { 0, "Quit Game", "Heading_1_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties buildMenu = { 1, "Build Menu", "Heading_1_OpenSansLight", 20, 20, false, "center" };
+    UILabelProperties quitGame = { 1, "", "Heading_1_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties buildMenu = { 2, "Build Menu", "Heading_1_OpenSansLight", 20, 20, false, "center" };
 
     mUILabelProperties.push_back(quitGame);
     mUILabelProperties.push_back(buildMenu);
