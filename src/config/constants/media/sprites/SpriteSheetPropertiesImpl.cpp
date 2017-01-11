@@ -44,8 +44,21 @@ void SpriteSheetPropertiesImpl::setSpriteSheetProperties()
     castle_2.sheetPixelHeight = 512;
     castle_2.colorKey = transparent;
 
+    SpriteSheetProperties icons_1;
+
+    icons_1.spriteSheetId = "icons_1";
+    icons_1.fileName = "icons_1.png";
+    icons_1.rows = 3;
+    icons_1.columns = 4;
+    icons_1.spriteSize = 140;
+    icons_1.spriteCount = 12;
+    icons_1.sheetPixelWidth = 560;
+    icons_1.sheetPixelHeight = 480;
+    icons_1.colorKey = transparent;
+
     mSpriteSheetProperties.push_back(castle_1);
     mSpriteSheetProperties.push_back(castle_2);
+    mSpriteSheetProperties.push_back(icons_1);
 }
 
 const std::vector<SpriteSheetProperties> & SpriteSheetPropertiesImpl::getSpriteSheetProperties()

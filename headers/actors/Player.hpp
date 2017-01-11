@@ -29,4 +29,6 @@ bool mSelected;
 int mCredits;
 BuildableObjectProperties mSelectedBuildableActionProperties;
 
+bool mCameraControll;
+
 };

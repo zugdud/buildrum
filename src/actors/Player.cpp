@@ -20,6 +20,7 @@ void Player::configure()
     mSelectedBuildableActionProperties = ConfigManager::getInstance()->getBuildableObjectPropertiesImpl().getBuildableObjectProperties(defaultBuildableObjectId);
     mCredits = 100;
     mSelected = false;
+    mCameraControll = true;
     // TODO Default selected item
 }
 
