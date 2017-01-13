@@ -39,10 +39,8 @@ void SelectedActionMenuRenderer::render()
     if (mAttached)
     {
         drawBorders();
-        renderText("Build Object", mHeading);
+        renderText("Action", mHeading);
         renderSelectedAction(mIcon);
-        renderObjectName(mName);
-        renderResourceCost(mCost);
     }
 }
 
@@ -52,10 +50,6 @@ void SelectedActionMenuRenderer::drawBorders()
     renderBorder(mHeading);
     renderBackground(mIcon);
     renderBorder(mIcon);
-    renderBackground(mName);
-    renderBorder(mName);
-    renderBackground(mCost);
-    renderBorder(mCost);
 }
 
 void SelectedActionMenuRenderer::renderObjectName(const SDL_Rect & cellRect)
@@ -76,18 +70,26 @@ void SelectedActionMenuRenderer::renderResourceCost(const SDL_Rect & cellRect)
 
 void SelectedActionMenuRenderer::renderSelectedAction(const SDL_Rect & cellRect)
 {
-    const std::string & spriteName = Player::Instance().getSelectedBuildableObjectProperties().entityProperties.spriteLayers[0].spriteName_Up;
-    const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
+    if (Player::Instance().getAction() == MOVE_ACTION)
+    {
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties("multiarrows_1");
 
-    renderSprite(spriteProperties, cellRect);
+        renderSprite(spriteProperties, cellRect);
+    }
+    else
+    {
+        const std::string & spriteName = Player::Instance().getSelectedBuildableObjectProperties().entityProperties.spriteLayers[0].spriteName_Up;
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties(spriteName);
+
+        renderSprite(spriteProperties, cellRect);
+    }
+
 }
 
 void SelectedActionMenuRenderer::setLayout()
 {
     mHeading = getCellRect(0, 0, 0.20);
-    mIcon = getCellRect(0, mHeading.y + mHeading.h, 0.40);
-    mName = getCellRect(0, mIcon.y + mIcon.h, 0.20);
-    mCost = getCellRect(0, mName.y + mName.h, 0.20);
+    mIcon = getCellRect(0, mHeading.y + mHeading.h, 0.80);
 }
 
 SDL_Rect SelectedActionMenuRenderer::getCellRect(const int & offsetX, const int & offsetY, const double & scale)

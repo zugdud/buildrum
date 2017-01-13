@@ -32,8 +32,6 @@ SDL_Rect mBorder;
 
 SDL_Rect mHeading;
 SDL_Rect mIcon;
-SDL_Rect mName;
-SDL_Rect mCost;
 
 bool mAttached;
 std::string mLabelTextProfile;

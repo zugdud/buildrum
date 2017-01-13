@@ -44,10 +44,10 @@ void WindowPropertiesImpl::setViewContexts()
     // };
 
     #ifdef LINUX_BUILD_TARGET
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.45, 0.2, red };
-    ViewportProperties selectedAction = { "selectedAction", 0.45, 0.0, 0.20, 0.2, red };
-    ViewportProperties statusMenu = { "statusMenu", 0.65, 0.0, 0.20, 0.2, red };
-    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.2, green };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.50, 0.2, red };
+    ViewportProperties selectedAction = { "selectedAction", 0.0, 0.0, 0.0, 0.0, red };
+    ViewportProperties statusMenu = { "statusMenu", 0.0, 0.0, 0.0, 0.0, red };
+    ViewportProperties minimap = { "minimap", 0.50, 0.0, 0.50, 0.2, green };
     ViewportProperties gameView = { "gameView", 0.0, 0.2, 1.0, 0.8, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
     #endif
@@ -60,11 +60,11 @@ void WindowPropertiesImpl::setViewContexts()
     #endif
 
     #ifdef ANDROID_BUILD_TARGET
-    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.45, 0.1, red };
-    ViewportProperties selectedAction = { "selectedAction", 0.45, 0.0, 0.20, 0.1, red };
-    ViewportProperties statusMenu = { "statusMenu", 0.65, 0.0, 0.20, 0.1, red };
-    ViewportProperties minimap = { "minimap", 0.85, 0.0, 0.15, 0.1, green };
-    ViewportProperties gameView = { "gameView", 0.0, 0.1, 1.0, 0.90705, blue };
+    ViewportProperties actionMenu = { "actionMenu", 0.0, 0.0, 0.50, 0.25, red };
+    ViewportProperties selectedAction = { "selectedAction", 0.0, 0.0, 0.0, 0.0, red };
+    ViewportProperties statusMenu = { "statusMenu", 0.0, 0.0, 0.00, 0.0, red };
+    ViewportProperties minimap = { "minimap", 0.50, 0.0, 0.50, 0.25, green };
+    ViewportProperties gameView = { "gameView", 0.0, 0.25, 1.0, 0.75, blue };
     ViewportProperties fullscreen = { "fullscreen", 0.0, 0.0, 1.0, 1.0, blue };
     #endif
 

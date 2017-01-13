@@ -162,7 +162,18 @@ void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
         {
             if (mPointEventObserver[i]->getViewportId() == selectedPoint.viewportId)
             {
-                mPointEventObserver[i]->pointEventCallback(pointInt);
+                // filter clicks in gameView if player in move mode
+                if (mPointEventObserver[i]->getViewportId() == "gameView")
+                {
+                    if (Player::Instance().getAction() == BUILD_ACTION)
+                    {
+                        mPointEventObserver[i]->pointEventCallback(pointInt);
+                    }
+                }
+                else
+                {
+                    mPointEventObserver[i]->pointEventCallback(pointInt);
+                }
             }
             else
             {

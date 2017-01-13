@@ -73,6 +73,7 @@ $(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleNewGame.cpp \
 $(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleMainMenu.cpp \
 $(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleExitGame.cpp \
 $(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleBuildEvent.cpp \
+$(SRC_DIR)/$(EVENTS_HANDLERS_DIR)/HandleMoveCamera.cpp \
 $(SRC_DIR)/$(CORE_DIR)/GameInstance.cpp \
 $(SRC_DIR)/$(CORE_DIR)/SceneManager.cpp \
 $(SRC_DIR)/$(CORE_SCENES_DIR)/BaseScene.cpp \
