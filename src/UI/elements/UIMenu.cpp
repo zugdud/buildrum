@@ -181,6 +181,22 @@ void UIMenu::createGridCells()
     }
 }
 
+void UIMenu::setSelectedButton(const std::string & selectedButtonId)
+{
+    for (size_t i = 0; i < mUIGridCells.size(); i++)
+    {
+        UIButton *uiButton = mUIGridCells[i].getUIButton();
+        if (uiButton->getUIButtonProperties().buttonId == selectedButtonId)
+        {
+            uiButton->setUIButtonState("buttonSelected");
+        }
+        else
+        {
+            uiButton->setUIButtonState("buttonAvailable");
+        }
+    }
+}
+
 void UIMenu::createButtons(std::vector<UIButton *> & uiButtons)
 {
     const std::vector<UIButtonProperties> & uiButtonProperties = mIMenuProperties->getUIButtonProperties();

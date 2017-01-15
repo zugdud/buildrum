@@ -12,5 +12,14 @@ HandleMoveCamera::~HandleMoveCamera()
 
 void HandleMoveCamera::handleEvent(IEventDispatch *eventManager)
 {
-    Player::Instance().setAction(MOVE_ACTION);
+    if (mEventId != "")
+    {
+        Player::Instance().setAction(MOVE_ACTION);
+        UIMenu *uiMenu = MenuManager::Instance().getUIMenu("ActionMenu");
+        uiMenu->setSelectedButton(mEventId);
+    }
+    else
+    {
+        SDL_Log("HandleMoveCamera::handleEvent -- ERROR: mEntityId was not set \n");
+    }
 }

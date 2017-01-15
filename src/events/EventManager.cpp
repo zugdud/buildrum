@@ -9,6 +9,8 @@ EventManager::EventManager()
     mEventHandlers["exitGame"] = new HandleExitGame("exitGame");
     mEventHandlers["moveCamera"] = new HandleMoveCamera("moveCamera");
 
+    mEventHandlers["toggleHidden_BuildMenu"] = new HandleToggleBuildMenu("toggleHidden_BuildMenu");
+
     mEventHandlers["build_banner_1"] = new HandleBuildEvent("build_banner_1");
     mEventHandlers["build_banner_2"] = new HandleBuildEvent("build_banner_2");
     mEventHandlers["build_emblem_2"] = new HandleBuildEvent("build_emblem_2");

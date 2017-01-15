@@ -16,6 +16,7 @@ void updateEnvelope(const SDL_Rect & envelope);
 IMenuProperties * getIMenuProperties() const;
 void configure(IMenuProperties *IMenuProperties);
 
+void setSelectedButton(const std::string & buttonId);
 const bool & isHidden();
 
 void toggleHidden();

@@ -112,6 +112,7 @@
 #include <HandleExitGame.hpp>
 #include <HandleBuildEvent.hpp>
 #include <HandleMoveCamera.hpp>
+#include <HandleToggleBuildMenu.hpp>
 #include <EventManager.hpp>
 
 #include <SceneManager.hpp>

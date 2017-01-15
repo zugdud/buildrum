@@ -48,5 +48,4 @@ void Player::setBuildableAction(const std::string & entityId)
 {
     SDL_Log("Player::setBuildableAction -- entityId: %s \n", entityId.c_str());
     mSelectedBuildableActionProperties = ConfigManager::getInstance()->getBuildableObjectPropertiesImpl().getBuildableObjectProperties(entityId);
-    mPlayerActionState = BUILD_ACTION;
 }

@@ -24,7 +24,8 @@ void HandleBuildEvent::handleEvent(IEventDispatch *eventManager)
     if (mEntityId != "")
     {
         Player::Instance().setBuildableAction(mEntityId);
-        std::vector<UIGridCell> & actionMenuGridCells = MenuManager::Instance().getUIMenu("ActionMenu")->getGridCells();
+        UIMenu *uiMenu = MenuManager::Instance().getUIMenu("ActionMenu");
+        std::vector<UIGridCell> & actionMenuGridCells = uiMenu->getGridCells();
         for (size_t i = 0; i < actionMenuGridCells.size(); i++)
         {
             UIButton *uiButton = actionMenuGridCells[i].getUIButton();

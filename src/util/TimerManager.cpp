@@ -3,7 +3,7 @@
 TimerManager::TimerManager()
 {
     mBuildTileId = 0;
-    mBuildTimerDuration = 2000;
+    mBuildTimerDuration = 750;
 }
 TimerManager::~TimerManager()
 {

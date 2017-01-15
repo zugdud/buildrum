@@ -79,6 +79,13 @@ const UIButtonState & UIButton::getCurrentUIButtonState()
     return mUIButtonStates[mCurrentUIButtonStateId];
 }
 
+void UIButton::setUIButtonState(const std::string & buttonState)
+{
+    mCurrentUIButtonStateId = buttonState;
+    SDL_Log("UIButton::setUIButtonState -- mCurrentUIButtonStateId: %s \n", mCurrentUIButtonStateId.c_str());
+}
+
+
 void UIButton::addUIButtonStates(const std::vector<UIButtonStateProperties> & uiButtonStateProperties)
 {
     for (size_t i = 0; i < uiButtonStateProperties.size(); i++)
