@@ -24,6 +24,16 @@ void HandleBuildEvent::handleEvent(IEventDispatch *eventManager)
     if (mEntityId != "")
     {
         Player::Instance().setBuildableAction(mEntityId);
+        std::vector<UIGridCell> & actionMenuGridCells = MenuManager::Instance().getUIMenu("ActionMenu")->getGridCells();
+        for (size_t i = 0; i < actionMenuGridCells.size(); i++)
+        {
+            UIButton *uiButton = actionMenuGridCells[i].getUIButton();
+            const UIButtonProperties & uiButtonProperties = uiButton->getUIButtonProperties();
+            if (uiButtonProperties.buttonId == "toggleHidden_BuildMenu")
+            {
+                uiButton->updateAllButtonStateSprites(mEntityId);
+            }
+        }
         eventManager->dispatchEvent("toggleHidden_BuildMenu");
     }
     else

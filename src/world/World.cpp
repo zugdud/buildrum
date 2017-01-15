@@ -85,31 +85,38 @@ const WorldProperties & World::getWorldProperties() const
 
 void World::pointEventCallback(PointInt pointInt)
 {
-    const SDL_Rect & cameraRect = Camera::Instance().getRect();
-    const double & zoomFactor = Camera::Instance().getZoomFactor();
+    if (Player::Instance().getAction() == BUILD_ACTION)
+    {
+        const SDL_Rect & cameraRect = Camera::Instance().getRect();
+        const double & zoomFactor = Camera::Instance().getZoomFactor();
 
-    const int worldPosX = ceil((pointInt.x + cameraRect.x) / zoomFactor);
-    const int worldPosY = ceil((pointInt.y + cameraRect.y) / zoomFactor);
+        const int worldPosX = ceil((pointInt.x + cameraRect.x) / zoomFactor);
+        const int worldPosY = ceil((pointInt.y + cameraRect.y) / zoomFactor);
 
-    const int tileX = (worldPosX / mWorldProperties.textureSize);
-    const int tileY = (worldPosY / mWorldProperties.textureSize);
+        const int tileX = (worldPosX / mWorldProperties.textureSize);
+        const int tileY = (worldPosY / mWorldProperties.textureSize);
 
-    const int tileId = (mWorldProperties.rows * tileY) + tileX;
+        const int tileId = (mWorldProperties.rows * tileY) + tileX;
 
-    SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d zoomFactor: %f\n",
-            pointInt.x,
-            pointInt.y,
-            cameraRect.x,
-            cameraRect.y,
-            worldPosX,
-            worldPosY,
-            tileX,
-            tileY,
-            tileId,
-            zoomFactor);
+        SDL_Log("World::pointEventCallback -- pointInt: [x: %d y: %d] cameraRect: [x: %d y: %d] worldPos: [x: %d y: %d] TilePos: [x: %d y: %d] tileId: %d zoomFactor: %f\n",
+                pointInt.x,
+                pointInt.y,
+                cameraRect.x,
+                cameraRect.y,
+                worldPosX,
+                worldPosY,
+                tileX,
+                tileY,
+                tileId,
+                zoomFactor);
 
 
-    TimerManager::Instance().startBuildTimer(tileId);
+        TimerManager::Instance().startBuildTimer(tileId);
+    }
+    else
+    {
+        SDL_Log("World::pointEventCallback -- MOVE MODE set, filtering build event \n");
+    }
 }
 
 const std::string & World::getViewportId() const

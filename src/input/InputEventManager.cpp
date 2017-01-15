@@ -93,15 +93,20 @@ void InputEventManager::handleKeyEvents(const SDL_Event & sdlEvent)
 
 void InputEventManager::handleFingerMotion(const SDL_Event & sdlEvent)
 {
-    int scaleFactor = 1000;
-    int velX = -1 * (sdlEvent.tfinger.dx * scaleFactor);
-    int velY = -1 * (sdlEvent.tfinger.dy * scaleFactor);
+    // only scroll in move mode
+    if (Player::Instance().getAction() == MOVE_ACTION)
+    {
+        int scaleFactor = 1000;
+        int velX = -1 * (sdlEvent.tfinger.dx * scaleFactor);
+        int velY = -1 * (sdlEvent.tfinger.dy * scaleFactor);
 
-    mInputMomentum.update(velX, velY);
+        mInputMomentum.update(velX, velY);
+    }
 }
 
 void InputEventManager::handleMultiTouch(const SDL_Event & sdlEvent)
 {
+    // only zoom in move mode
     if (Player::Instance().getAction() == MOVE_ACTION)
     {
         int scaleFactor = 4;

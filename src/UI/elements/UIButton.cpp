@@ -15,6 +15,14 @@ UIButton::~UIButton()
 
 }
 
+void UIButton::updateAllButtonStateSprites(const std::string & spriteName)
+{
+    for (std::map<std::string, UIButtonState>::iterator it = mUIButtonStates.begin(); it != mUIButtonStates.end(); ++it)
+    {
+        it->second.updateSpriteName(spriteName);
+    }
+}
+
 const UIMenuProperties & UIButton::getUIMenuProperties()
 {
     return mParent_UIMenuProperties;

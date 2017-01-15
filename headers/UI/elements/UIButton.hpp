@@ -15,6 +15,8 @@ void configure(const UIButtonStateProperties &uiButtonStateProperties);
 void pointEventCallback(PointInt pointInt);
 void setUIEventConnector(UIEventConnector *uiEventConnector);
 
+void updateAllButtonStateSprites(const std::string & spriteName);
+
 const std::string & getId();
 
 const std::string & getViewportId() const;

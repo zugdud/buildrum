@@ -19,3 +19,8 @@ const UIButtonStateProperties & UIButtonState::getUIButtonStateProperties() cons
 {
     return mUIButtonStateProperties;
 }
+
+void UIButtonState::updateSpriteName(const std::string & spriteName)
+{
+    mUIButtonStateProperties.uiRenderCellDetails.spriteName = spriteName;
+}

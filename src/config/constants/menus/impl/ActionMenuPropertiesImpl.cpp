@@ -47,7 +47,7 @@ void ActionMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
     BaseMenuProperties::setUIButtonStateProperties("moveCamera", "multiarrows_1", true);
-    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "multiarrows_1", false);
+    BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "banner_1", true);
 
     mUIButtonProperties.push_back(quitGame);
     mUIButtonProperties.push_back(buildMenu);
