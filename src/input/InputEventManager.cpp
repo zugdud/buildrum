@@ -121,23 +121,17 @@ void InputEventManager::dispatchQuitEvent()
 
 void InputEventManager::dispatchScrollEvent(const PointInt & momentum)
 {
-    if (Player::Instance().getAction() == MOVE_ACTION)
+    for (size_t i = 0; i < mScrollEventObservers.size(); i++)
     {
-        for (size_t i = 0; i < mScrollEventObservers.size(); i++)
-        {
-            mScrollEventObservers[i]->scrollEventCallback(momentum);
-        }
+        mScrollEventObservers[i]->scrollEventCallback(momentum);
     }
 }
 
 void InputEventManager::dispatchZoomEvent(const double & zoomFactor)
 {
-    if (Player::Instance().getAction() == MOVE_ACTION)
+    for (size_t i = 0; i < mZoomEventObservers.size(); i++)
     {
-        for (size_t i = 0; i < mZoomEventObservers.size(); i++)
-        {
-            mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
-        }
+        mZoomEventObservers[i]->zoomEventCallback(zoomFactor);
     }
 }
 
@@ -162,18 +156,7 @@ void InputEventManager::dispatchPointEvent(const SDL_Event & sdlEvent)
         {
             if (mPointEventObserver[i]->getViewportId() == selectedPoint.viewportId)
             {
-                // filter clicks in gameView if player in move mode
-                if (mPointEventObserver[i]->getViewportId() == "gameView")
-                {
-                    if (Player::Instance().getAction() == BUILD_ACTION)
-                    {
-                        mPointEventObserver[i]->pointEventCallback(pointInt);
-                    }
-                }
-                else
-                {
-                    mPointEventObserver[i]->pointEventCallback(pointInt);
-                }
+                mPointEventObserver[i]->pointEventCallback(pointInt);
             }
             else
             {
