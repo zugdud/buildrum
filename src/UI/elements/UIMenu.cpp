@@ -17,22 +17,20 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
     mHidden = mIMenuProperties->getUIMenuProperties().hidden;
 }
 
-void UIMenu::eventRaised(const std::string & eventId)
-{
-    SDL_Log("UIMenu::eventRaised -- eventId: %s \n", eventId.c_str());
-    const std::string concatKey = "toggleHidden_" + mIMenuProperties->getUIMenuProperties().uiMenuId;
-
-    if (eventId == concatKey)
-    {
-        toggleHidden();
-    }
-
-}
-
 // void UIMenu::updateSpacerBgSprite()
 // {
 //
 // }
+
+void UIMenu::setHidden()
+{
+    mHidden = true;
+}
+
+void UIMenu::setVisible()
+{
+    mHidden = false;
+}
 
 void UIMenu::toggleHidden()
 {

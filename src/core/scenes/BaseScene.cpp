@@ -211,26 +211,6 @@ void BaseScene::detatchInputFromUIMenus()
     }
 }
 
-void BaseScene::detatchUIMenuAsEventObserver()
-{
-    SDL_Log("BaseScene::detatchUIMenuAsEventObserver -- Detatching UI Menus from event manager");
-    // each menu
-    for (size_t i = 0; i < mMenuIds.size(); i++)
-    {
-        EventManager::getInstance()->removeObserver(mMenuIds[i]);
-    }
-}
-
-void BaseScene::attachUIMenuAsEventObserver()
-{
-    SDL_Log("BaseScene::attachUIMenuAsEventObserver -- Attaching UI Menus to event manager");
-    // each menu
-    for (size_t i = 0; i < mMenuIds.size(); i++)
-    {
-        EventManager::getInstance()->registerObserver(MenuManager::Instance().getUIMenu(mMenuIds[i]));
-    }
-}
-
 void BaseScene::attachUIElementsToEventManager()
 {
     // each menu

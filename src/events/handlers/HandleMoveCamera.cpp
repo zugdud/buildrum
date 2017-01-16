@@ -14,7 +14,9 @@ void HandleMoveCamera::handleEvent(IEventDispatch *eventManager)
 {
     if (mEventId != "")
     {
+
         Player::Instance().setAction(MOVE_ACTION);
+
         UIMenu *uiMenu = MenuManager::Instance().getUIMenu("ActionMenu");
         uiMenu->setSelectedButton(mEventId);
     }

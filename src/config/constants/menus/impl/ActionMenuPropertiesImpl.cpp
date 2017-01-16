@@ -46,7 +46,7 @@ void ActionMenuPropertiesImpl::setButtonProperties()
     UIButtonProperties quitGame = { 1, "moveCamera", 20, 20, "mainMenu",  "buttonAvailable", false };
     UIButtonProperties buildMenu = { 2, "toggleHidden_BuildMenu", 20, 20, "toggleHidden_BuildMenu",  "buttonAvailable", false };
 
-    BaseMenuProperties::setUIButtonStateProperties("moveCamera", "multiarrows_1", true);
+    BaseMenuProperties::setUIButtonStateProperties("moveCamera", "dpad_1", true);
     BaseMenuProperties::setUIButtonStateProperties("toggleHidden_BuildMenu", "banner_1", true);
 
     mUIButtonProperties.push_back(quitGame);
@@ -56,8 +56,8 @@ void ActionMenuPropertiesImpl::setButtonProperties()
 void ActionMenuPropertiesImpl::setUILabelProperties()
 {
     // orderId, labelText, fontId, xPadding, yPadding, isSpacer. alignment
-    UILabelProperties quitGame = { 1, "", "Heading_1_OpenSansLight", 10, 10, false, "center" };
-    UILabelProperties buildMenu = { 2, "Build Menu", "Heading_1_OpenSansLight", 20, 20, false, "center" };
+    UILabelProperties quitGame = { 1, "Move", "Heading_1_OpenSansLight", 10, 10, false, "center" };
+    UILabelProperties buildMenu = { 2, "Build", "Heading_1_OpenSansLight", 20, 20, false, "center" };
 
     mUILabelProperties.push_back(quitGame);
     mUILabelProperties.push_back(buildMenu);

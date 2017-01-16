@@ -44,21 +44,21 @@ void SpriteSheetPropertiesImpl::setSpriteSheetProperties()
     castle_2.sheetPixelHeight = 512;
     castle_2.colorKey = transparent;
 
-    SpriteSheetProperties icons_1;
+    SpriteSheetProperties dpad_1;
 
-    icons_1.spriteSheetId = "icons_1";
-    icons_1.fileName = "icons_1.png";
-    icons_1.rows = 1;
-    icons_1.columns = 2;
-    icons_1.spriteSize = 104;
-    icons_1.spriteCount = 2;
-    icons_1.sheetPixelWidth = 208;
-    icons_1.sheetPixelHeight = 104;
-    icons_1.colorKey = transparent;
+    dpad_1.spriteSheetId = "dpad_1";
+    dpad_1.fileName = "dpad_1.png";
+    dpad_1.rows = 1;
+    dpad_1.columns = 1;
+    dpad_1.spriteSize = 256;
+    dpad_1.spriteCount = 1;
+    dpad_1.sheetPixelWidth = 256;
+    dpad_1.sheetPixelHeight = 256;
+    dpad_1.colorKey = transparent;
 
     mSpriteSheetProperties.push_back(castle_1);
     mSpriteSheetProperties.push_back(castle_2);
-    mSpriteSheetProperties.push_back(icons_1);
+    mSpriteSheetProperties.push_back(dpad_1);
 }
 
 const std::vector<SpriteSheetProperties> & SpriteSheetPropertiesImpl::getSpriteSheetProperties()

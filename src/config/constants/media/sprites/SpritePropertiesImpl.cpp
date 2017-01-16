@@ -51,7 +51,7 @@ void SpritePropertiesImpl::setCastle_1()
 
 void SpritePropertiesImpl::setIcons_1()
 {
-    mSpriteProperties["multiarrows_1"] = getSpriteProperties(1, "icons_1", SDL_FLIP_NONE, 0);
+    mSpriteProperties["dpad_1"] = getSpriteProperties(0, "dpad_1", SDL_FLIP_NONE, 0);
 }
 
 SpriteProperties SpritePropertiesImpl::getSpriteProperties(

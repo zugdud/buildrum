@@ -35,7 +35,6 @@ void GameSceneImpl::attach()
     attachInputManagerToCamera(); // only needed once
     attachUIElementsToEventManager();     // only needed once
     attachWorld();
-    attachUIMenuAsEventObserver();
     SDL_Log("----------------------------------------------------");
 }
 
@@ -47,7 +46,6 @@ void GameSceneImpl::detatch()
     detatchSceneRenderersFromViewports();
     detatchInputFromUIMenus();
     detatchWorld();
-    detatchUIMenuAsEventObserver();
     // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
     SDL_Log("----------------------------------------------------");
 }

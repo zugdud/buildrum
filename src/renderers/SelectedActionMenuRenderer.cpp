@@ -72,7 +72,7 @@ void SelectedActionMenuRenderer::renderSelectedAction(const SDL_Rect & cellRect)
 {
     if (Player::Instance().getAction() == MOVE_ACTION)
     {
-        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties("multiarrows_1");
+        const SpriteProperties & spriteProperties = ConfigManager::getInstance()->getSpritePropertiesImpl().getSpriteProperties("dpad_1");
 
         renderSprite(spriteProperties, cellRect);
     }

@@ -1,4 +1,4 @@
-class UIMenu : public UIElement, public IEventObserver
+class UIMenu : public UIElement
 {
 
 public:
@@ -19,7 +19,10 @@ void configure(IMenuProperties *IMenuProperties);
 void setSelectedButton(const std::string & buttonId);
 const bool & isHidden();
 
+void setHidden();
+void setVisible();
 void toggleHidden();
+
 void attach();
 void detatch();
 

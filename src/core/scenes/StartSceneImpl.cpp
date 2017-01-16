@@ -22,7 +22,6 @@ void StartSceneImpl::attach()
     attachInputToUIMenus();
     attachInputManagerToCamera(); // only needed once
     attachUIElementsToEventManager();     // only needed once
-    attachUIMenuAsEventObserver();
     SDL_Log("----------------------------------------------------");
 }
 
@@ -33,7 +32,6 @@ void StartSceneImpl::detatch()
     detatchLayersFromMenuRenderer();
     detatchSceneRenderersFromViewports();
     detatchInputFromUIMenus();
-    detatchUIMenuAsEventObserver();
     // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
     SDL_Log("----------------------------------------------------");
 }
