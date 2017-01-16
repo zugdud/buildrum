@@ -25,11 +25,13 @@ void UIMenu::configure(IMenuProperties *IMenuProperties)
 void UIMenu::setHidden()
 {
     mHidden = true;
+    detatch();
 }
 
 void UIMenu::setVisible()
 {
     mHidden = false;
+    attach();
 }
 
 void UIMenu::toggleHidden()

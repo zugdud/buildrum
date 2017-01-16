@@ -35,7 +35,9 @@ void HandleBuildEvent::handleEvent(IEventDispatch *eventManager)
                 uiButton->updateAllButtonStateSprites(mEntityId);
             }
         }
-        eventManager->dispatchEvent("toggleHidden_BuildMenu");
+
+        UIMenu *buildMenu = MenuManager::Instance().getUIMenu("BuildMenu");
+        buildMenu->setHidden();
     }
     else
     {

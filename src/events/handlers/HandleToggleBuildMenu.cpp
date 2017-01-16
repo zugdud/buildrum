@@ -17,6 +17,9 @@ void HandleToggleBuildMenu::handleEvent(IEventDispatch *eventManager)
         UIMenu *uiMenu = MenuManager::Instance().getUIMenu("ActionMenu");
         Player::Instance().setAction(BUILD_ACTION);
         uiMenu->setSelectedButton(mEventId);
+
+        UIMenu *buildMenu = MenuManager::Instance().getUIMenu("BuildMenu");
+        buildMenu->toggleHidden();
     }
     else
     {

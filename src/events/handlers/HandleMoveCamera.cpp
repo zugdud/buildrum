@@ -19,6 +19,9 @@ void HandleMoveCamera::handleEvent(IEventDispatch *eventManager)
 
         UIMenu *uiMenu = MenuManager::Instance().getUIMenu("ActionMenu");
         uiMenu->setSelectedButton(mEventId);
+
+        UIMenu *buildMenu = MenuManager::Instance().getUIMenu("BuildMenu");
+        buildMenu->setHidden();
     }
     else
     {
