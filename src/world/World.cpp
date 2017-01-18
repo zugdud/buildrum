@@ -93,8 +93,8 @@ void World::pointEventCallback(PointInt pointInt)
         const int worldPosX = ceil((pointInt.x + cameraRect.x) / zoomFactor);
         const int worldPosY = ceil((pointInt.y + cameraRect.y) / zoomFactor);
 
-        const int tileX = (worldPosX / mWorldProperties.textureSize);
-        const int tileY = (worldPosY / mWorldProperties.textureSize);
+        const int tileX = ceil((worldPosX / mWorldProperties.textureSize));
+        const int tileY = ceil((worldPosY / mWorldProperties.textureSize));
 
         const int tileId = (mWorldProperties.rows * tileY) + tileX;
 
