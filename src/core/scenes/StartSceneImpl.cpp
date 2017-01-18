@@ -35,3 +35,11 @@ void StartSceneImpl::detatch()
     // detatchUIElementsFromEventManager();   TODO not needed, would only make button point to np
     SDL_Log("----------------------------------------------------");
 }
+
+
+void StartSceneImpl::attachInputManagerToCamera()
+{
+    SDL_Log("StartSceneImpl::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
+    InputEventManager::getInstance()->registerScrollEventObserver(&Camera::Instance());
+    InputEventManager::getInstance()->registerZoomEventObserver(&Camera::Instance());
+}

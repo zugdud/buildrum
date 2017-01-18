@@ -28,10 +28,6 @@ void detatchSceneRenderersFromViewports();
 void attachLayersToMenuRenderer();
 void attachSceneRenderersToViewports();
 void attachUIElementsToEventManager();
-void attachInputManagerToCamera();
-
-void attachWorld();
-void detatchWorld();
 
 void attachInputToUIMenus();
 void detatchInputFromUIMenus();
