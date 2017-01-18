@@ -36,10 +36,9 @@ void StartSceneImpl::detatch()
     SDL_Log("----------------------------------------------------");
 }
 
-
 void StartSceneImpl::attachInputManagerToCamera()
 {
-    SDL_Log("StartSceneImpl::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
+    SDL_Log("BaseScene::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
     InputEventManager::getInstance()->registerScrollEventObserver(&Camera::Instance());
     InputEventManager::getInstance()->registerZoomEventObserver(&Camera::Instance());
 }

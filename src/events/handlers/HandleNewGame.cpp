@@ -13,5 +13,5 @@ HandleNewGame::~HandleNewGame()
 void HandleNewGame::handleEvent(IEventDispatch *eventManager)
 {
     AudioManager::Instance().stopMusic();
-    SceneManager::getInstance()->setActiveScene("GameScene");
+    SceneManager::getInstance()->setActiveScene("LoadingScene");
 }

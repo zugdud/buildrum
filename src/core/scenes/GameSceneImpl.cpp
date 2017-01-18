@@ -52,7 +52,6 @@ void GameSceneImpl::detatch()
 void GameSceneImpl::doLoadAction()
 {
     SDL_Log("GameSceneImpl::doLoad \n");
-    WorldManager::Instance().loadWorld("testWorld");
 }
 
 void GameSceneImpl::detatchWorld()

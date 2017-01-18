@@ -130,6 +130,7 @@ $(SRC_DIR)/$(CORE_DIR)/SceneManager.cpp \
 $(SRC_DIR)/$(CORE_SCENES_DIR)/BaseScene.cpp \
 $(SRC_DIR)/$(CORE_SCENES_DIR)/StartSceneImpl.cpp \
 $(SRC_DIR)/$(CORE_SCENES_DIR)/GameSceneImpl.cpp \
+$(SRC_DIR)/$(CORE_SCENES_DIR)/LoadingSceneImpl.cpp \
 $(SRC_DIR)/$(INPUT_DIR)/InputEventManager.cpp \
 $(SRC_DIR)/$(INPUT_DIR)/InputMomentum.cpp \
 $(SRC_DIR)/$(UI_ELEMENTS)/UIElement.cpp \

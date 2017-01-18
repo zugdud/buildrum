@@ -106,6 +106,7 @@
 #include <BaseScene.hpp>
 #include <StartSceneImpl.hpp>
 #include <GameSceneImpl.hpp>
+#include <LoadingSceneImpl.hpp>
 
 #include <HandleNewGame.hpp>
 #include <HandleMainMenu.hpp>

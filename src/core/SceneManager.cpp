@@ -59,6 +59,7 @@ void SceneManager::init()
 {
     mScenes["MainMenu"] = new StartSceneImpl("MainMenu");
     mScenes["GameScene"] = new GameSceneImpl("GameScene");
+    mScenes["LoadingScene"] = new LoadingSceneImpl("LoadingScene");
 
     // attach to active scene
     mActiveSceneId = "MainMenu";
