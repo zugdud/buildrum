@@ -15,7 +15,9 @@ void checkViewableArea();
 void positionUpdate();
 void zoomFactorUpdate();
 
-const Tile & getTile(const int & tileId);
+const Tile & getTile(const int & tileId) const;
+Tile & getTileW(const int & tileId);
+
 const std::vector<Tile> & getTiles() const;
 const WorldProperties & getWorldProperties() const;
 

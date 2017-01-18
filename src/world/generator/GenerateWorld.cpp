@@ -23,3 +23,11 @@ void GenerateWorld::createWorld(const std::string & worldId)
         mTestWorldImpl.setWorld(mWorld);
     }
 }
+
+void GenerateWorld::setPaths()
+{
+
+    Pathfinding pathfinding;
+
+    pathfinding.findPath(0, 1024, 1.0, "test");
+}

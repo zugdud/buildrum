@@ -64,7 +64,17 @@ void World::updateTileLabels()
     }
 }
 
-const Tile & World::getTile(const int & tileId)
+Tile & World::getTileW(const int & tileId)
+{
+    if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
+    {
+        SDL_Log("World::getTileW -- ERROR: requested tileId out of bounds tileId: %d \n", tileId);
+    }
+    return mTiles[tileId];
+}
+
+
+const Tile & World::getTile(const int & tileId) const
 {
     if (tileId > (mWorldProperties.numTiles - 1) || tileId < 0)
     {

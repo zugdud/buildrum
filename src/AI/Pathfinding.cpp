@@ -1,10 +1,24 @@
 #include "include/global.hpp"
 
+Pathfinding::Pathfinding()
+{
+
+}
+
+Pathfinding::~Pathfinding()
+{
+
+}
+
 // search the Pathfinding for the optimal path
 void Pathfinding::findPath(const int & startTileId,
                            const int & endTileId,
+                           const double & weightModifierRatio,
                            const std::string & aiStrategy)
 {
+
+    World *world = WorldManager::Instance().getWorldPtr();
+
     std::map<int, int> cameFrom; // neighborTileId, current tileId
     std::map<int, int> costSoFar;    // total cost so far for the path from startTileId
     std::vector<int> neighbors; // vec of the neighboring tileIds
@@ -31,27 +45,27 @@ void Pathfinding::findPath(const int & startTileId,
         for (size_t i = 0; i < neighbors.size(); i++)
         {
             int neighborTileId = neighbors[i];
-            const Tile & neighborTile = World::Instance().getTile(neighborTileId);
+            Tile & neighborTile = world->getTileW(neighborTileId);
 
-            int totalCost = costSoFar[currentTileId] + neighborTile.getWeight(aiStrategy);
+            int neighborTileWeight = neighborTile.getSurface().getSurfaceProperties().weightValue * weightModifierRatio;
+            int totalCost = costSoFar[currentTileId] + neighborTileWeight;
             if (!costSoFar.count(neighborTileId) || totalCost < costSoFar[neighborTileId])
             {
                 // if we haven't been here yet, add it to the weightedQueue
-                weightedQueue.push(neighborTile.getWeight(aiStrategy), neighborTileId);
+                weightedQueue.push(neighborTileWeight, neighborTileId);
                 cameFrom[neighborTileId] = currentTileId;
                 costSoFar[neighborTileId] = totalCost;
-                World::Instance().setPath(neighborTileId, aiStrategy, currentTileId);
+                neighborTile.setPath(aiStrategy, currentTileId);
             }
         }
     }
-    // setPath(startTileId, endTileId, aiStrategy, cameFrom);
 }
 
 EntityOrientation Pathfinding::getMovementDirection(const int & sourceTileId,
                                                     const int & destinationTileId)
 {
-    MatrixPosition sourceTile = getMatrixPosition(sourceTileId);
-    MatrixPosition destinationTile = getMatrixPosition(destinationTileId);
+    PointInt sourceTile = getMatrixPosition(sourceTileId);
+    PointInt destinationTile = getMatrixPosition(destinationTileId);
     EntityOrientation orientation;
 
     if (destinationTile.y < sourceTile.y)
@@ -75,8 +89,8 @@ EntityOrientation Pathfinding::getMovementDirection(const int & sourceTileId,
 
 PointInt Pathfinding::getMatrixPosition(const int & linearIndex)
 {
-    const int thisColumn = linearIndex / World::Instance().getWorldProperties().rows;
-    const int thisRow = linearIndex %  World::Instance().getWorldProperties().rows;
+    const int thisColumn = linearIndex /  WorldManager::Instance().getWorld().getWorldProperties().rows;
+    const int thisRow = linearIndex % WorldManager::Instance().getWorld().getWorldProperties().rows;
     PointInt pointInt;
 
     pointInt.x = thisColumn;
@@ -84,20 +98,20 @@ PointInt Pathfinding::getMatrixPosition(const int & linearIndex)
     return pointInt;
 }
 
-int Pathfinding::getLinearIndex(const PointInt & matrixPosition)
+int Pathfinding::getLinearIndex(const int & x, const int & y)
 {
-    int linearIndex = (World::Instance().getWorldProperties().rows * matrixPosition.y) + matrixPosition.x;
+    int linearIndex = (WorldManager::Instance().getWorld().getWorldProperties().rows * y) + x;
 
     return linearIndex;
 }
 
 
 void Pathfinding::collectNeighbors(const int & tileId,
-                                   const std::vector<int> & neighbors)
+                                   std::vector<int> & neighbors)
 {
-    MatrixPosition tile = getMatrixPosition(tileId);
-    const int x = tile.x;
-    const int y = tile.y;
+    PointInt point = getMatrixPosition(tileId);
+    const int x = point.x;
+    const int y = point.y;
 
     // up
     if (y > 0) // otherwise an underflow occurred, so not a neighbour
@@ -107,7 +121,7 @@ void Pathfinding::collectNeighbors(const int & tileId,
         neighbors.push_back(neighborTileId);
     }
     // down
-    if (y < mTileRows - 1)
+    if (y < WorldManager::Instance().getWorld().getWorldProperties().rows - 1)
     {
         int down = y + 1;
         int neighborTileId = getLinearIndex(x, down);
@@ -121,7 +135,7 @@ void Pathfinding::collectNeighbors(const int & tileId,
         neighbors.push_back(neighborTileId);
     }
     // right
-    if (x < mTileColumns - 1)
+    if (x < WorldManager::Instance().getWorld().getWorldProperties().columns - 1)
     {
         int right = x + 1;
         int neighborTileId = getLinearIndex(right, y);

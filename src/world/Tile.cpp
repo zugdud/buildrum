@@ -110,5 +110,6 @@ void Tile::setPath(const std::string & aiStrategy,
                    const int & destTileId)
 {
     // SDL_Log("Tile::setPath -- setting path: [tileId: %s aiStrategy: %s] \n", tileId.c_str(), aiStrategy.c_str());
+    // mSpriteRects.insert(std::make_pair(spriteMapIndex, spriteRect));
     mPaths[aiStrategy] = destTileId;
 }
