@@ -117,6 +117,13 @@ void BaseScene::attachUIElementsToEventManager()
 }
 
 
+void BaseScene::attachInputManagerToCamera()
+{
+    SDL_Log("BaseScene::attachInputManagerToCamera -- attaching camera to inputeventmanager \n");
+    InputEventManager::getInstance()->registerScrollEventObserver(&Camera::Instance());
+    InputEventManager::getInstance()->registerZoomEventObserver(&Camera::Instance());
+}
+
 const std::string & BaseScene::getSceneId()
 {
     return mSceneId;

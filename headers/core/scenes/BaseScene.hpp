@@ -20,6 +20,7 @@ virtual void detatch() = 0;
 
 protected:
 
+void attachInputManagerToCamera();
 void handleMusicPlaylist();
 
 void detatchLayersFromMenuRenderer();

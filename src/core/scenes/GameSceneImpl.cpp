@@ -32,6 +32,7 @@ void GameSceneImpl::attach()
     attachLayersToMenuRenderer();
     attachSceneRenderersToViewports();
     attachInputToUIMenus();
+    attachInputManagerToCamera();     // only needed once
     attachUIElementsToEventManager();     // only needed once
     attachWorld();
     SDL_Log("----------------------------------------------------");
@@ -52,6 +53,7 @@ void GameSceneImpl::detatch()
 void GameSceneImpl::doLoadAction()
 {
     SDL_Log("GameSceneImpl::doLoad \n");
+    // WorldManager::Instance().loadWorld("testWorld");
 }
 
 void GameSceneImpl::detatchWorld()

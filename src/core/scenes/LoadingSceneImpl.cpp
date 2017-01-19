@@ -5,6 +5,7 @@ static int loadingSceneThread(void *ptr)
     SDL_Log("LoadingSceneImpl::backgroundThread -- Loading World... \n");
     WorldManager::Instance().loadWorld("testWorld");
     SceneManager::getInstance()->setActiveScene("GameScene");
+    return 1;
 }
 
 LoadingSceneImpl::LoadingSceneImpl(const std::string & sceneId) : BaseScene(sceneId)
@@ -36,8 +37,10 @@ void LoadingSceneImpl::detatch()
 void LoadingSceneImpl::startThread()
 {
     SDL_Thread *thread;
+    int threadReturnValue;
 
     SDL_Log("LoadingSceneImpl::startThread -- starting thread... \n");
+
     thread = SDL_CreateThread(loadingSceneThread, "BackgroundThread", (void *) NULL);
 
     if (NULL == thread)
