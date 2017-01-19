@@ -4,7 +4,7 @@ SceneManager *SceneManager::mSingletonInstance = 0;
 
 SceneManager::SceneManager()
 {
-
+    mUpdateLock = false;
 }
 
 SceneManager::~SceneManager()
@@ -67,6 +67,17 @@ void SceneManager::init()
 
 }
 
+void SceneManager::setUpdateLock(const bool & lockState)
+{
+    mUpdateLock = lockState;
+    SDL_Log("SceneManager::setUpdateLock -- mUpdateLock: %d \n", mUpdateLock);
+}
+
+const bool & SceneManager::getUpdateLock()
+{
+    return mUpdateLock;
+}
+
 void SceneManager::setActiveScene(const std::string & activeSceneId)
 {
     mScenes[mActiveSceneId]->detatch();
@@ -76,5 +87,8 @@ void SceneManager::setActiveScene(const std::string & activeSceneId)
 
 void SceneManager::updateActiveScene()
 {
-    mScenes[mActiveSceneId]->update();
+    if (mUpdateLock == false)
+    {
+        mScenes[mActiveSceneId]->update();
+    }
 }

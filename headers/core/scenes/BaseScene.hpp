@@ -33,7 +33,6 @@ void attachUIElementsToEventManager();
 void attachInputToUIMenus();
 void detatchInputFromUIMenus();
 
-
 std::string mSceneId;
 std::string mViewContextId;
 

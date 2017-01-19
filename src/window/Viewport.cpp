@@ -20,6 +20,7 @@ void Viewport::configure(const ViewportProperties &viewportProperties,
 {
     mViewportProperties = viewportProperties;
     mSDLRenderer = sdlRenderer;
+    SDL_Log("Viewport::configure -- viewportId: %s \n", mViewportProperties.viewportId.c_str());
     positionViewport(windowProperties);
 }
 
@@ -79,6 +80,7 @@ void Viewport::removeAllRenderers()
 void Viewport::renderUpdate() const
 {
     setRenderedViewport();
+
 
     if (mWorldRenderer != NULL)
     {

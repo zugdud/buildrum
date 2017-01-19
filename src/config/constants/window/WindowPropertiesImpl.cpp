@@ -82,6 +82,11 @@ void WindowPropertiesImpl::setViewContexts()
     fullscreenContext.numViewports = 1;
     fullscreenContext.viewports[0] = fullscreen;
 
+    ViewContextProperties loadingscreenContext;
+    loadingscreenContext.viewContextId = "LoadingScene";
+    loadingscreenContext.numViewports = 1;
+    loadingscreenContext.viewports[0] = fullscreen;
+
     ViewContextProperties gameplayContext;
     gameplayContext.viewContextId = "GameScene";
     gameplayContext.numViewports = 5;
@@ -93,6 +98,7 @@ void WindowPropertiesImpl::setViewContexts()
 
     mViewContextProperties.push_back(fullscreenContext);
     mViewContextProperties.push_back(gameplayContext);
+    mViewContextProperties.push_back(loadingscreenContext);
 }
 
 void WindowPropertiesImpl::setWindowProfiles()
